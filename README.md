@@ -1,8 +1,8 @@
 # MADTeam4
 Repository for MAD Team 4 for Assignment 1 + 2.
 
-App Name: FriendScape
-App Category: Lifestyle
+App Name: FriendScape,
+App Category: Lifestyle,
 App Sub-Category: Social
 
 Introduction:
