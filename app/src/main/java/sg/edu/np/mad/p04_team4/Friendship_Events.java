@@ -11,9 +11,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import android.text.Html;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+
+
 import androidx.core.content.ContextCompat;
 
 public class Friendship_Events extends AppCompatActivity {
@@ -32,41 +31,48 @@ public class Friendship_Events extends AppCompatActivity {
         Button b2 = findViewById(R.id.button2);
         Button b3 = findViewById(R.id.button3);
         Button b4 = findViewById(R.id.button4);
-        final boolean[] challange_empty = {false};
-        final boolean[] milestone_empty = {true};
-        final boolean[] goals_empty = {true};
+
+        User user = new User("John Doe", "MAD Developer",1,true,true,true,true);
+
+        boolean challange_empty = user.challange_e;
+        boolean milestone_empty = user.milestone_e;
+        boolean goals_empty = user.goals_e;
 
 
-        if(challange_empty[0]){
+
+
+
+        if(challange_empty){
             String buttonText = "<b>No challenge set yet!</b><br><br>Click here to set it for yourself or friends";
             b1.setText(Html.fromHtml(buttonText));
             b1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent set_challange= new Intent(Friendship_Events.this, TEST.class);
+                    set_challange.putExtra("user", user);
                     startActivity(set_challange);
                 }
             });
         }
-        else if(!challange_empty[0]){
+        else if(!challange_empty){
             int color = ContextCompat.getColor(this, R.color.teal_700);
             b1.setBackgroundColor(color);
             //get challange information and display
 
         }
-        if(milestone_empty[0]){
+        if(milestone_empty){
             String buttonText = "<b>No milestone set yet!</b><br><br>Click here to set it for yourself or friends";
             b2.setText(Html.fromHtml(buttonText));
         }
-        else if(!milestone_empty[0]){
+        else if(!milestone_empty){
 
 
         }
-        if(goals_empty[0]){
+        if(goals_empty){
             String buttonText = "<b>No goals set yet!</b><br><br>Click here to set it for yourself and friends";
             b3.setText(Html.fromHtml(buttonText));
         }
-        else if(!goals_empty[0]){
+        else if(!goals_empty){
 
 
         }
