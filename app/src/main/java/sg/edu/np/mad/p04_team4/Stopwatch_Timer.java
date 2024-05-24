@@ -1,5 +1,6 @@
 package sg.edu.np.mad.p04_team4;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -9,12 +10,15 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.media.MediaPlayer;
+import android.os.Vibrator;
 
 import androidx.appcompat.app.AppCompatActivity;
 public class Stopwatch_Timer extends AppCompatActivity {
@@ -116,6 +120,17 @@ public class Stopwatch_Timer extends AppCompatActivity {
             public void onFinish() {
                 editTextTime.setText("00:00:00");
                 Toast.makeText(Stopwatch_Timer.this, "Timer Finished", Toast.LENGTH_SHORT).show();
+
+                // Play a sound
+                MediaPlayer mediaPlayer = MediaPlayer.create(Stopwatch_Timer.this, R.raw.alarm_sound);
+                mediaPlayer.start();
+
+                // Vibrate the device
+                Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+                if (vibrator != null) {
+                    vibrator.vibrate(1000); // Vibrate for 1 second
+                }
+
                 resetTimer();
             }
         }.start();
