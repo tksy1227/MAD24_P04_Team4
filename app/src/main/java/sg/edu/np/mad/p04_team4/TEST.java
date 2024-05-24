@@ -26,7 +26,7 @@ public class TEST extends AppCompatActivity {
         });
 
         Intent set_challange = getIntent();
-        User user = (User) set_challange.getSerializableExtra("user");
+        User user = (User) set_challange    .getSerializableExtra("user");
         TextInputEditText Text = findViewById(R.id.input);
         Button enter = findViewById(R.id.button);
         String text2 = Text.getText().toString();
@@ -35,7 +35,7 @@ public class TEST extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent challange_made= new Intent(TEST.this,Friendship_Events.class);
-                user.challange_e=false;
+                user.events.challange_e=false;
                 challange_made.putExtra("user", user);
                 challange_made.putExtra("challange",text2);
                 startActivity(challange_made);

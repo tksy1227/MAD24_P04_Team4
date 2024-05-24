@@ -5,18 +5,24 @@ public class User implements Serializable{
     public String description;
     public int id;
     public boolean followed;
-    public boolean challange_e;
-    public boolean milestone_e;
-    public boolean goals_e;
+    public User_events events;
+    public User(){}
 
-
-    public User(String name, String description, int id, boolean followed,boolean challange,boolean milestone,boolean goals) {
+    public User(String name, String description, int id, boolean followed,User_events events) {
         this.name = name;
         this.description = description;
         this.id = id;
         this.followed = followed;
-        this.challange_e=challange;
-        this.milestone_e = milestone;
-        this.goals_e=goals;
+        this.events = events;
+
+    }
+    public User(String name, String description, int id, boolean followed) {
+        this.name = name;
+        this.description = description;
+        this.id = id;
+        this.followed = followed;
+        this.events = new User_events(true,true,true);
+
+
     }
 }
