@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        Intent challange_made= new Intent(MainActivity.this,Friendship_Events.class);
+        startActivity(challange_made);
 
 
 
