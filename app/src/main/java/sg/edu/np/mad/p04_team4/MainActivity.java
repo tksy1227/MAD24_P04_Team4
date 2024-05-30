@@ -1,5 +1,6 @@
 package sg.edu.np.mad.p04_team4;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -20,5 +21,12 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        Intent challange_made= new Intent(MainActivity.this,Friendship_Events.class);
+        startActivity(challange_made);
+
+
+
+
+
     }
 }
