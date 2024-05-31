@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         Intent challange_made= new Intent(MainActivity.this,Friendship_Events.class);
         startActivity(challange_made);
 
-
+//test
 
 
 
