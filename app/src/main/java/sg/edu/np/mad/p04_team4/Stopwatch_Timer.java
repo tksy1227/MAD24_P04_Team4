@@ -1,26 +1,27 @@
 package sg.edu.np.mad.p04_team4;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
-import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.media.MediaPlayer;
-import android.os.Vibrator;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
+
 public class Stopwatch_Timer extends AppCompatActivity {
 
     private EditText editTextTime;
@@ -28,27 +29,34 @@ public class Stopwatch_Timer extends AppCompatActivity {
     private Button buttonStart;
     private Button buttonTenSec, buttonOneMin, buttonThreeMin;
     private Button buttonStop, buttonPause;
+    private Button buttonTimerHistory;
 
     private CountDownTimer countDownTimer;
     private long timeLeftInMillis;
     private boolean isTimerRunning;
     private boolean isPaused;
 
-    private String purposeText; // Variable to store purpose text
+    private String purposeText;
+    private String startTime;
+
+    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stopwatch_timer);
 
-        editTextTime = findViewById(R.id.timerEditText);
-        editTextPurpose = findViewById(R.id.purposeTextView);
+        databaseHelper = new DatabaseHelper(this);
+
+        editTextTime = findViewById(R.id.timerText);
+        editTextPurpose = findViewById(R.id.purposeText);
         buttonStart = findViewById(R.id.startButton);
         buttonTenSec = findViewById(R.id.tenSecButton);
         buttonOneMin = findViewById(R.id.oneMinButton);
         buttonThreeMin = findViewById(R.id.threeMinButton);
         buttonStop = findViewById(R.id.stopButton);
         buttonPause = findViewById(R.id.pauseButton);
+        buttonTimerHistory = findViewById(R.id.timerHistory);
 
         buttonTenSec.setOnClickListener(v -> editTextTime.setText("00:00:10"));
         buttonOneMin.setOnClickListener(v -> editTextTime.setText("00:01:00"));
@@ -63,11 +71,16 @@ public class Stopwatch_Timer extends AppCompatActivity {
         });
         buttonStop.setOnClickListener(v -> stopTimer());
         buttonPause.setOnClickListener(v -> pauseTimer());
+
+        buttonTimerHistory.setOnClickListener(v -> {
+            Intent intent = new Intent(Stopwatch_Timer.this, TimerLogActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void startTimer() {
         String timeInput = editTextTime.getText().toString();
-        purposeText = editTextPurpose.getText().toString().trim(); // Store the purpose text
+        purposeText = editTextPurpose.getText().toString().trim();
 
         if (TextUtils.isEmpty(timeInput)) {
             Toast.makeText(Stopwatch_Timer.this, "Please enter a valid time", Toast.LENGTH_SHORT).show();
@@ -75,7 +88,7 @@ public class Stopwatch_Timer extends AppCompatActivity {
         }
 
         if (TextUtils.isEmpty(purposeText)) {
-            purposeText = "Unknown"; // Set default purpose if not provided
+            purposeText = "Unknown";
         }
 
         String[] timeParts = timeInput.split(":");
@@ -91,9 +104,11 @@ public class Stopwatch_Timer extends AppCompatActivity {
 
             timeLeftInMillis = (hours * 3600 + minutes * 60 + seconds) * 1000;
 
-            buttonStart.setEnabled(false); // Disable the start button
-            buttonPause.setEnabled(true); // Enable the pause button
-            buttonStop.setEnabled(true); // Enable the stop button
+            startTime = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+
+            buttonStart.setEnabled(false);
+            buttonPause.setEnabled(true);
+            buttonStop.setEnabled(true);
 
             startCountDownTimer();
         } catch (NumberFormatException e) {
@@ -121,18 +136,27 @@ public class Stopwatch_Timer extends AppCompatActivity {
                 editTextTime.setText("00:00:00");
                 Toast.makeText(Stopwatch_Timer.this, "Timer Finished", Toast.LENGTH_SHORT).show();
 
-                // Play a sound
                 MediaPlayer mediaPlayer = MediaPlayer.create(Stopwatch_Timer.this, R.raw.alarm_sound);
                 mediaPlayer.start();
 
-                // Vibrate the device
                 Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
                 if (vibrator != null) {
-                    vibrator.vibrate(1000); // Vibrate for 1 second
+                    vibrator.vibrate(1000);
                 }
+
+                String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
+
+                SQLiteDatabase db = databaseHelper.getWritableDatabase();
+                ContentValues values = new ContentValues();
+                values.put(DatabaseHelper.COLUMN_TIMER, startTime); // Store as String
+                values.put(DatabaseHelper.COLUMN_PURPOSE, purposeText);
+                values.put(DatabaseHelper.COLUMN_DATE, currentTime);
+
+                db.insert(DatabaseHelper.TABLE_NAME, null, values);
 
                 resetTimer();
             }
+
         }.start();
 
         isTimerRunning = true;
@@ -144,14 +168,14 @@ public class Stopwatch_Timer extends AppCompatActivity {
             countDownTimer.cancel();
             isPaused = true;
             isTimerRunning = false;
-            buttonPause.setEnabled(false); // Disable pause button after pausing
-            buttonStart.setEnabled(true); // Enable the start button to allow resuming
+            buttonPause.setEnabled(false);
+            buttonStart.setEnabled(true);
         }
     }
 
     private void resumeTimer() {
-        buttonStart.setEnabled(false); // Disable the start button
-        buttonPause.setEnabled(true); // Enable the pause button after resuming
+        buttonStart.setEnabled(false);
+        buttonPause.setEnabled(true);
         startCountDownTimer();
     }
 
@@ -163,9 +187,9 @@ public class Stopwatch_Timer extends AppCompatActivity {
     }
 
     private void resetTimer() {
-        buttonStart.setEnabled(true); // Re-enable the start button
-        buttonPause.setEnabled(false); // Disable the pause button
-        buttonStop.setEnabled(false); // Disable the stop button
+        buttonStart.setEnabled(true);
+        buttonPause.setEnabled(false);
+        buttonStop.setEnabled(false);
         isTimerRunning = false;
         isPaused = false;
         editTextTime.setText("00:00:00");
