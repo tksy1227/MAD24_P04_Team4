@@ -17,11 +17,12 @@
         <activity
             android:name=".OTPActivity"
             android:exported="false" />
-        <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
+
         <activity
             android:name=".ForgetUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomeActivity"
             android:exported="false" />
         <activity
             android:name=".ForgetPasswordActivity"
@@ -42,11 +43,13 @@
             android:name=".events_input"
             android:exported="false" />
         <activity
+            android:name=".ForgotPasswordActivity" />
+        <activity
             android:name=".ChatHomeActivity" />
         <activity
             android:name=".Chat_Main" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".LoginActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
