@@ -39,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
             Intent intent = new Intent(HomeActivity.this, Stopwatch_Timer.class);
             startActivity(intent);
         });
-        ImageView challangeYourselfImage = findViewById(R.id.imageViewchloe);
+        ImageView challangeYourselfImage = findViewById(R.id.imageViewjacob);
         challangeYourselfImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

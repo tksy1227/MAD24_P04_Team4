@@ -24,4 +24,9 @@ public class User {
         this.name = name;
         this.password = password;
     }
+    public User() {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+    }
 }

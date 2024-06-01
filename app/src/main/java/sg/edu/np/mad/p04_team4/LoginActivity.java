@@ -31,15 +31,15 @@ public class LoginActivity extends AppCompatActivity {
         Button btnRegister = findViewById(R.id.CreateAccount);
 
         btnLogin.setOnClickListener(v -> {
-            EditText etUsername = findViewById(R.id.etUsername);
-            EditText etPassword = findViewById(R.id.etPassword);
+            EditText etUsername = findViewById(R.id.PhoneNumber);
+            EditText etPassword = findViewById(R.id.Password);
             String username = etUsername.getText().toString();
             String password = etPassword.getText().toString();
             User user = dbHandler.getUser(username);
 
             if (user != null && username.equals(user.getName()) && password.equals(user.getPassword())) {
                 Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class); // Update this to the appropriate Activity
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class); // Update this to the appropriate Activity
                 intent.putExtra("name", user.getName());
                 startActivity(intent);
             } else {

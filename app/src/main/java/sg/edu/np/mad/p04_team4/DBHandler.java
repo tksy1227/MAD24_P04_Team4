@@ -64,35 +64,61 @@ public class DBHandler extends SQLiteOpenHelper {
         String query = "SELECT * FROM " + USERS + " WHERE " + COLUMN_NAME + "=?";
         Cursor cursor = db.rawQuery(query, new String[]{username});
 
-        if (cursor.moveToFirst()) {
-            user = new User();
-            user.setID(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
-            user.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
-            user.setPassword(cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD)));
+        if (cursor != null) {
+            try {
+                int idIndex = cursor.getColumnIndex(COLUMN_ID);
+                int nameIndex = cursor.getColumnIndex(COLUMN_NAME);
+                int passwordIndex = cursor.getColumnIndex(COLUMN_PASSWORD);
+
+                if (idIndex >= 0 && nameIndex >= 0 && passwordIndex >= 0) {
+                    if (cursor.moveToFirst()) {
+                        user = new User();
+                        user.setID(cursor.getInt(idIndex));
+                        user.setName(cursor.getString(nameIndex));
+                        user.setPassword(cursor.getString(passwordIndex));
+                    }
+                } else {
+                    Log.e("DBHandler", "One or more columns not found in result set");
+                }
+            } finally {
+                cursor.close();
+            }
+        } else {
+            Log.e("DBHandler", "Cursor is null");
         }
-        cursor.close();
         db.close();
         return user;
     }
-
     public ArrayList<User> getUsers() {
         SQLiteDatabase db = getWritableDatabase();
         ArrayList<User> userList = new ArrayList<>();
         String query = "SELECT * FROM " + USERS;
         Cursor cursor = db.rawQuery(query, null);
 
-        while (cursor.moveToNext()) {
-            int id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
-            String name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME));
-            String password = cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD));
-            User user = new User(id, name, password);
-            userList.add(user);
+        if (cursor != null) {
+            try {
+                while (cursor.moveToNext()) {
+                    int idIndex = cursor.getColumnIndex(COLUMN_ID);
+                    int nameIndex = cursor.getColumnIndex(COLUMN_NAME);
+                    int passwordIndex = cursor.getColumnIndex(COLUMN_PASSWORD);
+
+                    if (idIndex >= 0 && nameIndex >= 0 && passwordIndex >= 0) {
+                        int id = cursor.getInt(idIndex);
+                        String name = cursor.getString(nameIndex);
+                        String password = cursor.getString(passwordIndex);
+                        User user = new User(id, name, password);
+                        userList.add(user);
+                    } else {
+                        Log.e("DBHandler", "One or more columns not found in result set");
+                    }
+                }
+            } finally {
+                cursor.close();
+            }
         }
-        cursor.close();
         db.close();
         return userList;
     }
-
     public void updateUser(User user) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -108,11 +134,22 @@ public class DBHandler extends SQLiteOpenHelper {
         String query = "SELECT * FROM " + USERS + " WHERE " + COLUMN_NAME + "=?";
         Cursor cursor = db.rawQuery(query, new String[]{username});
 
-        if (cursor.moveToFirst()) {
-            db.delete(USERS, COLUMN_ID + "=?", new String[]{String.valueOf(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)))});
-            result = true;
+        if (cursor != null) {
+            try {
+                int idIndex = cursor.getColumnIndex(COLUMN_ID);
+                if (idIndex >= 0 && cursor.moveToFirst()) {
+                    int userId = cursor.getInt(idIndex);
+                    db.delete(USERS, COLUMN_ID + "=?", new String[]{String.valueOf(userId)});
+                    result = true;
+                } else {
+                    Log.e("DBHandler", "Column index not found or cursor is empty");
+                }
+            } finally {
+                cursor.close();
+            }
+        } else {
+            Log.e("DBHandler", "Cursor is null");
         }
-        cursor.close();
         db.close();
         return result;
     }
