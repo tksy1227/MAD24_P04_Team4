@@ -14,7 +14,6 @@ public class User implements Serializable{
         this.id = id;
         this.followed = followed;
         this.events = events;
-
     }
     public User(String name, String description, int id, boolean followed) {
         this.name = name;
@@ -22,7 +21,6 @@ public class User implements Serializable{
         this.id = id;
         this.followed = followed;
         this.events = new User_events(true,true,true);
-
-
     }
+
 }

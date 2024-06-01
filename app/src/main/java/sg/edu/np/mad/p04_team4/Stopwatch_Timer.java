@@ -30,6 +30,7 @@ public class Stopwatch_Timer extends AppCompatActivity {
     private Button buttonTenSec, buttonOneMin, buttonThreeMin;
     private Button buttonStop, buttonPause;
     private Button buttonTimerHistory;
+    private Button backButton;
 
     private CountDownTimer countDownTimer;
     private long timeLeftInMillis;
@@ -57,6 +58,7 @@ public class Stopwatch_Timer extends AppCompatActivity {
         buttonStop = findViewById(R.id.stopButton);
         buttonPause = findViewById(R.id.pauseButton);
         buttonTimerHistory = findViewById(R.id.timerHistory);
+        backButton = findViewById(R.id.backButton);
 
         buttonTenSec.setOnClickListener(v -> editTextTime.setText("00:00:10"));
         buttonOneMin.setOnClickListener(v -> editTextTime.setText("00:01:00"));
@@ -75,6 +77,12 @@ public class Stopwatch_Timer extends AppCompatActivity {
         buttonTimerHistory.setOnClickListener(v -> {
             Intent intent = new Intent(Stopwatch_Timer.this, TimerLogActivity.class);
             startActivity(intent);
+        });
+
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(Stopwatch_Timer.this, HomeActivity.class);
+            startActivity(intent);
+            finish(); // Close the current activity
         });
     }
 
