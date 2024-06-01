@@ -42,31 +42,30 @@ public class events_dbhelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
-    public void insertEvent(int userId, String challenges, String milestones, String goals, int cEmpty, int mEmpty, int gEmpty) {
+    public void insertEvent(User_events userEvents) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(USERID, userId);
-        values.put(COLUMN_CHALLENGES, challenges);
-        values.put(COLUMN_MILESTONES, milestones);
-        values.put(COLUMN_GOALS, goals);
-        values.put(COLUMN_C_EMPTY, cEmpty);
-        values.put(COLUMN_M_EMPTY, mEmpty);
-        values.put(COLUMN_G_EMPTY, gEmpty);
+        values.put(USERID, userEvents.getId());
+        values.put(COLUMN_CHALLENGES, userEvents.getChallange());
+        values.put(COLUMN_MILESTONES, userEvents.getMilestone());
+        values.put(COLUMN_GOALS, userEvents.getGoals());
+        values.put(COLUMN_C_EMPTY, userEvents.isChallange_e() ? 1 : 0);
+        values.put(COLUMN_M_EMPTY, userEvents.isMilestone_e() ? 1 : 0);
+        values.put(COLUMN_G_EMPTY, userEvents.isGoals_e() ? 1 : 0);
 
-        if (checkUserIdExist(userId)) {
+        if (checkUserIdExist(userEvents.getId())) {
             // If userId exists, update the existing entry
-            db.update(TABLE_NAME, values, USERID + "=?", new String[]{String.valueOf(userId)});
-            Log.d("TEST", "Event with userId " + userId + " updated.");
+            db.update(TABLE_NAME, values, USERID + "=?", new String[]{String.valueOf(userEvents.getId())});
+            Log.d("TEST", "Event with userId " + userEvents.getId() + " updated.");
         } else {
             // If userId doesn't exist, insert a new entry
             db.insert(TABLE_NAME, null, values);
-            Log.d("TEST", "New event inserted with userId " + userId + ".");
+            Log.d("TEST", "New event inserted with userId " + userEvents.getId() + ".");
         }
 
         // Closing database connection
         db.close();
     }
-
     // Method to check if userId already exists in the table
     private boolean checkUserIdExist(int userId) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -100,7 +99,7 @@ public class events_dbhelper extends SQLiteOpenHelper {
                     String milestone = cursor.getString(milestoneIndex);
                     String goals = cursor.getString(goalIndex);
 
-                    userEvent = new User_events(userId, challenge_e, milestone_e, goals_e, challenge, milestone, goals);
+                    userEvent = new User_events(userId, challenge, milestone, goals,challenge_e, milestone_e, goals_e);
                 } else {
                     Log.e("getUserEvent", "One or more columns not found in cursor");
                 }

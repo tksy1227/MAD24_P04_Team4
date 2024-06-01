@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class events_input extends AppCompatActivity {
 
@@ -27,15 +28,26 @@ public class events_input extends AppCompatActivity {
         });
         TextInputEditText Text = findViewById(R.id.input);
         Button enter = findViewById(R.id.button);
+        ImageButton back = findViewById(R.id.back_button);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent set_event = new Intent(events_input.this, Friendship_Events.class);
+                startActivity(set_event);
+            }
+        });
 
-
-
-        Intent set_events= getIntent();
-        int userid= set_events.getIntExtra("userid",1);
+        Intent set_events = getIntent();
+        int userid = set_events.getIntExtra("userid", 1);
         String actionPerformed = set_events.getStringExtra("ACTION_PERFORMED");
 
         events_dbhelper dbHelper = new events_dbhelper(this);
         User_events userEvents = dbHelper.getUserEvent(userid);
+        if (userEvents == null) {
+            Log.d("TEST", "User events data is null for userId: " + userid);
+            return; // Early return if userEvents is null
+        }
+
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,7 +60,6 @@ public class events_input extends AppCompatActivity {
                         dbHelper.updateEventPart(userid, "COLUMN_C_EMPTY", "0");
                         Log.d("TEST", "test_challenge: " + userEvents.challange_e);
                         Log.d("TEST", "test_challenge_content: " + userEvents.challange);
-
                         break;
                     case "MILESTONES":
                         dbHelper.updateEventPart(userid, "COLUMN_MILESTONES", text2);
@@ -67,22 +78,15 @@ public class events_input extends AppCompatActivity {
                         break;
                 }
 
-                Log.d("TEST", "text_raw: "+ text2);
+                Log.d("TEST", "text_raw: " + text2);
 
-                Intent challange_made= new Intent(events_input.this,Friendship_Events.class);
+                Intent challange_made = new Intent(events_input.this, Friendship_Events.class);
                 challange_made.putExtra("user", userid);
-
-
-
-
-
                 startActivity(challange_made);
-
             }
         });
     }
-
-
-
-
 }
+
+
+
