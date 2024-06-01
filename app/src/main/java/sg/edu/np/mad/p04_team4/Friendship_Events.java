@@ -12,6 +12,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import android.text.Html;
+import android.widget.ImageButton;
 
 
 import androidx.core.content.ContextCompat;
@@ -31,7 +32,7 @@ public class Friendship_Events extends AppCompatActivity {
         Button b1 = findViewById(R.id.button1);
         Button b2 = findViewById(R.id.button2);
         Button b3 = findViewById(R.id.button3);
-        Button b4 = findViewById(R.id.button4);
+        ImageButton b4 = findViewById(R.id.back_button);
 
         Intent friendship_events= getIntent();
         events_dbhelper dbHelper = new events_dbhelper(this);

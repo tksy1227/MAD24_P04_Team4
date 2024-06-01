@@ -15,6 +15,7 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        events_dbhelper dbHelper = new events_dbhelper(this);
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.homepage);
@@ -37,6 +38,27 @@ public class HomeActivity extends AppCompatActivity {
         stopwatchTimerImage.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, Stopwatch_Timer.class);
             startActivity(intent);
+        });
+        ImageView challangeYourselfImage = findViewById(R.id.imageViewchloe);
+        challangeYourselfImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dbHelper.insertEvent(
+                        1,                         // userId
+                        "Some challenges",        // challenges
+                        "Some milestones",        // milestones
+                        "Some goals",             // goals
+                        1,                         // cEmpty (challenge empty status)
+                        1,                         // mEmpty (milestone empty status)
+                        1                          // gEmpty (goal empty status)
+                );
+                int userid=1;
+                User_events userEvents = dbHelper.getUserEvent(userid);
+                Intent intent = new Intent(HomeActivity.this, Friendship_Events.class);
+                intent.putExtra("userid", userid);
+                startActivity(intent);
+            }
         });
     }
 }

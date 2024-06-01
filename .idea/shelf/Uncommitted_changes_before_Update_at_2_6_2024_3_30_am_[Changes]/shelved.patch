@@ -1,0 +1,191 @@
+Index: app/src/main/java/sg/edu/np/mad/p04_team4/HomeActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sg.edu.np.mad.p04_team4;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.ImageView;\r\n\r\nimport androidx.activity.EdgeToEdge;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.graphics.Insets;\r\nimport androidx.core.view.ViewCompat;\r\nimport androidx.core.view.WindowInsetsCompat;\r\n\r\npublic class HomeActivity extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        EdgeToEdge.enable(this);\r\n        setContentView(R.layout.homepage);\r\n\r\n        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {\r\n            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());\r\n            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);\r\n            return insets;\r\n        });\r\n\r\n        // Set Click Listener for the \"Message your friends!\" image\r\n        ImageView messageFriendsImage = findViewById(R.id.imageViewdanial);\r\n        messageFriendsImage.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(HomeActivity.this, ChatHomeActivity.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/sg/edu/np/mad/p04_team4/HomeActivity.java b/app/src/main/java/sg/edu/np/mad/p04_team4/HomeActivity.java
+--- a/app/src/main/java/sg/edu/np/mad/p04_team4/HomeActivity.java	
++++ b/app/src/main/java/sg/edu/np/mad/p04_team4/HomeActivity.java	
+@@ -15,6 +15,7 @@
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
++        events_dbhelper dbHelper = new events_dbhelper(this);
+         super.onCreate(savedInstanceState);
+         EdgeToEdge.enable(this);
+         setContentView(R.layout.homepage);
+@@ -27,11 +28,32 @@
+ 
+         // Set Click Listener for the "Message your friends!" image
+         ImageView messageFriendsImage = findViewById(R.id.imageViewdanial);
++        ImageView challangeYourseldImage = findViewById(R.id.imageViewjacob);
+         messageFriendsImage.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 Intent intent = new Intent(HomeActivity.this, ChatHomeActivity.class);
+                 startActivity(intent);
++            }
++        });
++        challangeYourseldImage.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++
++                dbHelper.insertEvent(
++                        1,                         // userId
++                        "Some challenges",        // challenges
++                        "Some milestones",        // milestones
++                        "Some goals",             // goals
++                        1,                         // cEmpty (challenge empty status)
++                        1,                         // mEmpty (milestone empty status)
++                        1                          // gEmpty (goal empty status)
++                );
++                int userid=1;
++                User_events userEvents = dbHelper.getUserEvent(userid);
++                Intent intent = new Intent(HomeActivity.this, Friendship_Events.class);
++                intent.putExtra("userid", userid);
++                startActivity(intent);
+             }
+         });
+     }
+Index: app/src/main/res/layout/activity_friendship_events.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/main\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".Friendship_Events\">\r\n\r\n    <Button\r\n        android:id=\"@+id/button1\"\r\n        android:layout_width=\"184dp\"\r\n        android:layout_height=\"254dp\"\r\n\r\n        android:layout_marginStart=\"25dp\"\r\n        android:layout_marginTop=\"92dp\"\r\n        android:layout_marginEnd=\"16dp\"\r\n        android:text=\"Button\"\r\n        app:cornerRadius=\"10dp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/button2\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/button2\"\r\n        android:layout_width=\"170dp\"\r\n\r\n        android:layout_height=\"149dp\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"92dp\"\r\n        android:layout_marginBottom=\"29dp\"\r\n        android:text=\"Button\"\r\n        app:cornerRadius=\"10dp\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/button3\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/button3\"\r\n        android:layout_width=\"170dp\"\r\n        android:layout_height=\"212dp\"\r\n\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"29dp\"\r\n        android:text=\"Button\"\r\n        app:cornerRadius=\"10dp\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/button2\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/button4\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"change tf\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_friendship_events.xml b/app/src/main/res/layout/activity_friendship_events.xml
+--- a/app/src/main/res/layout/activity_friendship_events.xml	
++++ b/app/src/main/res/layout/activity_friendship_events.xml	
+@@ -47,11 +47,32 @@
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/button2" />
+ 
+-    <Button
+-        android:id="@+id/button4"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="change tf"
++    <androidx.appcompat.widget.Toolbar
++        android:id="@+id/toolbar"
++        android:layout_width="match_parent"
++        android:layout_height="?attr/actionBarSize"
++        android:layout_marginBottom="28dp"
++        android:background="?attr/colorPrimary"
++        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
++        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
++        app:layout_constraintBottom_toTopOf="@+id/button1"
++        app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent" />
++        app:layout_constraintTop_toTopOf="parent"
++        app:title=""
++        app:titleTextColor="@android:color/white">
++
++        <!-- Back Button -->
++        <ImageButton
++            android:id="@+id/back_button"
++            android:layout_width="32dp"
++            android:layout_height="32dp"
++            android:layout_marginStart="0dp"
++            android:layout_marginEnd="8dp"
++            android:background="?attr/selectableItemBackground"
++            android:contentDescription="Back"
++            android:padding="4dp"
++            android:src="@drawable/ic_arrow_back" />
++    </androidx.appcompat.widget.Toolbar>
++
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_test.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/main\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".events_input\">\r\n\r\n\r\n    <com.google.android.material.textfield.TextInputEditText\r\n        android:id=\"@+id/input\"\r\n        android:layout_width=\"405dp\"\r\n        android:layout_height=\"106dp\"\r\n        android:layout_marginTop=\"323dp\"\r\n        android:hint=\"create challange here!\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/button\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"46dp\"\r\n        android:text=\"Button\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/input\" />\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_test.xml b/app/src/main/res/layout/activity_test.xml
+--- a/app/src/main/res/layout/activity_test.xml	
++++ b/app/src/main/res/layout/activity_test.xml	
+@@ -13,17 +13,46 @@
+         android:layout_width="405dp"
+         android:layout_height="106dp"
+         android:layout_marginTop="323dp"
+-        android:hint="create challange here!"
++        android:hint="Create new events here!"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent" />
+ 
++
+     <Button
+         android:id="@+id/button"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
++        android:layout_width="122dp"
++        android:layout_height="65dp"
+         android:layout_marginStart="16dp"
+-        android:layout_marginTop="46dp"
+-        android:text="Button"
++        android:layout_marginTop="24dp"
++        android:text="Enter"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/input" />
++
++    <androidx.appcompat.widget.Toolbar
++        android:id="@+id/toolbar"
++        android:layout_width="match_parent"
++        android:layout_height="?attr/actionBarSize"
++        android:layout_marginBottom="28dp"
++        android:background="?attr/colorPrimary"
++        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
++        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:title=""
++        app:titleTextColor="@android:color/white">
++
++        <!-- Back Button -->
++        <ImageButton
++            android:id="@+id/back_button"
++            android:layout_width="32dp"
++            android:layout_height="32dp"
++            android:layout_marginStart="0dp"
++            android:layout_marginEnd="8dp"
++            android:background="?attr/selectableItemBackground"
++            android:contentDescription="Back"
++            android:padding="4dp"
++            android:src="@drawable/ic_arrow_back" />
++    </androidx.appcompat.widget.Toolbar>
++
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/sg/edu/np/mad/p04_team4/Friendship_Events.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sg.edu.np.mad.p04_team4;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.util.Log;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\n\r\nimport androidx.activity.EdgeToEdge;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.graphics.Insets;\r\nimport androidx.core.view.ViewCompat;\r\nimport androidx.core.view.WindowInsetsCompat;\r\nimport android.text.Html;\r\n\r\n\r\nimport androidx.core.content.ContextCompat;\r\n\r\npublic class Friendship_Events extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        EdgeToEdge.enable(this);\r\n        setContentView(R.layout.activity_friendship_events);\r\n        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {\r\n            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());\r\n            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);\r\n            return insets;\r\n        });\r\n        Button b1 = findViewById(R.id.button1);\r\n        Button b2 = findViewById(R.id.button2);\r\n        Button b3 = findViewById(R.id.button3);\r\n        Button b4 = findViewById(R.id.button4);\r\n\r\n        Intent friendship_events= getIntent();\r\n        events_dbhelper dbHelper = new events_dbhelper(this);\r\n        int userid= (int) friendship_events.getIntExtra(\"userid\",0);\r\n\r\n        User_events userEvents = dbHelper.getUserEvent(userid);\r\n        boolean challengeEmpty=userEvents.challange_e;\r\n        boolean milestoneEmpty = userEvents.milestone_e;\r\n        boolean goalsEmpty = userEvents.goals_e;\r\n        Log.d(\"TEST\", \"fs_challenge: \"+ challengeEmpty);\r\n        Log.d(\"TEST\", \"fs_milestone: \"+ milestoneEmpty);\r\n        Log.d(\"TEST\", \"fs_goals: \"+ goalsEmpty);\r\n\r\n\r\n\r\n\r\n\r\n        if(challengeEmpty){\r\n            String buttonText = \"<b>No challenge set yet!</b><br><br>Click here to set it for yourself or friends\";\r\n            b1.setText(Html.fromHtml(buttonText));\r\n            b1.setOnClickListener(new View.OnClickListener() {\r\n                @Override\r\n                public void onClick(View v) {\r\n                    Intent set_event= new Intent(Friendship_Events.this, events_input.class);\r\n                    set_event.putExtra(\"userid\", userid);\r\n                    set_event.putExtra(\"ACTION_PERFORMED\", \"CHALLENGES\");\r\n                    startActivity(set_event);\r\n                }\r\n            });\r\n        }\r\n        else if(!challengeEmpty){\r\n            int color = ContextCompat.getColor(this, R.color.teal_700);\r\n            b1.setBackgroundColor(color);\r\n            String challengeInfo = \"<b>Challenge set!</b><br><br>\" + userEvents.challange;\r\n            b1.setText(Html.fromHtml(challengeInfo));\r\n\r\n        }\r\n        if(milestoneEmpty){\r\n            String buttonText = \"<b>No milestone set yet!</b><br><br>Click here to set it for yourself or friends\";\r\n            b2.setText(Html.fromHtml(buttonText));\r\n            b2.setOnClickListener(new View.OnClickListener() {\r\n                @Override\r\n                public void onClick(View v) {\r\n                    Intent set_event= new Intent(Friendship_Events.this, events_input.class);\r\n                    set_event.putExtra(\"userid\", userid);\r\n                    set_event.putExtra(\"ACTION_PERFORMED\", \"MILESTONES\");\r\n                    startActivity(set_event);\r\n                }\r\n            });\r\n        }\r\n        else if(!milestoneEmpty){\r\n            int color = ContextCompat.getColor(this, R.color.teal_700);\r\n            b2.setBackgroundColor(color);\r\n            String challengeInfo = \"<b>Challenge set!</b><br><br>\" + userEvents.milestone;\r\n            b2.setText(Html.fromHtml(challengeInfo));\r\n\r\n\r\n\r\n        }\r\n        if(goalsEmpty){\r\n            String buttonText = \"<b>No goals set yet!</b><br><br>Click here to set it for yourself and friends\";\r\n            b3.setText(Html.fromHtml(buttonText));\r\n            b3.setOnClickListener(new View.OnClickListener() {\r\n                @Override\r\n                public void onClick(View v) {\r\n                    Intent set_event= new Intent(Friendship_Events.this, events_input.class);\r\n                    set_event.putExtra(\"userid\", userid);\r\n                    set_event.putExtra(\"ACTION_PERFORMED\", \"GOALS\");\r\n                    startActivity(set_event);\r\n                }\r\n            });\r\n        }\r\n        else if(!goalsEmpty){\r\n            int color = ContextCompat.getColor(this, R.color.teal_700);\r\n            b3.setBackgroundColor(color);\r\n            String challengeInfo = \"<b>Challenge set!</b><br><br>\" + userEvents.goals;\r\n            b3.setText(Html.fromHtml(challengeInfo));\r\n\r\n\r\n        }\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/sg/edu/np/mad/p04_team4/Friendship_Events.java b/app/src/main/java/sg/edu/np/mad/p04_team4/Friendship_Events.java
+--- a/app/src/main/java/sg/edu/np/mad/p04_team4/Friendship_Events.java	
++++ b/app/src/main/java/sg/edu/np/mad/p04_team4/Friendship_Events.java	
+@@ -12,6 +12,7 @@
+ import androidx.core.view.ViewCompat;
+ import androidx.core.view.WindowInsetsCompat;
+ import android.text.Html;
++import android.widget.ImageButton;
+ 
+ 
+ import androidx.core.content.ContextCompat;
+@@ -31,7 +32,7 @@
+         Button b1 = findViewById(R.id.button1);
+         Button b2 = findViewById(R.id.button2);
+         Button b3 = findViewById(R.id.button3);
+-        Button b4 = findViewById(R.id.button4);
++        ImageButton b4 = findViewById(R.id.back_button);
+ 
+         Intent friendship_events= getIntent();
+         events_dbhelper dbHelper = new events_dbhelper(this);

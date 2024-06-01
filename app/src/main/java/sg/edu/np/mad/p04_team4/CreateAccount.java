@@ -1,6 +1,8 @@
 package sg.edu.np.mad.p04_team4;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,7 +17,7 @@ public class CreateAccount extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.create_account_page); // Assuming you have a separate layout for creating an account
+        setContentView(R.layout.create_account); // Assuming you have a separate layout for creating an account
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -23,12 +25,20 @@ public class CreateAccount extends AppCompatActivity {
         });
 
         DBHandler dbHandler = new DBHandler(this, null, null, 1);
+        Button login = findViewById(R.id.Login);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent set_event= new Intent(CreateAccount.this, HomeActivity.class);
+                startActivity(set_event);
+            }
+        });
+        Button btnCreateAccount = findViewById(R.id.SignUp);
 
-        Button btnCreateAccount = findViewById(R.id.CreateAccountButton);
 
         btnCreateAccount.setOnClickListener(v -> {
-            EditText etUsername = findViewById(R.id.etUsername);
-            EditText etPassword = findViewById(R.id.etPassword);
+            EditText etUsername = findViewById(R.id.editTextPhone);
+            EditText etPassword = findViewById(R.id.Pword);
             String username = etUsername.getText().toString();
             String password = etPassword.getText().toString();
             User user = dbHandler.getUser(username);
