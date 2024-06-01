@@ -18,13 +18,7 @@
             android:name=".OTPActivity"
             android:exported="false" />
         <activity
-            android:name=".OPActivity"
-            android:exported="false" />
-        <activity
             android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".HomeActivity"
             android:exported="false" />
         <activity
             android:name=".ForgetUserActivity"
@@ -48,8 +42,8 @@
             android:name=".TEST"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".HomeActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
