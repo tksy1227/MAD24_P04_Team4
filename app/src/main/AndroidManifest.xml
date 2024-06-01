@@ -42,6 +42,10 @@
             android:name=".TEST"
             android:exported="false" />
         <activity
+            android:name=".ChatHomeActivity" />
+        <activity
+            android:name=".Chat_Main" />
+        <activity
             android:name=".HomeActivity"
             android:exported="true" >
             <intent-filter>
