@@ -25,6 +25,8 @@ public class LoginActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        Intent intent1 =new Intent(LoginActivity.this,HomeActivity.class);
+        startActivity(intent1);
 
         DBHandler dbHandler = new DBHandler(this, null, null, 1);
 

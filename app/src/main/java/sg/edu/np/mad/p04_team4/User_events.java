@@ -12,7 +12,7 @@ public class User_events implements Serializable {
     String goals;
 
 
-    public User_events(int id,boolean challange,boolean milestone,boolean goals,String challange_info, String milestone_info,String goals_info) {
+    public User_events(int id,String challange_info, String milestone_info,String goals_info,boolean challange,boolean milestone,boolean goals) {
         this.id=id;
         this.challange_e=challange;
         this.milestone_e = milestone;
@@ -32,6 +32,33 @@ public class User_events implements Serializable {
         this.challange_e=challange;
         this.milestone_e = milestone;
         this.goals_e=goals;
+    }
+    public int getId() {
+        return id;
+    }
+
+    public boolean isChallange_e() {
+        return challange_e;
+    }
+
+    public boolean isMilestone_e() {
+        return milestone_e;
+    }
+
+    public boolean isGoals_e() {
+        return goals_e;
+    }
+
+    public String getChallange() {
+        return challange;
+    }
+
+    public String getMilestone() {
+        return milestone;
+    }
+
+    public String getGoals() {
+        return goals;
     }
 
 
