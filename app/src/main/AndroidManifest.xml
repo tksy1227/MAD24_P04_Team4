@@ -15,6 +15,27 @@
         android:theme="@style/Theme.P04_Team4"
         tools:targetApi="31">
         <activity
+            android:name=".OTPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ForgetUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ForgetPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CreateAccount"
+            android:exported="false" />
+        <activity
             android:name=".TimerLogActivity"
             android:exported="false" />
         <activity
@@ -35,6 +56,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
