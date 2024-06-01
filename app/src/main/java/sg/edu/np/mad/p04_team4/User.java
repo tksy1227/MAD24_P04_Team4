@@ -1,6 +1,8 @@
 package sg.edu.np.mad.p04_team4;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private int id;
     private String name;
     private String password;
