@@ -35,4 +35,8 @@
     <color name="pink_700">#C2185B</color>
     <color name="teal_700">#00796B</color>
     <color name="amber_700">#FFA000</color>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimaryLight">#BB86FC</color>
 </resources>

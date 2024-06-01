@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "64786829082",
+    "project_id": "madassignment-e16f9",
+    "storage_bucket": "madassignment-e16f9.appspot.com",
+    "firebase_url": "https://madassignment-e16f9-default-rtdb.asia-southeast1.firebasedatabase.app/"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:64786829082:android:2fbe4ce8bdbd493fec66a3",
+        "android_client_info": {
+          "package_name": "sg.edu.np.mad.p04_team4"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiQ7z1u9jT_FixARJbi4c89WkJa7uG2rg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
