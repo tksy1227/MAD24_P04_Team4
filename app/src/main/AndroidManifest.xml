@@ -17,7 +17,6 @@
         <activity
             android:name=".OTPActivity"
             android:exported="false" />
-
         <activity
             android:name=".ForgetUserActivity"
             android:exported="false" />
@@ -43,11 +42,11 @@
             android:name=".events_input"
             android:exported="false" />
         <activity
-            android:name=".ForgotPasswordActivity" />
-        <activity
             android:name=".ChatHomeActivity" />
         <activity
             android:name=".Chat_Main" />
+        <activity
+            android:name=".ForgetPasswordConfirmationActivity" />
         <activity
             android:name=".LoginActivity"
             android:exported="true" >

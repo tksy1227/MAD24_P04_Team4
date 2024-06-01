@@ -18,7 +18,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.loginpage);
+        setContentView(R.layout.loginpage); // Ensure this matches your actual layout resource file
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -29,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Button btnLogin = findViewById(R.id.Login);
         Button btnRegister = findViewById(R.id.CreateAccount);
+        Button btnForgotPassword = findViewById(R.id.ForgotPassword);
 
         btnLogin.setOnClickListener(v -> {
             EditText etUsername = findViewById(R.id.PhoneNumber);
@@ -49,6 +51,11 @@ public class LoginActivity extends AppCompatActivity {
 
         btnRegister.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, CreateAccount.class);
+            startActivity(intent);
+        });
+
+        btnForgotPassword.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, ForgetPasswordActivity.class);
             startActivity(intent);
         });
     }
