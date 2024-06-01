@@ -39,7 +39,7 @@
             android:name=".Friendship_Events"
             android:exported="false" />
         <activity
-            android:name=".TEST"
+            android:name=".events_input"
             android:exported="false" />
         <activity
             android:name=".ChatHomeActivity" />
