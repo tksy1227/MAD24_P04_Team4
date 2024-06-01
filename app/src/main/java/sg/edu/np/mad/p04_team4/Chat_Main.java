@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,6 +41,7 @@ public class Chat_Main extends AppCompatActivity {
     private EditText editTextMessage;
     private Button buttonSend;
     private ImageButton buttonSelectImage;
+    private ImageButton backButton;
 
     private FirebaseAuth mAuth;
     private DatabaseReference messagesRef;
@@ -50,6 +52,13 @@ public class Chat_Main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_main);
 
+        // Retrieve the data passed with the Intent
+        String chatName = getIntent().getStringExtra("chat_name");
+        TextView chatNameTextView = findViewById(R.id.username);
+        if (chatName != null) {
+            chatNameTextView.setText(chatName);
+        }
+
         // Initialize Firebase Auth and Database Reference
         mAuth = FirebaseAuth.getInstance();
         messagesRef = FirebaseDatabase.getInstance().getReference("messages");
@@ -59,6 +68,7 @@ public class Chat_Main extends AppCompatActivity {
         editTextMessage = findViewById(R.id.editTextMessage);
         buttonSend = findViewById(R.id.buttonSend);
         buttonSelectImage = findViewById(R.id.buttonSelectImage);
+        backButton = findViewById(R.id.back_button);
 
         // Initialize RecyclerView
         messageList = new ArrayList<>();
@@ -85,6 +95,15 @@ public class Chat_Main extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d(TAG, "Select Image button clicked");
                 openImagePicker();
+            }
+        });
+
+        // Set Click Listener for Back Button
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate back to the chat home page
+                finish();
             }
         });
 
@@ -206,8 +225,6 @@ public class Chat_Main extends AppCompatActivity {
         });
     }
 
-
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -232,4 +249,3 @@ public class Chat_Main extends AppCompatActivity {
         }
     };
 }
-
