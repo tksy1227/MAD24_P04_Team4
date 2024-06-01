@@ -48,4 +48,14 @@
         android:layout_below="@id/searchView"
         android:padding="8dp" />
 
+    <!-- Add Chat Button -->
+    <Button
+        android:id="@+id/buttonAddChat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Chat"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="16dp" />
+
 </RelativeLayout>

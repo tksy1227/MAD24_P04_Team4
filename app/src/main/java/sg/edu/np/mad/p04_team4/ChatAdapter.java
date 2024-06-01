@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -42,6 +42,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
             intent.putExtra("chat_name", chat.getName());
             context.startActivity(intent);
         });
+
+        holder.buttonDeleteChat.setOnClickListener(v -> {
+            ((ChatHomeActivity) context).deleteChat(holder.getAdapterPosition());
+        });
     }
 
     @Override
@@ -51,14 +55,14 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
 
     public static class ChatViewHolder extends RecyclerView.ViewHolder {
         TextView chatName, chatMessage, chatTime;
-        ImageView profileImage;
+        ImageButton buttonDeleteChat;
 
         public ChatViewHolder(@NonNull View itemView) {
             super(itemView);
             chatName = itemView.findViewById(R.id.chat_name);
             chatMessage = itemView.findViewById(R.id.chat_message);
             chatTime = itemView.findViewById(R.id.chat_time);
-            profileImage = itemView.findViewById(R.id.profile_image);
+            buttonDeleteChat = itemView.findViewById(R.id.button_delete_chat);
         }
     }
 }
