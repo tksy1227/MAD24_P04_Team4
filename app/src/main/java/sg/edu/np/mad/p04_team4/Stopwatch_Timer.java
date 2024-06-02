@@ -8,17 +8,15 @@ import android.os.Vibrator;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
+
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -30,7 +28,7 @@ public class Stopwatch_Timer extends AppCompatActivity {
     private Button buttonTenSec, buttonOneMin, buttonThreeMin;
     private Button buttonStop, buttonPause;
     private Button buttonTimerHistory;
-    private Button backButton;
+    //private ImageButton backButton;
 
     private CountDownTimer countDownTimer;
     private long timeLeftInMillis;
@@ -58,7 +56,7 @@ public class Stopwatch_Timer extends AppCompatActivity {
         buttonStop = findViewById(R.id.stopButton);
         buttonPause = findViewById(R.id.pauseButton);
         buttonTimerHistory = findViewById(R.id.timerHistory);
-        backButton = findViewById(R.id.backButton);
+        ImageButton backButton = findViewById(R.id.backButton);
 
         buttonTenSec.setOnClickListener(v -> editTextTime.setText("00:00:10"));
         buttonOneMin.setOnClickListener(v -> editTextTime.setText("00:01:00"));
