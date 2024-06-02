@@ -34,4 +34,5 @@ public class User implements Serializable {
         this.password = password;
         this.events = new User_events(id," "," ","" ,true,true,true);
     }
+
 }

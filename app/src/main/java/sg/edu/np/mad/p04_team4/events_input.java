@@ -85,6 +85,7 @@ public class events_input extends AppCompatActivity {
                 startActivity(challange_made);
             }
         });
+
     }
 }
 

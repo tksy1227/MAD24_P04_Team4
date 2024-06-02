@@ -25,6 +25,11 @@ public class LoginActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        User user1= new User(1234,"name","1234");
+        Intent intent1 =new Intent(LoginActivity.this,HomeActivity.class);
+        intent1.putExtra("user",user1);
+        startActivity(intent1);
+
 
         DBHandler dbHandler = new DBHandler(this, null, null, 1);
 

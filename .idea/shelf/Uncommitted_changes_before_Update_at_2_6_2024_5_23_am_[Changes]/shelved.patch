@@ -1,0 +1,460 @@
+Index: app/src/main/java/sg/edu/np/mad/p04_team4/User_events.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sg.edu.np.mad.p04_team4;\r\n\r\nimport java.io.Serializable;\r\n\r\npublic class User_events implements Serializable {\r\n    public int id;\r\n    public boolean challange_e;\r\n    public boolean milestone_e;\r\n    public boolean goals_e;\r\n    String challange;\r\n    String milestone;\r\n    String goals;\r\n\r\n\r\n    public User_events(int id,boolean challange,boolean milestone,boolean goals,String challange_info, String milestone_info,String goals_info) {\r\n        this.id=id;\r\n        this.challange_e=challange;\r\n        this.milestone_e = milestone;\r\n        this.goals_e=goals;\r\n        this.challange=challange_info;\r\n        this.milestone=milestone_info;\r\n        this.goals=goals_info;\r\n    }\r\n    public User_events(int id) {\r\n        this.id=id;\r\n        this.challange_e=false;\r\n        this.milestone_e = false;\r\n        this.goals_e=false;\r\n    }\r\n    public User_events(int id,boolean challange,boolean milestone,boolean goals) {\r\n        this.id=id;\r\n        this.challange_e=challange;\r\n        this.milestone_e = milestone;\r\n        this.goals_e=goals;\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/sg/edu/np/mad/p04_team4/User_events.java b/app/src/main/java/sg/edu/np/mad/p04_team4/User_events.java
+--- a/app/src/main/java/sg/edu/np/mad/p04_team4/User_events.java	(revision 322998d24a345eab893a7eb86f64a052e2fbdf75)
++++ b/app/src/main/java/sg/edu/np/mad/p04_team4/User_events.java	(date 1717275214308)
+@@ -12,7 +12,7 @@
+     String goals;
+ 
+ 
+-    public User_events(int id,boolean challange,boolean milestone,boolean goals,String challange_info, String milestone_info,String goals_info) {
++    public User_events(int id,String challange_info, String milestone_info,String goals_info,boolean challange,boolean milestone,boolean goals) {
+         this.id=id;
+         this.challange_e=challange;
+         this.milestone_e = milestone;
+@@ -33,6 +33,33 @@
+         this.milestone_e = milestone;
+         this.goals_e=goals;
+     }
++    public int getId() {
++        return id;
++    }
++
++    public boolean isChallange_e() {
++        return challange_e;
++    }
++
++    public boolean isMilestone_e() {
++        return milestone_e;
++    }
++
++    public boolean isGoals_e() {
++        return goals_e;
++    }
++
++    public String getChallange() {
++        return challange;
++    }
++
++    public String getMilestone() {
++        return milestone;
++    }
++
++    public String getGoals() {
++        return goals;
++    }
+ 
+ 
+ }
+Index: app/src/main/java/sg/edu/np/mad/p04_team4/events_input.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sg.edu.np.mad.p04_team4;\r\n\r\nimport android.os.Bundle;\r\n\r\nimport androidx.activity.EdgeToEdge;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.graphics.Insets;\r\nimport androidx.core.view.ViewCompat;\r\nimport androidx.core.view.WindowInsetsCompat;\r\nimport com.google.android.material.textfield.TextInputEditText;\r\nimport android.content.Intent;\r\nimport android.util.Log;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\n\r\npublic class events_input extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        EdgeToEdge.enable(this);\r\n        setContentView(R.layout.activity_test);\r\n        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {\r\n            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());\r\n            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);\r\n            return insets;\r\n        });\r\n        TextInputEditText Text = findViewById(R.id.input);\r\n        Button enter = findViewById(R.id.button);\r\n\r\n\r\n\r\n        Intent set_events= getIntent();\r\n        int userid= set_events.getIntExtra(\"userid\",1);\r\n        String actionPerformed = set_events.getStringExtra(\"ACTION_PERFORMED\");\r\n\r\n        events_dbhelper dbHelper = new events_dbhelper(this);\r\n        User_events userEvents = dbHelper.getUserEvent(userid);\r\n        enter.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                String text2 = Text.getText().toString();\r\n                Log.d(\"TEST\", \"Case: \" + actionPerformed);\r\n\r\n                switch (actionPerformed) {\r\n                    case \"CHALLENGES\":\r\n                        dbHelper.updateEventPart(userid, \"COLUMN_CHALLENGES\", text2);\r\n                        dbHelper.updateEventPart(userid, \"COLUMN_C_EMPTY\", \"0\");\r\n                        Log.d(\"TEST\", \"test_challenge: \" + userEvents.challange_e);\r\n                        Log.d(\"TEST\", \"test_challenge_content: \" + userEvents.challange);\r\n\r\n                        break;\r\n                    case \"MILESTONES\":\r\n                        dbHelper.updateEventPart(userid, \"COLUMN_MILESTONES\", text2);\r\n                        dbHelper.updateEventPart(userid, \"COLUMN_M_EMPTY\", \"0\");\r\n                        Log.d(\"TEST\", \"test_milestone: \" + userEvents.milestone_e);\r\n                        Log.d(\"TEST\", \"test_milestone_content: \" + userEvents.milestone);\r\n                        break;\r\n                    case \"GOALS\":\r\n                        dbHelper.updateEventPart(userid, \"COLUMN_GOALS\", text2);\r\n                        dbHelper.updateEventPart(userid, \"COLUMN_G_EMPTY\", \"0\");\r\n                        Log.d(\"TEST\", \"test_goal: \" + userEvents.goals_e);\r\n                        Log.d(\"TEST\", \"test_goal_content: \" + userEvents.goals);\r\n                        break;\r\n                    default:\r\n                        // Handle default case or error\r\n                        break;\r\n                }\r\n\r\n                Log.d(\"TEST\", \"text_raw: \"+ text2);\r\n\r\n                Intent challange_made= new Intent(events_input.this,Friendship_Events.class);\r\n                challange_made.putExtra(\"user\", userid);\r\n\r\n\r\n\r\n\r\n\r\n                startActivity(challange_made);\r\n\r\n            }\r\n        });\r\n    }\r\n\r\n\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/sg/edu/np/mad/p04_team4/events_input.java b/app/src/main/java/sg/edu/np/mad/p04_team4/events_input.java
+--- a/app/src/main/java/sg/edu/np/mad/p04_team4/events_input.java	(revision 322998d24a345eab893a7eb86f64a052e2fbdf75)
++++ b/app/src/main/java/sg/edu/np/mad/p04_team4/events_input.java	(date 1717276306034)
+@@ -12,6 +12,7 @@
+ import android.util.Log;
+ import android.view.View;
+ import android.widget.Button;
++import android.widget.ImageButton;
+ 
+ public class events_input extends AppCompatActivity {
+ 
+@@ -27,15 +28,26 @@
+         });
+         TextInputEditText Text = findViewById(R.id.input);
+         Button enter = findViewById(R.id.button);
+-
+-
++        ImageButton back = findViewById(R.id.back_button);
++        back.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                Intent set_event = new Intent(events_input.this, Friendship_Events.class);
++                startActivity(set_event);
++            }
++        });
+ 
+-        Intent set_events= getIntent();
+-        int userid= set_events.getIntExtra("userid",1);
++        Intent set_events = getIntent();
++        int userid = set_events.getIntExtra("userid", 1);
+         String actionPerformed = set_events.getStringExtra("ACTION_PERFORMED");
+ 
+         events_dbhelper dbHelper = new events_dbhelper(this);
+         User_events userEvents = dbHelper.getUserEvent(userid);
++        if (userEvents == null) {
++            Log.d("TEST", "User events data is null for userId: " + userid);
++            return; // Early return if userEvents is null
++        }
++
+         enter.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+@@ -48,7 +60,6 @@
+                         dbHelper.updateEventPart(userid, "COLUMN_C_EMPTY", "0");
+                         Log.d("TEST", "test_challenge: " + userEvents.challange_e);
+                         Log.d("TEST", "test_challenge_content: " + userEvents.challange);
+-
+                         break;
+                     case "MILESTONES":
+                         dbHelper.updateEventPart(userid, "COLUMN_MILESTONES", text2);
+@@ -67,22 +78,15 @@
+                         break;
+                 }
+ 
+-                Log.d("TEST", "text_raw: "+ text2);
++                Log.d("TEST", "text_raw: " + text2);
+ 
+-                Intent challange_made= new Intent(events_input.this,Friendship_Events.class);
++                Intent challange_made = new Intent(events_input.this, Friendship_Events.class);
+                 challange_made.putExtra("user", userid);
+-
+-
+-
+-
+-
+                 startActivity(challange_made);
+-
+             }
+         });
+     }
+-
++}
+ 
+ 
+ 
+-}
+\ No newline at end of file
+Index: app/src/main/java/sg/edu/np/mad/p04_team4/HomeActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sg.edu.np.mad.p04_team4;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.ImageView;\r\n\r\nimport androidx.activity.EdgeToEdge;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.graphics.Insets;\r\nimport androidx.core.view.ViewCompat;\r\nimport androidx.core.view.WindowInsetsCompat;\r\n\r\npublic class HomeActivity extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        events_dbhelper dbHelper = new events_dbhelper(this);\r\n        super.onCreate(savedInstanceState);\r\n        EdgeToEdge.enable(this);\r\n        setContentView(R.layout.homepage);\r\n\r\n        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {\r\n            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());\r\n            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);\r\n            return insets;\r\n        });\r\n\r\n        // Set Click Listener for the \"Message your friends!\" image\r\n        ImageView messageFriendsImage = findViewById(R.id.imageViewdanial);\r\n        messageFriendsImage.setOnClickListener(v -> {\r\n            Intent intent = new Intent(HomeActivity.this, ChatHomeActivity.class);\r\n            startActivity(intent);\r\n        });\r\n\r\n        // Set Click Listener for the \"Stopwatch/Timer\" image\r\n        ImageView stopwatchTimerImage = findViewById(R.id.imageViewchloe);\r\n        stopwatchTimerImage.setOnClickListener(v -> {\r\n            Intent intent = new Intent(HomeActivity.this, Stopwatch_Timer.class);\r\n            startActivity(intent);\r\n        });\r\n        ImageView challangeYourselfImage = findViewById(R.id.imageViewjacob);\r\n        challangeYourselfImage.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n\r\n                dbHelper.insertEvent(\r\n                        1,                         // userId\r\n                        \"Some challenges\",        // challenges\r\n                        \"Some milestones\",        // milestones\r\n                        \"Some goals\",             // goals\r\n                        1,                         // cEmpty (challenge empty status)\r\n                        1,                         // mEmpty (milestone empty status)\r\n                        1                          // gEmpty (goal empty status)\r\n                );\r\n                int userid=1;\r\n                User_events userEvents = dbHelper.getUserEvent(userid);\r\n                Intent intent = new Intent(HomeActivity.this, Friendship_Events.class);\r\n                intent.putExtra(\"userid\", userid);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/sg/edu/np/mad/p04_team4/HomeActivity.java b/app/src/main/java/sg/edu/np/mad/p04_team4/HomeActivity.java
+--- a/app/src/main/java/sg/edu/np/mad/p04_team4/HomeActivity.java	(revision 322998d24a345eab893a7eb86f64a052e2fbdf75)
++++ b/app/src/main/java/sg/edu/np/mad/p04_team4/HomeActivity.java	(date 1717276069616)
+@@ -12,6 +12,7 @@
+ import androidx.core.view.WindowInsetsCompat;
+ 
+ public class HomeActivity extends AppCompatActivity {
++    User user = new User(123345679,"meow","grr");
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+@@ -44,17 +45,9 @@
+             @Override
+             public void onClick(View v) {
+ 
+-                dbHelper.insertEvent(
+-                        1,                         // userId
+-                        "Some challenges",        // challenges
+-                        "Some milestones",        // milestones
+-                        "Some goals",             // goals
+-                        1,                         // cEmpty (challenge empty status)
+-                        1,                         // mEmpty (milestone empty status)
+-                        1                          // gEmpty (goal empty status)
+-                );
+-                int userid=1;
+-                User_events userEvents = dbHelper.getUserEvent(userid);
++                dbHelper.insertEvent(user.events);
++                int userid= user.getID();
++                //User_events userEvents = dbHelper.getUserEvent(userid);
+                 Intent intent = new Intent(HomeActivity.this, Friendship_Events.class);
+                 intent.putExtra("userid", userid);
+                 startActivity(intent);
+Index: app/src/main/java/sg/edu/np/mad/p04_team4/events_dbhelper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sg.edu.np.mad.p04_team4;\r\n\r\nimport android.content.ContentValues;\r\nimport android.content.Context;\r\nimport android.database.Cursor;\r\nimport android.database.sqlite.SQLiteDatabase;\r\nimport android.database.sqlite.SQLiteException;\r\nimport android.database.sqlite.SQLiteOpenHelper;\r\n\r\nimport java.util.ArrayList;\r\nimport android.util.Log;\r\npublic class events_dbhelper extends SQLiteOpenHelper {\r\n    private static final int DATABASE_VERSION = 1;\r\n    private static final String DATABASE_NAME = \"user_events.db\";\r\n    public static final String TABLE_NAME = \"event_info\";\r\n    private static final String USERID = \"userid\";\r\n    private static final String COLUMN_CHALLENGES = \"challenges\";\r\n    private static final String COLUMN_MILESTONES = \"milestones\";\r\n    private static final String COLUMN_GOALS = \"goals\";\r\n    private static final String COLUMN_C_EMPTY = \"c_empty\";\r\n    private static final String COLUMN_M_EMPTY = \"m_empty\";\r\n    private static final String COLUMN_G_EMPTY = \"g_empty\";\r\n\r\n    // Constructor\r\n    public events_dbhelper(Context context) {\r\n        super(context, DATABASE_NAME, null, DATABASE_VERSION);\r\n    }\r\n    @Override\r\n    public void onCreate(SQLiteDatabase db) {\r\n        String CREATE_TABLE_QUERY = \"CREATE TABLE \" + TABLE_NAME + \" (\"\r\n                + USERID + \" INTEGER PRIMARY KEY,\"\r\n                + COLUMN_CHALLENGES + \" TEXT,\"\r\n                + COLUMN_MILESTONES + \" TEXT,\"\r\n                + COLUMN_GOALS + \" TEXT,\"\r\n                + COLUMN_C_EMPTY + \" INTEGER,\"  // Boolean column for challenges\r\n                + COLUMN_M_EMPTY + \" INTEGER,\"  // Boolean column for milestones\r\n                + COLUMN_G_EMPTY + \" INTEGER)\"; // Boolean column for goals\r\n        db.execSQL(CREATE_TABLE_QUERY);\r\n    }\r\n    @Override\r\n    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {\r\n        db.execSQL(\"DROP TABLE IF EXISTS \" + TABLE_NAME);\r\n        onCreate(db);\r\n    }\r\n    public void insertEvent(int userId, String challenges, String milestones, String goals, int cEmpty, int mEmpty, int gEmpty) {\r\n        SQLiteDatabase db = this.getWritableDatabase();\r\n        ContentValues values = new ContentValues();\r\n        values.put(USERID, userId);\r\n        values.put(COLUMN_CHALLENGES, challenges);\r\n        values.put(COLUMN_MILESTONES, milestones);\r\n        values.put(COLUMN_GOALS, goals);\r\n        values.put(COLUMN_C_EMPTY, cEmpty);\r\n        values.put(COLUMN_M_EMPTY, mEmpty);\r\n        values.put(COLUMN_G_EMPTY, gEmpty);\r\n\r\n        if (checkUserIdExist(userId)) {\r\n            // If userId exists, update the existing entry\r\n            db.update(TABLE_NAME, values, USERID + \"=?\", new String[]{String.valueOf(userId)});\r\n            Log.d(\"TEST\", \"Event with userId \" + userId + \" updated.\");\r\n        } else {\r\n            // If userId doesn't exist, insert a new entry\r\n            db.insert(TABLE_NAME, null, values);\r\n            Log.d(\"TEST\", \"New event inserted with userId \" + userId + \".\");\r\n        }\r\n\r\n        // Closing database connection\r\n        db.close();\r\n    }\r\n\r\n    // Method to check if userId already exists in the table\r\n    private boolean checkUserIdExist(int userId) {\r\n        SQLiteDatabase db = this.getReadableDatabase();\r\n        Cursor cursor = db.rawQuery(\"SELECT * FROM \" + TABLE_NAME + \" WHERE \" + USERID + \" = ?\", new String[]{String.valueOf(userId)});\r\n        boolean exists = cursor.getCount() > 0;\r\n        cursor.close();\r\n        return exists;\r\n    }\r\n    public User_events getUserEvent(int userId) {\r\n        SQLiteDatabase db = this.getReadableDatabase();\r\n        User_events userEvent = null;\r\n\r\n        Cursor cursor = db.query(TABLE_NAME, null, USERID + \"=?\", new String[]{String.valueOf(userId)}, null, null, null);\r\n\r\n        if (cursor != null) {\r\n            if (cursor.moveToFirst()) {\r\n                int userIdIndex = cursor.getColumnIndex(USERID);\r\n                int challengeEmptyIndex = cursor.getColumnIndex(COLUMN_C_EMPTY);\r\n                int milestoneEmptyIndex = cursor.getColumnIndex(COLUMN_M_EMPTY);\r\n                int goalEmptyIndex = cursor.getColumnIndex(COLUMN_G_EMPTY);\r\n                int challengeIndex = cursor.getColumnIndex(COLUMN_CHALLENGES);\r\n                int milestoneIndex = cursor.getColumnIndex(COLUMN_MILESTONES);\r\n                int goalIndex = cursor.getColumnIndex(COLUMN_GOALS);\r\n\r\n                if (userIdIndex != -1 && challengeEmptyIndex != -1 && milestoneEmptyIndex != -1 &&\r\n                        goalEmptyIndex != -1 && challengeIndex != -1 && milestoneIndex != -1 && goalIndex != -1) {\r\n                    boolean challenge_e = cursor.getInt(challengeEmptyIndex) != 0;\r\n                    boolean milestone_e = cursor.getInt(milestoneEmptyIndex) != 0;\r\n                    boolean goals_e = cursor.getInt(goalEmptyIndex) != 0;\r\n                    String challenge = cursor.getString(challengeIndex);\r\n                    String milestone = cursor.getString(milestoneIndex);\r\n                    String goals = cursor.getString(goalIndex);\r\n\r\n                    userEvent = new User_events(userId, challenge_e, milestone_e, goals_e, challenge, milestone, goals);\r\n                } else {\r\n                    Log.e(\"getUserEvent\", \"One or more columns not found in cursor\");\r\n                }\r\n            } else {\r\n                Log.e(\"getUserEvent\", \"No data found for userId: \" + userId);\r\n            }\r\n            cursor.close();\r\n        } else {\r\n            Log.e(\"getUserEvent\", \"Cursor is null\");\r\n        }\r\n\r\n        db.close();\r\n\r\n        return userEvent;\r\n    }\r\n    public void updateEventPart(int userId, String columnNameLiteral, String newValue) {\r\n        SQLiteDatabase db = this.getWritableDatabase();\r\n        ContentValues values = new ContentValues();\r\n\r\n        // Map literal column name to actual column name constant\r\n        String columnName;\r\n        switch (columnNameLiteral) {\r\n            case \"COLUMN_CHALLENGES\":\r\n                columnName = COLUMN_CHALLENGES;\r\n                break;\r\n            case \"COLUMN_MILESTONES\":\r\n                columnName = COLUMN_MILESTONES;\r\n                break;\r\n            case \"COLUMN_GOALS\":\r\n                columnName = COLUMN_GOALS;\r\n                break;\r\n            case \"COLUMN_C_EMPTY\":\r\n                columnName = COLUMN_C_EMPTY;\r\n                break;\r\n            case \"COLUMN_M_EMPTY\":\r\n                columnName = COLUMN_M_EMPTY;\r\n                break;\r\n            case \"COLUMN_G_EMPTY\":\r\n                columnName = COLUMN_G_EMPTY;\r\n                break;\r\n            default:\r\n                Log.e(\"TEST\", \"Invalid column name: \" + columnNameLiteral);\r\n                db.close();\r\n                return;\r\n        }\r\n\r\n        // Check if the column name corresponds to a boolean column\r\n        if (columnName.equals(COLUMN_C_EMPTY) || columnName.equals(COLUMN_M_EMPTY) || columnName.equals(COLUMN_G_EMPTY)) {\r\n            // If the column is a boolean column, parse the newValue string to a boolean value\r\n            boolean boolValue = newValue.equals(\"1\");\r\n            values.put(columnName, boolValue ? 1 : 0); // Store boolean as integer (1 for true, 0 for false)\r\n        } else {\r\n            // If the column is not a boolean column, directly put the newValue string\r\n            values.put(columnName, newValue);\r\n        }\r\n\r\n        if (checkUserIdExist(userId)) {\r\n            // If userId exists, update the specified column with the new value\r\n            db.update(TABLE_NAME, values, USERID + \"=?\", new String[]{String.valueOf(userId)});\r\n            Log.d(\"TEST\", columnName + \" updated for user with userId \" + userId + \".\");\r\n        } else {\r\n            // If userId doesn't exist, log an error\r\n            Log.e(\"TEST\", \"User with userId \" + userId + \" does not exist. Cannot update \" + columnName + \".\");\r\n        }\r\n\r\n        // Closing database connection\r\n        db.close();\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/sg/edu/np/mad/p04_team4/events_dbhelper.java b/app/src/main/java/sg/edu/np/mad/p04_team4/events_dbhelper.java
+--- a/app/src/main/java/sg/edu/np/mad/p04_team4/events_dbhelper.java	(revision 322998d24a345eab893a7eb86f64a052e2fbdf75)
++++ b/app/src/main/java/sg/edu/np/mad/p04_team4/events_dbhelper.java	(date 1717275004999)
+@@ -42,31 +42,30 @@
+         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+         onCreate(db);
+     }
+-    public void insertEvent(int userId, String challenges, String milestones, String goals, int cEmpty, int mEmpty, int gEmpty) {
++    public void insertEvent(User_events userEvents) {
+         SQLiteDatabase db = this.getWritableDatabase();
+         ContentValues values = new ContentValues();
+-        values.put(USERID, userId);
+-        values.put(COLUMN_CHALLENGES, challenges);
+-        values.put(COLUMN_MILESTONES, milestones);
+-        values.put(COLUMN_GOALS, goals);
+-        values.put(COLUMN_C_EMPTY, cEmpty);
+-        values.put(COLUMN_M_EMPTY, mEmpty);
+-        values.put(COLUMN_G_EMPTY, gEmpty);
++        values.put(USERID, userEvents.getId());
++        values.put(COLUMN_CHALLENGES, userEvents.getChallange());
++        values.put(COLUMN_MILESTONES, userEvents.getMilestone());
++        values.put(COLUMN_GOALS, userEvents.getGoals());
++        values.put(COLUMN_C_EMPTY, userEvents.isChallange_e() ? 1 : 0);
++        values.put(COLUMN_M_EMPTY, userEvents.isMilestone_e() ? 1 : 0);
++        values.put(COLUMN_G_EMPTY, userEvents.isGoals_e() ? 1 : 0);
+ 
+-        if (checkUserIdExist(userId)) {
++        if (checkUserIdExist(userEvents.getId())) {
+             // If userId exists, update the existing entry
+-            db.update(TABLE_NAME, values, USERID + "=?", new String[]{String.valueOf(userId)});
+-            Log.d("TEST", "Event with userId " + userId + " updated.");
++            db.update(TABLE_NAME, values, USERID + "=?", new String[]{String.valueOf(userEvents.getId())});
++            Log.d("TEST", "Event with userId " + userEvents.getId() + " updated.");
+         } else {
+             // If userId doesn't exist, insert a new entry
+             db.insert(TABLE_NAME, null, values);
+-            Log.d("TEST", "New event inserted with userId " + userId + ".");
++            Log.d("TEST", "New event inserted with userId " + userEvents.getId() + ".");
+         }
+ 
+         // Closing database connection
+         db.close();
+     }
+-
+     // Method to check if userId already exists in the table
+     private boolean checkUserIdExist(int userId) {
+         SQLiteDatabase db = this.getReadableDatabase();
+@@ -100,7 +99,7 @@
+                     String milestone = cursor.getString(milestoneIndex);
+                     String goals = cursor.getString(goalIndex);
+ 
+-                    userEvent = new User_events(userId, challenge_e, milestone_e, goals_e, challenge, milestone, goals);
++                    userEvent = new User_events(userId, challenge, milestone, goals,challenge_e, milestone_e, goals_e);
+                 } else {
+                     Log.e("getUserEvent", "One or more columns not found in cursor");
+                 }
+Index: app/src/main/java/sg/edu/np/mad/p04_team4/User.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sg.edu.np.mad.p04_team4;\r\n\r\npublic class User {\r\n    private int id;\r\n    private String name;\r\n    private String password;\r\n    public void setID(int id) {\r\n        this.id = id;    }\r\n    public void setName(String username) {\r\n        this.name = username;\r\n    }\r\n    public void setPassword(String password) {\r\n        this.password = password;\r\n    }\r\n    public int getID() {return id; }\r\n    public String getName() {\r\n        return name;\r\n    }\r\n    public String getPassword() {\r\n        return password;\r\n    }\r\n    public User(int id, String name, String password) {\r\n        this.id = id;\r\n        this.name = name;\r\n        this.password = password;\r\n    }\r\n    public User() {\r\n        this.id = id;\r\n        this.name = name;\r\n        this.password = password;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/sg/edu/np/mad/p04_team4/User.java b/app/src/main/java/sg/edu/np/mad/p04_team4/User.java
+--- a/app/src/main/java/sg/edu/np/mad/p04_team4/User.java	(revision 322998d24a345eab893a7eb86f64a052e2fbdf75)
++++ b/app/src/main/java/sg/edu/np/mad/p04_team4/User.java	(date 1717274806689)
+@@ -19,14 +19,17 @@
+     public String getPassword() {
+         return password;
+     }
++    public User_events events;
+     public User(int id, String name, String password) {
+         this.id = id;
+         this.name = name;
+         this.password = password;
++        this.events = new User_events(id," "," ","" ,true,true,true);
+     }
+     public User() {
+         this.id = id;
+         this.name = name;
+         this.password = password;
++        this.events = new User_events(id," "," ","" ,true,true,true);
+     }
+ }
+Index: app/src/main/java/sg/edu/np/mad/p04_team4/LoginActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sg.edu.np.mad.p04_team4;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.Toast;\r\n\r\nimport androidx.activity.EdgeToEdge;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.graphics.Insets;\r\nimport androidx.core.view.ViewCompat;\r\nimport androidx.core.view.WindowInsetsCompat;\r\n\r\npublic class LoginActivity extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        EdgeToEdge.enable(this);\r\n        setContentView(R.layout.loginpage); // Ensure this matches your actual layout resource file\r\n\r\n        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {\r\n            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());\r\n            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);\r\n            return insets;\r\n        });\r\n\r\n        DBHandler dbHandler = new DBHandler(this, null, null, 1);\r\n\r\n        Button btnLogin = findViewById(R.id.Login);\r\n        Button btnRegister = findViewById(R.id.CreateAccount);\r\n        Button btnForgotPassword = findViewById(R.id.ForgotPassword);\r\n\r\n        btnLogin.setOnClickListener(v -> {\r\n            EditText etUsername = findViewById(R.id.PhoneNumber);\r\n            EditText etPassword = findViewById(R.id.Password);\r\n            String username = etUsername.getText().toString();\r\n            String password = etPassword.getText().toString();\r\n            User user = dbHandler.getUser(username);\r\n\r\n            if (user != null && username.equals(user.getName()) && password.equals(user.getPassword())) {\r\n                Toast.makeText(getApplicationContext(), \"Login Successful!\", Toast.LENGTH_SHORT).show();\r\n                Intent intent = new Intent(LoginActivity.this, HomeActivity.class); // Update this to the appropriate Activity\r\n                intent.putExtra(\"name\", user.getName());\r\n                startActivity(intent);\r\n            } else {\r\n                Toast.makeText(getApplicationContext(), \"Invalid credentials or user does not exist. Please register.\", Toast.LENGTH_SHORT).show();\r\n            }\r\n        });\r\n\r\n        btnRegister.setOnClickListener(v -> {\r\n            Intent intent = new Intent(LoginActivity.this, CreateAccount.class);\r\n            startActivity(intent);\r\n        });\r\n\r\n        btnForgotPassword.setOnClickListener(v -> {\r\n            Intent intent = new Intent(LoginActivity.this, ForgetPasswordActivity.class);\r\n            startActivity(intent);\r\n        });\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/sg/edu/np/mad/p04_team4/LoginActivity.java b/app/src/main/java/sg/edu/np/mad/p04_team4/LoginActivity.java
+--- a/app/src/main/java/sg/edu/np/mad/p04_team4/LoginActivity.java	(revision 322998d24a345eab893a7eb86f64a052e2fbdf75)
++++ b/app/src/main/java/sg/edu/np/mad/p04_team4/LoginActivity.java	(date 1717275795459)
+@@ -25,6 +25,8 @@
+             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+             return insets;
+         });
++        Intent intent1 =new Intent(LoginActivity.this,HomeActivity.class);
++        startActivity(intent1);
+ 
+         DBHandler dbHandler = new DBHandler(this, null, null, 1);
+ 
+Index: app/src/main/java/sg/edu/np/mad/p04_team4/Friendship_Events.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sg.edu.np.mad.p04_team4;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.util.Log;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\n\r\nimport androidx.activity.EdgeToEdge;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.graphics.Insets;\r\nimport androidx.core.view.ViewCompat;\r\nimport androidx.core.view.WindowInsetsCompat;\r\nimport android.text.Html;\r\nimport android.widget.ImageButton;\r\n\r\n\r\nimport androidx.core.content.ContextCompat;\r\n\r\npublic class Friendship_Events extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        EdgeToEdge.enable(this);\r\n        setContentView(R.layout.activity_friendship_events);\r\n        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {\r\n            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());\r\n            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);\r\n            return insets;\r\n        });\r\n        Button b1 = findViewById(R.id.button1);\r\n        Button b2 = findViewById(R.id.button2);\r\n        Button b3 = findViewById(R.id.button3);\r\n        ImageButton b4 = findViewById(R.id.back_button);\r\n\r\n        Intent friendship_events= getIntent();\r\n        events_dbhelper dbHelper = new events_dbhelper(this);\r\n        int userid= (int) friendship_events.getIntExtra(\"userid\",0);\r\n\r\n        User_events userEvents = dbHelper.getUserEvent(userid);\r\n        boolean challengeEmpty=userEvents.challange_e;\r\n        boolean milestoneEmpty = userEvents.milestone_e;\r\n        boolean goalsEmpty = userEvents.goals_e;\r\n        Log.d(\"TEST\", \"fs_challenge: \"+ challengeEmpty);\r\n        Log.d(\"TEST\", \"fs_milestone: \"+ milestoneEmpty);\r\n        Log.d(\"TEST\", \"fs_goals: \"+ goalsEmpty);\r\n\r\n\r\n\r\n\r\n\r\n        if(challengeEmpty){\r\n            String buttonText = \"<b>No challenge set yet!</b><br><br>Click here to set it for yourself or friends\";\r\n            b1.setText(Html.fromHtml(buttonText));\r\n            b1.setOnClickListener(new View.OnClickListener() {\r\n                @Override\r\n                public void onClick(View v) {\r\n                    Intent set_event= new Intent(Friendship_Events.this, events_input.class);\r\n                    set_event.putExtra(\"userid\", userid);\r\n                    set_event.putExtra(\"ACTION_PERFORMED\", \"CHALLENGES\");\r\n                    startActivity(set_event);\r\n                }\r\n            });\r\n        }\r\n        else if(!challengeEmpty){\r\n            int color = ContextCompat.getColor(this, R.color.teal_700);\r\n            b1.setBackgroundColor(color);\r\n            String challengeInfo = \"<b>Challenge set!</b><br><br>\" + userEvents.challange;\r\n            b1.setText(Html.fromHtml(challengeInfo));\r\n\r\n        }\r\n        if(milestoneEmpty){\r\n            String buttonText = \"<b>No milestone set yet!</b><br><br>Click here to set it for yourself or friends\";\r\n            b2.setText(Html.fromHtml(buttonText));\r\n            b2.setOnClickListener(new View.OnClickListener() {\r\n                @Override\r\n                public void onClick(View v) {\r\n                    Intent set_event= new Intent(Friendship_Events.this, events_input.class);\r\n                    set_event.putExtra(\"userid\", userid);\r\n                    set_event.putExtra(\"ACTION_PERFORMED\", \"MILESTONES\");\r\n                    startActivity(set_event);\r\n                }\r\n            });\r\n        }\r\n        else if(!milestoneEmpty){\r\n            int color = ContextCompat.getColor(this, R.color.teal_700);\r\n            b2.setBackgroundColor(color);\r\n            String challengeInfo = \"<b>Challenge set!</b><br><br>\" + userEvents.milestone;\r\n            b2.setText(Html.fromHtml(challengeInfo));\r\n\r\n\r\n\r\n        }\r\n        if(goalsEmpty){\r\n            String buttonText = \"<b>No goals set yet!</b><br><br>Click here to set it for yourself and friends\";\r\n            b3.setText(Html.fromHtml(buttonText));\r\n            b3.setOnClickListener(new View.OnClickListener() {\r\n                @Override\r\n                public void onClick(View v) {\r\n                    Intent set_event= new Intent(Friendship_Events.this, events_input.class);\r\n                    set_event.putExtra(\"userid\", userid);\r\n                    set_event.putExtra(\"ACTION_PERFORMED\", \"GOALS\");\r\n                    startActivity(set_event);\r\n                }\r\n            });\r\n        }\r\n        else if(!goalsEmpty){\r\n            int color = ContextCompat.getColor(this, R.color.teal_700);\r\n            b3.setBackgroundColor(color);\r\n            String challengeInfo = \"<b>Challenge set!</b><br><br>\" + userEvents.goals;\r\n            b3.setText(Html.fromHtml(challengeInfo));\r\n\r\n\r\n        }\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/sg/edu/np/mad/p04_team4/Friendship_Events.java b/app/src/main/java/sg/edu/np/mad/p04_team4/Friendship_Events.java
+--- a/app/src/main/java/sg/edu/np/mad/p04_team4/Friendship_Events.java	(revision 322998d24a345eab893a7eb86f64a052e2fbdf75)
++++ b/app/src/main/java/sg/edu/np/mad/p04_team4/Friendship_Events.java	(date 1717276888904)
+@@ -33,86 +33,91 @@
+         Button b2 = findViewById(R.id.button2);
+         Button b3 = findViewById(R.id.button3);
+         ImageButton b4 = findViewById(R.id.back_button);
++        b4.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                Intent set_event = new Intent(Friendship_Events.this, HomeActivity.class);
++                startActivity(set_event);
++            }
++        });
++
+ 
+-        Intent friendship_events= getIntent();
++        Intent friendship_events = getIntent();
+         events_dbhelper dbHelper = new events_dbhelper(this);
+-        int userid= (int) friendship_events.getIntExtra("userid",0);
++        int userid = (int) friendship_events.getIntExtra("userid", 0);
+ 
+         User_events userEvents = dbHelper.getUserEvent(userid);
+-        boolean challengeEmpty=userEvents.challange_e;
+-        boolean milestoneEmpty = userEvents.milestone_e;
+-        boolean goalsEmpty = userEvents.goals_e;
+-        Log.d("TEST", "fs_challenge: "+ challengeEmpty);
+-        Log.d("TEST", "fs_milestone: "+ milestoneEmpty);
+-        Log.d("TEST", "fs_goals: "+ goalsEmpty);
++        Log.d("TEST", "fs_challengecheck_null: " + userEvents.challange_e);
++        if (userEvents != null) {
++            boolean challengeEmpty = userEvents.challange_e;
++            boolean milestoneEmpty = userEvents.milestone_e;
++            boolean goalsEmpty = userEvents.goals_e;
++            Log.d("TEST", "fs_challenge: " + challengeEmpty);
++            Log.d("TEST", "fs_milestone: " + milestoneEmpty);
++            Log.d("TEST", "fs_goals: " + goalsEmpty);
+ 
+ 
+-
+-
+-
+-        if(challengeEmpty){
+-            String buttonText = "<b>No challenge set yet!</b><br><br>Click here to set it for yourself or friends";
+-            b1.setText(Html.fromHtml(buttonText));
+-            b1.setOnClickListener(new View.OnClickListener() {
+-                @Override
+-                public void onClick(View v) {
+-                    Intent set_event= new Intent(Friendship_Events.this, events_input.class);
+-                    set_event.putExtra("userid", userid);
+-                    set_event.putExtra("ACTION_PERFORMED", "CHALLENGES");
+-                    startActivity(set_event);
+-                }
+-            });
+-        }
+-        else if(!challengeEmpty){
+-            int color = ContextCompat.getColor(this, R.color.teal_700);
+-            b1.setBackgroundColor(color);
+-            String challengeInfo = "<b>Challenge set!</b><br><br>" + userEvents.challange;
+-            b1.setText(Html.fromHtml(challengeInfo));
++            if (challengeEmpty) {
++                String buttonText = "<b>No challenge set yet!</b><br><br>Click here to set it for yourself or friends";
++                b1.setText(Html.fromHtml(buttonText));
++                b1.setOnClickListener(new View.OnClickListener() {
++                    @Override
++                    public void onClick(View v) {
++                        Intent set_event = new Intent(Friendship_Events.this, events_input.class);
++                        set_event.putExtra("userid", userid);
++                        set_event.putExtra("ACTION_PERFORMED", "CHALLENGES");
++                        startActivity(set_event);
++                    }
++                });
++            } else if (!challengeEmpty) {
++                int color = ContextCompat.getColor(this, R.color.teal_700);
++                b1.setBackgroundColor(color);
++                String challengeInfo = "<b>Challenge set!</b><br><br>" + userEvents.challange;
++                b1.setText(Html.fromHtml(challengeInfo));
+ 
+-        }
+-        if(milestoneEmpty){
+-            String buttonText = "<b>No milestone set yet!</b><br><br>Click here to set it for yourself or friends";
+-            b2.setText(Html.fromHtml(buttonText));
+-            b2.setOnClickListener(new View.OnClickListener() {
+-                @Override
+-                public void onClick(View v) {
+-                    Intent set_event= new Intent(Friendship_Events.this, events_input.class);
+-                    set_event.putExtra("userid", userid);
+-                    set_event.putExtra("ACTION_PERFORMED", "MILESTONES");
+-                    startActivity(set_event);
+-                }
+-            });
+-        }
+-        else if(!milestoneEmpty){
+-            int color = ContextCompat.getColor(this, R.color.teal_700);
+-            b2.setBackgroundColor(color);
+-            String challengeInfo = "<b>Challenge set!</b><br><br>" + userEvents.milestone;
+-            b2.setText(Html.fromHtml(challengeInfo));
+-
+-
+-
+-        }
+-        if(goalsEmpty){
+-            String buttonText = "<b>No goals set yet!</b><br><br>Click here to set it for yourself and friends";
+-            b3.setText(Html.fromHtml(buttonText));
+-            b3.setOnClickListener(new View.OnClickListener() {
+-                @Override
+-                public void onClick(View v) {
+-                    Intent set_event= new Intent(Friendship_Events.this, events_input.class);
+-                    set_event.putExtra("userid", userid);
+-                    set_event.putExtra("ACTION_PERFORMED", "GOALS");
+-                    startActivity(set_event);
+-                }
+-            });
+-        }
+-        else if(!goalsEmpty){
+-            int color = ContextCompat.getColor(this, R.color.teal_700);
+-            b3.setBackgroundColor(color);
+-            String challengeInfo = "<b>Challenge set!</b><br><br>" + userEvents.goals;
+-            b3.setText(Html.fromHtml(challengeInfo));
++            }
++            if (milestoneEmpty) {
++                String buttonText = "<b>No milestone set yet!</b><br><br>Click here to set it for yourself or friends";
++                b2.setText(Html.fromHtml(buttonText));
++                b2.setOnClickListener(new View.OnClickListener() {
++                    @Override
++                    public void onClick(View v) {
++                        Intent set_event = new Intent(Friendship_Events.this, events_input.class);
++                        set_event.putExtra("userid", userid);
++                        set_event.putExtra("ACTION_PERFORMED", "MILESTONES");
++                        startActivity(set_event);
++                    }
++                });
++            } else if (!milestoneEmpty) {
++                int color = ContextCompat.getColor(this, R.color.teal_700);
++                b2.setBackgroundColor(color);
++                String challengeInfo = "<b>Milestone set!</b><br><br>" + userEvents.milestone;
++                b2.setText(Html.fromHtml(challengeInfo));
++            }
++            if (goalsEmpty) {
++                String buttonText = "<b>No goals set yet!</b><br><br>Click here to set it for yourself and friends";
++                b3.setText(Html.fromHtml(buttonText));
++                b3.setOnClickListener(new View.OnClickListener() {
++                    @Override
++                    public void onClick(View v) {
++                        Intent set_event = new Intent(Friendship_Events.this, events_input.class);
++                        set_event.putExtra("userid", userid);
++                        set_event.putExtra("ACTION_PERFORMED", "GOALS");
++                        startActivity(set_event);
++                    }
++                });
++            } else if (!goalsEmpty) {
++                int color = ContextCompat.getColor(this, R.color.teal_700);
++                b3.setBackgroundColor(color);
++                String challengeInfo = "<b>Goal set!</b><br><br>" + userEvents.goals;
++                b3.setText(Html.fromHtml(challengeInfo));
+ 
+ 
+-        }
++            }
++        } else {
++            Log.e("TEST", "User_events object is null for userId: " + userid);
++            // Handle case where userEvents is null (e.g., show an error message)
+ 
++        }
+     }
+ }
+\ No newline at end of file
