@@ -7,27 +7,29 @@
     android:layout_height="match_parent"
     tools:context=".Stopwatch_Timer">
 
-    <TextView
-        android:id="@+id/headerText"
-        android:layout_width="416dp"
-        android:layout_height="84dp"
-        android:background="@android:color/holo_purple"
-        android:paddingLeft="100dp"
-        android:paddingTop="10dp"
-        android:paddingRight="100dp"
-        android:paddingBottom="10dp"
-        android:text="Stopwatch"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.001" />
+        app:title=""
+        app:titleTextColor="@android:color/white">
+
+        <!-- Back Button -->
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="8dp"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="Back"
+            android:padding="4dp"
+            android:src="@drawable/ic_arrow_back" />
+    </androidx.appcompat.widget.Toolbar>
 
     <EditText
         android:id="@+id/timerText"
@@ -157,17 +159,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976" />
-
-    <ImageButton
-        android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
-        app:srcCompat="@drawable/ic_arrow_back" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

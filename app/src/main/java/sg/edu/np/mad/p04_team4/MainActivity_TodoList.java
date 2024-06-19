@@ -3,7 +3,6 @@ package sg.edu.np.mad.p04_team4;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,7 +43,7 @@ public class MainActivity_TodoList extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false); // Disable the default title
 
-        ImageButton backButton = findViewById(R.id.back_button);
+        ImageButton backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(v -> onBackPressed());
 
         list = findViewById(R.id.list);

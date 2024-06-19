@@ -19,7 +19,7 @@
 
         <!-- Back Button -->
         <ImageButton
-            android:id="@+id/back_button"
+            android:id="@+id/backButton"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:src="@drawable/ic_arrow_back"

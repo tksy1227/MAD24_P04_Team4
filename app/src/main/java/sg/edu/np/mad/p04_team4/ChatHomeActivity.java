@@ -1,7 +1,6 @@
 package sg.edu.np.mad.p04_team4;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -42,7 +41,7 @@ public class ChatHomeActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
 
-        backButton = findViewById(R.id.back_button);
+        backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(v -> onBackPressed());
 
         recyclerView = findViewById(R.id.recyclerView);

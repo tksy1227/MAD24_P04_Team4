@@ -32,7 +32,7 @@ public class Friendship_Events extends AppCompatActivity {
         Button b1 = findViewById(R.id.button1);
         Button b2 = findViewById(R.id.button2);
         Button b3 = findViewById(R.id.button3);
-        ImageButton b4 = findViewById(R.id.back_button);
+        ImageButton b4 = findViewById(R.id.backButton);
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

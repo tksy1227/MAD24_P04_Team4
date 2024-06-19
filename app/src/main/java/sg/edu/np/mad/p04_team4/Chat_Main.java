@@ -68,7 +68,7 @@ public class Chat_Main extends AppCompatActivity {
         editTextMessage = findViewById(R.id.editTextMessage);
         buttonSend = findViewById(R.id.buttonSend);
         buttonSelectImage = findViewById(R.id.buttonSelectImage);
-        backButton = findViewById(R.id.back_button);
+        backButton = findViewById(R.id.backButton);
 
         // Initialize RecyclerView
         messageList = new ArrayList<>();

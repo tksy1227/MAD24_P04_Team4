@@ -28,7 +28,7 @@ public class events_input extends AppCompatActivity {
         });
         TextInputEditText Text = findViewById(R.id.input);
         Button enter = findViewById(R.id.button);
-        ImageButton back = findViewById(R.id.back_button);
+        ImageButton back = findViewById(R.id.backButton);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
