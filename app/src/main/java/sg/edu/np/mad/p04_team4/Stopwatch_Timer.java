@@ -21,8 +21,6 @@ import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
 public class Stopwatch_Timer extends AppCompatActivity {
-
-    //test
     private EditText editTextTime;
     private EditText editTextPurpose;
     private Button buttonStart;
