@@ -89,7 +89,7 @@ public class Stopwatch_Timer extends AppCompatActivity {
         String timeInput = editTextTime.getText().toString();
         purposeText = editTextPurpose.getText().toString().trim();
 
-        if (TextUtils.isEmpty(timeInput)) {
+        if (timeInput.equals("00:00:00")) {
             Toast.makeText(Stopwatch_Timer.this, "Please enter a valid time", Toast.LENGTH_SHORT).show();
             return;
         }
