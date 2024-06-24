@@ -32,19 +32,19 @@ import java.util.List;
 
 public class Chat_Main extends AppCompatActivity {
 
-    private static final int PICK_IMAGE_REQUEST = 1;
-    private static final String TAG = "MainActivity";
+    private static final int PICK_IMAGE_REQUEST = 1; // Request code for image picker
+    private static final String TAG = "MainActivity"; // Tag for logging
 
-    private RecyclerView recyclerView;
-    private MessageAdapter adapter;
-    private List<Message> messageList;
-    private EditText editTextMessage;
-    private Button buttonSend;
-    private ImageButton buttonSelectImage;
-    private ImageButton backButton;
+    private RecyclerView recyclerView; // RecyclerView to display messages
+    private MessageAdapter adapter; // Adapter for RecyclerView
+    private List<Message> messageList; // List to store messages
+    private EditText editTextMessage; // EditText for message input
+    private Button buttonSend; // Button to send message
+    private ImageButton buttonSelectImage; // Button to select image
+    private ImageButton backButton; // Button to go back
 
-    private FirebaseAuth mAuth;
-    private DatabaseReference messagesRef;
+    private FirebaseAuth mAuth; // Firebase Authentication instance
+    private DatabaseReference messagesRef; // Database reference for messages
     private boolean isUserSignedIn = false; // Flag to indicate if user is signed in
 
     @Override

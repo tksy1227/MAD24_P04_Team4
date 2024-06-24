@@ -15,9 +15,10 @@ import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder> {
 
-    private List<Chat> chatList;
-    private Context context;
+    private List<Chat> chatList; // List of chats to display
+    private Context context; // Context of the activity/fragment
 
+    // Constructor for the adapter, initializing the context and chat list
     public ChatAdapter(Context context, List<Chat> chatList) {
         this.context = context;
         this.chatList = chatList;
@@ -26,39 +27,46 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     @NonNull
     @Override
     public ChatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Inflate the layout for each chat item
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat, parent, false);
         return new ChatViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ChatViewHolder holder, int position) {
+        // Get the chat object at the current position
         Chat chat = chatList.get(position);
+        // Set the chat details to the respective views
         holder.chatName.setText(chat.getName());
         holder.chatMessage.setText(chat.getLastMessage());
         holder.chatTime.setText(chat.getTime());
 
+        // Set click listener for the chat item
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, Chat_Main.class);
-            intent.putExtra("chat_name", chat.getName());
-            context.startActivity(intent);
+            intent.putExtra("chat_name", chat.getName()); // Pass chat name to the Chat_Main activity
+            context.startActivity(intent); // Start the Chat_Main activity
         });
 
+        // Set click listener for the delete button
         holder.buttonDeleteChat.setOnClickListener(v -> {
-            ((ChatHomeActivity) context).deleteChat(holder.getAdapterPosition());
+            ((ChatHomeActivity) context).deleteChat(holder.getAdapterPosition()); // Call deleteChat method in ChatHomeActivity
         });
     }
 
     @Override
     public int getItemCount() {
-        return chatList.size();
+        return chatList.size(); // Return the size of the chat list
     }
 
+    // ViewHolder class to hold the views for each chat item
     public static class ChatViewHolder extends RecyclerView.ViewHolder {
         TextView chatName, chatMessage, chatTime;
         ImageButton buttonDeleteChat;
 
         public ChatViewHolder(@NonNull View itemView) {
             super(itemView);
+            // Initialize the views
             chatName = itemView.findViewById(R.id.chat_name);
             chatMessage = itemView.findViewById(R.id.chat_message);
             chatTime = itemView.findViewById(R.id.chat_time);
