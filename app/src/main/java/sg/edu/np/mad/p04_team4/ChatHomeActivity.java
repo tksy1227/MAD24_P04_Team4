@@ -92,7 +92,12 @@ public class ChatHomeActivity extends AppCompatActivity {
     private void addChat() {
         String chatName = "New Chat " + (chatList.size() + 1);
         Chat newChat = new Chat(chatName, "Hello!", "Now");
-        chatsRef.push().setValue(newChat).addOnCompleteListener(task -> {
+
+        // Generate a unique ID for the new chat room
+        DatabaseReference newChatRef = chatsRef.push();
+        String chatRoomId = newChatRef.getKey();
+
+        newChatRef.setValue(newChat).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Toast.makeText(ChatHomeActivity.this, "Chat added", Toast.LENGTH_SHORT).show();
             } else {

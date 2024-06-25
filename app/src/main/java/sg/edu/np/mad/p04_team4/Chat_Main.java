@@ -54,6 +54,8 @@ public class Chat_Main extends AppCompatActivity {
 
         // Retrieve the data passed with the Intent
         String chatName = getIntent().getStringExtra("chat_name");
+        String chatRoomId = getIntent().getStringExtra("chat_room_id"); // Get the chat room ID
+
         TextView chatNameTextView = findViewById(R.id.username);
         if (chatName != null) {
             chatNameTextView.setText(chatName);
@@ -61,7 +63,7 @@ public class Chat_Main extends AppCompatActivity {
 
         // Initialize Firebase Auth and Database Reference
         mAuth = FirebaseAuth.getInstance();
-        messagesRef = FirebaseDatabase.getInstance().getReference("messages");
+        messagesRef = FirebaseDatabase.getInstance().getReference("chats").child(chatRoomId).child("messages");
 
         // Initialize Views
         recyclerView = findViewById(R.id.recyclerView);
