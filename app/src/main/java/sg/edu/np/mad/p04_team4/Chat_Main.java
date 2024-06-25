@@ -251,3 +251,4 @@ public class Chat_Main extends AppCompatActivity {
         }
     };
 }
+
