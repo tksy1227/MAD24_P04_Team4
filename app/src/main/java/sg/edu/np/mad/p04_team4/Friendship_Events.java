@@ -45,7 +45,7 @@ public class Friendship_Events extends AppCompatActivity {
 
         Intent friendship_events = getIntent();
         events_dbhelper dbHelper = new events_dbhelper(this);
-        int userid = friendship_events.getIntExtra("userid", 0);
+        int userid = friendship_events.getIntExtra("userid", 1234);
 
         User_events userEvents = dbHelper.getUserEvent(userid);
         Log.d("TEST", "fs_challengecheck_null: " + userEvents.challange_e);

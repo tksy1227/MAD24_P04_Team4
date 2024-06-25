@@ -18,6 +18,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.AlertDialog;
+import android.text.InputType;
+import android.widget.EditText;
+
+
 public class ChatHomeActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView; // RecyclerView to display chats
@@ -56,7 +61,7 @@ public class ChatHomeActivity extends AppCompatActivity {
 
         // Initialize add chat button and set click listener
         buttonAddChat = findViewById(R.id.buttonAddChat);
-        buttonAddChat.setOnClickListener(v -> addChat());
+        buttonAddChat.setOnClickListener(v -> showAddChatDialog());
 
         // Initialize Firebase Database reference for chats
         chatsRef = FirebaseDatabase.getInstance().getReference("chats");
@@ -89,9 +94,8 @@ public class ChatHomeActivity extends AppCompatActivity {
     }
 
     // Method to add a new chat
-    private void addChat() {
-        String chatName = "New Chat " + (chatList.size() + 1);
-        Chat newChat = new Chat(chatName, "Hello!", "Now");
+    private void addChat(String chatName) {
+        Chat newChat = new Chat(chatName, "Hey Friendo!", "Now");
 
         // Generate a unique ID for the new chat room
         DatabaseReference newChatRef = chatsRef.push();
@@ -104,6 +108,36 @@ public class ChatHomeActivity extends AppCompatActivity {
                 Toast.makeText(ChatHomeActivity.this, "Failed to add chat", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void showAddChatDialog() {
+        // Create an AlertDialog builder to build the dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Enter Chat Name"); // Set the title of the dialog
+
+        // Create an EditText input field for the chat name
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_TEXT); // Set the input type to text
+        builder.setView(input); // Add the EditText to the dialog
+
+        // Set the positive button with the action to be performed when clicked
+        builder.setPositiveButton("OK", (dialog, which) -> {
+            // Get the entered chat name
+            String chatName = input.getText().toString().trim();
+            if (!chatName.isEmpty()) {
+                // If the chat name is not empty, call the addChat method with the entered name
+                addChat(chatName);
+            } else {
+                // Show a toast message if the chat name is empty
+                Toast.makeText(ChatHomeActivity.this, "Chat name cannot be empty", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Set the negative button to cancel the dialog
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+
+        // Show the dialog
+        builder.show();
     }
 
     // Method to delete a chat
