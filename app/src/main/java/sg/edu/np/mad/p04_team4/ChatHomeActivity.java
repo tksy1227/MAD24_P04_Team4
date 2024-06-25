@@ -95,7 +95,8 @@ public class ChatHomeActivity extends AppCompatActivity {
 
     // Method to add a new chat
     private void addChat(String chatName) {
-        Chat newChat = new Chat(chatName, "Hey Friendo!", "Now");
+        long currentTime = System.currentTimeMillis();
+        Chat newChat = new Chat(chatName, "Hey Friendo!", String.valueOf(currentTime));
 
         // Generate a unique ID for the new chat room
         DatabaseReference newChatRef = chatsRef.push();

@@ -12,6 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder> {
 
@@ -39,7 +42,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
         // Set the chat details to the respective views
         holder.chatName.setText(chat.getName());
         holder.chatMessage.setText(chat.getLastMessage());
-        holder.chatTime.setText(chat.getTime());
+        // Convert the time to a readable format
+        long timeInMillis = Long.parseLong(chat.getTime());
+        String formattedTime = new SimpleDateFormat("MMM dd, yyyy HH:mm", Locale.getDefault()).format(new Date(timeInMillis));
+        holder.chatTime.setText(formattedTime);
 
         // Set click listener for the chat item
         holder.itemView.setOnClickListener(v -> {

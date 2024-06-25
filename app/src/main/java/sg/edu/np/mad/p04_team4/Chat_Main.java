@@ -145,11 +145,13 @@ public class Chat_Main extends AppCompatActivity {
             FirebaseUser user = mAuth.getCurrentUser();
             if (user != null) {
                 String userId = user.getUid();
-                Message message = new TextMessage(System.currentTimeMillis(), System.currentTimeMillis(), text, userId);
+                long currentTime = System.currentTimeMillis();
+                Message message = new TextMessage(currentTime, currentTime, text, userId);
                 messagesRef.push().setValue(message).addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "Message sent successfully");
                         editTextMessage.setText("");
+                        updateChatLastInteractedTime(currentTime); // Update chat's last interaction time
                     } else {
                         Log.e(TAG, "Failed to send message", task.getException());
                     }
@@ -160,6 +162,12 @@ public class Chat_Main extends AppCompatActivity {
         } else {
             Log.d(TAG, "Message text is empty");
         }
+    }
+
+    private void updateChatLastInteractedTime(long time) {
+        String chatRoomId = getIntent().getStringExtra("chat_room_id");
+        DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("chats").child(chatRoomId);
+        chatRef.child("time").setValue(String.valueOf(time));
     }
 
     private void openImagePicker() {
