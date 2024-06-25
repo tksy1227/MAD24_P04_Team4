@@ -21,6 +21,8 @@ import java.util.List;
 import android.app.AlertDialog;
 import android.text.InputType;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+
 
 
 public class ChatHomeActivity extends AppCompatActivity {
@@ -116,10 +118,26 @@ public class ChatHomeActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Enter Chat Name"); // Set the title of the dialog
 
+        // Create a LinearLayout to hold the EditText
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        int padding = (int) (16 * getResources().getDisplayMetrics().density); // 16dp padding
+        layout.setPadding(padding, padding, padding, padding);
+
         // Create an EditText input field for the chat name
         final EditText input = new EditText(this);
-        input.setInputType(InputType.TYPE_CLASS_TEXT); // Set the input type to text
-        builder.setView(input); // Add the EditText to the dialog
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+
+        // Set the width of the EditText in pixels
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                (int) (325 * getResources().getDisplayMetrics().density), // 200dp converted to pixels
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        input.setLayoutParams(lp);
+
+        // Add the EditText to the LinearLayout
+        layout.addView(input);
+        builder.setView(layout);
 
         // Set the positive button with the action to be performed when clicked
         builder.setPositiveButton("OK", (dialog, which) -> {
