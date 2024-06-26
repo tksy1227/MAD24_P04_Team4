@@ -35,4 +35,8 @@ public class Chat {
     public String getTime() {
         return time; // Get the time of the last message
     }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 }

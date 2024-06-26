@@ -38,7 +38,7 @@ public class events_input extends AppCompatActivity {
         });
 
         Intent set_events = getIntent();
-        int userid = set_events.getIntExtra("userid", 1);
+        int userid = set_events.getIntExtra("userid", 1234);
         String actionPerformed = set_events.getStringExtra("ACTION_PERFORMED");
 
         events_dbhelper dbHelper = new events_dbhelper(this);

@@ -30,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Chat_Main extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1; // Request code for image picker
@@ -60,6 +61,12 @@ public class Chat_Main extends AppCompatActivity {
         if (chatName != null) {
             chatNameTextView.setText(chatName);
         }
+
+        // Update last seen time
+        updateLastSeenTime(chatRoomId);
+
+        // Display last seen time
+        displayLastSeenTime(chatRoomId);
 
         // Initialize Firebase Auth and Database Reference
         mAuth = FirebaseAuth.getInstance();
@@ -145,11 +152,13 @@ public class Chat_Main extends AppCompatActivity {
             FirebaseUser user = mAuth.getCurrentUser();
             if (user != null) {
                 String userId = user.getUid();
-                Message message = new TextMessage(System.currentTimeMillis(), System.currentTimeMillis(), text, userId);
+                long currentTime = System.currentTimeMillis();
+                Message message = new TextMessage(currentTime, currentTime, text, userId);
                 messagesRef.push().setValue(message).addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "Message sent successfully");
                         editTextMessage.setText("");
+                        updateChatLastInteractedTime(currentTime); // Update chat's last interaction time
                     } else {
                         Log.e(TAG, "Failed to send message", task.getException());
                     }
@@ -160,6 +169,18 @@ public class Chat_Main extends AppCompatActivity {
         } else {
             Log.d(TAG, "Message text is empty");
         }
+    }
+
+    private void updateChatLastInteractedTime(long time) {
+        String chatRoomId = getIntent().getStringExtra("chat_room_id");
+        DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("chats").child(chatRoomId);
+        chatRef.child("time").setValue(String.valueOf(time));
+    }
+
+    private void updateLastSeenTime(String chatRoomId) {
+        long currentTime = System.currentTimeMillis();
+        DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("chats").child(chatRoomId);
+        chatRef.child("lastSeen").setValue(currentTime);
     }
 
     private void openImagePicker() {
@@ -185,6 +206,46 @@ public class Chat_Main extends AppCompatActivity {
                     }
                 });
             }
+        }
+    }
+
+    private void displayLastSeenTime(String chatRoomId) {
+        DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("chats").child(chatRoomId).child("lastSeen");
+        chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    long lastSeenTime = dataSnapshot.getValue(Long.class);
+                    String formattedTime = getTimeDifference(lastSeenTime);
+                    TextView lastSeenTextView = findViewById(R.id.status); // Replace with your actual TextView ID
+                    lastSeenTextView.setText("Last seen " + formattedTime);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e(TAG, "Failed to retrieve last seen time", databaseError.toException());
+            }
+        });
+    }
+
+    private String getTimeDifference(long timeInMillis) {
+        long currentTime = System.currentTimeMillis();
+        long difference = currentTime - timeInMillis;
+
+        long seconds = difference / 1000;
+        long minutes = seconds / 60;
+        long hours = minutes / 60;
+        long days = hours / 24;
+
+        if (days > 0) {
+            return days + " d " + (hours % 24) + " h " + (minutes % 60) + " min ago";
+        } else if (hours > 0) {
+            return hours + " h " + (minutes % 60) + " min ago";
+        } else if (minutes > 0) {
+            return minutes + " min ago";
+        } else {
+            return "just now";
         }
     }
 
