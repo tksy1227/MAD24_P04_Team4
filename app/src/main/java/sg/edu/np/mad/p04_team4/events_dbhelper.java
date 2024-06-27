@@ -4,11 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
-import android.util.Log;
+
 public class events_dbhelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "user_events.db";
@@ -25,6 +25,7 @@ public class events_dbhelper extends SQLiteOpenHelper {
     public events_dbhelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TABLE_QUERY = "CREATE TABLE " + TABLE_NAME + " ("
@@ -32,16 +33,18 @@ public class events_dbhelper extends SQLiteOpenHelper {
                 + COLUMN_CHALLENGES + " TEXT,"
                 + COLUMN_MILESTONES + " TEXT,"
                 + COLUMN_GOALS + " TEXT,"
-                + COLUMN_C_EMPTY + " INTEGER,"  // Boolean column for challenges
-                + COLUMN_M_EMPTY + " INTEGER,"  // Boolean column for milestones
-                + COLUMN_G_EMPTY + " INTEGER)"; // Boolean column for goals
+                + COLUMN_C_EMPTY + " INTEGER,"
+                + COLUMN_M_EMPTY + " INTEGER,"
+                + COLUMN_G_EMPTY + " INTEGER)";
         db.execSQL(CREATE_TABLE_QUERY);
     }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
+
     public void insertEvent(User_events userEvents) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -54,26 +57,25 @@ public class events_dbhelper extends SQLiteOpenHelper {
         values.put(COLUMN_G_EMPTY, userEvents.isGoals_e() ? 1 : 0);
 
         if (checkUserIdExist(userEvents.getId())) {
-            // If userId exists, update the existing entry
             db.update(TABLE_NAME, values, USERID + "=?", new String[]{String.valueOf(userEvents.getId())});
-            Log.d("TEST", "Event with userId " + userEvents.getId() + " updated.");
+            Log.d("DB", "Event with userId " + userEvents.getId() + " updated.");
         } else {
-            // If userId doesn't exist, insert a new entry
             db.insert(TABLE_NAME, null, values);
-            Log.d("TEST", "New event inserted with userId " + userEvents.getId() + ".");
+            Log.d("DB", "New event inserted with userId " + userEvents.getId() + ".");
         }
 
-        // Closing database connection
         db.close();
     }
-    // Method to check if userId already exists in the table
+
     private boolean checkUserIdExist(int userId) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + USERID + " = ?", new String[]{String.valueOf(userId)});
         boolean exists = cursor.getCount() > 0;
         cursor.close();
+        db.close();
         return exists;
     }
+
     public User_events getUserEvent(int userId) {
         SQLiteDatabase db = this.getReadableDatabase();
         User_events userEvent = null;
@@ -99,7 +101,7 @@ public class events_dbhelper extends SQLiteOpenHelper {
                     String milestone = cursor.getString(milestoneIndex);
                     String goals = cursor.getString(goalIndex);
 
-                    userEvent = new User_events(userId, challenge, milestone, goals,challenge_e, milestone_e, goals_e);
+                    userEvent = new User_events(userId, challenge, milestone, goals, challenge_e, milestone_e, goals_e);
                 } else {
                     Log.e("getUserEvent", "One or more columns not found in cursor");
                 }
@@ -112,14 +114,13 @@ public class events_dbhelper extends SQLiteOpenHelper {
         }
 
         db.close();
-
         return userEvent;
     }
+
     public void updateEventPart(int userId, String columnNameLiteral, String newValue) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        // Map literal column name to actual column name constant
         String columnName;
         switch (columnNameLiteral) {
             case "COLUMN_CHALLENGES":
@@ -141,33 +142,25 @@ public class events_dbhelper extends SQLiteOpenHelper {
                 columnName = COLUMN_G_EMPTY;
                 break;
             default:
-                Log.e("TEST", "Invalid column name: " + columnNameLiteral);
+                Log.e("DB", "Invalid column name: " + columnNameLiteral);
                 db.close();
                 return;
         }
 
-        // Check if the column name corresponds to a boolean column
         if (columnName.equals(COLUMN_C_EMPTY) || columnName.equals(COLUMN_M_EMPTY) || columnName.equals(COLUMN_G_EMPTY)) {
-            // If the column is a boolean column, parse the newValue string to a boolean value
             boolean boolValue = newValue.equals("1");
-            values.put(columnName, boolValue ? 1 : 0); // Store boolean as integer (1 for true, 0 for false)
+            values.put(columnName, boolValue ? 1 : 0);
         } else {
-            // If the column is not a boolean column, directly put the newValue string
             values.put(columnName, newValue);
         }
 
         if (checkUserIdExist(userId)) {
-            // If userId exists, update the specified column with the new value
             db.update(TABLE_NAME, values, USERID + "=?", new String[]{String.valueOf(userId)});
-            Log.d("TEST", columnName + " updated for user with userId " + userId + ".");
+            Log.d("DB", columnName + " updated for user with userId " + userId + ".");
         } else {
-            // If userId doesn't exist, log an error
-            Log.e("TEST", "User with userId " + userId + " does not exist. Cannot update " + columnName + ".");
+            Log.e("DB", "User with userId " + userId + " does not exist. Cannot update " + columnName + ".");
         }
 
-        // Closing database connection
         db.close();
     }
-
-
 }

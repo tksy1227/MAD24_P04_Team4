@@ -29,6 +29,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
+import java.util.Calendar;
+
 
 
 public class Chat_Main extends AppCompatActivity {
@@ -216,8 +222,21 @@ public class Chat_Main extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     long lastSeenTime = dataSnapshot.getValue(Long.class);
-                    String formattedTime = getTimeDifference(lastSeenTime);
-                    TextView lastSeenTextView = findViewById(R.id.status); // Replace with your actual TextView ID
+
+                    // Log the retrieved last seen time
+                    Log.d("Chat_Main", "Retrieved last seen time: " + lastSeenTime);
+
+                    SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy HH:mm", Locale.getDefault());
+                    // Manually set the time zone to your local time zone
+                    TimeZone localTimeZone = TimeZone.getTimeZone("Asia/Singapore"); // Set your local time zone
+                    Log.d("Chat_Main", "Local TimeZone: " + localTimeZone.getID());
+                    sdf.setTimeZone(localTimeZone);
+                    String formattedTime = sdf.format(new Date(lastSeenTime));
+
+                    // Log the formatted last seen time
+                    Log.d("Chat_Main", "Formatted last seen time: " + formattedTime);
+
+                    TextView lastSeenTextView = findViewById(R.id.status);
                     lastSeenTextView.setText("Last seen " + formattedTime);
                 }
             }
@@ -312,4 +331,3 @@ public class Chat_Main extends AppCompatActivity {
         }
     };
 }
-

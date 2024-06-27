@@ -15,5 +15,4 @@
         android:text="Sample message"
         android:textSize="16sp"
         android:textColor="@android:color/black"/>
-
 </LinearLayout>

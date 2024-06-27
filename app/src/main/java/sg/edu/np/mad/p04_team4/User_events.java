@@ -3,36 +3,38 @@ package sg.edu.np.mad.p04_team4;
 import java.io.Serializable;
 
 public class User_events implements Serializable {
-    public int id;
-    public boolean challange_e;
-    public boolean milestone_e;
-    public boolean goals_e;
-    String challange;
-    String milestone;
-    String goals;
+    private int id;
+    private boolean challange_e;
+    private boolean milestone_e;
+    private boolean goals_e;
+    private String challange;
+    private String milestone;
+    private String goals;
 
-
-    public User_events(int id,String challange_info, String milestone_info,String goals_info,boolean challange,boolean milestone,boolean goals) {
-        this.id=id;
-        this.challange_e=challange;
+    public User_events(int id, String challange_info, String milestone_info, String goals_info, boolean challange, boolean milestone, boolean goals) {
+        this.id = id;
+        this.challange_e = challange;
         this.milestone_e = milestone;
-        this.goals_e=goals;
-        this.challange=challange_info;
-        this.milestone=milestone_info;
-        this.goals=goals_info;
+        this.goals_e = goals;
+        this.challange = challange_info;
+        this.milestone = milestone_info;
+        this.goals = goals_info;
     }
+
     public User_events(int id) {
-        this.id=id;
-        this.challange_e=false;
+        this.id = id;
+        this.challange_e = false;
         this.milestone_e = false;
-        this.goals_e=false;
+        this.goals_e = false;
     }
-    public User_events(int id,boolean challange,boolean milestone,boolean goals) {
-        this.id=id;
-        this.challange_e=challange;
+
+    public User_events(int id, boolean challange, boolean milestone, boolean goals) {
+        this.id = id;
+        this.challange_e = challange;
         this.milestone_e = milestone;
-        this.goals_e=goals;
+        this.goals_e = goals;
     }
+
     public int getId() {
         return id;
     }
@@ -60,6 +62,4 @@ public class User_events implements Serializable {
     public String getGoals() {
         return goals;
     }
-
-
 }

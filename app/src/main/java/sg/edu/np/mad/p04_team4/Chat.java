@@ -6,6 +6,7 @@ public class Chat {
     private String lastMessage; // Last message sent in the chat
     private String time; // Time of the last message
 
+
     public Chat() {
         // Default constructor required for calls to DataSnapshot.getValue(Chat.class)
     }
