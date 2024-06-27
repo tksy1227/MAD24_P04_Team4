@@ -1,8 +1,6 @@
 package sg.edu.np.mad.p04_team4;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 public class TimerAdapter extends RecyclerView.Adapter<TimerAdapter.TimerViewHolder> {
 
