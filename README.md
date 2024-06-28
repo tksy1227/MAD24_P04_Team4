@@ -54,38 +54,48 @@ App Features [Stage 1]:
 1. Login & Home Page - Users can login/register an account + change password.
 There will be a landing page designed to help users navigate the app easily.
 Concepts used: Persistent Memory, Layout Manager
+Feature done by: Marissa
 
 2. Chat & Messaging - Send and receive text messages and images between friends
 Concepts used: RecyclerView, Persistent Memory, Layout Manager
+Feature done by: Danial
 
 3. Friendship Events - Users to track each other's progress in fitness challenges, personal milestones & other goals together
 Concepts used: Persistent Memory
+Feature done by: Jacob
 
 4. Timer - Keep track of time when doing tasks
 Concepts used: CountdownTimer, RecyclerView, Persistent Memory, Layout Management, MediaPlayer, Vibration
+Feature done by: Chloe
 
 5. To-Do List - Organize their to-do tasks for the day
 Concepts used: Linear Layout, Persistent Memory
+Feature done by: Shida
 ---------------------------------------------------------------->
 App Features [Stage 2]:
 1. Settings Page | OTP | App Layout Enhancement - Users can view, update and delete their personal details.
 OTP verification to verify its the user’s number.
 User can customise the app’s layout to their liking.
 Concepts used: CountdownTimer, RecyclerView, TextWatcher, Data Binding, Dynamic Theming
+Feature/Enhancement done by: Marissa
 
 2. Screentime Tracker - Gives insight and tells users how long they have been on each feature.
 Users can make changes according to the screen time.
 Concepts used: Foreground Service, Firebase Realtime Database, Binding to Service, Tracking Individual Features
+Feature/Enhancement done by: Danial
 
 3. Personal Habit Tracker -  Allows users to set, track, and manage their personal habits.
 Users can log their progress, and view their streaks and statistics over time.
 Concepts used: Persistent Memory, MPAndroidChart, Recycler View
+Feature/Enhancement done by: Jacob
 
 4. Timer Enhancement & Widget - Allow users to access the feature outside of the app through a widget
 Concepts used: CountdownTimer, RecyclerView, Databases, Widget
+Feature/Enhancement done by: Chloe
 
 5. Calendar - Allow users to view and track their schedule easily.
 Concepts used: Nested RecyclerView, Persistent Memory, Widget
+Feature/Enhancement done by: Shida
 ---------------------------------------------------------------->
 App Aesthetics Information:
 Colour scheme:
