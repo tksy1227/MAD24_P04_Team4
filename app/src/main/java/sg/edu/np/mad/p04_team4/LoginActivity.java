@@ -44,11 +44,11 @@ public class LoginActivity extends AppCompatActivity {
                 if (passwordShowing) {
                     passwordShowing = false;
                     password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    btnHideIcon.setImageResource(R.drawable.unhide_icon);
+                    btnHideIcon.setImageResource(R.drawable.hide_icon);
                 } else {
                     passwordShowing = true;
                     password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                    btnHideIcon.setImageResource(R.drawable.hide_icon);
+                    btnHideIcon.setImageResource(R.drawable.unhide_icon);
                 }
                 password.setSelection(password.length());
             }

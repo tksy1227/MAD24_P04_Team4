@@ -20,10 +20,6 @@
         <activity
             android:name=".ForgetUserActivity"
             android:exported="false" />
-
-        <activity
-            android:name=".ForgetPasswordActivity"
-            android:exported="false" />
         <activity
             android:name=".CreateAccount"
             android:exported="false" />
@@ -55,6 +51,7 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

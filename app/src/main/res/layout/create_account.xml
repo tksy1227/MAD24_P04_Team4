@@ -146,7 +146,7 @@
             android:id="@+id/HideIcon"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            app:srcCompat="@drawable/hide_icon"
+            app:srcCompat="@drawable/unhide_icon"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"/>

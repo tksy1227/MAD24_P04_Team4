@@ -51,11 +51,11 @@ public class CreateAccount extends AppCompatActivity {
                         if (passwordShowing) {
                             passwordShowing = false;
                             tvPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                            btnHideIcon.setImageResource(R.drawable.unhide_icon);
+                            btnHideIcon.setImageResource(R.drawable.hide_icon);
                         } else {
                             passwordShowing = true;
                             tvPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                            btnHideIcon.setImageResource(R.drawable.hide_icon);
+                            btnHideIcon.setImageResource(R.drawable.unhide_icon);
                         }
                         tvPassword.setSelection(tvPassword.length());
                     }
