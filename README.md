@@ -77,26 +77,45 @@ App Features [Stage 2]:
 OTP verification to verify its the user’s number.
 User can customise the app’s layout to their liking.
 Concepts used: CountdownTimer, RecyclerView, TextWatcher, Data Binding, Dynamic Theming
+New concepts used: TextWatcher, Data Binding
 Feature/Enhancement done by: Marissa
 
 2. Screentime Tracker - Gives insight and tells users how long they have been on each feature.
 Users can make changes according to the screen time.
 Concepts used: Foreground Service, Firebase Realtime Database, Binding to Service, Tracking Individual Features
+New concepts used: Foreground Service, Binding to Service
 Feature/Enhancement done by: Danial
 
 3. Personal Habit Tracker -  Allows users to set, track, and manage their personal habits.
 Users can log their progress, and view their streaks and statistics over time.
 Concepts used: Persistent Memory, MPAndroidChart, Recycler View
+New concepts used: MPAndroidChart
 Feature/Enhancement done by: Jacob
 
 4. Timer Enhancement & Widget - Allow users to access the feature outside of the app through a widget
 Concepts used: CountdownTimer, RecyclerView, Databases, Widget
+New concepts used: Widget
 Feature/Enhancement done by: Chloe
 
 5. Calendar - Allow users to view and track their schedule easily.
 Concepts used: Nested RecyclerView, Persistent Memory, Widget
+New concepts used: Nested RecyclerView
 Feature/Enhancement done by: Shida
 ---------------------------------------------------------------->
 App Aesthetics Information:
-Colour scheme:
+Colour scheme: Cool shades of green & blue, with shades of turquoise mixed in.
+
+Green: associated with nature, health & well-being; suitable for our app since it is about lifestyle
+
+Blue: linked with communication; suitable for our app since it has social media components
+
+Turquoise: combines the calming properties of blue and revitalizing energy of green, & provides a perfect contrast
+
+Beige: allows a contrast to make the elements of the app visible and pleasing to the eye
+
+Colour Wheel & colours used:
+#F4EDEA
+#0D5C63
+#C5D8D1
+#78CDD7
 ---------------------------------------------------------------->
