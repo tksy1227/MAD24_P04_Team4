@@ -31,21 +31,21 @@ public class HomeActivity extends AppCompatActivity {
         Intent home_page = getIntent();
         Serializable serializableUser = home_page.getSerializableExtra("user");
         User user = (User) serializableUser;
-
+/*
         // Set Click Listener for the "Message your friends!" image
         ImageView messageFriendsImage = findViewById(R.id.imageViewdanial);
         messageFriendsImage.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, ChatHomeActivity.class);
             startActivity(intent);
         });
-
+*/
         // Set Click Listener for the "Stopwatch/Timer" image
         ImageView stopwatchTimerImage = findViewById(R.id.imageViewchloe);
         stopwatchTimerImage.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, Stopwatch_Timer.class);
             startActivity(intent);
         });
-
+/*
         // Set Click Listener for the "Challenge yourself!" image
         ImageView challangeYourselfImage = findViewById(R.id.imageViewjacob);
         challangeYourselfImage.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +63,7 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+*/
         // Set Click Listener for the "To-Do List" image
         ImageView todoListImage = findViewById(R.id.imageViewshida);
         todoListImage.setOnClickListener(v -> {

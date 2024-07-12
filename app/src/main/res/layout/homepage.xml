@@ -39,7 +39,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.026" />
-
+<!--
     <ImageView
         android:id="@+id/imageViewjacob"
         android:layout_width="111dp"
@@ -48,7 +48,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Jacob"
         app:srcCompat="@drawable/jacob_icon" />
-
+-->
+<!--
     <TextView
         android:id="@+id/Danial"
         android:layout_width="200dp"
@@ -62,7 +63,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.314" />
-
+-->
     <TextView
         android:id="@+id/Chloe"
         android:layout_width="200dp"
@@ -86,7 +87,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Chloe"
         app:srcCompat="@drawable/chloe_icon" />
-
+<!--
     <TextView
         android:id="@+id/Jacob"
         android:layout_width="200dp"
@@ -100,8 +101,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.597" />
-
-
+-->
+<!--
     <ImageView
         android:id="@+id/imageViewdanial"
         android:layout_width="111dp"
@@ -111,7 +112,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Danial"
         app:srcCompat="@drawable/danial_icon" />
-
+-->
     <TextView
         android:id="@+id/Shida"
         android:layout_width="81dp"
@@ -135,7 +136,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Shida"
         app:srcCompat="@drawable/shida_icon" />
-
+<!--
     <TextView
         android:id="@+id/Home"
         android:layout_width="81dp"
@@ -189,5 +190,5 @@
         app:layout_constraintTop_toBottomOf="@+id/Settings"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/settings_icon" />
-
+-->
 </androidx.constraintlayout.widget.ConstraintLayout>
