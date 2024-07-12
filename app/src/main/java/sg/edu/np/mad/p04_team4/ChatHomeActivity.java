@@ -40,7 +40,7 @@ public class ChatHomeActivity extends AppCompatActivity {
     private SearchView searchView;
 
     private DatabaseReference chatsRef;
-
+//hello testing
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
