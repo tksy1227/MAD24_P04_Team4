@@ -2,6 +2,7 @@ package sg.edu.np.mad.p04_team4.Login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -49,32 +50,39 @@ public class ForgetUserActivity extends AppCompatActivity {
     }
 
     private void retrieveUser() {
-        String usernameString = userInput.getText().toString();
+        String phoneString = userInput.getText().toString().trim();
 
         // Validate input
-        if (usernameString.isEmpty()) {
-            Toast.makeText(this, "Please enter a valid username.", Toast.LENGTH_SHORT).show();
+        if (phoneString.isEmpty()) {
+            Toast.makeText(this, "Please enter a valid phone number.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Query Firebase to get user based on username input
-        mDatabase.orderByChild("name").equalTo(usernameString).addListenerForSingleValueEvent(new ValueEventListener() {
+        Log.d("ForgetUserActivity", "Querying for phone number: " + phoneString);
+
+        // Query Firebase to get user based on phone number input
+        mDatabase.orderByChild("phone").equalTo(phoneString).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
+                    Log.d("ForgetUserActivity", "Data snapshot exists");
                     for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                         User foundUser = userSnapshot.getValue(User.class);
                         if (foundUser != null) {
+                            Log.d("ForgetUserActivity", "User found: " + foundUser.getName());
                             // User found
                             Toast.makeText(ForgetUserActivity.this, "User found: " + foundUser.getName(), Toast.LENGTH_SHORT).show();
 
                             Intent intent = new Intent(ForgetUserActivity.this, OTPActivity.class);
-                            intent.putExtra("userId", foundUser.getId().toString());
+                            intent.putExtra("userId", foundUser.getId());
                             startActivity(intent);
+                        } else {
+                            Log.d("ForgetUserActivity", "User is null");
                         }
                     }
                 } else {
                     // User not found
+                    Log.d("ForgetUserActivity", "User not found");
                     Toast.makeText(ForgetUserActivity.this, "User not found", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -82,6 +90,7 @@ public class ForgetUserActivity extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Handle possible errors
+                Log.d("ForgetUserActivity", "Database error: " + databaseError.getMessage());
                 Toast.makeText(ForgetUserActivity.this, "Database error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

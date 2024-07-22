@@ -8,11 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -81,14 +83,20 @@ public class CreateAccount extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 String userId = user.getUid();
-                                User newUser = new User(Long.valueOf(userId), name, password);
+                                User newUser = new User(userId, name, password, phone); // Ensure phone is stored
 
-                                mDatabase.child("users").child(userId).setValue(newUser);
-
-                                Intent intent = new Intent(CreateAccount.this, HomeActivity.class);
-                                startActivity(intent);
-                                finish();
-                                Toast.makeText(CreateAccount.this, "Account created successfully.", Toast.LENGTH_SHORT).show();
+                                // Store user with phone field in database
+                                mDatabase.child("users").child(userId).setValue(newUser)
+                                        .addOnCompleteListener(task1 -> {
+                                            if (task1.isSuccessful()) {
+                                                Intent intent = new Intent(CreateAccount.this, HomeActivity.class);
+                                                startActivity(intent);
+                                                finish();
+                                                Toast.makeText(CreateAccount.this, "Account created successfully.", Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                Toast.makeText(CreateAccount.this, "Database error: " + task1.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
                             } else {
                                 Toast.makeText(CreateAccount.this, "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }

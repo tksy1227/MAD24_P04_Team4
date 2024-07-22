@@ -5,15 +5,49 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#F4EDEA"
     tools:context=".Login.LoginActivity">
+
+    <ImageView
+        android:layout_width="110dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.158"
+        app:srcCompat="@drawable/leaf_8" />
+
+    <ImageView
+        android:layout_width="145dp"
+        android:layout_height="155dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.981"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.236"
+        app:srcCompat="@drawable/leaf_9"
+        android:alpha="0.8"/>
+
+    <ImageView
+        android:layout_width="204dp"
+        android:layout_height="214dp"
+        android:layout_marginBottom="16dp"
+        android:alpha="0.2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/leaf_5" />
 
     <TextView
         android:id="@+id/CreateNewAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/anton"
-        android:textColor="@color/black"
+        android:textColor="#03256C"
         android:letterSpacing="0.05"
         android:text="Create New Account"
         android:textAlignment="center"
@@ -43,6 +77,8 @@
         android:layout_height="wrap_content"
         android:text="Already Registered?"
         android:textSize="15dp"
+        android:textColor="#03256C"
+        android:fontFamily="@font/alata"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.275"
@@ -52,11 +88,12 @@
 
     <Button
         android:id="@+id/Login"
-        android:layout_width="110dp"
-        android:layout_height="39dp"
-        android:backgroundTint="@android:color/holo_purple"
+        android:layout_width="115dp"
+        android:layout_height="42dp"
+        android:backgroundTint="#247B7B"
         android:text="Login"
         android:textSize="15dp"
+        android:fontFamily="@font/alata"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.727"
@@ -73,6 +110,7 @@
         android:inputType="textPersonName"
         android:background="@drawable/outline"
         android:gravity="center"
+        android:fontFamily="@font/alata"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.672"
@@ -101,6 +139,7 @@
         android:hint="Phone Number"
         android:textSize="14dp"
         android:inputType="textPhonetic"
+        android:fontFamily="@font/alata"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.674"
@@ -117,13 +156,13 @@
         app:layout_constraintHorizontal_bias="0.239"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.56"
+        app:layout_constraintVertical_bias="0.573"
         app:srcCompat="@drawable/phone_icon" />
 
     <RelativeLayout
         android:layout_width="190dp"
         android:layout_height="40dp"
-        android:background="@drawable/roundedstyle_w_colour"
+        android:background="@drawable/outline"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.674"
@@ -136,17 +175,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/outline"
+            android:fontFamily="@font/alata"
             android:gravity="center"
             android:hint="Password"
-            android:textSize="14dp"
             android:inputType="textPassword"
-            android:maxLines="1"/>
+            android:maxLines="1"
+            android:textSize="14dp" />
 
         <ImageView
             android:id="@+id/HideIcon"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            app:srcCompat="@drawable/unhide_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/hide_icon"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"/>
@@ -155,14 +195,14 @@
 
     <ImageView
         android:id="@+id/PasswordIcon"
-        android:layout_width="77dp"
-        android:layout_height="73dp"
+        android:layout_width="35dp"
+        android:layout_height="42dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.194"
+        app:layout_constraintHorizontal_bias="0.239"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.696"
+        app:layout_constraintVertical_bias="0.689"
         app:srcCompat="@drawable/password_icon" />
 
     <TextView
@@ -171,6 +211,8 @@
         android:text="By continuing, you agree to our Term and Conditions and Privacy Policy"
         android:textAlignment="center"
         android:textSize="12dp"
+        android:fontFamily="@font/alata"
+        android:textColor="#03256C"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -182,14 +224,16 @@
         android:id="@+id/SignUp"
         android:layout_width="230dp"
         android:layout_height="50dp"
-        android:backgroundTint="@android:color/holo_purple"
+        android:backgroundTint="#247B7B"
         android:text="Sign Up"
         android:textSize="16dp"
+        android:fontFamily="@font/alata"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.919" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

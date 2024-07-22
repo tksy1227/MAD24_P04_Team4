@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
-        Button btnLogin = findViewById(R.id.Login);
+        Button btnLogin = findViewById(R.id.LoginBtn);
         Button btnRegister = findViewById(R.id.CreateAccount);
         Button btnForgotPassword = findViewById(R.id.ForgotPassword);
         ImageView btnHideIcon = findViewById(R.id.HideIcon);

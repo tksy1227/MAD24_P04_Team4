@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:outlineProvider="bounds"
-    tools:context=".Login.LoginActivity">
+    tools:context=".Login.LoginActivity"
+    android:background="#F4EDEA">
 
     <ImageView
         android:id="@+id/AppIcon"
@@ -20,13 +21,46 @@
         app:layout_constraintVertical_bias="0.054"
         app:srcCompat="@drawable/app_icon" />
 
+    <ImageView
+        android:layout_width="122dp"
+        android:layout_height="116dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.185"
+        app:srcCompat="@drawable/leaf_8" />
+
+    <ImageView
+        android:layout_width="85dp"
+        android:layout_height="73dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.21"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.228"
+        app:srcCompat="@drawable/leaf_9" />
+
+    <ImageView
+        android:layout_width="252dp"
+        android:layout_height="298dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/leaf_10" />
+
     <TextView
         android:id="@+id/ForgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/anton"
         android:letterSpacing="0.05"
-        android:textColor="@color/black"
+        android:textColor="#03256C"
         android:text="Forgot Password"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,24 +75,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="260dp"
+        android:fontFamily="@font/anton"
+        android:letterSpacing="0.2"
         android:text="OTP"
-        android:textColor="@color/black"
+        android:textColor="#03256C"
         android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0"/>
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="260dp"
+        android:fontFamily="@font/alata"
         android:text="Please enter the code that we have sent to you"
-        android:textColor="@color/black"
+        android:textColor="#03256C"
         android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,8 +107,9 @@
         android:id="@+id/Verify"
         android:layout_width="140dp"
         android:layout_height="45dp"
+        android:fontFamily="@font/alata"
         android:text="Verify"
-        android:backgroundTint="@android:color/holo_purple"
+        android:backgroundTint="#247B7B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -94,11 +131,11 @@
 
         <EditText
             android:id="@+id/OTP1"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_marginEnd="10dp"
             android:layout_toStartOf="@+id/OTP2"
-            android:background="#E6E6E6"
+            android:background="#C5D8D1"
             android:gravity="center"
             android:inputType="number"
             android:maxLines="1"
@@ -108,11 +145,11 @@
 
         <EditText
             android:id="@+id/OTP2"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
-            android:background="#E6E6E6"
+            android:background="#C5D8D1"
             android:gravity="center"
             android:inputType="number"
             android:maxLines="1"
@@ -122,12 +159,12 @@
 
         <EditText
             android:id="@+id/OTP3"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_toEndOf="@+id/OTP2"
-            android:background="#E6E6E6"
+            android:background="#C5D8D1"
             android:gravity="center"
             android:inputType="number"
             android:maxLines="1"
@@ -137,11 +174,11 @@
 
         <EditText
             android:id="@+id/OTP4"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@+id/OTP3"
-            android:background="#E6E6E6"
+            android:background="#C5D8D1"
             android:gravity="center"
             android:inputType="number"
             android:maxLines="1"
@@ -162,6 +199,9 @@
         app:layout_constraintVertical_bias="0.87">
 
         <TextView
+            android:fontFamily="@font/alata"
+            android:textSize="14dp"
+            android:textColor="#03256C"
             android:textAlignment="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -170,6 +210,9 @@
 
         <TextView
             android:id="@+id/Resend"
+            android:fontFamily="@font/alata"
+            android:textSize="15dp"
+            android:textColor="#03256C"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:text="Resend"
