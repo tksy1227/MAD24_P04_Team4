@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
 
     <application
         android:allowBackup="true"
@@ -14,50 +16,86 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.P04_Team4"
         tools:targetApi="31">
-        <activity
-            android:name=".OTPActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ForgetUserActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CreateAccount"
-            android:exported="false" />
-        <activity
-            android:name=".TimerLogActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Stopwatch_Timer"
-            android:exported="false" />
-        <activity
-            android:name=".Friendship_Events"
-            android:exported="false" />
-        <activity
-            android:name=".events_input"
-            android:exported="false" />
-        <activity
-            android:name=".ChatHomeActivity" />
-        <activity
-            android:name=".Chat_Main" />
-        <activity
-            android:name=".ForgetPasswordConfirmationActivity" />
 
         <activity
-            android:name=".MainActivity_TodoList"
+            android:name=".Login.OTPActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".Login.ForgetUserActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Login.CreateAccount"
+            android:exported="false"
+            android:parentActivityName=".Login.LoginActivity" />
+
+        <activity
+            android:name=".Timer.TimerLogActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Timer.Stopwatch_Timer"
+            android:exported="false" />
+
+        <activity
+            android:name=".Friendship_Event.Friendship_Events"
+            android:exported="false" />
+
+        <activity
+            android:name=".Friendship_Event.events_input"
+            android:exported="false" />
+
+        <activity
+            android:name=".Chat.ChatHomeActivity"
+            android:parentActivityName=".HomeActivity" />
+
+        <activity
+            android:name=".Chat.Chat_Main"
+            android:parentActivityName=".Chat.ChatHomeActivity" />
+
+        <activity
+            android:name=".Login.ForgetPasswordConfirmationActivity" />
+
+        <activity
+            android:name=".ScreenTime.ScreenTime_Main"
+            android:exported="false" />
+
+        <activity
+            android:name=".ToDoList.MainActivity_TodoList"
+            android:exported="false" />
+
         <activity
             android:name=".HomeActivity"
-            android:exported="false" />
+            android:parentActivityName=".Login.LoginActivity" />
+
         <activity
-            android:name=".LoginActivity"
+            android:name=".DailyLoginReward.DailyRewardDialogFragment"
+            android:exported="false" />
+
+        <activity
+            android:name=".DailyLoginReward.ShopActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Chat.StickerPackActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Login.LoginActivity"
             android:exported="true" >
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".ScreenTime.ScreenTimeService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync">
+        </service>
 
         <meta-data
             android:name="preloaded_fonts"

@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".MainActivity_TodoList">
+    tools:context=".ToDoList.MainActivity_TodoList">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

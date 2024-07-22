@@ -5,12 +5,29 @@
     android:padding="16dp">
 
     <!-- Add your UI components here to display chat details -->
-
     <TextView
-        android:id="@+id/chat_detail_text"
+        android:id="@+id/chat_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chat Details"
+        android:text="Chat Name"
         android:textSize="24sp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/chat_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chat_name"
+        android:layout_marginTop="16dp"
+        android:text="Chat Message"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/chat_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chat_message"
+        android:layout_marginTop="16dp"
+        android:text="Chat Time"
+        android:textSize="18sp" />
 </RelativeLayout>

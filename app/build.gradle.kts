@@ -57,7 +57,8 @@ dependencies {
     implementation("com.google.firebase:firebase-database-ktx")
     implementation("com.google.firebase:firebase-database:20.0.5")
     implementation("com.google.firebase:firebase-auth:21.0.1")
-
-
     // Add the dependencies for any other desired Firebase products
+
+    // Add MPAndroidChart dependency
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
 }

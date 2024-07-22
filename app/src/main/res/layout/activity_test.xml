@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".events_input">
+    tools:context=".Friendship_Event.events_input">
 
 
     <com.google.android.material.textfield.TextInputEditText

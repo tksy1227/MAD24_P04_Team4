@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sim">
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Daily log-in reward"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="32dp"
+        app:cardElevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Log in daily to earn FriendCoins!"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="16sp"
+                android:layout_gravity="center_horizontal" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_coin" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Point reward"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="+20 FriendCoins"
+                    android:textColor="@android:color/holo_green_dark" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/daysLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical">
+
+                <!-- First row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:weightSum="4">
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="64dp"
+                        android:layout_weight="1"
+                        android:layout_margin="4dp">
+
+                        <TextView
+                            android:id="@+id/day1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:background="@drawable/day_background_unchecked"
+                            android:textColor="@android:color/darker_gray"
+                            android:padding="16dp"
+                            android:textSize="18sp"
+                            android:text="Day 1" />
+
+                        <ImageView
+                            android:id="@+id/tick1"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:layout_marginBottom="4dp"
+                            android:visibility="gone"
+                            android:src="@drawable/ic_check" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="64dp"
+                        android:layout_weight="1"
+                        android:layout_margin="4dp">
+
+                        <TextView
+                            android:id="@+id/day2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:background="@drawable/day_background_unchecked"
+                            android:textColor="@android:color/darker_gray"
+                            android:padding="16dp"
+                            android:textSize="18sp"
+                            android:text="Day 2" />
+
+                        <ImageView
+                            android:id="@+id/tick2"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:layout_marginBottom="4dp"
+                            android:visibility="gone"
+                            android:src="@drawable/ic_check" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="64dp"
+                        android:layout_weight="1"
+                        android:layout_margin="4dp">
+
+                        <TextView
+                            android:id="@+id/day3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:background="@drawable/day_background_unchecked"
+                            android:textColor="@android:color/darker_gray"
+                            android:padding="16dp"
+                            android:textSize="18sp"
+                            android:text="Day 3" />
+
+                        <ImageView
+                            android:id="@+id/tick3"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:layout_marginBottom="4dp"
+                            android:visibility="gone"
+                            android:src="@drawable/ic_check" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="64dp"
+                        android:layout_weight="1"
+                        android:layout_margin="4dp">
+
+                        <TextView
+                            android:id="@+id/day4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:background="@drawable/day_background_unchecked"
+                            android:textColor="@android:color/darker_gray"
+                            android:padding="16dp"
+                            android:textSize="18sp"
+                            android:text="Day 4" />
+
+                        <ImageView
+                            android:id="@+id/tick4"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:layout_marginBottom="4dp"
+                            android:visibility="gone"
+                            android:src="@drawable/ic_check" />
+                    </FrameLayout>
+                </LinearLayout>
+
+                <!-- Second row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:weightSum="3">
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="64dp"
+                        android:layout_weight="1"
+                        android:layout_margin="4dp">
+
+                        <TextView
+                            android:id="@+id/day5"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:background="@drawable/day_background_unchecked"
+                            android:textColor="@android:color/darker_gray"
+                            android:padding="16dp"
+                            android:textSize="18sp"
+                            android:text="Day 5" />
+
+                        <ImageView
+                            android:id="@+id/tick5"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:layout_marginBottom="4dp"
+                            android:visibility="gone"
+                            android:src="@drawable/ic_check" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="64dp"
+                        android:layout_weight="1"
+                        android:layout_margin="4dp">
+
+                        <TextView
+                            android:id="@+id/day6"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:background="@drawable/day_background_unchecked"
+                            android:textColor="@android:color/darker_gray"
+                            android:padding="16dp"
+                            android:textSize="18sp"
+                            android:text="Day 6" />
+
+                        <ImageView
+                            android:id="@+id/tick6"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:layout_marginBottom="4dp"
+                            android:visibility="gone"
+                            android:src="@drawable/ic_check" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="64dp"
+                        android:layout_weight="1"
+                        android:layout_margin="4dp">
+
+                        <TextView
+                            android:id="@+id/day7"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:background="@drawable/day_background_unchecked"
+                            android:textColor="@android:color/darker_gray"
+                            android:padding="16dp"
+                            android:textSize="18sp"
+                            android:text="Day 7" />
+
+                        <ImageView
+                            android:id="@+id/tick7"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:layout_marginBottom="4dp"
+                            android:visibility="gone"
+                            android:src="@drawable/ic_check" />
+                    </FrameLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/claimButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_button"
+                android:text="Claim today's reward"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
