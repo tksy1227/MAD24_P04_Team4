@@ -1,9 +1,9 @@
 {
   "project_info": {
     "project_number": "231177376447",
+    "firebase_url": "https://friendscape-5e36e-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "friendscape-5e36e",
-    "storage_bucket": "friendscape-5e36e.appspot.com",
-    "firebase_url": "https://friendscape-5e36e-default-rtdb.asia-southeast1.firebasedatabase.app/"
+    "storage_bucket": "friendscape-5e36e.appspot.com"
   },
   "client": [
     {
