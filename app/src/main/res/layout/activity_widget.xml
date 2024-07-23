@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/outline"
+    android:backgroundTint="#F4EDEA"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/leafbackground1"
+        android:layout_width="124dp"
+        android:layout_height="119dp"
+        android:alpha="0.6"
+        android:rotation="200"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.987"
+        app:srcCompat="@drawable/leaf_6" />
+
+    <TextView
+        android:id="@+id/widget_timer_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/alata"
+        android:text="00:00:00"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/widget_ten_sec_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widget_timer_text"
+        android:layout_alignParentStart="true"
+        android:backgroundTint="#C5D8D1"
+        android:fontFamily="@font/alata"
+        android:text="10s"
+        android:textColor="#0D5C63"
+        app:strokeColor="#0D5C63"
+        app:strokeWidth="1dp" />
+
+    <Button
+        android:id="@+id/widget_one_min_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widget_timer_text"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#C5D8D1"
+        android:fontFamily="@font/alata"
+        android:text="1m"
+        android:textColor="#0D5C63"
+        app:strokeColor="#0D5C63"
+        app:strokeWidth="1dp" />
+
+    <Button
+        android:id="@+id/widget_three_min_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widget_timer_text"
+        android:layout_alignParentEnd="true"
+        android:backgroundTint="#C5D8D1"
+        android:fontFamily="@font/alata"
+        android:text="3m"
+        android:textColor="#0D5C63"
+        app:strokeColor="#0D5C63"
+        app:strokeWidth="1dp" />
+
+    <Button
+        android:id="@+id/widget_start_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widget_ten_sec_button"
+        android:layout_alignParentStart="true"
+        android:backgroundTint="#78CDD7"
+        android:fontFamily="@font/alata"
+        android:text="Start"
+        android:textColor="#12236A"
+        app:strokeColor="#12236A"
+        app:strokeWidth="1dp" />
+
+    <Button
+        android:id="@+id/widget_pause_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widget_one_min_button"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#78CDD7"
+        android:fontFamily="@font/alata"
+        android:text="Pause"
+        android:textColor="#12236A"
+        app:strokeColor="#12236A"
+        app:strokeWidth="1dp" />
+
+    <Button
+        android:id="@+id/widget_stop_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widget_three_min_button"
+        android:layout_alignParentEnd="true"
+        android:backgroundTint="#78CDD7"
+        android:fontFamily="@font/alata"
+        android:text="Stop"
+        android:textColor="#12236A"
+        app:strokeColor="#12236A"
+        app:strokeWidth="1dp" />
+
+</RelativeLayout>

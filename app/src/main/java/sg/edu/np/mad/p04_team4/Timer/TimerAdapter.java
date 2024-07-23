@@ -43,6 +43,31 @@ public class TimerAdapter extends RecyclerView.Adapter<TimerAdapter.TimerViewHol
         return timerList.size();
     }
 
+    public long getItemId(int position) {
+        return timerList.get(position).getId();
+    }
+
+    public void deleteItem(int position) {
+        timerList.remove(position);
+        notifyItemRemoved(position);
+        // Optionally, notify the database or any other data source here
+    }
+
+    public void removeItem(int position) {
+        timerList.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public void setTimers(List<Time> timers) {
+        this.timerList = timers;
+        notifyDataSetChanged();
+    }
+
+    public void clearAllItems() {
+        timerList.clear(); // Change mTimerLogs to timerList
+        notifyDataSetChanged();
+    }
+
     public static class TimerViewHolder extends RecyclerView.ViewHolder {
 
         TextView timerText;
@@ -57,4 +82,3 @@ public class TimerAdapter extends RecyclerView.Adapter<TimerAdapter.TimerViewHol
         }
     }
 }
-

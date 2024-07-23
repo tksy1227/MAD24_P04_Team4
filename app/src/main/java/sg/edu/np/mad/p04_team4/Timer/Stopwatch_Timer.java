@@ -1,17 +1,27 @@
 package sg.edu.np.mad.p04_team4.Timer;
 
+import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,43 +31,37 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import sg.edu.np.mad.p04_team4.HomeActivity;
 import sg.edu.np.mad.p04_team4.R;
+import sg.edu.np.mad.p04_team4.ScreenTime.ScreenTime_Main;
 
 public class Stopwatch_Timer extends AppCompatActivity {
+    public static final String CHANNEL_ID = "timer_channel";
     private EditText editTextTime;
     private EditText editTextPurpose;
     private Button buttonStart;
     private Button buttonTenSec, buttonOneMin, buttonThreeMin;
     private Button buttonStop, buttonPause;
     private Button buttonTimerHistory;
-
+    private MediaPlayer mediaPlayer;
+    private Vibrator vibrator;
     private CountDownTimer countDownTimer;
     private long timeLeftInMillis;
     private boolean isTimerRunning;
     private boolean isPaused;
-
-    private String purposeText;
-    private String startTime;
-
-    private FirebaseAuth mAuth;
-    private DatabaseReference timerLogRef;
+    private DatabaseHelper databaseHelper;
+    private long initialTimeInMillis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stopwatch_timer);
 
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user != null) {
-            timerLogRef = FirebaseDatabase.getInstance().getReference("users").child(user.getUid()).child("timer_logs");
-        } else {
-            Toast.makeText(this, "User not authenticated", Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-        }
+        createNotificationChannel();
+
+        databaseHelper = new DatabaseHelper(this);
 
         editTextTime = findViewById(R.id.timerText);
         editTextPurpose = findViewById(R.id.purposeText);
@@ -74,106 +78,109 @@ public class Stopwatch_Timer extends AppCompatActivity {
         buttonOneMin.setOnClickListener(v -> editTextTime.setText("00:01:00"));
         buttonThreeMin.setOnClickListener(v -> editTextTime.setText("00:03:00"));
 
-        buttonStart.setOnClickListener(v -> {
-            if (isPaused) {
-                resumeTimer();
-            } else {
-                startTimer();
-            }
-        });
-        buttonStop.setOnClickListener(v -> stopTimer());
+        buttonStart.setOnClickListener(v -> startTimer());
         buttonPause.setOnClickListener(v -> pauseTimer());
+        buttonStop.setOnClickListener(v -> stopTimer());
+
+        Button helpButton = findViewById(R.id.helpButton);
+        helpButton.setOnClickListener(v -> showHelpDialog());
 
         buttonTimerHistory.setOnClickListener(v -> {
             Intent intent = new Intent(Stopwatch_Timer.this, TimerLogActivity.class);
             startActivity(intent);
         });
 
-        backButton.setOnClickListener(v -> {
-            Intent intent = new Intent(Stopwatch_Timer.this, HomeActivity.class);
-            startActivity(intent);
-            finish(); // Close the current activity
+        // Handle custom back button click
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate back to the HomeActivity
+                Intent intent = new Intent(Stopwatch_Timer.this, HomeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
         });
     }
 
-    private void startTimer() {
-        String timeInput = editTextTime.getText().toString();
-        purposeText = editTextPurpose.getText().toString().trim();
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "Timer Channel";
+            String description = "Channel for timer notifications";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
 
-        if (timeInput.equals("00:00:00")) {
-            Toast.makeText(Stopwatch_Timer.this, "Please enter a valid time", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (TextUtils.isEmpty(purposeText)) {
-            purposeText = "Unknown";
-        }
-
-        String[] timeParts = timeInput.split(":");
-        if (timeParts.length != 3) {
-            Toast.makeText(Stopwatch_Timer.this, "Please enter time in HH:MM:SS format", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        try {
-            int hours = Integer.parseInt(timeParts[0]);
-            int minutes = Integer.parseInt(timeParts[1]);
-            int seconds = Integer.parseInt(timeParts[2]);
-
-            timeLeftInMillis = (hours * 3600 + minutes * 60 + seconds) * 1000;
-
-            startTime = String.format("%02d:%02d:%02d", hours, minutes, seconds);
-
-            buttonStart.setEnabled(false);
-            buttonPause.setEnabled(true);
-            buttonStop.setEnabled(true);
-
-            startCountDownTimer();
-        } catch (NumberFormatException e) {
-            Toast.makeText(Stopwatch_Timer.this, "Invalid time format", Toast.LENGTH_SHORT).show();
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
         }
     }
 
-    private void startCountDownTimer() {
-        countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                timeLeftInMillis = millisUntilFinished;
+    private void showHelpDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Help");
+        builder.setMessage("This is the timer feature where you can set and manage timers.\n\n" +
+                "1. Set Alarm: Choose from the 3 pre-set timings or enter your own timing in HH:MM:SS format.\n" +
+                "2. Set Alarm Purpose: Enter the purpose of your alarm.\n" +
+                "3. Start Timer: Start,  pause, resume and stop your timer anytime.\n"+
+                "4. Timer History: Go to Timer History to view all your previous timers.\n\n" +
+                "If you have any questions, please contact support.");
+        builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
+        builder.show();
+    }
 
-                long seconds = millisUntilFinished / 1000;
-                long minutes = seconds / 60;
-                long hours = minutes / 60;
-                seconds = seconds % 60;
-                minutes = minutes % 60;
+    private void startTimer() {
+        String time = editTextTime.getText().toString();
+        String purpose = editTextPurpose.getText().toString();
 
-                editTextTime.setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
-            }
+        if (TextUtils.isEmpty(time)) {
+            editTextTime.setError("Please enter time in HH:MM:SS format");
+            return;
+        }
 
-            @Override
-            public void onFinish() {
-                editTextTime.setText("00:00:00");
-                Toast.makeText(Stopwatch_Timer.this, "Timer Finished", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(purpose)) {
+            editTextPurpose.setError("Please enter a purpose");
+            return;
+        }
 
-                MediaPlayer mediaPlayer = MediaPlayer.create(Stopwatch_Timer.this, R.raw.alarm_sound);
-                mediaPlayer.start();
+        String[] timeArray = time.split(":");
+        if (timeArray.length != 3) {
+            editTextTime.setError("Please enter time in HH:MM:SS format");
+            return;
+        }
 
-                Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-                if (vibrator != null) {
-                    vibrator.vibrate(1000);
+        int hours = Integer.parseInt(timeArray[0]);
+        int minutes = Integer.parseInt(timeArray[1]);
+        int seconds = Integer.parseInt(timeArray[2]);
+        timeLeftInMillis = (hours * 3600 + minutes * 60 + seconds) * 1000;
+        initialTimeInMillis = timeLeftInMillis +1000;
+
+        if (!isTimerRunning) {
+            countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    int seconds = (int) (millisUntilFinished / 1000) % 60;
+                    int minutes = (int) ((millisUntilFinished / (1000 * 60)) % 60);
+                    int hours = (int) ((millisUntilFinished / (1000 * 60 * 60)) % 24);
+
+                    timeLeftInMillis = millisUntilFinished;
+                    updateTimer();
+                    updateNotification();
                 }
 
-                String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
-
-                Time time = new Time(startTime, purposeText, currentTime);
-                timerLogRef.push().setValue(time);
-
-                resetTimer();
-            }
-
-        }.start();
-
-        isTimerRunning = true;
-        isPaused = false;
+                @Override
+                public void onFinish() {
+                    isTimerRunning = false;
+                    playAlarmSound();
+                    vibrateDevice();
+                    logTimerData();
+                    showTimerFinishedNotification();
+                }
+            }.start();
+            isTimerRunning = true;
+            isPaused = false;
+            startNotification();
+        }
     }
 
     private void pauseTimer() {
@@ -181,30 +188,109 @@ public class Stopwatch_Timer extends AppCompatActivity {
             countDownTimer.cancel();
             isPaused = true;
             isTimerRunning = false;
-            buttonPause.setEnabled(false);
-            buttonStart.setEnabled(true);
+            cancelNotification();
         }
-    }
-
-    private void resumeTimer() {
-        buttonStart.setEnabled(false);
-        buttonPause.setEnabled(true);
-        startCountDownTimer();
     }
 
     private void stopTimer() {
-        if (countDownTimer != null) {
+        if (isTimerRunning) {
             countDownTimer.cancel();
+            isTimerRunning = false;
+            isPaused = false;
+            logTimerData();
+            cancelNotification();
         }
-        resetTimer();
     }
 
-    private void resetTimer() {
-        buttonStart.setEnabled(true);
-        buttonPause.setEnabled(false);
-        buttonStop.setEnabled(false);
-        isTimerRunning = false;
-        isPaused = false;
-        editTextTime.setText("00:00:00");
+    private void updateTimer() {
+        int hours = (int) (timeLeftInMillis / 1000) / 3600;
+        int minutes = (int) ((timeLeftInMillis / 1000) % 3600) / 60;
+        int seconds = (int) (timeLeftInMillis / 1000) % 60;
+        String timeLeftFormatted = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+        editTextTime.setText(timeLeftFormatted);
+    }
+
+    private void startNotification() {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_timer)
+                .setContentTitle("Timer Running")
+                .setContentText("Your timer is running.")
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setOngoing(true);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        notificationManager.notify(1, builder.build());
+    }
+
+    private void updateNotification() {
+        int hours = (int) (timeLeftInMillis / 1000) / 3600;
+        int minutes = (int) ((timeLeftInMillis / 1000) % 3600) / 60;
+        int seconds = (int) (timeLeftInMillis / 1000) % 60;
+        String timeLeftFormatted = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_timer)
+                .setContentTitle("Timer Running")
+                .setContentText("Time left: " + timeLeftFormatted)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setOngoing(true);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        notificationManager.notify(1, builder.build());
+    }
+
+    private void cancelNotification() {
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.cancel(1);
+    }
+
+    private void showTimerFinishedNotification() {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_timer)
+                .setContentTitle("Timer Finished")
+                .setContentText("Your timer has finished.")
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        notificationManager.notify(2, builder.build());
+    }
+
+    private void logTimerData() {
+        String purpose = editTextPurpose.getText().toString();
+        long durationInMillis = initialTimeInMillis - timeLeftInMillis;
+        String durationFormatted = String.format("%02d:%02d:%02d",
+                TimeUnit.MILLISECONDS.toHours(durationInMillis),
+                TimeUnit.MILLISECONDS.toMinutes(durationInMillis) % 60,
+                TimeUnit.MILLISECONDS.toSeconds(durationInMillis) % 60);
+
+        String endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
+
+        boolean isInserted = databaseHelper.insertTimerData(purpose, durationFormatted, endTime);
+
+        if (!isInserted) {
+            Toast.makeText(this, "Failed to log timer data", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void playAlarmSound() {
+        mediaPlayer = MediaPlayer.create(this, R.raw.alarm_sound);
+        mediaPlayer.start();
+    }
+
+    private void vibrateDevice() {
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        if (vibrator != null && vibrator.hasVibrator()) {
+            vibrator.vibrate(500);
+        }
     }
 }

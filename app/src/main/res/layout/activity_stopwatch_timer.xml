@@ -5,18 +5,45 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Timer.Stopwatch_Timer">
+    android:background="#F4EDEA"
+    tools:context=".Stopwatch_Timer">
+
+    <ImageView
+        android:id="@+id/leafbackground1"
+        android:layout_width="333dp"
+        android:layout_height="328dp"
+        android:alpha="0.6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.987"
+        app:srcCompat="@drawable/leaf_6" />
+
+    <ImageView
+        android:id="@+id/leafbackground2"
+        android:layout_width="196dp"
+        android:layout_height="198dp"
+        android:rotation="190"
+        android:alpha="0.6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.097"
+        app:srcCompat="@drawable/leaf_6" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="#0D5C63"
+        android:backgroundTint="#0D5C63"
         android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:title=""
         app:titleTextColor="@android:color/white">
 
@@ -37,6 +64,7 @@
         android:id="@+id/timerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/alata"
         android:hint="HH:MM:SS"
         android:textAlignment="center"
         android:textSize="34sp"
@@ -51,21 +79,28 @@
         android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#78CDD7"
+        android:fontFamily="@font/alata"
         android:text="Start"
+        android:textColor="#12236A"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.657" />
+        app:layout_constraintVertical_bias="0.657"
+        app:strokeColor="#12236A"
+        app:strokeWidth="1dp" />
 
     <TextView
         android:id="@+id/instructionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/alata"
         android:text="Enter the time in the form of HH:MM:SS"
         android:textAlignment="center"
+        android:textColor="#44A1A0"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,44 +113,57 @@
         android:id="@+id/tenSecButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#BC93C3"
+        android:backgroundTint="#C5D8D1"
+        android:fontFamily="@font/alata"
         android:text="00:00:10"
+        android:textColor="#0D5C63"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.091"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.524" />
+        app:layout_constraintVertical_bias="0.524"
+        app:strokeColor="#0D5C63"
+        app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/oneMinButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#C5D8D1"
+        android:fontFamily="@font/alata"
         android:text="00:01:00"
-        android:backgroundTint="#BC93C3"
+        android:textColor="#0D5C63"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.524" />
+        app:layout_constraintVertical_bias="0.524"
+        app:strokeColor="#0D5C63"
+        app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/threeMinButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#C5D8D1"
+        android:fontFamily="@font/alata"
         android:text="00:03:00"
-        android:backgroundTint="#BC93C3"
+        android:textColor="#0D5C63"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.901"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.524" />
+        app:layout_constraintVertical_bias="0.524"
+        app:strokeColor="#0D5C63"
+        app:strokeWidth="1dp" />
 
     <EditText
         android:id="@+id/purposeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/alata"
         android:hint="Purpose of Stopwatch?"
         android:textAlignment="center"
         android:textSize="24sp"
@@ -130,36 +178,70 @@
         android:id="@+id/stopButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#78CDD7"
+        android:fontFamily="@font/alata"
         android:text="Stop"
+        android:textColor="#12236A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.801"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.657" />
+        app:layout_constraintVertical_bias="0.657"
+        app:strokeColor="#12236A"
+        app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/pauseButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#78CDD7"
+        android:fontFamily="@font/alata"
         android:text="Pause"
+        android:textColor="#12236A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.204"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.657" />
+        app:layout_constraintVertical_bias="0.657"
+        app:strokeColor="#12236A"
+        app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/timerHistory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="134dp"
+        android:layout_height="57dp"
+        android:backgroundTint="#0d5c63"
+        android:fontFamily="@font/alata"
         android:text="Timer History"
+        android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        app:layout_constraintVertical_bias="0.976"
+        app:strokeColor="#0D5C63"
+        app:strokeWidth="1dp" />
+
+    <Button
+        android:id="@+id/helpButton"
+        android:layout_width="71dp"
+        android:layout_height="58dp"
+        android:backgroundTint="#C5D8D1"
+        android:fontFamily="@font/alata"
+        android:text="?"
+        android:textAlignment="center"
+        android:textColor="#0D5C63"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.008"
+        app:strokeColor="#0D5C63"
+        app:strokeWidth="1dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,19 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@drawable/outline">
 
     <TextView
         android:id="@+id/dateText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Date" />
+        android:fontFamily="@font/alata"
+        android:text="Date"
+        android:textColor="#12236A" />
 
     <TextView
         android:id="@+id/timerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/alata"
         android:text="00:00:00"
+        android:textColor="#0D5C63"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -23,7 +28,9 @@
         android:id="@+id/purposeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/alata"
         android:text="Purpose"
+        android:textColor="#44A1A0"
         android:textSize="16sp"
         android:textStyle="italic" />
 </LinearLayout>
