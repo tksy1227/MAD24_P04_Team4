@@ -3,7 +3,6 @@ package sg.edu.np.mad.p04_team4.DailyLoginReward;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,10 +18,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import sg.edu.np.mad.p04_team4.Chat.StickerPackActivity;
 import sg.edu.np.mad.p04_team4.HomeActivity;
 import sg.edu.np.mad.p04_team4.R;
 
@@ -92,8 +87,7 @@ public class ShopActivity extends AppCompatActivity {
     }
 
     private void openStickerPack(String packName) {
-        Intent intent = new Intent(this, StickerPackActivity.class);
-        intent.putExtra("packName", packName);
-        startActivity(intent);
+        StickerPackDialogFragment dialog = new StickerPackDialogFragment(packName, userId);
+        dialog.show(getSupportFragmentManager(), "StickerPackDialogFragment");
     }
 }

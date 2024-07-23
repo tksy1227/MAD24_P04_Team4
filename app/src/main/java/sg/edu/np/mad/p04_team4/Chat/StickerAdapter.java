@@ -17,16 +17,17 @@ import sg.edu.np.mad.p04_team4.R;
 
 public class StickerAdapter extends RecyclerView.Adapter<StickerAdapter.StickerViewHolder> {
 
-    private List<Integer> stickerResIds;
+    private List<String> stickerPaths;
     private Context context;
     private OnStickerClickListener onStickerClickListener;
+    private static final int MULTIPLIER = 1000; // Multiplier to create a large list
 
     public interface OnStickerClickListener {
-        void onStickerClick(int resId);
+        void onStickerClick(String stickerPath);
     }
 
-    public StickerAdapter(List<Integer> stickerResIds, Context context, OnStickerClickListener onStickerClickListener) {
-        this.stickerResIds = stickerResIds;
+    public StickerAdapter(List<String> stickerPaths, Context context, OnStickerClickListener onStickerClickListener) {
+        this.stickerPaths = stickerPaths;
         this.context = context;
         this.onStickerClickListener = onStickerClickListener;
     }
@@ -40,14 +41,15 @@ public class StickerAdapter extends RecyclerView.Adapter<StickerAdapter.StickerV
 
     @Override
     public void onBindViewHolder(@NonNull StickerViewHolder holder, int position) {
-        int resId = stickerResIds.get(position);
-        holder.stickerImageView.setImageResource(resId);
-        holder.itemView.setOnClickListener(v -> onStickerClickListener.onStickerClick(resId));
+        int actualPosition = position % stickerPaths.size(); // Calculate actual position in original list
+        String stickerPath = stickerPaths.get(actualPosition);
+        Picasso.get().load(stickerPath).into(holder.stickerImageView);
+        holder.itemView.setOnClickListener(v -> onStickerClickListener.onStickerClick(stickerPath));
     }
 
     @Override
     public int getItemCount() {
-        return stickerResIds.size();
+        return Integer.MAX_VALUE; // Return a very large number of items to create the illusion of infinite scrolling
     }
 
     static class StickerViewHolder extends RecyclerView.ViewHolder {

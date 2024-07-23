@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/stickerPackTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sticker Pack"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/backArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:contentDescription="Back" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/stickerRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/stickerPackTitle"
+        android:layout_marginTop="8dp" />
+</RelativeLayout>

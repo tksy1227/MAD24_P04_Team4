@@ -2,6 +2,8 @@ package sg.edu.np.mad.p04_team4.Chat;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,7 +34,7 @@ import java.util.TimeZone;
 
 import sg.edu.np.mad.p04_team4.R;
 
-public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder> implements Filterable {
+public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
 
     private static final String TAG = "ChatAdapter";
     private List<Chat> chatList;
@@ -40,6 +43,9 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
 
     private FirebaseAuth mAuth;
     private DatabaseReference userChatsRef;
+
+    private static final int TYPE_TEXT = 0;
+    private static final int TYPE_STICKER = 1;
 
     public ChatAdapter(Context context, List<Chat> chatList) {
         this.context = context;
@@ -83,44 +89,36 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
         this.chatListFull = chatListFull;
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        Chat chat = chatList.get(position);
+        if (chat.getLastMessage().startsWith("[Sticker:")) {
+            return TYPE_STICKER;
+        } else {
+            return TYPE_TEXT;
+        }
+    }
+
     @NonNull
     @Override
-    public ChatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat, parent, false);
-        return new ChatViewHolder(view);
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (viewType == TYPE_TEXT) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat, parent, false);
+            return new TextChatViewHolder(view);
+        } else {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sticker, parent, false);
+            return new StickerChatViewHolder(view);
+        }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ChatViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Chat chat = chatList.get(position);
-        holder.chatName.setText(chat.getName());
-        holder.chatMessage.setText(chat.getLastMessage());
-
-        try {
-            long timeInMillis = Long.parseLong(chat.getTime());
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
-            TimeZone localTimeZone = TimeZone.getTimeZone("Asia/Singapore");
-            sdf.setTimeZone(localTimeZone);
-            String formattedTime = sdf.format(new Date(timeInMillis));
-            holder.chatTime.setText(formattedTime);
-        } catch (NumberFormatException e) {
-            Log.e(TAG, "Invalid time format: " + chat.getTime(), e);
-            holder.chatTime.setText("Unknown time"); // Set a default value in case of error
-        } catch (NullPointerException e) {
-            Log.e(TAG, "Time is null for chat: " + chat.getName(), e);
-            holder.chatTime.setText("Unknown time"); // Set a default value in case of null
+        if (holder.getItemViewType() == TYPE_TEXT) {
+            ((TextChatViewHolder) holder).bind(chat);
+        } else {
+            ((StickerChatViewHolder) holder).bind(chat);
         }
-
-        holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, Chat_Main.class);
-            intent.putExtra("chat_name", chat.getName());
-            intent.putExtra("chat_room_id", chat.getKey());
-            context.startActivity(intent);
-        });
-
-        holder.buttonDeleteChat.setOnClickListener(v -> {
-            ((ChatHomeActivity) context).deleteChat(holder.getAdapterPosition());
-        });
     }
 
     @Override
@@ -170,16 +168,95 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
         }
     };
 
-    public static class ChatViewHolder extends RecyclerView.ViewHolder {
+    public class TextChatViewHolder extends RecyclerView.ViewHolder {
         TextView chatName, chatMessage, chatTime;
         ImageButton buttonDeleteChat;
 
-        public ChatViewHolder(@NonNull View itemView) {
+        public TextChatViewHolder(@NonNull View itemView) {
             super(itemView);
             chatName = itemView.findViewById(R.id.chat_name);
             chatMessage = itemView.findViewById(R.id.chat_message);
             chatTime = itemView.findViewById(R.id.chat_time);
             buttonDeleteChat = itemView.findViewById(R.id.button_delete_chat);
+        }
+
+        public void bind(Chat chat) {
+            chatName.setText(chat.getName());
+            chatMessage.setText(chat.getLastMessage());
+
+            try {
+                long timeInMillis = Long.parseLong(chat.getTime());
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+                TimeZone localTimeZone = TimeZone.getTimeZone("Asia/Singapore");
+                sdf.setTimeZone(localTimeZone);
+                String formattedTime = sdf.format(new Date(timeInMillis));
+                chatTime.setText(formattedTime);
+            } catch (NumberFormatException e) {
+                Log.e(TAG, "Invalid time format: " + chat.getTime(), e);
+                chatTime.setText("Unknown time"); // Set a default value in case of error
+            } catch (NullPointerException e) {
+                Log.e(TAG, "Time is null for chat: " + chat.getName(), e);
+                chatTime.setText("Unknown time"); // Set a default value in case of null
+            }
+
+            itemView.setOnClickListener(v -> {
+                Intent intent = new Intent(context, Chat_Main.class);
+                intent.putExtra("chat_name", chat.getName());
+                intent.putExtra("chat_room_id", chat.getKey());
+                context.startActivity(intent);
+            });
+
+            buttonDeleteChat.setOnClickListener(v -> {
+                ((ChatHomeActivity) context).deleteChat(getAdapterPosition());
+            });
+        }
+    }
+
+    public class StickerChatViewHolder extends RecyclerView.ViewHolder {
+        TextView chatName, chatTime;
+        ImageView chatSticker;
+        ImageButton buttonDeleteChat;
+
+        public StickerChatViewHolder(@NonNull View itemView) {
+            super(itemView);
+            chatName = itemView.findViewById(R.id.chat_name);
+            chatTime = itemView.findViewById(R.id.chat_time);
+            chatSticker = itemView.findViewById(R.id.stickerImageView);
+            buttonDeleteChat = itemView.findViewById(R.id.button_delete_chat);
+        }
+
+        public void bind(Chat chat) {
+            chatName.setText(chat.getName());
+
+            String stickerPath = chat.getLastMessage().substring(9, chat.getLastMessage().length() - 1);
+            Bitmap bitmap = BitmapFactory.decodeFile(stickerPath);
+            chatSticker.setImageBitmap(bitmap);
+
+            try {
+                long timeInMillis = Long.parseLong(chat.getTime());
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+                TimeZone localTimeZone = TimeZone.getTimeZone("Asia/Singapore");
+                sdf.setTimeZone(localTimeZone);
+                String formattedTime = sdf.format(new Date(timeInMillis));
+                chatTime.setText(formattedTime);
+            } catch (NumberFormatException e) {
+                Log.e(TAG, "Invalid time format: " + chat.getTime(), e);
+                chatTime.setText("Unknown time"); // Set a default value in case of error
+            } catch (NullPointerException e) {
+                Log.e(TAG, "Time is null for chat: " + chat.getName(), e);
+                chatTime.setText("Unknown time"); // Set a default value in case of null
+            }
+
+            itemView.setOnClickListener(v -> {
+                Intent intent = new Intent(context, Chat_Main.class);
+                intent.putExtra("chat_name", chat.getName());
+                intent.putExtra("chat_room_id", chat.getKey());
+                context.startActivity(intent);
+            });
+
+            buttonDeleteChat.setOnClickListener(v -> {
+                ((ChatHomeActivity) context).deleteChat(getAdapterPosition());
+            });
         }
     }
 }

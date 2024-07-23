@@ -24,17 +24,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:text="Time" />
+        android:text="Time"
+        android:textSize="12sp"
+        android:textColor="#888888" />
 
     <ImageButton
         android:id="@+id/button_delete_chat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:layout_below="@id/chat_time"
+        android:layout_alignParentEnd="true"
         android:src="@android:drawable/ic_menu_delete"
-        android:contentDescription="Delete Chat"
+        android:contentDescription="Delete_Chat"
         android:background="?attr/selectableItemBackground"
         android:padding="4dp" />
-
 </RelativeLayout>

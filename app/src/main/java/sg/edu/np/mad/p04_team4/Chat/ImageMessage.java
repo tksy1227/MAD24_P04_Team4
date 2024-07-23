@@ -8,7 +8,7 @@ public class ImageMessage extends Message {
     }
 
     public ImageMessage(long id, long timestamp, String imageUrl, String userId) {
-        super(id, timestamp, userId, "image"); // Call the superclass constructor
+        super(id, timestamp, userId, "image", imageUrl); // Call the superclass constructor
         this.imageUrl = imageUrl; // Set the image URL
     }
 

@@ -1,5 +1,6 @@
 package sg.edu.np.mad.p04_team4.Chat;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -12,11 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +27,7 @@ public class StickerPackActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private RecyclerView stickerRecyclerView;
     private StickerAdapter stickerAdapter;
-    private List<Integer> stickerResIds;
+    private List<String> stickerPaths;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +45,8 @@ public class StickerPackActivity extends AppCompatActivity {
 
         backArrow.setOnClickListener(v -> finish());
 
-        stickerResIds = new ArrayList<>();
-        stickerAdapter = new StickerAdapter(stickerResIds, this, url -> sendStickerMessage(url));
+        stickerPaths = new ArrayList<>();
+        stickerAdapter = new StickerAdapter(stickerPaths, this, url -> sendStickerMessage(url));
         stickerRecyclerView.setAdapter(stickerAdapter);
         stickerRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
@@ -59,21 +57,25 @@ public class StickerPackActivity extends AppCompatActivity {
     }
 
     private void loadCatStickers() {
-        stickerResIds.add(R.drawable.cat_angry);
-        stickerResIds.add(R.drawable.cat_bored);
-        stickerResIds.add(R.drawable.cat_crying);
-        stickerResIds.add(R.drawable.cat_facepalm);
-        stickerResIds.add(R.drawable.cat_happy);
-        stickerResIds.add(R.drawable.cat_sleep);
+        stickerPaths.add(getResourceUri(R.drawable.cat_angry).toString());
+        stickerPaths.add(getResourceUri(R.drawable.cat_bored).toString());
+        stickerPaths.add(getResourceUri(R.drawable.cat_crying).toString());
+        stickerPaths.add(getResourceUri(R.drawable.cat_facepalm).toString());
+        stickerPaths.add(getResourceUri(R.drawable.cat_happy).toString());
+        stickerPaths.add(getResourceUri(R.drawable.cat_sleep).toString());
         stickerAdapter.notifyDataSetChanged();
     }
 
-    private void sendStickerMessage(int stickerResId) {
+    private Uri getResourceUri(int resourceId) {
+        return Uri.parse("android.resource://" + getPackageName() + "/" + resourceId);
+    }
+
+    private void sendStickerMessage(String stickerPath) {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             String userId = user.getUid();
             long currentTime = System.currentTimeMillis();
-            Message message = new StickerMessage(currentTime, currentTime, String.valueOf(stickerResId), userId);
+            Message message = new StickerMessage(currentTime, currentTime, stickerPath, userId);
             DatabaseReference userChatsRef = FirebaseDatabase.getInstance().getReference("users").child(userId).child("chats").child(getIntent().getStringExtra("chat_room_id")).child("messages");
             userChatsRef.push().setValue(message).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {

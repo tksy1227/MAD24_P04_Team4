@@ -8,7 +8,7 @@ public class TextMessage extends Message {
     }
 
     public TextMessage(long id, long timestamp, String text, String userId) {
-        super(id, timestamp, userId, "text"); // Call the superclass constructor
+        super(id, timestamp, userId, "text", text); // Call the superclass constructor
         this.text = text; // Set the text content of the message
     }
 

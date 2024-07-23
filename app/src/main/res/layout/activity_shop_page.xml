@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -75,71 +75,234 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp" />
 
-        <HorizontalScrollView
+        <com.google.android.flexbox.FlexboxLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="none">
+            app:justifyContent="space_around"
+            app:flexWrap="wrap">
 
+            <!-- Sticker 1 -->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:layout_margin="4dp">
 
                 <Button
                     android:id="@+id/btnSticker1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
                     android:text="Cat Pack"
+                    android:textSize="16sp"
                     android:background="@drawable/rounded_button"
-                    android:textColor="@android:color/white"/>
+                    android:textColor="@android:color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50"
+                        android:textSize="16sp"
+                        android:textColor="#000" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_coin"
+                        android:layout_marginStart="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Sticker 2 -->
+            <LinearLayout
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="4dp">
 
                 <Button
                     android:id="@+id/btnSticker2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
                     android:text="Monkey Pack"
+                    android:textSize="16sp"
                     android:background="@drawable/rounded_button"
-                    android:textColor="@android:color/white"/>
+                    android:textColor="@android:color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50"
+                        android:textSize="16sp"
+                        android:textColor="#000" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_coin"
+                        android:layout_marginStart="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Sticker 3 -->
+            <LinearLayout
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="4dp">
 
                 <Button
                     android:id="@+id/btnSticker3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
                     android:text="Emoji Pack"
+                    android:textSize="16sp"
                     android:background="@drawable/rounded_button"
-                    android:textColor="@android:color/white"/>
+                    android:textColor="@android:color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50"
+                        android:textSize="16sp"
+                        android:textColor="#000" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_coin"
+                        android:layout_marginStart="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Sticker 4 -->
+            <LinearLayout
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="4dp">
 
                 <Button
                     android:id="@+id/btnSticker4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
                     android:text="Beast Pack"
+                    android:textSize="16sp"
                     android:background="@drawable/rounded_button"
-                    android:textColor="@android:color/white"/>
+                    android:textColor="@android:color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50"
+                        android:textSize="16sp"
+                        android:textColor="#000" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_coin"
+                        android:layout_marginStart="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Sticker 5 -->
+            <LinearLayout
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="4dp">
 
                 <Button
                     android:id="@+id/btnSticker5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
                     android:text="Skibidi Pack"
+                    android:textSize="16sp"
                     android:background="@drawable/rounded_button"
-                    android:textColor="@android:color/white"/>
+                    android:textColor="@android:color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50"
+                        android:textSize="16sp"
+                        android:textColor="#000" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_coin"
+                        android:layout_marginStart="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Sticker 6 -->
+            <LinearLayout
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="4dp">
 
                 <Button
                     android:id="@+id/btnSticker6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
                     android:text="DBD Pack"
+                    android:textSize="16sp"
                     android:background="@drawable/rounded_button"
-                    android:textColor="@android:color/white"/>
+                    android:textColor="@android:color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="70"
+                        android:textSize="16sp"
+                        android:textColor="#000" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_coin"
+                        android:layout_marginStart="4dp" />
+                </LinearLayout>
             </LinearLayout>
-        </HorizontalScrollView>
+        </com.google.android.flexbox.FlexboxLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -150,43 +313,123 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="8dp" />
 
-        <GridLayout
+        <com.google.android.flexbox.FlexboxLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:columnCount="3"
-            android:orientation="horizontal"
-            android:layout_marginBottom="16dp">
+            app:justifyContent="space_around"
+            app:flexWrap="wrap">
 
-            <Button
-                android:id="@+id/btnTheme1"
-                android:layout_width="0dp"
+            <!-- Theme 1 -->
+            <LinearLayout
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="4dp"
-                android:text="Theme 1"
-                android:background="@drawable/rounded_button"
-                android:textColor="@android:color/white"/>
+                android:orientation="vertical"
+                android:layout_margin="4dp">
 
-            <Button
-                android:id="@+id/btnTheme2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="4dp"
-                android:text="Theme 2"
-                android:background="@drawable/rounded_button"
-                android:textColor="@android:color/white"/>
+                <Button
+                    android:id="@+id/btnTheme1"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="Theme 1"
+                    android:textSize="16sp"
+                    android:background="@drawable/rounded_button"
+                    android:textColor="@android:color/white" />
 
-            <Button
-                android:id="@+id/btnTheme3"
-                android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="80"
+                        android:textSize="16sp"
+                        android:textColor="#000" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_coin"
+                        android:layout_marginStart="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Theme 2 -->
+            <LinearLayout
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="4dp"
-                android:text="Theme 3"
-                android:background="@drawable/rounded_button"
-                android:textColor="@android:color/white"/>
-        </GridLayout>
+                android:orientation="vertical"
+                android:layout_margin="4dp">
+
+                <Button
+                    android:id="@+id/btnTheme2"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="Theme 2"
+                    android:textSize="16sp"
+                    android:background="@drawable/rounded_button"
+                    android:textColor="@android:color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="80"
+                        android:textSize="16sp"
+                        android:textColor="#000" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_coin"
+                        android:layout_marginStart="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Theme 3 -->
+            <LinearLayout
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="4dp">
+
+                <Button
+                    android:id="@+id/btnTheme3"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="Theme 3"
+                    android:textSize="16sp"
+                    android:background="@drawable/rounded_button"
+                    android:textColor="@android:color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="100"
+                        android:textSize="16sp"
+                        android:textColor="#000" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_coin"
+                        android:layout_marginStart="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.flexbox.FlexboxLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -197,12 +440,40 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="8dp" />
 
-        <Button
-            android:id="@+id/btnBanner"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Buy Banner"
-            android:background="@drawable/rounded_button"
-            android:textColor="@android:color/white"/>
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btnBanner"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Buy Banner"
+                android:textSize="16sp"
+                android:background="@drawable/rounded_button"
+                android:textColor="@android:color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50"
+                    android:textSize="16sp"
+                    android:textColor="#000" />
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_coin"
+                    android:layout_marginStart="4dp" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

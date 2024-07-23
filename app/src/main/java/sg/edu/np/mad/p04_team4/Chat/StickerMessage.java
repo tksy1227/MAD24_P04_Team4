@@ -8,7 +8,7 @@ public class StickerMessage extends Message {
     }
 
     public StickerMessage(long id, long timestamp, String stickerUrl, String userId) {
-        super(id, timestamp, userId, "sticker");
+        super(id, timestamp, userId, "sticker", stickerUrl);
         this.stickerUrl = stickerUrl;
     }
 

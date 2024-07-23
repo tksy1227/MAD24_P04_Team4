@@ -61,4 +61,6 @@ dependencies {
 
     // Add MPAndroidChart dependency
     implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+    implementation("com.github.google:flexbox-layout:3.0.0")
 }

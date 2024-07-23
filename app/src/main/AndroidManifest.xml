@@ -83,6 +83,31 @@
             android:exported="false" />
 
         <activity
+            android:name=".HabitTracker.insights"
+            android:exported="false" />
+        <activity
+            android:name=".HabitTracker.Dashboard"
+            android:exported="false" />
+        <activity
+            android:name=".HabitTracker.lineChartview"
+            android:exported="false" />
+        <activity
+            android:name=".HabitTracker.newHabitDatainput"
+            android:exported="false" />
+        <activity
+            android:name=".HabitTracker.createHabit"
+            android:exported="false" />
+        <activity
+            android:name=".HabitTracker.selectHabit"
+            android:exported="false" />
+        <activity
+            android:name=".HabitTracker.Datainput"
+            android:exported="false" />
+        <activity
+            android:name=".HabitTracker.Chartview"
+            android:exported="false" />
+
+        <activity
             android:name=".Login.LoginActivity"
             android:exported="true" >
 
