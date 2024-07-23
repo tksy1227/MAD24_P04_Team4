@@ -12,8 +12,8 @@ android {
         applicationId = "sg.edu.np.mad.p04_team4"
         minSdk = 21
         targetSdk = 34
-        versionCode = 7 //update version code
-        versionName = "1.6" //update version name
+        versionCode = 10 //update version code
+        versionName = "1.9" //update version name
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
