@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 import sg.edu.np.mad.p04_team4.Chat.ChatHomeActivity;
 import sg.edu.np.mad.p04_team4.DailyLoginReward.DailyRewardDialogFragment;
 import sg.edu.np.mad.p04_team4.DailyLoginReward.ShopActivity;
+import sg.edu.np.mad.p04_team4.Feedback.FeedbackActivity;
 import sg.edu.np.mad.p04_team4.Friendship_Event.Friendship_Events;
 import sg.edu.np.mad.p04_team4.HabitTracker.selectHabit;
 import sg.edu.np.mad.p04_team4.ScreenTime.ScreenTimeService;
@@ -102,6 +103,16 @@ public class HomeActivity extends AppCompatActivity {
                 screenTimeService.startFeatureTimer("Stopwatch/Timer");
             }
             Intent intent = new Intent(HomeActivity.this, Stopwatch_Timer.class);
+            startActivity(intent);
+        });
+
+        // Set Click Listener for the "Feedback" layout
+        RelativeLayout feedbackLayout = findViewById(R.id.feedback);
+        stopwatchTimerLayout.setOnClickListener(v -> {
+            if (isBound) {
+                screenTimeService.startFeatureTimer("Feedback");
+            }
+            Intent intent = new Intent(HomeActivity.this, FeedbackActivity.class);
             startActivity(intent);
         });
 

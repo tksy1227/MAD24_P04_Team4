@@ -1,16 +1,19 @@
 package sg.edu.np.mad.p04_team4.Feedback;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import sg.edu.np.mad.p04_team4.HomeActivity;
 import sg.edu.np.mad.p04_team4.R;
 
 public class FeedbackActivity extends AppCompatActivity {
@@ -24,8 +27,7 @@ public class FeedbackActivity extends AppCompatActivity {
         setContentView(R.layout.activity_feedback);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://friendscape-24f1f-default-rtdb.asia-southeast1.firebasedatabase.app");
-
-        mDatabase = FirebaseDatabase.getInstance().getReference("feedback");
+        mDatabase = database.getReference("feedback");
 
         editTextFeedback = findViewById(R.id.editTextFeedback);
         Button buttonSendFeedback = findViewById(R.id.buttonSendFeedback);
@@ -39,6 +41,20 @@ public class FeedbackActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(FeedbackActivity.this, "Please enter feedback", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        // navigate back to the homepage
+        // Handle custom back button click
+        ImageButton backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate back to the HomeActivity
+                Intent intent = new Intent(FeedbackActivity.this, HomeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
             }
         });
     }

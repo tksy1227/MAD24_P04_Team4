@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "866690596901",
+    "firebase_url": "https://friendscape-24f1f-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "friendscape-24f1f",
+    "storage_bucket": "friendscape-24f1f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:866690596901:android:a39305616092ecc2ba7fcc",
+        "android_client_info": {
+          "package_name": "sg.edu.np.mad.p04_team4"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVLJntohvmeqBkd5TLbz5TPsZe1eWRmcY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:866690596901:android:9b242b5d03cda6feba7fcc",
+        "android_client_info": {
+          "package_name": "sg.edu.np.mad.stage2_test2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVLJntohvmeqBkd5TLbz5TPsZe1eWRmcY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
