@@ -21,6 +21,7 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import sg.edu.np.mad.p04_team4.HomeActivity;
 import sg.edu.np.mad.p04_team4.R;
 
 public class selectHabit extends AppCompatActivity {
@@ -48,6 +49,10 @@ public class selectHabit extends AppCompatActivity {
         //dbHandler.insertData(new chartData("uhm",125,"2024-06-01"));
         ArrayList<String> unique_habits = dbHandler.unique_habit();
         HashMap<Button, String> buttonToHabitMap = new HashMap<>();
+        back.setOnClickListener(v->{
+            Intent home = new Intent(selectHabit.this, HomeActivity.class);
+            startActivity(home);
+        });
 
 
         Button[] buttons = { top_left, top_right, bottom_left, bottom_right };
