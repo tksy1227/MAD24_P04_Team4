@@ -585,7 +585,7 @@
             android:fontFamily="@font/alata"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:text="Chloe"
+            android:text="Feedback"
             android:textSize="15dp" />
 
         <ImageView
