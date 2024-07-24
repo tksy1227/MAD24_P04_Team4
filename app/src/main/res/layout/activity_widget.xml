@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/outline"
     android:backgroundTint="#F4EDEA"
-    android:padding="8dp">
+    android:padding="12dp">
 
     <ImageView
         android:id="@+id/leafbackground1"
