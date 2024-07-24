@@ -19,6 +19,7 @@ import sg.edu.np.mad.p04_team4.Chat.ChatHomeActivity;
 import sg.edu.np.mad.p04_team4.DailyLoginReward.DailyRewardDialogFragment;
 import sg.edu.np.mad.p04_team4.DailyLoginReward.ShopActivity;
 import sg.edu.np.mad.p04_team4.Friendship_Event.Friendship_Events;
+import sg.edu.np.mad.p04_team4.HabitTracker.selectHabit;
 import sg.edu.np.mad.p04_team4.ScreenTime.ScreenTimeService;
 import sg.edu.np.mad.p04_team4.ScreenTime.ScreenTime_Main;
 import sg.edu.np.mad.p04_team4.Timer.Stopwatch_Timer;
@@ -144,6 +145,15 @@ public class HomeActivity extends AppCompatActivity {
         //    Intent intent = new Intent(HomeActivity.this, ScreenTime_Main.class);
         //    startActivity(intent);
         //});
+        RelativeLayout HabitTrackerLayout = findViewById(R.id.chart);
+        HabitTrackerLayout.setOnClickListener(v->{
+            if (isBound) {
+                screenTimeService.startFeatureTimer("Habit Tracker");
+                }
+                Intent intent = new Intent(HomeActivity.this, selectHabit.class);
+                startActivity(intent);
+
+        });
     }
 
     private boolean isSameDay(Calendar lastShown, Calendar today) {
