@@ -119,7 +119,7 @@
         app:srcCompat="@drawable/leaf_9" />
 
     <RelativeLayout
-        android:layout_width="412dp"
+        android:layout_width="match_parent"
         android:layout_height="110dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -540,7 +540,7 @@
             android:fontFamily="@font/alata"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:text="Chart"
+            android:text="Habits"
             android:textSize="15dp" />
 
         <ImageView

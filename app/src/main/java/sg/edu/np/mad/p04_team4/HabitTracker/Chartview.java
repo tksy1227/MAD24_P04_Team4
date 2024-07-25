@@ -143,7 +143,7 @@ public class Chartview extends AppCompatActivity {
         });
 
 
-        title.setText("Chart " + habit + "!!!! :3");
+        title.setText(habit + " Chart");
 
 
         //setupChart(habit,"day");

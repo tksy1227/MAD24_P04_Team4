@@ -87,7 +87,10 @@ New concepts used: Foreground Service, Binding to Service
 Feature/Enhancement done by: Danial
 
 3. Personal Habit Tracker -  Allows users to set, track, and manage their personal habits.
-Users can log their progress, and view their streaks and statistics over time.
+Users can log their progress, and view their streaks and statistics over time. 
+A total of 4 habits allowed to be created at any one time, to encourage users to focus on goals.
+users are able to sort their data by week, month, weekday or insights, as well as switch between bar and line charts 
+A insights page is also available to allow users to view critical information such as lowest and highest values, averages and durations
 Concepts used: Persistent Memory, MPAndroidChart, Recycler View
 New concepts used: MPAndroidChart
 Feature/Enhancement done by: Jacob
