@@ -26,7 +26,7 @@ public class FeedbackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://friendscape-24f1f-default-rtdb.asia-southeast1.firebasedatabase.app");
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://friendscape-5e36e-default-rtdb.asia-southeast1.firebasedatabase.app/");
         mDatabase = database.getReference("feedback");
 
         editTextFeedback = findViewById(R.id.editTextFeedback);
