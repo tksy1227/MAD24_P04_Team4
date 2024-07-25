@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -45,6 +46,7 @@ public class Chat_Main extends AppCompatActivity {
     private Button buttonSend; // Button to send message
     private ImageButton buttonSelectImage; // Button to select image
     private ImageButton backButton; // Button to go back
+    private LinearLayout extendedAttachmentLayout; // Layout for extended attachment options
 
     private FirebaseAuth mAuth; // Firebase Authentication instance
     private DatabaseReference userChatsRef; // Database reference for user's chats
@@ -72,6 +74,7 @@ public class Chat_Main extends AppCompatActivity {
         buttonSend = findViewById(R.id.buttonSend);
         buttonSelectImage = findViewById(R.id.buttonSelectImage);
         backButton = findViewById(R.id.backButton); // Ensure this ID exists in your layout
+        extendedAttachmentLayout = findViewById(R.id.messageInputLayout); // Extended layout
 
         // Initialize RecyclerView
         messageList = new ArrayList<>();
@@ -93,7 +96,7 @@ public class Chat_Main extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "Select Image button clicked");
-                openImagePicker();
+                toggleAttachmentOptions();
             }
         });
 
@@ -102,6 +105,22 @@ public class Chat_Main extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        // Set Click Listener for Attach Image Button
+        findViewById(R.id.buttonSelectImage).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openImagePicker();
+            }
+        });
+
+        // Set Click Listener for Attach Sticker Button
+        findViewById(R.id.buttonSelectSticker).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle sticker attachment
             }
         });
 
@@ -196,23 +215,14 @@ public class Chat_Main extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    long lastSeenTime = dataSnapshot.getValue(Long.class);
-
-                    // Log the retrieved last seen time
-                    Log.d("Chat_Main", "Retrieved last seen time: " + lastSeenTime);
-
-                    SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy HH:mm", Locale.getDefault());
-                    // Manually set the time zone to your local time zone
-                    TimeZone localTimeZone = TimeZone.getTimeZone("Asia/Singapore"); // Set your local time zone
-                    Log.d("Chat_Main", "Local TimeZone: " + localTimeZone.getID());
-                    sdf.setTimeZone(localTimeZone);
-                    String formattedTime = sdf.format(new Date(lastSeenTime));
-
-                    // Log the formatted last seen time
-                    Log.d("Chat_Main", "Formatted last seen time: " + formattedTime);
-
-                    TextView lastSeenTextView = findViewById(R.id.status);
-                    lastSeenTextView.setText("Last seen " + formattedTime);
+                    Long lastSeenTime = dataSnapshot.getValue(Long.class);
+                    if (lastSeenTime != null) {
+                        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy HH:mm", Locale.getDefault());
+                        sdf.setTimeZone(TimeZone.getTimeZone("Asia/Singapore")); // Set your local time zone
+                        String formattedTime = sdf.format(new Date(lastSeenTime));
+                        TextView lastSeenTextView = findViewById(R.id.status);
+                        lastSeenTextView.setText("Last seen " + formattedTime);
+                    }
                 }
             }
 
@@ -260,6 +270,14 @@ public class Chat_Main extends AppCompatActivity {
                 Log.e(TAG, "Failed to load messages", databaseError.toException());
             }
         });
+    }
+
+    private void toggleAttachmentOptions() {
+        if (extendedAttachmentLayout.getVisibility() == View.VISIBLE) {
+            extendedAttachmentLayout.setVisibility(View.GONE);
+        } else {
+            extendedAttachmentLayout.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

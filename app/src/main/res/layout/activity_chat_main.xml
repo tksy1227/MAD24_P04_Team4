@@ -170,13 +170,23 @@
 
         <ImageButton
             android:id="@+id/buttonSelectImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
             android:layout_marginEnd="8dp"
             android:background="?attr/selectableItemBackground"
             android:contentDescription="Select Image"
             android:padding="8dp"
             android:src="@drawable/ic_image" />
+
+        <ImageButton
+            android:id="@+id/buttonSelectSticker"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="Select Sticker"
+            android:padding="8dp"
+            android:src="@drawable/ic_sticker" />
 
         <Button
             android:id="@+id/buttonSend"

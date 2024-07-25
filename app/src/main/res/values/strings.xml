@@ -11,4 +11,5 @@
         <item>Sort by Month</item>
     </string-array>
     <string name="spinner_prompt">Select an option</string>
+    <string name="send_sticker">Send Sticker</string>
 </resources>

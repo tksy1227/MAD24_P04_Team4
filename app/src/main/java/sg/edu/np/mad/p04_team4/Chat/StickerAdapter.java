@@ -41,6 +41,12 @@ public class StickerAdapter extends RecyclerView.Adapter<StickerAdapter.StickerV
 
     @Override
     public void onBindViewHolder(@NonNull StickerViewHolder holder, int position) {
+        if (stickerPaths.isEmpty()) {
+            // Handle the case when there are no stickers
+            holder.stickerImageView.setImageResource(android.R.drawable.ic_menu_gallery); // Set a placeholder image
+            holder.itemView.setOnClickListener(null); // Disable the click listener
+            return;
+        }
         int actualPosition = position % stickerPaths.size(); // Calculate actual position in original list
         String stickerPath = stickerPaths.get(actualPosition);
         Picasso.get().load(stickerPath).into(holder.stickerImageView);

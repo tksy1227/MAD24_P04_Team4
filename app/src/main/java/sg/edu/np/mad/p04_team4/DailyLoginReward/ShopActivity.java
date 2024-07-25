@@ -24,12 +24,12 @@ import sg.edu.np.mad.p04_team4.R;
 public class ShopActivity extends AppCompatActivity {
 
     private static final String TAG = "ShopActivity";
-    private static final int COST_OF_PACK = 100; // Define the cost of a sticker pack
 
     private TextView coinAmountTextView;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     private String userId;
+    private String chatRoomId = "your_default_chat_room_id"; // Replace with actual chat room id or obtain dynamically
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +58,12 @@ public class ShopActivity extends AppCompatActivity {
         });
 
         // Set Click Listeners for the sticker pack buttons
-        findViewById(R.id.btnSticker1).setOnClickListener(v -> openStickerPack("Cat Sticker Pack"));
-        findViewById(R.id.btnSticker2).setOnClickListener(v -> openStickerPack("Monkey Sticker Pack"));
-        findViewById(R.id.btnSticker3).setOnClickListener(v -> openStickerPack("Emoji Sticker Pack"));
-        findViewById(R.id.btnSticker4).setOnClickListener(v -> openStickerPack("Alpha Wolf Sticker Pack"));
-        findViewById(R.id.btnSticker5).setOnClickListener(v -> openStickerPack("Skibidi Toilet Sticker Pack"));
-        findViewById(R.id.btnSticker6).setOnClickListener(v -> openStickerPack("Dead by Daylight Sticker Pack"));
+        findViewById(R.id.btnSticker1).setOnClickListener(v -> openStickerPack("Cat Sticker Pack", 50));
+        findViewById(R.id.btnSticker2).setOnClickListener(v -> openStickerPack("Monkey Sticker Pack", 50));
+        findViewById(R.id.btnSticker3).setOnClickListener(v -> openStickerPack("Emoji Sticker Pack", 50));
+        findViewById(R.id.btnSticker4).setOnClickListener(v -> openStickerPack("Alpha Wolf Sticker Pack", 50));
+        findViewById(R.id.btnSticker5).setOnClickListener(v -> openStickerPack("Skibidi Toilet Sticker Pack", 50));
+        findViewById(R.id.btnSticker6).setOnClickListener(v -> openStickerPack("Dead by Daylight Sticker Pack", 70));
     }
 
     private void fetchUserCoins() {
@@ -86,8 +86,8 @@ public class ShopActivity extends AppCompatActivity {
         });
     }
 
-    private void openStickerPack(String packName) {
-        StickerPackDialogFragment dialog = new StickerPackDialogFragment(packName, userId);
+    private void openStickerPack(String packName, int packCost) {
+        StickerPackDialogFragment dialog = new StickerPackDialogFragment(packName, userId, chatRoomId, packCost);
         dialog.show(getSupportFragmentManager(), "StickerPackDialogFragment");
     }
 }

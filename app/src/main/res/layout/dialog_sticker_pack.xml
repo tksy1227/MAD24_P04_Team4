@@ -27,4 +27,17 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/stickerPackTitle"
         android:layout_marginTop="8dp" />
+
+    <!-- Add a button to buy the sticker pack -->
+    <Button
+        android:id="@+id/btnBuyStickerPack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/stickerRecyclerView"
+        android:layout_marginTop="16dp"
+        android:text="Buy"
+        android:textSize="18sp"
+        android:background="@drawable/rounded_button"
+        android:textColor="@android:color/white"/>
+
 </RelativeLayout>

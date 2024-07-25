@@ -92,7 +92,8 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     @Override
     public int getItemViewType(int position) {
         Chat chat = chatList.get(position);
-        if (chat.getLastMessage().startsWith("[Sticker:")) {
+        String lastMessage = chat.getLastMessage();
+        if (lastMessage != null && lastMessage.startsWith("[Sticker:")) {
             return TYPE_STICKER;
         } else {
             return TYPE_TEXT;
@@ -182,7 +183,8 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
 
         public void bind(Chat chat) {
             chatName.setText(chat.getName());
-            chatMessage.setText(chat.getLastMessage());
+            String lastMessage = chat.getLastMessage();
+            chatMessage.setText(lastMessage != null ? lastMessage : "");
 
             try {
                 long timeInMillis = Long.parseLong(chat.getTime());

@@ -558,7 +558,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/chloe"
+        android:id="@+id/feedback"
         android:layout_width="95dp"
         android:layout_height="95dp"
         android:background="@drawable/roundedstyle_w_colour"

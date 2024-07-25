@@ -33,4 +33,25 @@
         android:text="Chat Time"
         android:fontFamily="@font/alata"
         android:textSize="18sp" />
+
+    <!-- RecyclerView for Messages -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewMessages"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/chat_time"
+        android:layout_above="@id/btnSendSticker"
+        android:layout_marginTop="16dp" />
+
+    <!-- Button to Send Sticker -->
+    <ImageButton
+        android:id="@+id/btnSendSticker"
+        android:fontFamily="@font/alata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_gallery"
+        android:contentDescription="@string/send_sticker"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp" />
 </RelativeLayout>

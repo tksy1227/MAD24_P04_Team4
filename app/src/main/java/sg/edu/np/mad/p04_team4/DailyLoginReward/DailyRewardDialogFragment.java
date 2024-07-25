@@ -1,6 +1,7 @@
 package sg.edu.np.mad.p04_team4.DailyLoginReward;
 
 import android.content.SharedPreferences;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -82,40 +83,46 @@ public class DailyRewardDialogFragment extends DialogFragment {
         int currentStreak = prefs.getInt(userId + "_CurrentStreak", 0);
         Log.d(TAG, "Last Login: " + lastLoginMillis + ", Current Streak: " + currentStreak);
 
-        // Check if today is the same as the last login day
-        if (isSameDay(lastLogin, today)) {
-            Log.d(TAG, "Same day, not resetting claim status.");
-        } else {
+        if (!isSameDay(lastLogin, today)) {
             Log.d(TAG, "New day detected.");
 
-            // Calculate the difference in days between today and the last login date
             long diffInMillis = today.getTimeInMillis() - lastLogin.getTimeInMillis();
             long diffInDays = diffInMillis / (1000 * 60 * 60 * 24);
 
             if (lastLoginMillis == 0 || diffInDays > 1) {
-                // Reset streak to 1 if it's the first login or if the user missed a day
                 currentStreak = 1;
             } else {
-                // Increment the streak
                 currentStreak++;
             }
 
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean(userId + "_ClaimStatus", false);
+            editor.putLong(userId + "_LastLoginDate", today.getTimeInMillis());
+            editor.putInt(userId + "_CurrentStreak", currentStreak);
             editor.apply();
+
+            Log.d(TAG, "Updated Last Login: " + today.getTimeInMillis() + ", Updated Streak: " + currentStreak);
         }
-
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putLong(userId + "_LastLoginDate", today.getTimeInMillis());
-        editor.putInt(userId + "_CurrentStreak", currentStreak);
-        editor.apply();
-
-        Log.d(TAG, "Updated Last Login: " + today.getTimeInMillis() + ", Updated Streak: " + currentStreak);
     }
 
-    private boolean isSameDay(Calendar lastLogin, Calendar today) {
-        return lastLogin.get(Calendar.YEAR) == today.get(Calendar.YEAR)
-                && lastLogin.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR);
+    public static boolean shouldShowReward(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser == null) return false;
+
+        String userId = currentUser.getUid();
+        boolean claimed = prefs.getBoolean(userId + "_ClaimStatus", false);
+        long lastLoginMillis = prefs.getLong(userId + "_LastLoginDate", 0);
+        Calendar lastLogin = Calendar.getInstance();
+        lastLogin.setTimeInMillis(lastLoginMillis);
+        Calendar today = Calendar.getInstance();
+
+        return !claimed || !isSameDay(lastLogin, today);
+    }
+
+    private static boolean isSameDay(Calendar cal1, Calendar cal2) {
+        return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
     }
 
     private void setupDaysGrid(View view) {

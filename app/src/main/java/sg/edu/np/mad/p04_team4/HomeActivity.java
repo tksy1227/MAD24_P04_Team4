@@ -108,7 +108,7 @@ public class HomeActivity extends AppCompatActivity {
 
         // Set Click Listener for the "Feedback" layout
         RelativeLayout feedbackLayout = findViewById(R.id.feedback);
-        stopwatchTimerLayout.setOnClickListener(v -> {
+        feedbackLayout.setOnClickListener(v -> {
             if (isBound) {
                 screenTimeService.startFeatureTimer("Feedback");
             }

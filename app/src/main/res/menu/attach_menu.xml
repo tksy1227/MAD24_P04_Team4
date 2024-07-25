@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_image"
+        android:title="Select Image"
+        android:icon="@drawable/ic_image" />
+    <item
+        android:id="@+id/action_sticker"
+        android:title="Select Sticker"
+        android:icon="@drawable/ic_sticker" />
+</menu>
+
+
