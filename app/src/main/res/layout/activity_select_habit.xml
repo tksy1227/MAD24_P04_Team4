@@ -13,18 +13,20 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" >
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="#0D5C63"
+        android:backgroundTint="#0D5C63">
 
         <TextView
             android:id="@+id/textViewToolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select Habit"
+            android:text="Chart Title"
+            android:fontFamily="@font/alata"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:layout_gravity="center"
@@ -45,7 +47,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
-
     </androidx.appcompat.widget.Toolbar>
 
     <!-- Top Left Button -->
@@ -55,7 +56,6 @@
         android:layout_height="0dp"
         android:text="Habit not set!     Click to set!"
         android:textColor="@android:color/white"
-        android:background="?attr/colorPrimary"
         android:layout_margin="8dp"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,18 +63,21 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical"
         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal"
         app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintVertical_bias="0.3"
+        android:background="@drawable/button_background"
+         />
 
     <!-- Top Right Button -->
     <Button
         android:id="@+id/button_top_right"
         android:layout_width="0dp"
+
         android:layout_height="0dp"
         android:text="Habit not set!     Click to set!"
         android:textColor="@android:color/white"
-        android:background="?attr/colorPrimary"
         android:layout_margin="8dp"
         android:textSize="16sp"
+        android:backgroundTint="#0D5C63"
         app:layout_constraintStart_toEndOf="@+id/guideline_vertical"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,7 +92,7 @@
         android:layout_height="0dp"
         android:text="Habit not set!     Click to set!"
         android:textColor="@android:color/white"
-        android:background="?attr/colorPrimary"
+        android:backgroundTint="#0D5C63"
         android:layout_margin="8dp"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +109,7 @@
         android:layout_height="0dp"
         android:text="Habit not set!     Click to set!"
         android:textColor="@android:color/white"
-        android:background="?attr/colorPrimary"
+        android:backgroundTint="#0D5C63"
         android:layout_margin="8dp"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/guideline_vertical"
@@ -123,7 +126,7 @@
         android:layout_height="wrap_content"
         android:text="Small Button"
         android:textColor="@android:color/white"
-        android:background="?attr/colorAccent"
+        android:background="#0D5C63"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -154,3 +157,4 @@
         app:layout_constraintGuide_percent="0.9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
