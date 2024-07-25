@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#C5D8D1"
     android:padding="8dp">
 
     <TextView
@@ -9,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sticker Pack"
+        android:fontFamily="@font/alata"
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_centerHorizontal="true" />
@@ -25,6 +27,7 @@
         android:id="@+id/stickerRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#F4EDEA"
         android:layout_below="@id/stickerPackTitle"
         android:layout_marginTop="8dp" />
 
@@ -36,6 +39,7 @@
         android:layout_below="@id/stickerRecyclerView"
         android:layout_marginTop="16dp"
         android:text="Buy"
+        android:fontFamily="@font/alata"
         android:textSize="18sp"
         android:background="@drawable/rounded_button"
         android:textColor="@android:color/white"/>

@@ -8,6 +8,34 @@
     android:background="#F4EDEA"
     tools:context="sg.edu.np.mad.p04_team4.HabitTracker.insights">
 
+    <!-- Background ImageViews -->
+    <ImageView
+        android:id="@+id/leafbackground1"
+        android:layout_width="333dp"
+        android:layout_height="328dp"
+        android:alpha="0.6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.987"
+        app:srcCompat="@drawable/leaf_6" />
+
+    <ImageView
+        android:id="@+id/leafbackground2"
+        android:layout_width="196dp"
+        android:layout_height="198dp"
+        android:rotation="190"
+        android:alpha="0.6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.097"
+        app:srcCompat="@drawable/leaf_6" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -74,6 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Average"
+                android:fontFamily="@font/alata"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
 
@@ -82,6 +111,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0.00"
+                android:fontFamily="@font/alata"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 android:layout_marginTop="4dp" />
@@ -129,6 +159,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Min"
+                    android:fontFamily="@font/alata"
                     android:textColor="@android:color/black"
                     android:textSize="16sp" />
 
@@ -137,6 +168,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0.00"
+                    android:fontFamily="@font/alata"
                     android:textColor="@android:color/black"
                     android:textSize="20sp"
                     android:layout_marginTop="4dp" />
@@ -172,6 +204,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Max"
+                    android:fontFamily="@font/alata"
                     android:textColor="@android:color/black"
                     android:textSize="16sp" />
 
@@ -180,6 +213,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0.00"
+                    android:fontFamily="@font/alata"
                     android:textColor="@android:color/black"
                     android:textSize="20sp"
                     android:layout_marginTop="4dp" />
@@ -222,6 +256,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Duration"
+                android:fontFamily="@font/alata"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
 
@@ -230,6 +265,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0.00"
+                android:fontFamily="@font/alata"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 android:layout_marginTop="4dp" />
@@ -262,6 +298,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Date Started"
+                android:fontFamily="@font/alata"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
 
@@ -270,6 +307,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="N/A"
+                android:fontFamily="@font/alata"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 android:layout_marginTop="4dp" />
@@ -302,6 +340,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Last Date Entered"
+                android:fontFamily="@font/alata"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
 
@@ -310,6 +349,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="N/A"
+                android:fontFamily="@font/alata"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 android:layout_marginTop="4dp" />

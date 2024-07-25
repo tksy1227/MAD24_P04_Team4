@@ -3,15 +3,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/sim">
+    android:background="#F4EDEA">
+
+    <!-- Background ImageViews -->
+    <ImageView
+        android:id="@+id/leafbackground1"
+        android:layout_width="333dp"
+        android:layout_height="328dp"
+        android:alpha="0.6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.987"
+        app:srcCompat="@drawable/leaf_6" />
+
+    <ImageView
+        android:id="@+id/leafbackground2"
+        android:layout_width="196dp"
+        android:layout_height="198dp"
+        android:rotation="190"
+        android:alpha="0.6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.097"
+        app:srcCompat="@drawable/leaf_6" />
 
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Daily log-in reward"
-        android:textColor="@android:color/white"
+        android:textColor="#0D5C63"
         android:textSize="24sp"
+        android:fontFamily="@font/alata"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,6 +74,7 @@
                 android:text="Log in daily to earn FriendCoins!"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="16sp"
+                android:fontFamily="@font/alata"
                 android:layout_gravity="center_horizontal" />
 
             <LinearLayout
@@ -64,6 +94,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="Point reward"
+                    android:fontFamily="@font/alata"
                     android:textColor="@android:color/black" />
 
                 <TextView
@@ -71,6 +102,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="+20 FriendCoins"
+                    android:fontFamily="@font/alata"
                     android:textColor="@android:color/holo_green_dark" />
 
             </LinearLayout>
@@ -104,7 +136,8 @@
                             android:background="@drawable/day_background_unchecked"
                             android:textColor="@android:color/darker_gray"
                             android:padding="16dp"
-                            android:textSize="18sp"
+                            android:textSize="17sp"
+                            android:fontFamily="@font/alata"
                             android:text="Day 1" />
 
                         <ImageView
@@ -131,7 +164,8 @@
                             android:background="@drawable/day_background_unchecked"
                             android:textColor="@android:color/darker_gray"
                             android:padding="16dp"
-                            android:textSize="18sp"
+                            android:textSize="17sp"
+                            android:fontFamily="@font/alata"
                             android:text="Day 2" />
 
                         <ImageView
@@ -158,7 +192,8 @@
                             android:background="@drawable/day_background_unchecked"
                             android:textColor="@android:color/darker_gray"
                             android:padding="16dp"
-                            android:textSize="18sp"
+                            android:textSize="17sp"
+                            android:fontFamily="@font/alata"
                             android:text="Day 3" />
 
                         <ImageView
@@ -185,7 +220,8 @@
                             android:background="@drawable/day_background_unchecked"
                             android:textColor="@android:color/darker_gray"
                             android:padding="16dp"
-                            android:textSize="18sp"
+                            android:textSize="17sp"
+                            android:fontFamily="@font/alata"
                             android:text="Day 4" />
 
                         <ImageView
@@ -221,8 +257,9 @@
                             android:background="@drawable/day_background_unchecked"
                             android:textColor="@android:color/darker_gray"
                             android:padding="16dp"
-                            android:textSize="18sp"
-                            android:text="Day 5" />
+                            android:textSize="17sp"
+                            android:text="Day 5"
+                            android:fontFamily="@font/alata"/>
 
                         <ImageView
                             android:id="@+id/tick5"
@@ -248,7 +285,8 @@
                             android:background="@drawable/day_background_unchecked"
                             android:textColor="@android:color/darker_gray"
                             android:padding="16dp"
-                            android:textSize="18sp"
+                            android:textSize="17sp"
+                            android:fontFamily="@font/alata"
                             android:text="Day 6" />
 
                         <ImageView
@@ -275,7 +313,8 @@
                             android:background="@drawable/day_background_unchecked"
                             android:textColor="@android:color/darker_gray"
                             android:padding="16dp"
-                            android:textSize="18sp"
+                            android:textSize="17sp"
+                            android:fontFamily="@font/alata"
                             android:text="Day 7" />
 
                         <ImageView
@@ -296,8 +335,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/rounded_button"
-                android:text="Claim today's reward"
-                android:textColor="@android:color/white" />
+                android:text="Claim today's reward!"
+                android:backgroundTint="#C5D8D1"
+                android:fontFamily="@font/alata"
+                android:textColor="#0D5C63"
+                app:strokeColor="#0D5C63"
+                app:strokeWidth="1dp"/>
 
         </LinearLayout>
 

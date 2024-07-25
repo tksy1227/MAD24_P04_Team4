@@ -7,6 +7,35 @@
     android:layout_height="match_parent"
     android:background="#F4EDEA"
     tools:context="sg.edu.np.mad.p04_team4.HabitTracker.Datainput">
+
+    <!-- Background ImageViews -->
+    <ImageView
+        android:id="@+id/leafbackground1"
+        android:layout_width="333dp"
+        android:layout_height="328dp"
+        android:alpha="0.6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.987"
+        app:srcCompat="@drawable/leaf_6" />
+
+    <ImageView
+        android:id="@+id/leafbackground2"
+        android:layout_width="196dp"
+        android:layout_height="198dp"
+        android:rotation="190"
+        android:alpha="0.6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.097"
+        app:srcCompat="@drawable/leaf_6" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -69,6 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Number of Pushups"
+            android:fontFamily="@font/alata"
             android:inputType="number"
             android:textColorHint="@color/black" />
 
@@ -82,9 +112,12 @@
         android:layout_marginTop="24dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/black"
         android:text="Save"
-        android:textColor="@android:color/white"
+        android:backgroundTint="#C5D8D1"
+        android:fontFamily="@font/alata"
+        android:textColor="#0D5C63"
+        app:strokeColor="#0D5C63"
+        app:strokeWidth="1dp"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

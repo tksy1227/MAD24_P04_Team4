@@ -68,7 +68,8 @@
         android:dropDownVerticalOffset="48dp"
         android:dropDownWidth="match_parent"
         android:dropDownHorizontalOffset="16dp"
-        android:spinnerMode="dropdown" />
+        android:spinnerMode="dropdown"
+        />
 
 
     <com.github.mikephil.charting.charts.LineChart

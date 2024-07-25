@@ -3,8 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="#F4EDEA"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <!-- Background ImageViews -->
+    <ImageView
+        android:id="@+id/leafbackground1"
+        android:layout_width="333dp"
+        android:layout_height="328dp"
+        android:alpha="0.6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.987"
+        app:srcCompat="@drawable/leaf_6" />
+
+    <ImageView
+        android:id="@+id/leafbackground2"
+        android:layout_width="196dp"
+        android:layout_height="198dp"
+        android:rotation="190"
+        android:alpha="0.6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.097"
+        app:srcCompat="@drawable/leaf_6" />
 
     <Button
         android:id="@+id/button1"
@@ -15,6 +44,11 @@
         android:layout_marginTop="92dp"
         android:layout_marginEnd="16dp"
         android:text="Button"
+        android:backgroundTint="#C5D8D1"
+        android:fontFamily="@font/alata"
+        android:textColor="#0D5C63"
+        app:strokeColor="#0D5C63"
+        app:strokeWidth="1dp"
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button2"
@@ -29,6 +63,11 @@
         android:layout_marginTop="92dp"
         android:layout_marginBottom="29dp"
         android:text="Button"
+        android:backgroundTint="#C5D8D1"
+        android:fontFamily="@font/alata"
+        android:textColor="#0D5C63"
+        app:strokeColor="#0D5C63"
+        app:strokeWidth="1dp"
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,23 +81,43 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="29dp"
         android:text="Button"
+        android:backgroundTint="#C5D8D1"
+        android:fontFamily="@font/alata"
+        android:textColor="#0D5C63"
+        app:strokeColor="#0D5C63"
+        app:strokeWidth="1dp"
         app:cornerRadius="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2" />
 
-
+<!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
         android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title=""
+        android:background="#0D5C63"
+        android:backgroundTint="#0D5C63"
         app:titleTextColor="@android:color/white">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Friendship Events"
+            android:fontFamily="@font/alata"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <!-- Back Button -->
         <ImageButton
@@ -73,19 +132,5 @@
             android:src="@drawable/ic_arrow_back" />
     </androidx.appcompat.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="290dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="-345dp"
-        android:layout_marginTop="-55dp"
-        android:text="Friendship Events"
-        android:textColor="#FFFFFF"
-        android:textColorHighlight="#121111"
-        android:textColorHint="#0B0A0A"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/toolbar"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

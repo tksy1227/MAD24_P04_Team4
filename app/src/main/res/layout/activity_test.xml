@@ -3,9 +3,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="#F4EDEA"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Friendship_Event.events_input">
+
+    <!-- Background ImageViews -->
+    <ImageView
+        android:id="@+id/leafbackground1"
+        android:layout_width="333dp"
+        android:layout_height="328dp"
+        android:alpha="0.6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.987"
+        app:srcCompat="@drawable/leaf_6" />
+
+    <ImageView
+        android:id="@+id/leafbackground2"
+        android:layout_width="196dp"
+        android:layout_height="198dp"
+        android:rotation="190"
+        android:alpha="0.6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.097"
+        app:srcCompat="@drawable/leaf_6" />
 
 
     <com.google.android.material.textfield.TextInputEditText
@@ -14,6 +43,7 @@
         android:layout_height="106dp"
         android:layout_marginTop="323dp"
         android:hint="Create challange here!"
+        android:fontFamily="@font/alata"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,7 +55,12 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="46dp"
         android:text="Enter"
-        android:textSize="24sp"
+        android:textSize="18sp"
+        android:backgroundTint="#C5D8D1"
+        android:fontFamily="@font/alata"
+        android:textColor="#0D5C63"
+        app:strokeColor="#0D5C63"
+        app:strokeWidth="1dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input" />
 
@@ -34,7 +69,6 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_marginBottom="259dp"
-        android:background="?attr/colorPrimary"
         android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintBottom_toTopOf="@+id/input"
@@ -42,6 +76,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title=""
+        android:background="#0D5C63"
+        android:backgroundTint="#0D5C63"
         app:titleTextColor="@android:color/white">
 
         <!-- Back Button -->

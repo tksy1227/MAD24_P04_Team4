@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="#F4EDEA"
     android:padding="16dp">
 
     <TextView
@@ -17,6 +19,7 @@
         android:id="@+id/stickerRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:background="#C5D8D1"
         android:orientation="horizontal"
         android:layout_gravity="center"/>
 
@@ -30,36 +33,66 @@
             android:id="@+id/catStickerPackButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cat Sticker Pack" />
+            android:text="Cat Sticker Pack"
+            android:backgroundTint="#C5D8D1"
+            android:fontFamily="@font/alata"
+            android:textColor="#0D5C63"
+            app:strokeColor="#0D5C63"
+            app:strokeWidth="1dp"/>
 
         <Button
             android:id="@+id/monkeyStickerPackButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Monkey Sticker Pack" />
+            android:text="Monkey Sticker Pack"
+            android:backgroundTint="#C5D8D1"
+            android:fontFamily="@font/alata"
+            android:textColor="#0D5C63"
+            app:strokeColor="#0D5C63"
+            app:strokeWidth="1dp"/>
 
         <Button
             android:id="@+id/emojiStickerPackButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Emoji Sticker Pack" />
+            android:text="Emoji Sticker Pack"
+            android:backgroundTint="#C5D8D1"
+            android:fontFamily="@font/alata"
+            android:textColor="#0D5C63"
+            app:strokeColor="#0D5C63"
+            app:strokeWidth="1dp"/>
 
         <Button
             android:id="@+id/alphaWolfStickerPackButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Alpha Wolf Sticker Pack" />
+            android:text="Alpha Wolf Sticker Pack"
+            android:backgroundTint="#C5D8D1"
+            android:fontFamily="@font/alata"
+            android:textColor="#0D5C63"
+            app:strokeColor="#0D5C63"
+            app:strokeWidth="1dp"/>
 
         <Button
             android:id="@+id/skibidiToiletStickerPackButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Skibidi Toilet Sticker Pack" />
+            android:text="Skibidi Toilet Sticker Pack"
+            android:backgroundTint="#C5D8D1"
+            android:fontFamily="@font/alata"
+            android:textColor="#0D5C63"
+            app:strokeColor="#0D5C63"
+            app:strokeWidth="1dp"/>
 
         <Button
             android:id="@+id/deadByDaylightStickerPackButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dead by Daylight Sticker Pack" />
+            android:text="Dead by Daylight Sticker Pack"
+            android:backgroundTint="#C5D8D1"
+            android:fontFamily="@font/alata"
+            android:textColor="#0D5C63"
+            app:strokeColor="#0D5C63"
+            app:strokeWidth="1dp"/>
     </LinearLayout>
 </LinearLayout>
