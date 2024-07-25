@@ -92,7 +92,7 @@ Concepts used: Persistent Memory, MPAndroidChart, Recycler View
 New concepts used: MPAndroidChart
 Feature/Enhancement done by: Jacob
 
-4. Timer Enhancement & Widget - Allow users to access the feature outside of the app through a widget
+4. Timer Enhancement & Widget - Allow users to access the feature outside of the app through a widget.
 Concepts used: CountdownTimer, RecyclerView, Databases, Widget
 New concepts used: Widget
 Feature/Enhancement done by: Chloe
@@ -105,7 +105,7 @@ Feature/Enhancement done by: Shida
 6. Feedback feature -  Allow users to send feedback to the app developers, and the developers will
 receive the feedback in the form of an email sent to their email account.
 Concepts used: Firebase Realtime Database, User Interface Components, Event Handling, Firebase Operations,
-New concepts used: Google Apps Script, HTTP request (API getter to retrieve data), Email Sending
+New concepts used: Google Apps Script, HTTP request (API getter to retrieve data), Automatic Email Sending
 
 ---------------------------------------------------------------->
 App Aesthetics Information:
@@ -124,4 +124,11 @@ Colour Wheel & colours used:
 #0D5C63
 #C5D8D1
 #78CDD7
+
+Notes:
+- We have chosen for the app to be locked in Portrait Mode to provide optimal user experience.
+- For each feature, we have implemented the '?' feature for users to click on. This displays instructions
+on how to use the feature.
+- The feedback feature has been coded for the developer to receive legitimate emails whenever a user sends
+feedback through the app. The developer will receive the email via gmail within a few minutes.
 ---------------------------------------------------------------->
