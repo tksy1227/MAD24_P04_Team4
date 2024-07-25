@@ -101,6 +101,12 @@ Feature/Enhancement done by: Chloe
 Concepts used: Nested RecyclerView, Persistent Memory, Widget
 New concepts used: Nested RecyclerView
 Feature/Enhancement done by: Shida
+
+6. Feedback feature -  Allow users to send feedback to the app developers, and the developers will
+receive the feedback in the form of an email sent to their email account.
+Concepts used: Firebase Realtime Database, User Interface Components, Event Handling, Firebase Operations,
+New concepts used: Google Apps Script, HTTP request (API getter to retrieve data), Email Sending
+
 ---------------------------------------------------------------->
 App Aesthetics Information:
 Colour scheme: Cool shades of green & blue, with shades of turquoise mixed in.

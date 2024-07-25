@@ -6,24 +6,27 @@
     android:id="@+id/chart"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F4EDEA"
     tools:context="sg.edu.np.mad.p04_team4.HabitTracker.Chartview">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" >
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="#0D5C63"
+        android:backgroundTint="#0D5C63">
 
         <TextView
             android:id="@+id/textViewToolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Chart Title"
+            android:fontFamily="@font/alata"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:layout_gravity="center"
@@ -96,40 +99,51 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Other Action"
-            android:textColor="@android:color/white"
-            android:background="?attr/colorPrimary"
             android:paddingStart="24dp"
             android:paddingEnd="24dp"
             android:textSize="16sp"
+            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:backgroundTint="#C5D8D1"
+            android:fontFamily="@font/alata"
+            android:textColor="#0D5C63"
+            app:strokeColor="#0D5C63"
+            app:strokeWidth="1dp"/>
 
         <Button
             android:id="@+id/button3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="New Button"
-            android:textColor="@android:color/white"
-            android:background="?attr/colorPrimary"
             android:paddingStart="24dp"
             android:paddingEnd="24dp"
             android:textSize="16sp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:backgroundTint="#C5D8D1"
+            android:fontFamily="@font/alata"
+            android:textColor="#0D5C63"
+            app:strokeColor="#0D5C63"
+            app:strokeWidth="1dp"/>
 
         <Button
             android:id="@+id/button2"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:background="?attr/colorPrimary"
+            android:backgroundTint="#C5D8D1"
+            android:fontFamily="@font/alata"
             android:paddingStart="24dp"
             android:paddingEnd="24dp"
             android:text="Add Data"
-            android:textColor="@android:color/white"
-            android:textSize="16sp" />
+            android:textColor="#0D5C63"
+            android:textSize="16sp"
+            app:strokeColor="#0D5C63"
+            app:strokeWidth="1dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
