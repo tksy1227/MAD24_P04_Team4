@@ -4,40 +4,88 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="#F4EDEA"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4EDEA"
     tools:context="sg.edu.np.mad.p04_team4.HabitTracker.selectHabit">
 
-    <!-- Background ImageViews -->
     <ImageView
-        android:id="@+id/leafbackground1"
-        android:layout_width="333dp"
-        android:layout_height="328dp"
-        android:alpha="0.6"
+        android:id="@+id/imageView"
+        android:layout_width="133dp"
+        android:layout_height="155dp"
+        android:alpha="0.8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.55"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.987"
-        app:srcCompat="@drawable/leaf_6" />
+        app:layout_constraintVertical_bias="0.067"
+        app:srcCompat="@drawable/leaf_9"
+        android:rotation="180"/>
 
     <ImageView
-        android:id="@+id/leafbackground2"
-        android:layout_width="196dp"
-        android:layout_height="198dp"
-        android:rotation="190"
-        android:alpha="0.6"
+        android:layout_width="110dp"
+        android:layout_height="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.382"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.097"
-        app:srcCompat="@drawable/leaf_6" />
+        app:layout_constraintVertical_bias="0.958"
+        app:srcCompat="@drawable/leaf_8"
+        android:rotation="180"/>
+
+    <ImageView
+        android:layout_width="110dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.415"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.461"
+        app:srcCompat="@drawable/leaf_8" />
+
+    <ImageView
+        android:layout_width="145dp"
+        android:layout_height="155dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.981"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.236"
+        app:srcCompat="@drawable/leaf_9"
+        android:alpha="0.8"/>
+
 
     <!-- Toolbar with Back Button -->
+
+    <ImageView
+        android:layout_width="199dp"
+        android:layout_height="215dp"
+        android:layout_marginBottom="236dp"
+        android:alpha="0.2"
+        android:rotation="90"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.933"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/leaf_5" />
+
+    <ImageView
+        android:layout_width="204dp"
+        android:layout_height="214dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="440dp"
+        android:alpha="0.2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/leaf_5" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -78,7 +126,8 @@
             app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.appcompat.widget.Toolbar>
 
-    <!-- Top Left Button -->
+
+    <!-- Top Right Button -->
     <Button
         android:id="@+id/button_top_left"
         android:layout_width="0dp"
@@ -87,74 +136,63 @@
         android:textColor="@android:color/white"
         android:layout_margin="8dp"
         android:textSize="16sp"
+        android:backgroundTint="#0D5C63"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical"
         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal"
         app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintVertical_bias="0.3"
-        android:background="@drawable/button_background"
-         />
 
-    <!-- Top Right Button -->
+         />
+    <!-- Top Left Button -->
     <Button
         android:id="@+id/button_top_right"
         android:layout_width="0dp"
-
         android:layout_height="0dp"
-        android:text="Habit not set!     Click to set!"
         android:layout_margin="8dp"
+        android:backgroundTint="#0D5C63"
+        android:text="Habit not set!     Click to set!"
+        android:textColor="@android:color/white"
         android:textSize="16sp"
-        android:backgroundTint="#C5D8D1"
-        android:fontFamily="@font/alata"
-        android:textColor="#0D5C63"
-        app:strokeColor="#0D5C63"
-        app:strokeWidth="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/guideline_vertical"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal"
-        app:layout_constraintHorizontal_bias="0.7"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintVertical_bias="0.8" />
 
-    <!-- Bottom Left Button -->
+    <!-- Bottom Right Button -->
     <Button
         android:id="@+id/button_bottom_left"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Habit not set!     Click to set!"
-        android:backgroundTint="#C5D8D1"
-        android:fontFamily="@font/alata"
-        android:textColor="#0D5C63"
-        app:strokeColor="#0D5C63"
-        app:strokeWidth="1dp"
         android:layout_margin="8dp"
+        android:backgroundTint="#0D5C63"
+        android:text="Habit not set!     Click to set!"
+        android:textColor="@android:color/white"
         android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom_button"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/guideline_horizontal"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom_button"
-        app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintVertical_bias="0.7" />
-
-    <!-- Bottom Right Button -->
+        app:layout_constraintVertical_bias="0.0" />
+    <!-- Bottom Left Button -->
     <Button
         android:id="@+id/button_bottom_right"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Habit not set!     Click to set!"
-        android:backgroundTint="#C5D8D1"
-        android:fontFamily="@font/alata"
-        android:textColor="#0D5C63"
-        app:strokeColor="#0D5C63"
-        app:strokeWidth="1dp"
         android:layout_margin="8dp"
+        android:backgroundTint="#0D5C63"
+        android:text="Habit not set!     Click to set!"
+        android:textColor="@android:color/white"
         android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.7"
         app:layout_constraintStart_toEndOf="@+id/guideline_vertical"
         app:layout_constraintTop_toBottomOf="@+id/guideline_horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom_button"
-        app:layout_constraintHorizontal_bias="0.7"
         app:layout_constraintVertical_bias="0.7" />
 
     <!-- Small Button at the Bottom Right -->
@@ -163,12 +201,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Small Button"
-        android:textColor="@android:color/white"
-        android:background="#0D5C63"
+        android:textColor="#0D5C63"
         android:textSize="12sp"
+        android:backgroundTint="#C5D8D1"
+        android:fontFamily="@font/alata"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_margin="16dp"/>
+        android:layout_marginBottom="120dp"
+        android:layout_marginEnd="30dp"
+        app:strokeColor="#0D5C63"
+        app:strokeWidth="1dp"
+        />
 
     <!-- Vertical Guideline -->
     <androidx.constraintlayout.widget.Guideline
@@ -184,7 +227,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.47" />
+        app:layout_constraintGuide_percent="0.4610123" />
 
     <!-- Guideline for Bottom Buttons -->
     <androidx.constraintlayout.widget.Guideline
@@ -192,7 +235,160 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_percent="0.8508892" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        android:background="#C5D8D1">
+
+        <RelativeLayout
+            android:id="@+id/home"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/roundedstyle_w_colour"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="25dp"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="629dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="65dp"
+                android:fontFamily="@font/alata"
+                android:textAlignment="center"
+                android:textColor="#03256C"
+                android:text="Home"
+                android:textSize="15dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="10dp"
+                app:srcCompat="@drawable/home_icon" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/friendlist"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/roundedstyle_w_colour"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="155dp"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="629dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="65dp"
+                android:fontFamily="@font/alata"
+                android:textAlignment="center"
+                android:textColor="#03256C"
+                android:text="Friends"
+                android:textSize="15dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="10dp"
+                app:srcCompat="@drawable/friend_icon"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/account"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/roundedstyle_w_colour"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="290dp"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="629dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="65dp"
+                android:fontFamily="@font/alata"
+                android:textAlignment="center"
+                android:textColor="#03256C"
+                android:text="Account"
+                android:textSize="15dp" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="10dp"
+                app:srcCompat="@drawable/person_icon" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
