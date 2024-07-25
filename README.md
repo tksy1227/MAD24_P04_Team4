@@ -55,6 +55,8 @@ App Features [Stage 1]:
 There will be a landing page designed to help users navigate the app easily.
 Concepts used: Persistent Memory, Layout Manager
 Feature done by: Marissa
+   ![login-page](repo_images/login-page.png)
+   ![create-new-account](repo_images/create-new-account.png)
 
 2. Chat & Messaging - Send and receive text messages and images between friends
 Concepts used: RecyclerView, Persistent Memory, Layout Manager
@@ -67,6 +69,8 @@ Feature done by: Jacob
 4. Timer - Keep track of time when doing tasks
 Concepts used: CountdownTimer, RecyclerView, Persistent Memory, Layout Management, MediaPlayer, Vibration
 Feature done by: Chloe
+   ![timer-page](repo_images/timer.png)
+![timer-history](repo_images/timer-history.png)
 
 5. To-Do List - Organize their to-do tasks for the day
 Concepts used: Linear Layout, Persistent Memory
@@ -95,10 +99,11 @@ Concepts used: Persistent Memory, MPAndroidChart, Recycler View
 New concepts used: MPAndroidChart
 Feature/Enhancement done by: Jacob
 
-4. Timer Enhancement & Widget - Allow users to access the feature outside of the app through a widget
-Concepts used: CountdownTimer, RecyclerView, Databases, Widget
-New concepts used: Widget
-Feature/Enhancement done by: Chloe
+4. Timer Enhancement & Widget - Allow users to access the feature outside of the app through a widget.
+   Concepts used: CountdownTimer, RecyclerView, Databases, Widget
+   New concepts used: Widget
+   Feature/Enhancement done by: Chloe
+   ![widget](repo_images/widget.png)
 
 5. Calendar - Allow users to view and track their schedule easily.
 Concepts used: Nested RecyclerView, Persistent Memory, Widget
@@ -108,7 +113,8 @@ Feature/Enhancement done by: Shida
 6. Feedback feature -  Allow users to send feedback to the app developers, and the developers will
 receive the feedback in the form of an email sent to their email account.
 Concepts used: Firebase Realtime Database, User Interface Components, Event Handling, Firebase Operations,
-New concepts used: Google Apps Script, HTTP request (API getter to retrieve data), Email Sending
+New concepts used: Google Apps Script, HTTP request (API getter to retrieve data), Automatic Email Sending
+   ![feedback](repo_images/feedback.png)
 
 ---------------------------------------------------------------->
 App Aesthetics Information:
@@ -127,4 +133,11 @@ Colour Wheel & colours used:
 #0D5C63
 #C5D8D1
 #78CDD7
+
+Notes:
+- We have chosen for the app to be locked in Portrait Mode to provide optimal user experience.
+- For each feature, we have implemented the '?' feature for users to click on. This displays instructions
+on how to use the feature.
+- The feedback feature has been coded for the developer to receive legitimate emails whenever a user sends
+feedback through the app. The developer will receive the email via gmail within a few minutes.
 ---------------------------------------------------------------->
