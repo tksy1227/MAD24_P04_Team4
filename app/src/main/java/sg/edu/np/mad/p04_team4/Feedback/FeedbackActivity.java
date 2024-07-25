@@ -58,7 +58,7 @@ public class FeedbackActivity extends AppCompatActivity {
             }
         });
     }
-
+// buttonSendFeedback
     private void showConfirmationDialog() {
         new AlertDialog.Builder(this)
                 .setTitle("Feedback Sent")
@@ -79,5 +79,6 @@ public class FeedbackActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> {
                     Toast.makeText(FeedbackActivity.this, "Failed to send feedback", Toast.LENGTH_SHORT).show();
                 });
+
     }
 }
