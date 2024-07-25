@@ -8,79 +8,49 @@
     android:background="#F4EDEA"
     tools:context="sg.edu.np.mad.p04_team4.HabitTracker.createHabit">
 
-    <!-- Background ImageViews -->
-    <ImageView
-        android:id="@+id/leafbackground1"
-        android:layout_width="333dp"
-        android:layout_height="328dp"
-        android:alpha="0.6"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.987"
-        app:srcCompat="@drawable/leaf_6" />
-
-    <ImageView
-        android:id="@+id/leafbackground2"
-        android:layout_width="196dp"
-        android:layout_height="198dp"
-        android:rotation="190"
-        android:alpha="0.6"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.097"
-        app:srcCompat="@drawable/leaf_6" />
-
     <!-- Toolbar -->
-
-    <!-- Habit Name -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#0D5C63"
-        android:backgroundTint="#0D5C63"
-        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="#0D5C63"
+        android:backgroundTint="#0D5C63">
 
         <TextView
             android:id="@+id/textViewToolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="8dp"
+            android:text="Create new Habit"
             android:fontFamily="@font/alata"
-            android:text="Create New Habit"
             android:textColor="@android:color/white"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <ImageButton
             android:id="@+id/backButton"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:layout_marginEnd="8dp"
-            android:background="?attr/selectableItemBackground"
-            android:contentDescription="Back"
-            android:padding="4dp"
             android:src="@drawable/ic_arrow_back"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="Back"
+            android:background="?attr/selectableItemBackground"
+            android:padding="4dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.appcompat.widget.Toolbar>
 
+    <!-- Habit Name -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutHabitName"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
