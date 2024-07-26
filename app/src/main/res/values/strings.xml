@@ -12,6 +12,9 @@
     </string-array>
     <string name="spinner_prompt">Select an option</string>
     <string name="send_sticker">Send Sticker</string>
+    <string name="theme_preview">Settings</string>
+    <string name="sticker_image">Sticker Image</string>
+    <string name="back_button">Sticker Image</string>
 
     <!-- change all texts in the layouts to be here to initialize the background changing-->
     <!-- layout xmls -->

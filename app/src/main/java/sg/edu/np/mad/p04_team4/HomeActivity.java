@@ -11,7 +11,6 @@ import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.content.SharedPreferences;
 
@@ -26,8 +25,8 @@ import sg.edu.np.mad.p04_team4.DailyLoginReward.ShopActivity;
 import sg.edu.np.mad.p04_team4.Feedback.FeedbackActivity;
 import sg.edu.np.mad.p04_team4.Friendship_Event.Friendship_Events;
 import sg.edu.np.mad.p04_team4.HabitTracker.selectHabit;
+import sg.edu.np.mad.p04_team4.Login.AccountActivity;
 import sg.edu.np.mad.p04_team4.ScreenTime.ScreenTimeService;
-import sg.edu.np.mad.p04_team4.ScreenTime.ScreenTime_Main;
 import sg.edu.np.mad.p04_team4.Timer.Stopwatch_Timer;
 import sg.edu.np.mad.p04_team4.ToDoList.MainActivity_TodoList;
 
@@ -94,22 +93,10 @@ public class HomeActivity extends AppCompatActivity {
         String userId = currentUser.getUid();
         Log.d(TAG, "User is authenticated: " + userId);
 
-        // Check if the daily reward dialog has been shown today
-        SharedPreferences prefs = getSharedPreferences("DailyRewardPrefs", MODE_PRIVATE);
-        long lastShownTime = prefs.getLong(userId + "_lastShownTime", 0);
-        Calendar today = Calendar.getInstance();
-        Calendar lastShown = Calendar.getInstance();
-        lastShown.setTimeInMillis(lastShownTime);
-
-        if (!isSameDay(lastShown, today)) {
-            // Show the Daily Login Reward Dialog
+        // Check if the daily reward dialog should be shown
+        if (DailyRewardDialogFragment.shouldShowReward(this)) {
             DailyRewardDialogFragment dailyRewardDialogFragment = new DailyRewardDialogFragment();
             dailyRewardDialogFragment.show(getSupportFragmentManager(), "DailyRewardDialog");
-
-            // Update the last shown time
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putLong(userId + "_lastShownTime", today.getTimeInMillis());
-            editor.apply();
         }
 
         // Set Click Listener for the "Message your friends!" layout

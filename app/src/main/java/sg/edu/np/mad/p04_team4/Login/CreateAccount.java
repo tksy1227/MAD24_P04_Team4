@@ -16,12 +16,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import sg.edu.np.mad.p04_team4.HomeActivity;
 import sg.edu.np.mad.p04_team4.R;
+
 
 public class CreateAccount extends AppCompatActivity {
 
@@ -57,14 +56,17 @@ public class CreateAccount extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         if (passwordShowing) {
+                            // Hide the password
                             passwordShowing = false;
                             tvPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                             btnHideIcon.setImageResource(R.drawable.hide_icon);
                         } else {
+                            // Show the password
                             passwordShowing = true;
                             tvPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
                             btnHideIcon.setImageResource(R.drawable.unhide_icon);
                         }
+                        // Move cursor to the end of the password text
                         tvPassword.setSelection(tvPassword.length());
                     }
                 });
@@ -77,30 +79,15 @@ public class CreateAccount extends AppCompatActivity {
                     Toast.makeText(CreateAccount.this, "Please fill out all fields.", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                else {
+                    // Move to OTP Page
+                    Intent intent = new Intent(CreateAccount.this, CreateAccountOTPActivity.class);
+                    intent.putExtra("name", name);
+                    intent.putExtra("phone number", phone);
+                    intent.putExtra("password", password);
 
-                mAuth.createUserWithEmailAndPassword(phone + "@example.com", password) // Using phone as part of email
-                        .addOnCompleteListener(CreateAccount.this, task -> {
-                            if (task.isSuccessful()) {
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                String userId = user.getUid();
-                                User newUser = new User(userId, name, password, phone); // Ensure phone is stored
-
-                                // Store user with phone field in database
-                                mDatabase.child("users").child(userId).setValue(newUser)
-                                        .addOnCompleteListener(task1 -> {
-                                            if (task1.isSuccessful()) {
-                                                Intent intent = new Intent(CreateAccount.this, HomeActivity.class);
-                                                startActivity(intent);
-                                                finish();
-                                                Toast.makeText(CreateAccount.this, "Account created successfully.", Toast.LENGTH_SHORT).show();
-                                            } else {
-                                                Toast.makeText(CreateAccount.this, "Database error: " + task1.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-                            } else {
-                                Toast.makeText(CreateAccount.this, "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                    startActivity(intent);
+                }
             }
         });
 

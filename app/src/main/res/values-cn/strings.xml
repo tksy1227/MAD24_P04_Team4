@@ -12,6 +12,10 @@
     </string-array>
     <string name="spinner_prompt">选个选项</string>
     <string name="send_sticker">发送贴纸</string>
+    <string name="theme_preview">设置</string>
+    <string name="sticker_image">贴纸图像</string>
+    <string name="back_button">返回</string>
+
 
     <!-- change all texts in the layouts to be here to initialize the background changing-->
     <!-- layout xmls -->

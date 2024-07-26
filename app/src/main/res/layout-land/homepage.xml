@@ -20,6 +20,18 @@
         app:title=""
         app:titleTextColor="@android:color/white" />
 
+    <TextView
+        android:id="@+id/change_theme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="608dp"
+        android:text="Change Theme"
+        android:textColor="#C5D8D1"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:layout_width="204dp"
         android:layout_height="214dp"

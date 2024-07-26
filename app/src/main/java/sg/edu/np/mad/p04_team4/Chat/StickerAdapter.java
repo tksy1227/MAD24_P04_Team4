@@ -1,35 +1,35 @@
 package sg.edu.np.mad.p04_team4.Chat;
 
 import android.content.Context;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
-
 import sg.edu.np.mad.p04_team4.R;
 
 public class StickerAdapter extends RecyclerView.Adapter<StickerAdapter.StickerViewHolder> {
 
-    private List<String> stickerPaths;
+    private List<Uri> stickerPaths;
     private Context context;
     private OnStickerClickListener onStickerClickListener;
-    private static final int MULTIPLIER = 1000; // Multiplier to create a large list
+    private boolean isResourceId;
+    private static final String TAG = "StickerAdapter";
 
     public interface OnStickerClickListener {
-        void onStickerClick(String stickerPath);
+        void onStickerClick(Uri stickerPath);
     }
 
-    public StickerAdapter(List<String> stickerPaths, Context context, OnStickerClickListener onStickerClickListener) {
+    public StickerAdapter(List<Uri> stickerPaths, Context context, OnStickerClickListener onStickerClickListener, boolean isResourceId) {
         this.stickerPaths = stickerPaths;
         this.context = context;
         this.onStickerClickListener = onStickerClickListener;
+        this.isResourceId = isResourceId;
     }
 
     @NonNull
@@ -41,21 +41,26 @@ public class StickerAdapter extends RecyclerView.Adapter<StickerAdapter.StickerV
 
     @Override
     public void onBindViewHolder(@NonNull StickerViewHolder holder, int position) {
-        if (stickerPaths.isEmpty()) {
-            // Handle the case when there are no stickers
-            holder.stickerImageView.setImageResource(android.R.drawable.ic_menu_gallery); // Set a placeholder image
-            holder.itemView.setOnClickListener(null); // Disable the click listener
-            return;
+        Uri stickerUri = stickerPaths.get(position);
+        Log.d(TAG, "Loading sticker: " + stickerUri);
+
+        if (isResourceId) {
+            // Handle as URI using Picasso
+            Picasso.get().load(stickerUri).into(holder.stickerImageView);
+        } else {
+            // If it's not a resource ID, it should be handled as a URL
+            Picasso.get().load(stickerUri).into(holder.stickerImageView);
         }
-        int actualPosition = position % stickerPaths.size(); // Calculate actual position in original list
-        String stickerPath = stickerPaths.get(actualPosition);
-        Picasso.get().load(stickerPath).into(holder.stickerImageView);
-        holder.itemView.setOnClickListener(v -> onStickerClickListener.onStickerClick(stickerPath));
+
+        holder.itemView.setOnClickListener(v -> {
+            Log.d(TAG, "Sticker clicked: " + stickerUri);  // Log sticker click
+            onStickerClickListener.onStickerClick(stickerUri);
+        });
     }
 
     @Override
     public int getItemCount() {
-        return Integer.MAX_VALUE; // Return a very large number of items to create the illusion of infinite scrolling
+        return stickerPaths.size(); // Return the actual number of sticker paths
     }
 
     static class StickerViewHolder extends RecyclerView.ViewHolder {

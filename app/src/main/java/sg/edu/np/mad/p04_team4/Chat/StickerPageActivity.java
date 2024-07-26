@@ -1,5 +1,6 @@
 package sg.edu.np.mad.p04_team4.Chat;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,14 +20,16 @@ import java.util.ArrayList;
 import java.util.List;
 import sg.edu.np.mad.p04_team4.R;
 
-public class StickerPackActivity extends AppCompatActivity {
+public class StickerPageActivity extends AppCompatActivity {
 
-    private static final String TAG = "StickerPackActivity";
+    private static final String TAG = "StickerPageActivity";
     private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
+    private String userId;
+    private String chatRoomId;
     private RecyclerView stickerRecyclerView;
     private StickerAdapter stickerAdapter;
     private List<Uri> stickerPaths;
-    private DatabaseReference userStickerPacksRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,50 +37,41 @@ public class StickerPackActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sticker_page);
 
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user != null) {
-            userStickerPacksRef = FirebaseDatabase.getInstance().getReference("users").child(user.getUid()).child("purchasedStickerPacks");
-        }
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        userId = mAuth.getCurrentUser().getUid();
+
+        Intent intent = getIntent();
+        chatRoomId = intent.getStringExtra("chat_room_id");
 
         stickerRecyclerView = findViewById(R.id.stickerRecyclerView);
-        ImageView backArrow = findViewById(R.id.backArrow);
-
-        backArrow.setOnClickListener(v -> finish());
-
         stickerPaths = new ArrayList<>();
-        stickerAdapter = new StickerAdapter(stickerPaths, this, uri -> sendStickerMessage(uri), true);
-        stickerRecyclerView.setAdapter(stickerAdapter);
-        stickerRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        stickerAdapter = new StickerAdapter(stickerPaths, this, this::sendStickerMessage, true);
 
-        checkPurchasedStickerPacks();
+        stickerRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        stickerRecyclerView.setAdapter(stickerAdapter);
+
+        fetchPurchasedStickers();
     }
 
-    private void checkPurchasedStickerPacks() {
-        if (userStickerPacksRef == null) {
-            Log.e(TAG, "userStickerPacksRef is null.");
-            return;
-        }
-        userStickerPacksRef.addListenerForSingleValueEvent(new ValueEventListener() {
+    private void fetchPurchasedStickers() {
+        DatabaseReference userStickersRef = mDatabase.child("users").child(userId).child("purchasedStickerPacks");
+        userStickersRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    Log.d(TAG, "Purchased sticker packs found: " + dataSnapshot.getChildrenCount());
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        String packName = snapshot.getKey();
-                        Boolean isPurchased = snapshot.getValue(Boolean.class);
-                        Log.d(TAG, "Pack: " + packName + ", Purchased: " + isPurchased);
-                        if (Boolean.TRUE.equals(isPurchased)) {
-                            loadStickers(packName);
-                        }
+                stickerPaths.clear();
+                for (DataSnapshot packSnapshot : dataSnapshot.getChildren()) {
+                    boolean isPurchased = packSnapshot.getValue(Boolean.class);
+                    if (isPurchased) {
+                        String packName = packSnapshot.getKey();
+                        loadStickers(packName);
                     }
-                } else {
-                    Log.d(TAG, "No sticker packs purchased.");
                 }
+                stickerAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e(TAG, "Failed to check purchased sticker packs", databaseError.toException());
+                Log.e(TAG, "Failed to load user stickers", databaseError.toException());
             }
         });
     }
@@ -103,7 +97,6 @@ public class StickerPackActivity extends AppCompatActivity {
                 Log.e(TAG, "Unknown sticker pack: " + packName);
                 break;
         }
-        stickerAdapter.notifyDataSetChanged();
     }
 
     private void loadCatStickers() {
@@ -157,7 +150,7 @@ public class StickerPackActivity extends AppCompatActivity {
             String userId = user.getUid();
             long currentTime = System.currentTimeMillis();
             Message message = new StickerMessage(currentTime, currentTime, stickerUri.toString(), userId);
-            DatabaseReference userChatsRef = FirebaseDatabase.getInstance().getReference("chats").child(getIntent().getStringExtra("chat_room_id")).child("messages");
+            DatabaseReference userChatsRef = FirebaseDatabase.getInstance().getReference("chats").child(chatRoomId).child("messages");
             userChatsRef.push().setValue(message).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     Log.d(TAG, "Sticker message sent successfully");

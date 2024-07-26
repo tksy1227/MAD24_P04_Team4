@@ -147,6 +147,10 @@
             android:name=".HabitTracker.Chartview"
             android:exported="false"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Chat.StickerPageActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".Login.LoginActivity"

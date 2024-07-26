@@ -42,7 +42,7 @@ public class StickerPackDialogFragment extends DialogFragment {
     private DatabaseReference mDatabase;
     private RecyclerView stickerRecyclerView;
     private StickerAdapter stickerAdapter;
-    private List<String> stickerPaths;
+    private List<Uri> stickerPaths;
     private Button btnBuyStickerPack;
     private TextView coinAmountTextView;
     private LinearLayoutManager layoutManager;
@@ -52,12 +52,14 @@ public class StickerPackDialogFragment extends DialogFragment {
     private String chatRoomId;
     private int packCost;
     private int currentCoins;
+    private boolean isUserView;
 
-    public StickerPackDialogFragment(String packName, String userId, String chatRoomId, int packCost) {
+    public StickerPackDialogFragment(String packName, String userId, String chatRoomId, int packCost, boolean isUserView) {
         this.packName = packName;
         this.userId = userId;
         this.chatRoomId = chatRoomId;
         this.packCost = packCost;
+        this.isUserView = isUserView;
     }
 
     @Nullable
@@ -80,66 +82,66 @@ public class StickerPackDialogFragment extends DialogFragment {
 
         stickerPaths = new ArrayList<>();
         stickerAdapter = new StickerAdapter(stickerPaths, getContext(), url -> {
-            sendStickerMessage(url);
+            sendStickerMessage(url.toString());
             dismiss();
-        });
+        }, true);
 
         layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         stickerRecyclerView.setLayoutManager(layoutManager);
         stickerRecyclerView.setAdapter(stickerAdapter);
 
-        stickerRecyclerView.scrollToPosition(Integer.MAX_VALUE / 2);
-
-        stickerRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
-                    int lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
-
-                    if (firstVisibleItemPosition <= 1) {
-                        stickerRecyclerView.scrollToPosition(stickerAdapter.getItemCount() / 2);
-                    } else if (lastVisibleItemPosition >= stickerAdapter.getItemCount() - 2) {
-                        stickerRecyclerView.scrollToPosition(stickerAdapter.getItemCount() / 2);
-                    }
-                }
-            }
-        });
-
-        fetchStickersFromFirebase();
+        fetchUserCoins();
+        checkIfStickerPackPurchased();
 
         btnBuyStickerPack.setOnClickListener(v -> showPurchaseConfirmationDialog());
 
         return view;
     }
 
-    private void fetchStickersFromFirebase() {
-        DatabaseReference stickersRef = mDatabase.child("stickers").child(packName);
-        stickersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+    private void fetchUserCoins() {
+        DatabaseReference userCoinsRef = mDatabase.child("users").child(userId).child("friendCoins");
+        userCoinsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                stickerPaths.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    String stickerUrl = snapshot.getValue(String.class);
-                    stickerPaths.add(stickerUrl);
-                }
-                if (stickerPaths.isEmpty()) {
-                    loadLocalStickers();
+                Integer coins = dataSnapshot.getValue(Integer.class);
+                if (coins != null) {
+                    currentCoins = coins;
                 } else {
-                    stickerAdapter.notifyDataSetChanged();
+                    currentCoins = 0;
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e(TAG, "Failed to fetch stickers", databaseError.toException());
-                loadLocalStickers();
+                Log.e(TAG, "Failed to fetch coins", databaseError.toException());
             }
         });
     }
 
-    private void loadLocalStickers() {
+    private void checkIfStickerPackPurchased() {
+        DatabaseReference userPacksRef = mDatabase.child("users").child(userId).child("purchasedStickerPacks").child(packName);
+        userPacksRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                boolean isPurchased = dataSnapshot.exists();
+                if (isPurchased) {
+                    Log.d(TAG, "Sticker pack " + packName + " is already purchased.");
+                    loadStickersFromPack();
+                    btnBuyStickerPack.setVisibility(View.GONE);
+                } else {
+                    Log.d(TAG, "Sticker pack " + packName + " is not purchased.");
+                    loadStickersFromPack();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e(TAG, "Failed to check sticker pack purchase status", databaseError.toException());
+            }
+        });
+    }
+
+    private void loadStickersFromPack() {
         switch (packName) {
             case "Cat Sticker Pack":
                 loadCatStickers();
@@ -160,6 +162,56 @@ public class StickerPackDialogFragment extends DialogFragment {
         }
     }
 
+    private void loadCatStickers() {
+        stickerPaths.add(getResourceUri(R.drawable.cat_angry));
+        stickerPaths.add(getResourceUri(R.drawable.cat_bored));
+        stickerPaths.add(getResourceUri(R.drawable.cat_crying));
+        stickerPaths.add(getResourceUri(R.drawable.cat_facepalm));
+        stickerPaths.add(getResourceUri(R.drawable.cat_happy));
+        stickerPaths.add(getResourceUri(R.drawable.cat_sleep));
+        stickerAdapter.notifyDataSetChanged();
+    }
+
+    private void loadDeadByDaylightStickers() {
+        stickerPaths.add(getResourceUri(R.drawable.claudette));
+        stickerPaths.add(getResourceUri(R.drawable.dwight));
+        stickerPaths.add(getResourceUri(R.drawable.ghostface));
+        stickerPaths.add(getResourceUri(R.drawable.legion));
+        stickerPaths.add(getResourceUri(R.drawable.sadako));
+        stickerAdapter.notifyDataSetChanged();
+    }
+
+    private void loadAlphaWolfStickers() {
+        stickerPaths.add(getResourceUri(R.drawable.wolf_grin));
+        stickerPaths.add(getResourceUri(R.drawable.wolf_growl));
+        stickerPaths.add(getResourceUri(R.drawable.wolf_howl));
+        stickerPaths.add(getResourceUri(R.drawable.wolf_pack));
+        stickerAdapter.notifyDataSetChanged();
+    }
+
+    private void loadMonkeyStickers() {
+        stickerPaths.add(getResourceUri(R.drawable.monkey_angry));
+        stickerPaths.add(getResourceUri(R.drawable.monkey_fp));
+        stickerPaths.add(getResourceUri(R.drawable.monkey_happy));
+        stickerPaths.add(getResourceUri(R.drawable.monkey_no));
+        stickerPaths.add(getResourceUri(R.drawable.monkey_yes));
+        stickerPaths.add(getResourceUri(R.drawable.monkey_sad));
+        stickerAdapter.notifyDataSetChanged();
+    }
+
+    private void loadSkibidiStickers() {
+        stickerPaths.add(getResourceUri(R.drawable.skibidi_angry));
+        stickerPaths.add(getResourceUri(R.drawable.skibidi_confused));
+        stickerPaths.add(getResourceUri(R.drawable.skibidi_happy));
+        stickerPaths.add(getResourceUri(R.drawable.skibidi_mindblown));
+        stickerPaths.add(getResourceUri(R.drawable.skibidi_sad));
+        stickerAdapter.notifyDataSetChanged();
+    }
+
+    private Uri getResourceUri(int resourceId) {
+        return Uri.parse("android.resource://" + getContext().getPackageName() + "/" + resourceId);
+    }
+
     private void showPurchaseConfirmationDialog() {
         new AlertDialog.Builder(getContext())
                 .setTitle("Make Purchase?")
@@ -174,33 +226,42 @@ public class StickerPackDialogFragment extends DialogFragment {
     }
 
     private void buyStickerPack() {
-        if (currentCoins >= packCost) {
-            currentCoins -= packCost;
-            DatabaseReference userCoinsRef = mDatabase.child("users").child(userId).child("friendCoins");
-            userCoinsRef.setValue(currentCoins).addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    savePurchasedStickerPack();
-                    coinAmountTextView.setText(String.valueOf(currentCoins));
-                    Toast.makeText(getContext(), "Sticker Pack Purchased!", Toast.LENGTH_SHORT).show();
+        DatabaseReference userCoinsRef = mDatabase.child("users").child(userId).child("friendCoins");
+        userCoinsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Integer currentCoins = dataSnapshot.getValue(Integer.class);
+                if (currentCoins != null && currentCoins >= packCost) {
+                    int newBalance = currentCoins - packCost;
+                    userCoinsRef.setValue(newBalance).addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            savePurchasedStickerPack();
+                            ((ShopActivity) getActivity()).updateCoinDisplay(newBalance); // Update coin display
+                            Toast.makeText(getContext(), "Sticker Pack Purchased!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Log.e(TAG, "Failed to update coins", task.getException());
+                            Toast.makeText(getContext(), "Purchase failed, please try again.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 } else {
-                    Log.e(TAG, "Failed to update coins", task.getException());
-                    Toast.makeText(getContext(), "Purchase failed, please try again.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Not enough coins to buy this sticker pack", Toast.LENGTH_SHORT).show();
                 }
-            });
-        } else {
-            Toast.makeText(getContext(), "Not enough coins to buy this sticker pack", Toast.LENGTH_SHORT).show();
-        }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e(TAG, "Failed to fetch coins", databaseError.toException());
+            }
+        });
     }
 
     private void savePurchasedStickerPack() {
         DatabaseReference userPacksRef = mDatabase.child("users").child(userId).child("purchasedStickerPacks").child(packName);
-        Map<String, Object> stickerPack = new HashMap<>();
-        for (String stickerPath : stickerPaths) {
-            stickerPack.put(stickerPath, true);  // Store sticker paths with a boolean to indicate ownership
-        }
-        userPacksRef.setValue(stickerPack).addOnCompleteListener(task -> {
+        userPacksRef.setValue(true).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Log.d(TAG, "Sticker pack saved to user's purchased packs");
+                btnBuyStickerPack.setVisibility(View.GONE);
+                loadStickersFromPack(); // Display stickers after purchase
             } else {
                 Log.e(TAG, "Failed to save sticker pack", task.getException());
             }
@@ -212,55 +273,5 @@ public class StickerPackDialogFragment extends DialogFragment {
         if (chatDetailActivity != null) {
             chatDetailActivity.sendStickerMessage(stickerPath);
         }
-    }
-
-    private void loadCatStickers() {
-        stickerPaths.add(getResourceUri(R.drawable.cat_angry).toString());
-        stickerPaths.add(getResourceUri(R.drawable.cat_bored).toString());
-        stickerPaths.add(getResourceUri(R.drawable.cat_crying).toString());
-        stickerPaths.add(getResourceUri(R.drawable.cat_facepalm).toString());
-        stickerPaths.add(getResourceUri(R.drawable.cat_happy).toString());
-        stickerPaths.add(getResourceUri(R.drawable.cat_sleep).toString());
-        stickerAdapter.notifyDataSetChanged();
-    }
-
-    private void loadDeadByDaylightStickers() {
-        stickerPaths.add(getResourceUri(R.drawable.claudette).toString());
-        stickerPaths.add(getResourceUri(R.drawable.dwight).toString());
-        stickerPaths.add(getResourceUri(R.drawable.ghostface).toString());
-        stickerPaths.add(getResourceUri(R.drawable.legion).toString());
-        stickerPaths.add(getResourceUri(R.drawable.sadako).toString());
-        stickerAdapter.notifyDataSetChanged();
-    }
-
-    private void loadAlphaWolfStickers() {
-        stickerPaths.add(getResourceUri(R.drawable.wolf_grin).toString());
-        stickerPaths.add(getResourceUri(R.drawable.wolf_growl).toString());
-        stickerPaths.add(getResourceUri(R.drawable.wolf_howl).toString());
-        stickerPaths.add(getResourceUri(R.drawable.wolf_pack).toString());
-        stickerAdapter.notifyDataSetChanged();
-    }
-
-    private void loadMonkeyStickers() {
-        stickerPaths.add(getResourceUri(R.drawable.monkey_angry).toString());
-        stickerPaths.add(getResourceUri(R.drawable.monkey_fp).toString());
-        stickerPaths.add(getResourceUri(R.drawable.monkey_happy).toString());
-        stickerPaths.add(getResourceUri(R.drawable.monkey_no).toString());
-        stickerPaths.add(getResourceUri(R.drawable.monkey_yes).toString());
-        stickerPaths.add(getResourceUri(R.drawable.monkey_sad).toString());
-        stickerAdapter.notifyDataSetChanged();
-    }
-
-    private void loadSkibidiStickers() {
-        stickerPaths.add(getResourceUri(R.drawable.skibidi_angry).toString());
-        stickerPaths.add(getResourceUri(R.drawable.skibidi_confused).toString());
-        stickerPaths.add(getResourceUri(R.drawable.skibidi_happy).toString());
-        stickerPaths.add(getResourceUri(R.drawable.skibidi_mindblown).toString());
-        stickerPaths.add(getResourceUri(R.drawable.skibidi_sad).toString());
-        stickerAdapter.notifyDataSetChanged();
-    }
-
-    private Uri getResourceUri(int resourceId) {
-        return Uri.parse("android.resource://" + getContext().getPackageName() + "/" + resourceId);
     }
 }

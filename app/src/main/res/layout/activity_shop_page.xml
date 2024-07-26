@@ -32,6 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Shop"
+                android:fontFamily="@font/alata"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
@@ -71,6 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Stickers"
+            android:fontFamily="@font/alata"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginTop="16dp"
@@ -92,8 +94,9 @@
                 <Button
                     android:id="@+id/btnSticker1"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="65dp"
                     android:text="Cat Pack"
+                    android:fontFamily="@font/alata"
                     android:textSize="16sp"
                     android:background="@drawable/rounded_button"
                     android:textColor="@android:color/white" />
@@ -129,8 +132,9 @@
                 <Button
                     android:id="@+id/btnSticker2"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="65dp"
                     android:text="Monkey Pack"
+                    android:fontFamily="@font/alata"
                     android:textSize="16sp"
                     android:background="@drawable/rounded_button"
                     android:textColor="@android:color/white" />
@@ -166,8 +170,9 @@
                 <Button
                     android:id="@+id/btnSticker3"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="65dp"
                     android:text="Emoji Pack"
+                    android:fontFamily="@font/alata"
                     android:textSize="16sp"
                     android:background="@drawable/rounded_button"
                     android:textColor="@android:color/white" />
@@ -203,8 +208,9 @@
                 <Button
                     android:id="@+id/btnSticker4"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="65dp"
                     android:text="Beast Pack"
+                    android:fontFamily="@font/alata"
                     android:textSize="16sp"
                     android:background="@drawable/rounded_button"
                     android:textColor="@android:color/white" />
@@ -240,8 +246,9 @@
                 <Button
                     android:id="@+id/btnSticker5"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="65dp"
                     android:text="Skibidi Pack"
+                    android:fontFamily="@font/alata"
                     android:textSize="16sp"
                     android:background="@drawable/rounded_button"
                     android:textColor="@android:color/white" />
@@ -277,8 +284,9 @@
                 <Button
                     android:id="@+id/btnSticker6"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="65dp"
                     android:text="DBD Pack"
+                    android:fontFamily="@font/alata"
                     android:textSize="16sp"
                     android:background="@drawable/rounded_button"
                     android:textColor="@android:color/white" />
@@ -309,6 +317,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Background Themes"
+            android:fontFamily="@font/alata"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginTop="24dp"
@@ -330,8 +339,9 @@
                 <Button
                     android:id="@+id/btnTheme1"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:text="Theme 1"
+                    android:layout_height="65dp"
+                    android:text="Fluid Harmony"
+                    android:fontFamily="@font/alata"
                     android:textSize="16sp"
                     android:background="@drawable/rounded_button"
                     android:textColor="@android:color/white" />
@@ -367,8 +377,9 @@
                 <Button
                     android:id="@+id/btnTheme2"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:text="Theme 2"
+                    android:layout_height="65dp"
+                    android:text="Blue Blossom"
+                    android:fontFamily="@font/alata"
                     android:textSize="16sp"
                     android:background="@drawable/rounded_button"
                     android:textColor="@android:color/white" />
@@ -404,8 +415,9 @@
                 <Button
                     android:id="@+id/btnTheme3"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:text="Theme 3"
+                    android:layout_height="65dp"
+                    android:text="Playful Safari"
+                    android:fontFamily="@font/alata"
                     android:textSize="16sp"
                     android:background="@drawable/rounded_button"
                     android:textColor="@android:color/white" />
@@ -436,6 +448,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Banner"
+            android:fontFamily="@font/alata"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginTop="24dp"
@@ -450,8 +463,9 @@
             <Button
                 android:id="@+id/btnBanner"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="65dp"
                 android:text="Buy Banner"
+                android:fontFamily="@font/alata"
                 android:textSize="16sp"
                 android:background="@drawable/rounded_button"
                 android:textColor="@android:color/white" />

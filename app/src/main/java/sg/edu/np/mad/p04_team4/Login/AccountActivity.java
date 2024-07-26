@@ -1,4 +1,4 @@
-package sg.edu.np.mad.p04_team4;
+package sg.edu.np.mad.p04_team4.Login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import sg.edu.np.mad.p04_team4.Login.ForgetUserActivity;
+import sg.edu.np.mad.p04_team4.R;
 
 public class AccountActivity extends AppCompatActivity {
 
@@ -50,7 +50,7 @@ public class AccountActivity extends AppCompatActivity {
         Intent ForgetPassword = new Intent(AccountActivity.this, ForgetUserActivity.class);
 
         RelativeLayout AccountDetailsRL = findViewById(R.id.AccountDetails);
-        //Intent AccountDetails = new Intent (AccountActivity.this, AccntDetailActivity.class);
+        Intent AccountDetails = new Intent (AccountActivity.this, AccntDetailActivity.class);
 
     }
 }

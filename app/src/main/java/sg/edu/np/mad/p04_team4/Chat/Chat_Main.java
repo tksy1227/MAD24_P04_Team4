@@ -10,13 +10,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,14 +22,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
-
 import sg.edu.np.mad.p04_team4.R;
 
 public class Chat_Main extends AppCompatActivity {
@@ -45,6 +41,7 @@ public class Chat_Main extends AppCompatActivity {
     private EditText editTextMessage; // EditText for message input
     private Button buttonSend; // Button to send message
     private ImageButton buttonSelectImage; // Button to select image
+    private ImageButton buttonSelectSticker; // Button to select sticker
     private ImageButton backButton; // Button to go back
     private LinearLayout extendedAttachmentLayout; // Layout for extended attachment options
 
@@ -73,6 +70,7 @@ public class Chat_Main extends AppCompatActivity {
         editTextMessage = findViewById(R.id.editTextMessage);
         buttonSend = findViewById(R.id.buttonSend);
         buttonSelectImage = findViewById(R.id.buttonSelectImage);
+        buttonSelectSticker = findViewById(R.id.buttonSelectSticker); // Initialize sticker button
         backButton = findViewById(R.id.backButton); // Ensure this ID exists in your layout
         extendedAttachmentLayout = findViewById(R.id.messageInputLayout); // Extended layout
 
@@ -83,46 +81,22 @@ public class Chat_Main extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Set Click Listener for Send Button
-        buttonSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "Send button clicked");
-                sendMessage();
-            }
-        });
+        buttonSend.setOnClickListener(v -> sendMessage());
 
         // Set Click Listener for Select Image Button
-        buttonSelectImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "Select Image button clicked");
-                toggleAttachmentOptions();
-            }
+        buttonSelectImage.setOnClickListener(v -> openImagePicker());
+
+        // Set Click Listener for Select Sticker Button
+        buttonSelectSticker.setOnClickListener(v -> {
+            // Open StickerPackActivity and pass necessary data
+            Intent intent = new Intent(Chat_Main.this, StickerPackActivity.class);
+            intent.putExtra("packName", "Cat Sticker Pack"); // Replace with the actual pack name if needed
+            intent.putExtra("chat_room_id", chatRoomId); // Pass the chat room ID
+            startActivity(intent);
         });
 
         // Set Click Listener for Back Button
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
-        // Set Click Listener for Attach Image Button
-        findViewById(R.id.buttonSelectImage).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openImagePicker();
-            }
-        });
-
-        // Set Click Listener for Attach Sticker Button
-        findViewById(R.id.buttonSelectSticker).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle sticker attachment
-            }
-        });
+        backButton.setOnClickListener(v -> onBackPressed());
 
         // Ensure Firebase is initialized and a user is signed in
         ensureUserSignedIn(chatRoomId);
@@ -137,7 +111,7 @@ public class Chat_Main extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             Log.d(TAG, "User is already signed in");
-            userChatsRef = FirebaseDatabase.getInstance().getReference("users").child(user.getUid()).child("chats").child(chatRoomId).child("messages");
+            userChatsRef = FirebaseDatabase.getInstance().getReference("chats").child(chatRoomId).child("messages");
             loadMessages();
             updateLastSeenTime(chatRoomId);
             displayLastSeenTime(chatRoomId);
@@ -173,13 +147,13 @@ public class Chat_Main extends AppCompatActivity {
 
     private void updateChatLastInteractedTime(long time) {
         String chatRoomId = getIntent().getStringExtra("chat_room_id");
-        DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("users").child(mAuth.getCurrentUser().getUid()).child("chats").child(chatRoomId);
+        DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("chats").child(chatRoomId);
         chatRef.child("time").setValue(String.valueOf(time));
     }
 
     private void updateLastSeenTime(String chatRoomId) {
         long currentTime = System.currentTimeMillis();
-        DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("users").child(mAuth.getCurrentUser().getUid()).child("chats").child(chatRoomId);
+        DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("chats").child(chatRoomId);
         chatRef.child("lastSeen").setValue(currentTime);
     }
 
@@ -210,7 +184,7 @@ public class Chat_Main extends AppCompatActivity {
     }
 
     private void displayLastSeenTime(String chatRoomId) {
-        DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("users").child(mAuth.getCurrentUser().getUid()).child("chats").child(chatRoomId).child("lastSeen");
+        DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("chats").child(chatRoomId).child("lastSeen");
         chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -248,6 +222,8 @@ public class Chat_Main extends AppCompatActivity {
                             message = snapshot.getValue(TextMessage.class);
                         } else if ("image".equals(messageType)) {
                             message = snapshot.getValue(ImageMessage.class);
+                        } else if ("sticker".equals(messageType)) {
+                            message = snapshot.getValue(StickerMessage.class);
                         } else {
                             Log.w(TAG, "Unknown message type: " + messageType);
                             continue; // Skip unknown message types

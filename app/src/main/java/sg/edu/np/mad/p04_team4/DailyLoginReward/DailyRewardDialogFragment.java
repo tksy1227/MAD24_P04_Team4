@@ -247,4 +247,3 @@ public class DailyRewardDialogFragment extends DialogFragment {
         }
     }
 }
-

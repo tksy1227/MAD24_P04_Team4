@@ -1,21 +1,17 @@
 package sg.edu.np.mad.p04_team4.Chat;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.firebase.auth.FirebaseAuth;
-
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
-
 import sg.edu.np.mad.p04_team4.R;
 
 public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -27,10 +23,11 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static final int VIEW_TYPE_STICKER_MESSAGE_SENT = 5;
     private static final int VIEW_TYPE_STICKER_MESSAGE_RECEIVED = 6;
 
-    private List<Message> messages; // List of messages
-    private Context context; // Context of the activity/fragment
+    private static final String TAG = "MessageAdapter";
 
-    // Constructor for the adapter, initializing the context and message list
+    private List<Message> messages;
+    private Context context;
+
     public MessageAdapter(List<Message> messages, Context context) {
         this.messages = messages;
         this.context = context;
@@ -89,48 +86,52 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemCount() {
-        return messages.size(); // Return the size of the message list
+        return messages.size();
     }
 
-    // ViewHolder class for text messages
     class TextMessageViewHolder extends RecyclerView.ViewHolder {
         TextView textViewMessage;
 
         TextMessageViewHolder(View itemView) {
             super(itemView);
-            textViewMessage = itemView.findViewById(R.id.textViewMessage); // Initialize the text view
+            textViewMessage = itemView.findViewById(R.id.textViewMessage);
         }
 
         void bind(TextMessage message, int viewType) {
-            textViewMessage.setText(message.getText()); // Set the text message
+            textViewMessage.setText(message.getText());
         }
     }
 
-    // ViewHolder class for image messages
     class ImageMessageViewHolder extends RecyclerView.ViewHolder {
         ImageView imageViewMessage;
 
         ImageMessageViewHolder(View itemView) {
             super(itemView);
-            imageViewMessage = itemView.findViewById(R.id.imageViewMessage); // Initialize the image view
+            imageViewMessage = itemView.findViewById(R.id.imageViewMessage);
         }
 
         void bind(ImageMessage message, int viewType) {
-            Picasso.get().load(message.getImageUrl()).into(imageViewMessage); // Load the image into the image view using Picasso
+            Picasso.get().load(message.getImageUrl()).into(imageViewMessage);
         }
     }
 
-    // ViewHolder class for sticker messages
     class StickerMessageViewHolder extends RecyclerView.ViewHolder {
         ImageView stickerImageView;
 
         StickerMessageViewHolder(View itemView) {
             super(itemView);
-            stickerImageView = itemView.findViewById(R.id.stickerImageView); // Initialize the sticker image view
+            stickerImageView = itemView.findViewById(R.id.stickerImageView);
         }
 
         void bind(StickerMessage message, int viewType) {
-            Picasso.get().load(message.getStickerUrl()).into(stickerImageView); // Load the sticker into the image view using Picasso
+            String stickerUrl = message.getStickerUrl();
+            Log.d(TAG, "Binding sticker message with URL: " + stickerUrl);
+
+            try {
+                Picasso.get().load(stickerUrl).into(stickerImageView);
+            } catch (Exception e) {
+                Log.e(TAG, "Error loading sticker: " + stickerUrl, e);
+            }
         }
     }
 }
