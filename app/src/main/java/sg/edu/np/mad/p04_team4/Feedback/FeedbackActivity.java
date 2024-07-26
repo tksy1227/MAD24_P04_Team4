@@ -32,6 +32,9 @@ public class FeedbackActivity extends AppCompatActivity {
         editTextFeedback = findViewById(R.id.editTextFeedback);
         Button buttonSendFeedback = findViewById(R.id.buttonSendFeedback);
 
+        Button helpButton = findViewById(R.id.helpButton);
+        helpButton.setOnClickListener(v -> showHelpDialog());
+
         buttonSendFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,5 +83,13 @@ public class FeedbackActivity extends AppCompatActivity {
                     Toast.makeText(FeedbackActivity.this, getString(R.string.unsuccessful_feedback), Toast.LENGTH_SHORT).show();
                 });
 
+    }
+
+    private void showHelpDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.Help));
+        builder.setMessage(getString(R.string.feedback_instructions));
+        builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
+        builder.show();
     }
 }

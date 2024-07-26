@@ -79,7 +79,7 @@
     <string name="Pause">Pause</string>
     <string name="Stop">Stop</string>
     <string name="Timer_History">Timer History</string>
-    <string name="create_challenge">Create challange here!</string>
+    <string name="create_challenge">Create challenge here!</string>
     <string name="Enter">Enter</string>
     <string name="Delete_All">Delete All</string>
     <string name="todo_list">To-Do List</string>
@@ -120,7 +120,7 @@
     <string name="OTP">OTP</string>
     <string name="enter_code">Please enter the code that we have sent to you.</string>
     <string name="Verify">Verify</string>
-    <string name="didnt_receive_otp">Didn\'t recieve OTP?</string>
+    <string name="didnt_receive_otp">Didn\'t receive OTP?</string>
     <string name="Resend">Resend</string>
     <string name="Your_Screen_Time">Your Screen Time</string>
     <string name="yest_screentime">Yesterday\'s Screen Time</string>
@@ -140,21 +140,35 @@
     <string name="successful_feedback">Your feedback has been sent successfully.\nThank you!</string>
     <string name="unsuccessful_feedback">Failed to send feedback</string>
     <string name="enter_ffeedback">Please enter feedback</string>
+    <string name="feedback_instructions">This is the feedback feature where you can send us your feedback!
+    1. Enter your feedback: Type your feedback in the textbox provided.
+    2. Send your feedback: When you\'re done, tap the "Send Feedback" button to send it to us!
+    3. Confirmation: If your feedback is successfully sent, you will see a pop-up stating "Feedback Sent", along
+    with a message indicating a successful feedback submission.
+    Thank you for your feedbacks! We will receive them within 1-2 working days.
+    If you have any questions. please contact support.</string>
     <!-- Stopwatch_Timer -->
     <string name="Help">Help</string>
-    <string name="timer_iinstructions">This is the timer feature where you can set and manage timers.\n\n
-                1. Set Alarm: Choose from the 3 pre-set timings or enter your own timing in HH:MM:SS format.\n
-                2. Set Alarm Purpose: Enter the purpose of your alarm.\n
-                3. Start Timer: Start,  pause, resume and stop your timer anytime.\n
-                4. Timer History: Go to Timer History to view all your previous timers.\n\n
+    <string name="timer_iinstructions">This is the timer feature where you can set and manage timers.
+                1. Set Alarm: Choose from the 3 pre-set timings or enter your own timing in HH:MM:SS format.
+                2. Set Alarm Purpose: Enter the purpose of your alarm.
+                3. Start Timer: Start,  pause, resume and stop your timer anytime.
+                4. Timer History: Go to Timer History to view all your previous timers.
                 If you have any questions, please contact support.</string>
     <string name="enter_time">Please enter time in HH:MM:SS format</string>
     <string name="enter_purpose">Please enter a purpose</string>
-    <string name="timer_running">Timer Running...</string>
+    <string name="timer_running">Timer Running…</string>
     <string name="timer_running2">Your timer is running.</string>
     <string name="time_left">Time left: </string>
     <string name="timer_finished">Timer Finished!</string>
     <string name="timer_finished2">Your timer is finished!</string>
     <string name="unsuccessful_log">Failed to log timer data.</string>
-
+    <!-- TimerWidgetProvider -->
+    <string name="set_timer_first">Set the timer first!</string>
+    <!-- TimerLogActivity -->
+    <string name="clear_all_timer">Clear All Timer History</string>
+    <string name="check_clear_all_timer">Are you sure you want to clear all timer history?</string>
+    <string name="check_delete">Are you sure you want to delete?</string>
+    <string name="check_yes">Yes</string>
+    <string name="check_no">No</string>
 </resources>

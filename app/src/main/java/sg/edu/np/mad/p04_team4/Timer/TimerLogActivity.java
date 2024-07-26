@@ -69,8 +69,8 @@ public class TimerLogActivity extends AppCompatActivity {
         deleteAllButton = findViewById(R.id.deleteAllButton);
         deleteAllButton.setOnClickListener(v -> {
             new AlertDialog.Builder(TimerLogActivity.this)
-                    .setTitle("Clear All Timer History")
-                    .setMessage("Are you sure you want to clear all timer history?")
+                    .setTitle(getString(R.string.clear_all_timer))
+                    .setMessage(getString(R.string.check_clear_all_timer))
                     .setPositiveButton(android.R.string.yes, (dialog, which) -> {
                         // Clear all items
                         timerAdapter.clearAllItems();
@@ -119,9 +119,9 @@ public class TimerLogActivity extends AppCompatActivity {
 
     private void showDeleteConfirmationDialog(final int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Are you sure you want to delete?");
-        builder.setPositiveButton("Yes", (dialog, which) -> deleteItem(position));
-        builder.setNegativeButton("No", (dialog, which) -> {
+        builder.setMessage(getString(R.string.check_delete));
+        builder.setPositiveButton(getString(R.string.check_yes), (dialog, which) -> deleteItem(position));
+        builder.setNegativeButton(getString(R.string.check_no), (dialog, which) -> {
             timerAdapter.notifyItemChanged(position);
             dialog.dismiss();
         });

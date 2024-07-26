@@ -35,7 +35,7 @@
     <string name="Chat_Name">聊天名称</string>
     <string name="Chat_Message">聊天消息</string>
     <string name="Chat_Time">日出茶太</string>
-    <string name="Your_Chats">你的聊天记录</string>
+    <string name="Your_Chats">您的聊天记录</string>
     <string name="Add_Chat">添加聊天</string>
     <string name="last_seen_6_minutes_ago">最后出现 6 分钟前</string>
     <string name="Type_a_message">输入消息</string>
@@ -123,7 +123,7 @@
     <string name="Verify">校验</string>
     <string name="didnt_receive_otp">没有收到OTP代码？</string>
     <string name="Resend">重发</string>
-    <string name="Your_Screen_Time">你的屏幕时间</string>
+    <string name="Your_Screen_Time">您的屏幕时间</string>
     <string name="yest_screentime">昨天的屏幕时间</string>
     <string name="today_screentime">今天的屏幕时间</string>
     <string name="Save_Habit">保存习惯</string>
@@ -135,5 +135,42 @@
     homepage (landscape) -> we probably don't need this
     -->
 
+    <!-- .java class files -->
+    <!-- FeedbackActivity -->
+    <string name="feedback_sent">已发送反馈</string>
+    <string name="successful_feedback">您的反馈已成功发送。\n谢谢！</string>
+    <string name="unsuccessful_feedback">发送反馈失败</string>
+    <string name="enter_ffeedback">请输入反馈意见</string>
+    <string name="feedback_instructions">这是反馈功能，您可以向我们发送您的反馈！
+    1. 输入您的反馈：在提供的文本框中输入您的反馈。
+    2. 发送您的反馈：完成后，点击“发送反馈”按钮将其发送给我们！
+    3. 确认：如果您的反馈成功发送，您将看到一个弹出窗口，显示“反馈已发送”，以及
+    并显示一条消息，表明反馈提交成功。
+    感谢您的反馈！我们将在 1-2 个工作日内收到。
+    如有任何问题。请联系支持人员。</string>
+    <!-- Stopwatch_Timer -->
+    <string name="Help">帮助</string>
+    <string name="timer_iinstructions">这是计时器功能，您可以在其中设置和管理计时器。\n\n
+                1. 设置闹钟：从 3 个预设时间中选择或以 HH:MM:SS 格式输入您自己的时间。\n
+                2. 设置警报目的：输入警报的目的。\n
+                3. 启动计时器：随时启动、暂停、恢复和停止计时器。\n
+                4. 计时器历史记录：转到计时器历史记录可查看您之前的所有计时器。\n\n
+                如果您有任何疑问，请联系支持人员。</string>
+    <string name="enter_time">请以 HH:MM:SS 格式输入时间</string>
+    <string name="enter_purpose">请输入目的</string>
+    <string name="timer_running">定时器运行…</string>
+    <string name="timer_running2">您的计时器正在运行。</string>
+    <string name="time_left">剩余时间：</string>
+    <string name="timer_finished">计时器完成！</string>
+    <string name="timer_finished2">您的计时器已完成！</string>
+    <string name="unsuccessful_log">无法记录计时器数据。</string>
+    <!-- TimerWidgetProvider -->
+    <string name="set_timer_first">先设置定时器！</string>
+    <!-- TimerLogActivity -->
+    <string name="clear_all_timer">清除所有计时器历史记录</string>
+    <string name="check_clear_all_timer">您确定要清除所有计时器历史记录吗？</string>
+    <string name="check_delete">您确定你要删除？</string>
+    <string name="check_yes">是</string>
+    <string name="check_no">否</string>
 </resources>
 
