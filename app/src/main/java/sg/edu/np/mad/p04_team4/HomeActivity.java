@@ -47,7 +47,7 @@ public class HomeActivity extends AppCompatActivity {
             screenTimeService = binder.getService();
             isBound = true;
         }
-
+//testing
         @Override
         public void onServiceDisconnected(ComponentName name) {
             isBound = false;
