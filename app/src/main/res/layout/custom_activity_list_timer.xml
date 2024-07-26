@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/alata"
-        android:text="Date"
+        android:text="@string/Date"
         android:textColor="#12236A" />
 
     <TextView
@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/alata"
-        android:text="Purpose"
+        android:text="@string/Purpose"
         android:textColor="#44A1A0"
         android:textSize="16sp"
         android:textStyle="italic" />

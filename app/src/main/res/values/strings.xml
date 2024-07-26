@@ -12,4 +12,145 @@
     </string-array>
     <string name="spinner_prompt">Select an option</string>
     <string name="send_sticker">Send Sticker</string>
+
+    <!-- change all texts in the layouts to be here to initialize the background changing-->
+    <!-- layout xmls -->
+    <string name="Name_of_User">Name of User</string>
+    <string name="Account">Account</string>
+    <string name="Change_Password">Change Password</string>
+    <string name="Account_Information">Account Information</string>
+    <string name="content_display">Content and Display</string>
+    <string name="Layout">Layout</string>
+    <string name="support_about">Support and About</string>
+    <string name="report_problem">Report a problem</string>
+    <string name="logout" translatable="false">LOG OUT OF ACCOUNT</string>
+    <string name="Chart_Title">Chart Title</string>
+    <string name="Other_Action">Other Action</string>
+    <string name="New_Button">New Button</string>
+    <string name="Add_Data">Add Data</string>
+    <string name="Chat_Name">Chat Name</string>
+    <string name="Chat_Message">Chat Message</string>
+    <string name="Chat_Time">Chat Time</string>
+    <string name="Your_Chats">Your Chats</string>
+    <string name="Add_Chat">Add Chat</string>
+    <string name="last_seen_6_minutes_ago">last seen 6 minutes ago</string>
+    <string name="Type_a_message">Type a message</string>
+    <string name="Send">Send</string>
+    <string name="Create_new_Habit">Create new Habit</string>
+    <string name="Habit_Name">Habit Name</string>
+    <string name="Habit_Description">Habit Description</string>
+    <string name="unit_of_measure">Unit of Measure (Pushups, Minutes etc.)</string>
+    <string name="Daily_log_in_reward">Daily log-in Reward</string>
+    <string name="login_daily_to">Log in daily to earn FriendCoins!</string>
+    <string name="Point_reward">Point reward</string>
+    <string name="FriendCoins">+20 FriendCoins</string>
+    <string name="Day_1">Day 1</string>
+    <string name="Day_2">Day 2</string>
+    <string name="Day_3">Day 3</string>
+    <string name="Day_4">Day 4</string>
+    <string name="Day_5">Day 5</string>
+    <string name="Day_6">Day 6</string>
+    <string name="Day_7">Day 7</string>
+    <string name="claim_today">Claim today\'s reward!</string>
+    <string name="Number_of_Pushups">Number of Pushups</string>
+    <string name="Save">Save</string>
+    <string name="Send_in_Feedback">Send in Feedback</string>
+    <string name="Send_Feedback">Send Feedback</string>
+    <string name="enter_feedback">Enter your feedback here</string>
+    <string name="Friendship_Events">Friendship Events</string>
+    <string name="Button">Button</string>
+    <string name="Average">Average</string>
+    <string name="Min">Min</string>
+    <string name="Max">Max</string>
+    <string name="Duration">Duration</string>
+    <string name="Date_Started">Date Started</string>
+    <string name="Last_Date_Entered">Last Date Entered</string>
+    <string name="habit_not_set">Habit not set\nClick to set!</string>
+    <string name="Home">Home</string>
+    <string name="Friends">Friends</string>
+    <string name="Small_Button">Small Button</string>
+    <string name="Timer">Timer</string>
+    <string name="stopwatch_purpose">Purpose of Timer?</string>
+    <string name="timer_instructions">Enter the time in the form of HH:MM:SS</string>
+    <string name="Start">Start</string>
+    <string name="Pause">Pause</string>
+    <string name="Stop">Stop</string>
+    <string name="Timer_History">Timer History</string>
+    <string name="create_challenge">Create challange here!</string>
+    <string name="Enter">Enter</string>
+    <string name="Delete_All">Delete All</string>
+    <string name="todo_list">To-Do List</string>
+    <string name="Add">Add</string>
+    <string name="Enter_Items">Enter Items</string>
+    <string name="Create_New_Account">Create New Account</string>
+    <string name="register">Already Registered?</string>
+    <string name="Login">Login</string>
+    <string name="Full_Name">Full Name</string>
+    <string name="Password">Password</string>
+    <string name="agree_to_toc">By continuing, you agree to our Term and Conditions and Privacy Policy.</string>
+    <string name="Sign_Up">Sign Up</string>
+    <string name="Date">Date</string>
+    <string name="Purpose">Purpose</string>
+    <string name="Forgot_Password">Forgot Password</string>
+    <string name="Create_New_Password">Create New Password</string>
+    <string name="Confirm_Your_Password">Confirm Your Password</string>
+    <string name="Change">Change</string>
+    <string name="enter_phone_no">Enter Phone Number :</string>
+    <string name="Phone_Number">Phone Number</string>
+    <string name="welcome">Welcome!</string>
+    <string name="Log_Out">Language</string>
+    <string name="Chats">Chats</string>
+    <string name="Fitness">Fitness</string>
+    <string name="Notepad">Notepad</string>
+    <string name="Calendar">Calendar</string>
+    <string name="Habits">Habits</string>
+    <string name="Reward">Rewards</string>
+    <string name="Feedback">Feedback</string>
+    <string name="Settings">Settings</string>
+    <string name="Last_Message">Last Message</string>
+    <string name="Time">Time</string>
+    <string name="Feature_Name">Feature Name</string>
+    <string name="Sample_message">Sample message</string>
+    <string name="sign_in_to_cont">Please sign in to continue.</string>
+    <string name="Forgot_Password_q">Forgot Password?</string>
+    <string name="no_acc">Don\'t have an account?</string>
+    <string name="OTP">OTP</string>
+    <string name="enter_code">Please enter the code that we have sent to you.</string>
+    <string name="Verify">Verify</string>
+    <string name="didnt_receive_otp">Didn\'t recieve OTP?</string>
+    <string name="Resend">Resend</string>
+    <string name="Your_Screen_Time">Your Screen Time</string>
+    <string name="yest_screentime">Yesterday\'s Screen Time</string>
+    <string name="today_screentime">Today\'s Screen Time</string>
+    <!-- xml that have not been entered in here yet:
+    activity_shop_page
+    activity_sticker_pack
+    dialog_sticker_pack
+    dialog_sticker_selection
+    homepage (landscape) -> we probably don't need this
+    -->
+
+    <!-- .java class files -->
+    <!-- FeedbackActivity -->
+    <string name="feedback_sent">Feedback Sent</string>
+    <string name="successful_feedback">Your feedback has been sent successfully.\nThank you!</string>
+    <string name="unsuccessful_feedback">Failed to send feedback</string>
+    <string name="enter_ffeedback">Please enter feedback</string>
+    <!-- Stopwatch_Timer -->
+    <string name="Help">Help</string>
+    <string name="timer_iinstructions">This is the timer feature where you can set and manage timers.\n\n
+                1. Set Alarm: Choose from the 3 pre-set timings or enter your own timing in HH:MM:SS format.\n
+                2. Set Alarm Purpose: Enter the purpose of your alarm.\n
+                3. Start Timer: Start,  pause, resume and stop your timer anytime.\n
+                4. Timer History: Go to Timer History to view all your previous timers.\n\n
+                If you have any questions, please contact support.</string>
+    <string name="enter_time">Please enter time in HH:MM:SS format</string>
+    <string name="enter_purpose">Please enter a purpose</string>
+    <string name="timer_running">Timer Running...</string>
+    <string name="timer_running2">Your timer is running.</string>
+    <string name="time_left">Time left: </string>
+    <string name="timer_finished">Timer Finished!</string>
+    <string name="timer_finished2">Your timer is finished!</string>
+    <string name="unsuccessful_log">Failed to log timer data.</string>
+
 </resources>

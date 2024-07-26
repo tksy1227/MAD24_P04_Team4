@@ -23,7 +23,7 @@
             android:id="@+id/textViewToolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Chart Title"
+            android:text="@string/Chart_Title"
             android:fontFamily="@font/alata"
             android:textColor="@android:color/white"
             android:textSize="20sp"
@@ -68,8 +68,9 @@
             android:id="@+id/editTextValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Number of Pushups"
+            android:hint="@string/Number_of_Pushups"
             android:inputType="number"
+            android:fontFamily="@font/alata"
             android:textColorHint="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -82,10 +83,13 @@
         android:layout_marginTop="24dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/black"
-        android:text="Save"
-        android:textColor="@android:color/white"
+        android:text="@string/Save"
+        android:backgroundTint="#C5D8D1"
+        android:fontFamily="@font/alata"
         android:textAllCaps="false"
+        android:textColor="#0D5C63"
+        app:strokeColor="#0D5C63"
+        app:strokeWidth="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputLayoutValue" />

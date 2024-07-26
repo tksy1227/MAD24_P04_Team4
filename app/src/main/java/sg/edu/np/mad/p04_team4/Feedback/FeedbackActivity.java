@@ -39,7 +39,7 @@ public class FeedbackActivity extends AppCompatActivity {
                 if (!feedback.isEmpty()) {
                     sendFeedback(feedback);
                 } else {
-                    Toast.makeText(FeedbackActivity.this, "Please enter feedback", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FeedbackActivity.this, getString(R.string.enter_ffeedback), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -61,8 +61,8 @@ public class FeedbackActivity extends AppCompatActivity {
 // buttonSendFeedback
     private void showConfirmationDialog() {
         new AlertDialog.Builder(this)
-                .setTitle("Feedback Sent")
-                .setMessage("Your feedback has been sent successfully.")
+                .setTitle(getString(R.string.feedback_sent))
+                .setMessage(getString(R.string.successful_feedback))
                 .setPositiveButton(android.R.string.ok, null)
                 .show();
     }
@@ -77,7 +77,7 @@ public class FeedbackActivity extends AppCompatActivity {
                     editTextFeedback.setText("");
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(FeedbackActivity.this, "Failed to send feedback", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FeedbackActivity.this, getString(R.string.unsuccessful_feedback), Toast.LENGTH_SHORT).show();
                 });
 
     }

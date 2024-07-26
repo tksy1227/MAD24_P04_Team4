@@ -118,13 +118,8 @@ public class Stopwatch_Timer extends AppCompatActivity {
 
     private void showHelpDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Help");
-        builder.setMessage("This is the timer feature where you can set and manage timers.\n\n" +
-                "1. Set Alarm: Choose from the 3 pre-set timings or enter your own timing in HH:MM:SS format.\n" +
-                "2. Set Alarm Purpose: Enter the purpose of your alarm.\n" +
-                "3. Start Timer: Start,  pause, resume and stop your timer anytime.\n"+
-                "4. Timer History: Go to Timer History to view all your previous timers.\n\n" +
-                "If you have any questions, please contact support.");
+        builder.setTitle(getString(R.string.Help));
+        builder.setMessage(getString(R.string.timer_iinstructions));
         builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
         builder.show();
     }
@@ -134,18 +129,18 @@ public class Stopwatch_Timer extends AppCompatActivity {
         String purpose = editTextPurpose.getText().toString();
 
         if (TextUtils.isEmpty(time)) {
-            editTextTime.setError("Please enter time in HH:MM:SS format");
+            editTextTime.setError(getString(R.string.enter_time));
             return;
         }
 
         if (TextUtils.isEmpty(purpose)) {
-            editTextPurpose.setError("Please enter a purpose");
+            editTextPurpose.setError(getString(R.string.enter_purpose));
             return;
         }
 
         String[] timeArray = time.split(":");
         if (timeArray.length != 3) {
-            editTextTime.setError("Please enter time in HH:MM:SS format");
+            editTextTime.setError(getString(R.string.enter_time));
             return;
         }
 
@@ -213,8 +208,8 @@ public class Stopwatch_Timer extends AppCompatActivity {
     private void startNotification() {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_timer)
-                .setContentTitle("Timer Running")
-                .setContentText("Your timer is running.")
+                .setContentTitle(getString(R.string.timer_running))
+                .setContentText(getString(R.string.timer_running2))
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setOngoing(true);
 
@@ -233,8 +228,8 @@ public class Stopwatch_Timer extends AppCompatActivity {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_timer)
-                .setContentTitle("Timer Running")
-                .setContentText("Time left: " + timeLeftFormatted)
+                .setContentTitle(getString(R.string.timer_running))
+                .setContentText(getString(R.string.time_left) + timeLeftFormatted)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setOngoing(true);
 
@@ -253,8 +248,8 @@ public class Stopwatch_Timer extends AppCompatActivity {
     private void showTimerFinishedNotification() {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_timer)
-                .setContentTitle("Timer Finished")
-                .setContentText("Your timer has finished.")
+                .setContentTitle(getString(R.string.timer_finished))
+                .setContentText(getString(R.string.timer_finished2))
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setAutoCancel(true);
 
@@ -278,7 +273,7 @@ public class Stopwatch_Timer extends AppCompatActivity {
         boolean isInserted = databaseHelper.insertTimerData(purpose, durationFormatted, endTime);
 
         if (!isInserted) {
-            Toast.makeText(this, "Failed to log timer data", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.unsuccessful_log), Toast.LENGTH_SHORT).show();
         }
     }
 

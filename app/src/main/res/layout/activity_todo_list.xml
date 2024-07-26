@@ -24,7 +24,7 @@
             android:id="@+id/textViewToolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="To-Do List"
+            android:text="@string/todo_list"
             android:fontFamily="@font/alata"
             android:textColor="@android:color/white"
             android:textSize="20sp"
@@ -56,7 +56,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
-            android:hint="Enter Items"
+            android:hint="@string/Enter_Items"
             android:fontFamily="@font/alata"
             android:padding="8dp"
             android:background="@android:drawable/editbox_background"
@@ -66,11 +66,12 @@
             android:id="@+id/button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Add"
-            android:fontFamily="@font/alata"
             android:layout_weight="1"
             android:background="@android:color/holo_blue_light"
-            android:textColor="@android:color/white"/>
+            android:fontFamily="@font/alata"
+            android:text="@string/Add"
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
     </LinearLayout>
 
     <ListView

@@ -94,7 +94,7 @@
             android:id="@+id/textViewToolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Chart Title"
+            android:text="@string/Chart_Title"
             android:fontFamily="@font/alata"
             android:textColor="@android:color/white"
             android:textSize="20sp"
@@ -143,7 +143,7 @@
                 android:id="@+id/textViewAverageTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Average"
+                android:text="@string/Average"
                 android:fontFamily="@font/alata"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
@@ -200,7 +200,7 @@
                     android:id="@+id/textViewMinTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Min"
+                    android:text="@string/Min"
                     android:fontFamily="@font/alata"
                     android:textColor="@android:color/black"
                     android:textSize="16sp" />
@@ -245,7 +245,7 @@
                     android:id="@+id/textViewMaxTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Max"
+                    android:text="@string/Max"
                     android:fontFamily="@font/alata"
                     android:textColor="@android:color/black"
                     android:textSize="16sp" />
@@ -297,7 +297,7 @@
                 android:id="@+id/textViewDurationTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Duration"
+                android:text="@string/Duration"
                 android:fontFamily="@font/alata"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
@@ -339,7 +339,7 @@
                 android:id="@+id/textViewDateStartedTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Date Started"
+                android:text="@string/Date_Started"
                 android:fontFamily="@font/alata"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
@@ -381,7 +381,7 @@
                 android:id="@+id/textViewLastDateEnteredTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Last Date Entered"
+                android:text="@string/Last_Date_Entered"
                 android:fontFamily="@font/alata"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />

@@ -95,7 +95,7 @@
                     android:id="@+id/status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="last seen 6 minutes ago"
+                    android:text="@string/last_seen_6_minutes_ago"
                     android:fontFamily="@font/alata"
                     android:textColor="@android:color/white"
                     android:textSize="14sp"/>
@@ -165,7 +165,7 @@
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
             android:background="@drawable/edit_text_background"
-            android:hint="Type a message"
+            android:hint="@string/Type_a_message"
             android:padding="8dp" />
 
         <ImageButton
@@ -195,7 +195,7 @@
             android:background="@drawable/send_button"
             android:fontFamily="@font/alata"
             android:padding="8dp"
-            android:text="Send"
+            android:text="@string/Send"
             android:textColor="#ffffff"
             app:strokeColor="#0D5C63"
             app:strokeWidth="1dp" />

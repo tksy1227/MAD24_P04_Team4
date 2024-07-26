@@ -9,7 +9,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Feature Name"
+        android:text="@string/Feature_Name"
         android:fontFamily="@font/alata"
         android:textSize="16sp"/>
 
@@ -17,7 +17,7 @@
         android:id="@+id/tvDuration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Duration"
+        android:text="@string/Duration"
         android:fontFamily="@font/alata"
         android:textSize="16sp"/>
 </LinearLayout>

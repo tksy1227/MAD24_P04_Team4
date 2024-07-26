@@ -102,7 +102,7 @@
             android:id="@+id/textViewToolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Chart Title"
+            android:text="@string/Chart_Title"
             android:fontFamily="@font/alata"
             android:textColor="@android:color/white"
             android:textSize="20sp"
@@ -132,7 +132,7 @@
         android:id="@+id/button_top_left"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Habit not set!     Click to set!"
+        android:text="@string/habit_not_set"
         android:textColor="@android:color/white"
         android:layout_margin="8dp"
         android:textSize="16sp"
@@ -152,7 +152,7 @@
         android:layout_height="0dp"
         android:layout_margin="8dp"
         android:backgroundTint="#0D5C63"
-        android:text="Habit not set!     Click to set!"
+        android:text="@string/habit_not_set"
         android:textColor="@android:color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal"
@@ -169,7 +169,7 @@
         android:layout_height="0dp"
         android:layout_margin="8dp"
         android:backgroundTint="#0D5C63"
-        android:text="Habit not set!     Click to set!"
+        android:text="@string/habit_not_set"
         android:textColor="@android:color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline_bottom_button"
@@ -185,7 +185,7 @@
         android:layout_height="0dp"
         android:layout_margin="8dp"
         android:backgroundTint="#0D5C63"
-        android:text="Habit not set!     Click to set!"
+        android:text="@string/habit_not_set"
         android:textColor="@android:color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline_bottom_button"
@@ -200,7 +200,7 @@
         android:id="@+id/button_small_bottom_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Small Button"
+        android:text="@string/Small_Button"
         android:textColor="#0D5C63"
         android:textSize="12sp"
         android:backgroundTint="#C5D8D1"
@@ -274,7 +274,7 @@
                 android:fontFamily="@font/alata"
                 android:textAlignment="center"
                 android:textColor="#03256C"
-                android:text="Home"
+                android:text="@string/Home"
                 android:textSize="15dp" />
 
             <ImageView
@@ -321,7 +321,7 @@
                 android:fontFamily="@font/alata"
                 android:textAlignment="center"
                 android:textColor="#03256C"
-                android:text="Friends"
+                android:text="@string/Friends"
                 android:textSize="15dp" />
 
             <ImageView
@@ -368,7 +368,7 @@
                 android:fontFamily="@font/alata"
                 android:textAlignment="center"
                 android:textColor="#03256C"
-                android:text="Account"
+                android:text="@string/Account"
                 android:textSize="15dp" />
 
             <ImageView

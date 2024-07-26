@@ -1,0 +1,134 @@
+<resources>
+    <string name="app_name">P04_Team4</string>
+    <string name="dummy_button">虚拟按钮</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="delete">删除</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="time_group_options">
+        <item>By Input</item>
+        <item>Sort by Week</item>
+        <item>Sort by Day of Week</item>
+        <item>Sort by Month</item>
+    </string-array>
+    <string name="spinner_prompt">选个选项</string>
+    <string name="send_sticker">发送贴纸</string>
+
+    <!-- change all texts in the layouts to be here to initialize the background changing-->
+    <!-- layout xmls -->
+    <string name="Name_of_User">用户名</string>
+    <string name="Account">帐户</string>
+    <string name="Change_Password">更改密码</string>
+    <string name="Account_Information">帐户信息</string>
+    <string name="content_display">内容与展示</string>
+    <string name="Layout">布局</string>
+    <string name="support_about">支持与关于</string>
+    <string name="report_problem">报告问题</string>
+    <string name="logout">注销帐户</string>
+    <string name="Chart_Title">图表标题</string>
+    <string name="Other_Action">其他行动</string>
+    <string name="New_Button">新按钮</string>
+    <string name="Add_Data">添加数据</string>
+    <string name="Chat_Name">聊天名称</string>
+    <string name="Chat_Message">聊天消息</string>
+    <string name="Chat_Time">日出茶太</string>
+    <string name="Your_Chats">你的聊天记录</string>
+    <string name="Add_Chat">添加聊天</string>
+    <string name="last_seen_6_minutes_ago">最后出现 6 分钟前</string>
+    <string name="Type_a_message">输入消息</string>
+    <string name="Send">发送</string>
+    <string name="Create_new_Habit">创造新习惯</string>
+    <string name="Habit_Name">习惯名称</string>
+    <string name="Habit_Description">习惯描述</string>
+    <string name="unit_of_measure">计量单位（俯卧撑、分钟等）</string>
+    <string name="Daily_log_in_reward">每日登录奖励</string>
+    <string name="login_daily_to">每天登录即可赚取朋友币！</string>
+    <string name="Point_reward">积分奖励</string>
+    <string name="FriendCoins">+20 朋友币</string>
+    <string name="Day_1">拜一</string>
+    <string name="Day_2">拜二</string>
+    <string name="Day_3">拜三</string>
+    <string name="Day_4">拜四</string>
+    <string name="Day_5">拜五</string>
+    <string name="Day_6">拜六</string>
+    <string name="Day_7">礼拜</string>
+    <string name="claim_today">领取今天的奖励吧！</string>
+    <string name="Number_of_Pushups">俯卧撑次数</string>
+    <string name="Save">保存</string>
+    <string name="Send_in_Feedback">发送反馈</string>
+    <string name="Send_Feedback">发送反馈</string>
+    <string name="enter_feedback">在此输入您的反馈</string>
+    <string name="Friendship_Events">联谊活动</string>
+    <string name="Button">按钮</string>
+    <string name="Average">平均</string>
+    <string name="Min">起码</string>
+    <string name="Max">极大</string>
+    <string name="Duration">期间</string>
+    <string name="Date_Started">开始日期</string>
+    <string name="Last_Date_Entered">最后输入日期</string>
+    <string name="habit_not_set">习惯未设置\n点击设置吧！</string>
+    <string name="Home">回</string>
+    <string name="Friends">朋友</string>
+    <string name="Small_Button">小按钮</string>
+    <string name="Timer">计时器</string>
+    <string name="stopwatch_purpose">定时器的目的是什么？</string>
+    <string name="timer_instructions">请以 HH:MM:SS 的形式输入时间</string>
+    <string name="Start">开始</string>
+    <string name="Pause">暂停</string>
+    <string name="Stop">停止</string>
+    <string name="Timer_History">定时器历史记录</string>
+    <string name="create_challenge">创建挑战吧！</string>
+    <string name="Enter">进入</string>
+    <string name="Delete_All">删除所有</string>
+    <string name="todo_list">待办事项清单</string>
+    <string name="Add">添加</string>
+    <string name="Enter_Items">输入项目</string>
+    <string name="Create_New_Account">建立新帐户</string>
+    <string name="register">已注册了吗？</string>
+    <string name="Login">登录</string>
+    <string name="Full_Name">全名</string>
+    <string name="Password">密码</string>
+    <string name="agree_to_toc">继续即表示，您必须同意我们的条款和条件以及隐私政策。</string>
+    <string name="Sign_Up">报名</string>
+    <string name="Date">日期</string>
+    <string name="Purpose">目的地</string>
+    <string name="Forgot_Password">忘记密码</string>
+    <string name="Create_New_Password">创建新密码</string>
+    <string name="Confirm_Your_Password">确认密码</string>
+    <string name="Change">换</string>
+    <string name="enter_phone_no">输入电话号码 ：</string>
+    <string name="Phone_Number">电话号码</string>
+    <string name="welcome">欢迎！</string>
+    <string name="Log_Out">语言</string>
+    <string name="Chats">聊天记录</string>
+    <string name="Fitness">身体素质</string>
+    <string name="Notepad">记事本</string>
+    <string name="Calendar">日历</string>
+    <string name="Habits">习惯嗜好</string>
+    <string name="Reward">奖励</string>
+    <string name="Feedback">反馈</string>
+    <string name="Settings">设置</string>
+    <string name="Last_Message">最后留言</string>
+    <string name="Time">时间</string>
+    <string name="Feature_Name">功能名称</string>
+    <string name="Sample_message">示例消息</string>
+    <string name="sign_in_to_cont">请登录以继续。</string>
+    <string name="Forgot_Password_q">忘了密码？</string>
+    <string name="no_acc">没帐户吗？</string>
+    <string name="OTP">OTP代码</string>
+    <string name="enter_code">请输入我们发送给您的代码。</string>
+    <string name="Verify">校验</string>
+    <string name="didnt_receive_otp">没有收到OTP代码？</string>
+    <string name="Resend">重发</string>
+    <string name="Your_Screen_Time">你的屏幕时间</string>
+    <string name="yest_screentime">昨天的屏幕时间</string>
+    <string name="today_screentime">今天的屏幕时间</string>
+    <!-- xml that have not been entered in here yet:
+    activity_shop_page
+    activity_sticker_pack
+    dialog_sticker_pack
+    dialog_sticker_selection
+    homepage (landscape) -> we probably don't need this
+    -->
+
+</resources>
+

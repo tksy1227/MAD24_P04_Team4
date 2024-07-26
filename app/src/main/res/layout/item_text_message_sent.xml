@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bg_outgoing_message"
         android:padding="8dp"
-        android:text="Sample message"
+        android:text="@string/Sample_message"
         android:fontFamily="@font/alata"
         android:textSize="16sp"
         android:textColor="@android:color/black"/>

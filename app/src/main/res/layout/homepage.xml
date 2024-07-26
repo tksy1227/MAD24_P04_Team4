@@ -24,7 +24,7 @@
         android:id="@+id/textViewToolbarTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome!"
+        android:text="@string/welcome"
         android:fontFamily="@font/alata"
         android:textColor="@android:color/white"
         android:textSize="20sp"
@@ -36,15 +36,15 @@
     </androidx.appcompat.widget.Toolbar>
 
     <Button
-        android:id="@+id/logOutButton"
-        android:layout_width="104dp"
+        android:id="@+id/languageButton"
+        android:layout_width="114dp"
         android:layout_height="48dp"
         android:backgroundTint="#C5D8D1"
         android:fontFamily="@font/alata"
-        android:text="Log Out"
+        android:text="@string/Log_Out"
         android:textAlignment="center"
         android:textColor="#0D5C63"
-        android:textSize="15sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.948"
@@ -137,7 +137,7 @@
                 android:fontFamily="@font/alata"
                 android:textAlignment="center"
                 android:textColor="#03256C"
-                android:text="Home"
+                android:text="@string/Home"
                 android:textSize="15dp" />
 
             <ImageView
@@ -184,7 +184,7 @@
                 android:fontFamily="@font/alata"
                 android:textAlignment="center"
                 android:textColor="#03256C"
-                android:text="Friends"
+                android:text="@string/Friends"
                 android:textSize="15dp" />
 
             <ImageView
@@ -231,7 +231,7 @@
                 android:fontFamily="@font/alata"
                 android:textAlignment="center"
                 android:textColor="#03256C"
-                android:text="Settings"
+                android:text="@string/Settings"
                 android:textSize="15dp" />
 
             <ImageView
@@ -281,7 +281,7 @@
             android:fontFamily="@font/alata"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:text="Chats"
+            android:text="@string/Chats"
             android:textSize="15dp" />
 
         <ImageView
@@ -329,7 +329,7 @@
             android:fontFamily="@font/alata"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:text="Timer"
+            android:text="@string/Timer"
             android:textSize="15dp" />
 
         <ImageView
@@ -377,7 +377,7 @@
             android:fontFamily="@font/alata"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:text="Fitness"
+            android:text="@string/Fitness"
             android:textSize="15dp" />
 
         <ImageView
@@ -425,7 +425,7 @@
             android:fontFamily="@font/alata"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:text="Notepad"
+            android:text="@string/Notepad"
             android:textSize="15dp" />
 
         <ImageView
@@ -473,7 +473,7 @@
             android:fontFamily="@font/alata"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:text="Calendar"
+            android:text="@string/Calendar"
             android:textSize="15dp" />
 
         <ImageView
@@ -521,7 +521,7 @@
             android:fontFamily="@font/alata"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:text="Habits"
+            android:text="@string/Habits"
             android:textSize="15dp" />
 
         <ImageView
@@ -569,7 +569,7 @@
             android:fontFamily="@font/alata"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:text="Reward"
+            android:text="@string/Reward"
             android:textSize="15dp" />
 
         <ImageView
@@ -617,7 +617,7 @@
             android:fontFamily="@font/alata"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:text="Feedback"
+            android:text="@string/Feedback"
             android:textSize="15dp" />
 
         <ImageView
@@ -633,7 +633,7 @@
             android:layout_marginRight="5dp"
             android:layout_marginTop="35dp"
             android:layout_marginBottom="5dp"
-            app:srcCompat="@drawable/calendar_icon" />
+            app:srcCompat="@drawable/feedback_icon" />
 
     </RelativeLayout>
 
