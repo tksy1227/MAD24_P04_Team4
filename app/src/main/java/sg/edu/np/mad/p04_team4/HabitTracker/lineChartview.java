@@ -116,7 +116,7 @@ public class lineChartview extends AppCompatActivity {
                 // Do nothing
             }
         });
-        title.setText("Chart " + habit + "!!!! :3");
+        title.setText(habit + " Chart");
 
         //going to add data activity
         add_data.setOnClickListener(v -> {

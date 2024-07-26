@@ -9,6 +9,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -17,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,6 +47,8 @@ public class selectHabit extends AppCompatActivity {
         Button bottom_left = findViewById(R.id.button_bottom_left);
         Button bottom_right = findViewById(R.id.button_bottom_right);
         Button create_habit = findViewById(R.id.button_small_bottom_right);
+        TextView title = findViewById(R.id.textViewToolbarTitle);
+        title.setText("HabitTracker");
 
         chartDBhandler dbHandler = new chartDBhandler(selectHabit.this);
         //dbHandler.insertData(new chartData("uhm",125,"2024-06-01"));

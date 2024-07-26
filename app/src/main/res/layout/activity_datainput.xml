@@ -7,6 +7,34 @@
     android:layout_height="match_parent"
     android:background="#F4EDEA"
     tools:context="sg.edu.np.mad.p04_team4.HabitTracker.Datainput">
+
+    <ImageView
+        android:id="@+id/leafbackground1"
+        android:layout_width="333dp"
+        android:layout_height="328dp"
+        android:alpha="0.6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.987"
+        app:srcCompat="@drawable/leaf_6" />
+
+    <ImageView
+        android:id="@+id/leafbackground2"
+        android:layout_width="196dp"
+        android:layout_height="198dp"
+        android:rotation="190"
+        android:alpha="0.6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.097"
+        app:srcCompat="@drawable/leaf_6" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -23,7 +51,7 @@
             android:id="@+id/textViewToolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Chart_Title"
+            android:text="Chart Title"
             android:fontFamily="@font/alata"
             android:textColor="@android:color/white"
             android:textSize="20sp"
@@ -68,9 +96,8 @@
             android:id="@+id/editTextValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/Number_of_Pushups"
+            android:hint="Number of Pushups"
             android:inputType="number"
-            android:fontFamily="@font/alata"
             android:textColorHint="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -83,13 +110,13 @@
         android:layout_marginTop="24dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/Save"
+        android:text="Save"
         android:backgroundTint="#C5D8D1"
         android:fontFamily="@font/alata"
-        android:textAllCaps="false"
         android:textColor="#0D5C63"
         app:strokeColor="#0D5C63"
         app:strokeWidth="1dp"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputLayoutValue" />
