@@ -59,23 +59,11 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
 
-        // Add the language button click listener
         Button languageButton = findViewById(R.id.languageButton);
         languageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Get the current language from SharedPreferences
-                SharedPreferences prefs = getSharedPreferences("LanguagePrefs", MODE_PRIVATE);
-                String currentLanguage = prefs.getString("language_code", "en"); // Default to English if not set
-
-                // Toggle between English and Chinese
-                if (currentLanguage.equals("en")) {
-                    changeLanguage("cn"); // Change to Chinese
-                } else {
-                    changeLanguage("en"); // Change to English
-                }
-
-                recreate(); // Recreate the activity to apply the new locale
+                toggleLanguage();
             }
         });
 
@@ -200,6 +188,15 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
 
         });
+    }
+
+    private void toggleLanguage() {
+        SharedPreferences prefs = getSharedPreferences("LanguagePrefs", MODE_PRIVATE);
+        String currentLanguage = prefs.getString("language_code", "en"); // Default to English
+
+        String newLanguage = currentLanguage.equals("en") ? "cn" : "en";
+        changeLanguage(newLanguage);
+        recreate(); // Recreate activity to apply the new locale
     }
 
     private void changeLanguage(String languageCode) {

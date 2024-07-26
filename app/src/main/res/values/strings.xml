@@ -76,7 +76,7 @@
     <string name="Pause">Pause</string>
     <string name="Stop">Stop</string>
     <string name="Timer_History">Timer History</string>
-    <string name="create_challenge">Create challange here!</string>
+    <string name="create_challenge">Create challenge here!</string>
     <string name="Enter">Enter</string>
     <string name="Delete_All">Delete All</string>
     <string name="todo_list">To-Do List</string>
@@ -117,7 +117,7 @@
     <string name="OTP">OTP</string>
     <string name="enter_code">Please enter the code that we have sent to you.</string>
     <string name="Verify">Verify</string>
-    <string name="didnt_receive_otp">Didn\'t recieve OTP?</string>
+    <string name="didnt_receive_otp">Didn\'t receive OTP?</string>
     <string name="Resend">Resend</string>
     <string name="Your_Screen_Time">Your Screen Time</string>
     <string name="yest_screentime">Yesterday\'s Screen Time</string>
@@ -147,11 +147,18 @@
                 If you have any questions, please contact support.</string>
     <string name="enter_time">Please enter time in HH:MM:SS format</string>
     <string name="enter_purpose">Please enter a purpose</string>
-    <string name="timer_running">Timer Running...</string>
+    <string name="timer_running">Timer Running…</string>
     <string name="timer_running2">Your timer is running.</string>
     <string name="time_left">Time left: </string>
     <string name="timer_finished">Timer Finished!</string>
     <string name="timer_finished2">Your timer is finished!</string>
     <string name="unsuccessful_log">Failed to log timer data.</string>
-
+    <!-- TimerWidgetProvider -->
+    <string name="set_timer_first">Set the timer first!</string>
+    <!-- TimerLogActivity -->
+    <string name="clear_all_timer">Clear All Timer History</string>
+    <string name="check_clear_all_timer">Are you sure you want to clear all timer history?</string>
+    <string name="check_delete">Are you sure you want to delete?</string>
+    <string name="check_yes">Yes</string>
+    <string name="check_no">No</string>
 </resources>
