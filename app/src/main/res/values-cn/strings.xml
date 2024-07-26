@@ -137,6 +137,13 @@
     <string name="successful_feedback">您的反馈已成功发送。\n谢谢！</string>
     <string name="unsuccessful_feedback">发送反馈失败</string>
     <string name="enter_ffeedback">请输入反馈意见</string>
+    <string name="feedback_instructions">这是反馈功能，您可以向我们发送您的反馈！
+    1. 输入您的反馈：在提供的文本框中输入您的反馈。
+    2. 发送您的反馈：完成后，点击“发送反馈”按钮将其发送给我们！
+    3. 确认：如果您的反馈成功发送，您将看到一个弹出窗口，显示“反馈已发送”，以及
+    并显示一条消息，表明反馈提交成功。
+    感谢您的反馈！我们将在 1-2 个工作日内收到。
+    如有任何问题。请联系支持人员。</string>
     <!-- Stopwatch_Timer -->
     <string name="Help">帮助</string>
     <string name="timer_iinstructions">这是计时器功能，您可以在其中设置和管理计时器。\n\n
