@@ -64,7 +64,17 @@ public class HomeActivity extends AppCompatActivity {
         languageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeLanguage("cn"); // Change to Chinese
+                // Get the current language from SharedPreferences
+                SharedPreferences prefs = getSharedPreferences("LanguagePrefs", MODE_PRIVATE);
+                String currentLanguage = prefs.getString("language_code", "en"); // Default to English if not set
+
+                // Toggle between English and Chinese
+                if (currentLanguage.equals("en")) {
+                    changeLanguage("cn"); // Change to Chinese
+                } else {
+                    changeLanguage("en"); // Change to English
+                }
+
                 recreate(); // Recreate the activity to apply the new locale
             }
         });
@@ -206,7 +216,7 @@ public class HomeActivity extends AppCompatActivity {
 
         resources.updateConfiguration(config, resources.getDisplayMetrics());
 
-        // Optionally, persist the language preference
+        // Persist the language preference
         SharedPreferences prefs = getSharedPreferences("LanguagePrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("language_code", languageCode);

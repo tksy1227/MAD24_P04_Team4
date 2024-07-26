@@ -122,6 +122,7 @@
     <string name="Your_Screen_Time">Your Screen Time</string>
     <string name="yest_screentime">Yesterday\'s Screen Time</string>
     <string name="today_screentime">Today\'s Screen Time</string>
+    <string name="Save_Habit">Save Habit</string>
     <!-- xml that have not been entered in here yet:
     activity_shop_page
     activity_sticker_pack

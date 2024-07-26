@@ -122,6 +122,7 @@
     <string name="Your_Screen_Time">你的屏幕时间</string>
     <string name="yest_screentime">昨天的屏幕时间</string>
     <string name="today_screentime">今天的屏幕时间</string>
+    <string name="Save_Habit">保存习惯</string>
     <!-- xml that have not been entered in here yet:
     activity_shop_page
     activity_sticker_pack
