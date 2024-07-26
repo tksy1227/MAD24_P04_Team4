@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -38,6 +39,8 @@ public class newHabitDatainput extends AppCompatActivity {
         Button saveData = findViewById(R.id.buttonSaveData);
         TextInputLayout textInputLayoutValue = findViewById(R.id.textInputLayoutValue);
         TextInputEditText editTextValue = findViewById(R.id.editTextValue);
+        TextView title = findViewById(R.id.textViewToolbarTitle);
+        title.setText("Data Input");
 
         chartDBhandler dbHandler = new chartDBhandler(newHabitDatainput.this);
 
