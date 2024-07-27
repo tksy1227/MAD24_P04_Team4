@@ -21,7 +21,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import sg.edu.np.mad.p04_team4.R;
 
-
 public class CreateAccount extends AppCompatActivity {
 
     private boolean passwordShowing = false;
