@@ -62,6 +62,8 @@ Feature done by: Marissa
 3. Chat & Messaging - Send and receive text messages and images between friends
 Concepts used: RecyclerView, Persistent Memory, Layout Manager
 Feature done by: Danial
+   ![image](repo_images/Chat1.jpg)
+   ![image](repo_images/Chat2.jpg)
 
 4. Friendship Events - Users to track each other's progress in fitness challenges, personal milestones & other goals together
 Concepts used: Persistent Memory
@@ -92,10 +94,16 @@ Feature/Enhancement done by: Marissa
 ![image](https://github.com/user-attachments/assets/66b1c1d0-33f6-4a13-92eb-01dfa6fb116e)
 
 3. Screentime Tracker - Gives insight and tells users how long they have been on each feature.
+   DailyLogin and Rewards - Allows user to gain 20 FriendCoins each time they login. Using the FriendCoins, users can buy stickers and themes to customize the app. This encourages the users to log in to the app everyday so that they can earn FriendCoins.
 Users can make changes according to the screen time.
+User can customize the app by buying items using FriendCoins(sending stickers in chats and changing background theme)
 Old Concepts used: Foreground Service, Firebase Realtime Database, Binding to Service, Tracking Individual Features
-New concepts used: Foreground Service, Binding to Service
+New concepts used: Foreground Service, Binding to Service, MPAndroidChart, Flexbox Layout, Nested Scrollview, SharedPreferences
 Feature/Enhancement done by: Danial
+![image](repo_images/Daily.jpg)
+![image](repo_images/Shop.jpg)
+![image](repo_images/Screentime.jpg)
+![image](repo_images/Theme.jpg)
 
 4. Personal Habit Tracker -  Allows users to set, track, and manage their personal habits.
 Users can log their progress, and view their streaks and statistics over time. 
