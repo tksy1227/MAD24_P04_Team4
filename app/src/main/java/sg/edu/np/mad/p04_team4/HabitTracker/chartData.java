@@ -1,5 +1,6 @@
 package sg.edu.np.mad.p04_team4.HabitTracker;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.github.mikephil.charting.data.BarEntry;
@@ -9,14 +10,28 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import sg.edu.np.mad.p04_team4.R;
+
 public class chartData {
     private String habit;
     private float data;
     private String date; // Store date as String in ISO 8601 format
     private String unit;
     private String description;
+    private Context context;
 
+    // Constructor without context
     public chartData(String habit, float data, String date, String unit, String description) {
+        this.habit = habit;
+        this.data = data;
+        this.date = date;
+        this.unit = unit;
+        this.description = description;
+    }
+
+    // Constructor with context
+    public chartData(Context context, String habit, float data, String date, String unit, String description) {
+        this.context = context;
         this.habit = habit;
         this.data = data;
         this.date = date;
@@ -73,7 +88,11 @@ public class chartData {
             return dateObj.getTime();
         } catch (ParseException e) {
             e.printStackTrace();
-            Log.e("FAIL", "Parse failed for " + date);
+            if (context != null) {
+                Log.e("FAIL", context.getString(R.string.parse_fail) + date);
+            } else {
+                Log.e("FAIL", context.getString(R.string.parse_fail_date) + date);
+            }
             return 0;
         }
     }

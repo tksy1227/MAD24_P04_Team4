@@ -40,21 +40,21 @@ public class newHabitDatainput extends AppCompatActivity {
         TextInputLayout textInputLayoutValue = findViewById(R.id.textInputLayoutValue);
         TextInputEditText editTextValue = findViewById(R.id.editTextValue);
         TextView title = findViewById(R.id.textViewToolbarTitle);
-        title.setText("Data Input");
+        title.setText(getString(R.string.data_input));
 
         chartDBhandler dbHandler = new chartDBhandler(newHabitDatainput.this);
 
         // Getting habit passed from previous activity
-        String habit = getIntent().getStringExtra("habit");
-        String desc = getIntent().getStringExtra("desc");
-        String unit = getIntent().getStringExtra("unit");
-        textInputLayoutValue.setHint("Number of "+unit);
+        String habit = getIntent().getStringExtra(getString(R.string.habit));
+        String desc = getIntent().getStringExtra(getString(R.string.desc));
+        String unit = getIntent().getStringExtra(getString(R.string.unit));
+        textInputLayoutValue.setHint(getString(R.string.number_of)+unit);
 
 
 
         if (habit == null) {
             // Error handling
-            Log.e("Button", "Habit not passed");
+            Log.e("Button", getString(R.string.habit_not_passed));
         }
 
         // Back button logic
@@ -73,18 +73,18 @@ public class newHabitDatainput extends AppCompatActivity {
                     String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
                     chartData data = new chartData(habit, value, currentDate,unit,desc);
                     dbHandler.insertData(data);
-                    Toast.makeText(getApplicationContext(), "Data saved", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.data_saved), Toast.LENGTH_SHORT).show();
                     // Optionally, you can navigate back or clear the input
                     editTextValue.setText("");
                     Intent gochartview = new Intent(newHabitDatainput.this, Chartview.class);
-                    gochartview.putExtra("habit",habit);
+                    gochartview.putExtra(getString(R.string.habit),habit);
                     startActivity(gochartview);
                 } catch (NumberFormatException e) {
                     // Handle the case where the input is not a valid integer
-                    Toast.makeText(getApplicationContext(), "Please enter a valid number", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.valid_number), Toast.LENGTH_SHORT).show();
                 }
             } else {
-                Toast.makeText(getApplicationContext(), "Please enter a value", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.enter_value), Toast.LENGTH_SHORT).show();
             }
         });
     }

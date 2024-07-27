@@ -82,7 +82,6 @@ public class FeedbackActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> {
                     Toast.makeText(FeedbackActivity.this, getString(R.string.unsuccessful_feedback), Toast.LENGTH_SHORT).show();
                 });
-
     }
 
     private void showHelpDialog() {

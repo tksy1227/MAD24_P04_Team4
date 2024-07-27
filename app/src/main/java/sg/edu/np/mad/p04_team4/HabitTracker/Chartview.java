@@ -75,28 +75,28 @@ public class Chartview extends AppCompatActivity {
         Button insights = findViewById(R.id.button3);
         spinnerTimeGroup = findViewById(R.id.spinnerTimeGroup);
         final String[] identifier = new String[1];
-        insights.setText("Insights");
-        change_chart.setText("Line chart");
+        insights.setText(getString(R.string.insights));
+        change_chart.setText(getString(R.string.line_chart));
 
         //retrieve habit reference from previous activity
-        String habit = getIntent().getStringExtra("habit");
-        String option = getIntent().getStringExtra("option");
+        String habit = getIntent().getStringExtra(getString(R.string.habit));
+        String option = getIntent().getStringExtra(getString(R.string.option));
         if (habit == null) {
             //do error handling
-            Log.e("passing", "Habit not passed");
+            Log.e("passing", getString(R.string.habit_not_passed));
             // go back
             Intent back = new Intent(Chartview.this, selectHabit.class);
             startActivity(back);
         }
         if (option == null) {
             //do error handling
-            Log.e("passing", "option not passed, setting option as 1");
+            Log.e("passing", getString(R.string.option_not_passed));
             option = "1";
         }
         else
         {
-            Log.d("passing", "Good pass, option: "+option);
-            Log.d("passing", "Good pass, habit: "+habit);
+            Log.d("passing", getString(R.string.gp_option)+option);
+            Log.d("passing", getString(R.string.gp_habit)+habit);
         }
 
         initializeOptionIdentifierMap();
@@ -113,11 +113,11 @@ public class Chartview extends AppCompatActivity {
         Log.d("size", String.valueOf(size));
         if(size>200){
             spinnerTimeGroup.setSelection(3);
-            Toast.makeText(this, "Number of entries more than 200, grouping data by month", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.group_month), Toast.LENGTH_SHORT).show();
         }
         else if (size>50){
             spinnerTimeGroup.setSelection(1);
-            Toast.makeText(this, "Number of entries more than 50, grouping data by week", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,getString(R.string.group_week), Toast.LENGTH_SHORT).show();
         }
         else{
 
@@ -129,7 +129,7 @@ public class Chartview extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedOption = (String) parent.getItemAtPosition(position);
                 identifier[0] = optionIdentifierMap.get(selectedOption);
-                Log.d("spinner", "option: " + selectedOption + " selected with identifier: " + identifier[0]);
+                Log.d("spinner", getString(R.string.option_space) + selectedOption + getString(R.string.selected_with_identifier) + identifier[0]);
                 // Handle the selected identifier
                 setupChart(habit, identifier[0],raw_data);
 
@@ -143,7 +143,7 @@ public class Chartview extends AppCompatActivity {
         });
 
 
-        title.setText(habit + " Chart");
+        title.setText(habit + getString(R.string.chart_title));
 
 
         //setupChart(habit,"day");
@@ -271,7 +271,7 @@ public class Chartview extends AppCompatActivity {
             legend.setFormSize(9f);
             legend.setTextSize(11f);
             legend.setXEntrySpace(4f);
-            Log.d("spinner","option "+ option+"passed");
+            Log.d("spinner",getString(R.string.option_space2)+ option+getString(R.string.passed));
         }
         else if(option.equals("4")) {
 
@@ -297,7 +297,7 @@ public class Chartview extends AppCompatActivity {
             }
             if (values.size()<60)
             {
-                Toast.makeText(this, "Number of entries is small, grouping by week/input might provide better insights", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.small_entries), Toast.LENGTH_SHORT).show();
 
             }
 
@@ -387,7 +387,7 @@ public class Chartview extends AppCompatActivity {
             legend.setFormSize(9f);
             legend.setTextSize(11f);
             legend.setXEntrySpace(4f);
-            Log.d("spinner","option "+ option+"passed");
+            Log.d("spinner",getString(R.string.option_space2)+ option+getString(R.string.passed));
 
         }
         else if (option.equals("3")) {
@@ -417,7 +417,7 @@ public class Chartview extends AppCompatActivity {
 
             if (entries.size()<7)
             {
-                Toast.makeText(this, "Number of entries is small, grouping by input might provide better insights", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.small_entries2), Toast.LENGTH_SHORT).show();
 
             }
             // Create a BarDataSet with entries
@@ -538,7 +538,7 @@ public class Chartview extends AppCompatActivity {
             int lowestColor = Color.parseColor("#F44336"); // Red color for lowest point
             if (entries.size()<7)
             {
-                Toast.makeText(this, "Number of entries is small, grouping by input might provide better insights", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.small_entries2), Toast.LENGTH_SHORT).show();
 
             }
 
@@ -605,7 +605,7 @@ public class Chartview extends AppCompatActivity {
             legend.setFormSize(9f);
             legend.setTextSize(11f);
             legend.setXEntrySpace(4f);
-            Log.d("spinner","option "+ option+"passed");
+            Log.d("spinner",getString(R.string.option_space2)+ option+getString(R.string.passed));
         }
 
         chart.invalidate(); // Refresh the chart
@@ -674,10 +674,10 @@ public class Chartview extends AppCompatActivity {
     }
     private void initializeOptionIdentifierMap() {
         optionIdentifierMap = new HashMap<>();
-        optionIdentifierMap.put("By Input", "1");
-        optionIdentifierMap.put("Sort by Week", "2");
-        optionIdentifierMap.put("Sort by Day of Week", "3");
-        optionIdentifierMap.put("Sort by Month", "4");
+        optionIdentifierMap.put(getString(R.string.by_input), "1");
+        optionIdentifierMap.put(getString(R.string.sort_week), "2");
+        optionIdentifierMap.put(getString(R.string.sort_day_week), "3");
+        optionIdentifierMap.put(getString(R.string.sort_month), "4");
     }
 
 }

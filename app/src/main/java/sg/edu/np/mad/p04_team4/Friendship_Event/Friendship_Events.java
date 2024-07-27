@@ -1,5 +1,6 @@
 package sg.edu.np.mad.p04_team4.Friendship_Event;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -62,12 +63,23 @@ public class Friendship_Events extends AppCompatActivity {
             userId = user.getUid(); // Initialize userId here
             userEventsRef = FirebaseDatabase.getInstance().getReference("users").child(userId).child("events");
         } else {
-            Log.e("DB", "User not authenticated");
+            Log.e("DB", getString(R.string.user_not_authenticated));
             finish();
             return;
         }
 
         loadUserEvent();
+
+        Button helpButton = findViewById(R.id.helpButton);
+        helpButton.setOnClickListener(v -> showHelpDialog());
+    }
+
+    private void showHelpDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.Help));
+        builder.setMessage(getString(R.string.friendship_event_instructions));
+        builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
+        builder.show();
     }
 
     private void loadUserEvent() {
@@ -86,16 +98,16 @@ public class Friendship_Events extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("DB", "Failed to load user events.", error.toException());
+                Log.e("DB", getString(R.string.failed_load_user_events), error.toException());
             }
         });
     }
 
     private void updateUI(User_events userEvents) {
-        Log.d("UI", "Starting updateUI method");
+        Log.d("UI", getString(R.string.ui_method));
 
         if (userEvents == null) {
-            Log.e("UI", "userEvents is null in updateUI");
+            Log.e("UI", getString(R.string.ui_null));
             return;
         }
 
@@ -103,17 +115,17 @@ public class Friendship_Events extends AppCompatActivity {
         boolean milestoneEmpty = userEvents.isMilestone_e();
         boolean goalsEmpty = userEvents.isGoals_e();
 
-        Log.d("UI", "Event states - Challenge: " + challengeEmpty + ", Milestone: " + milestoneEmpty + ", Goals: " + goalsEmpty);
+        Log.d("UI", getString(R.string.event_states1) + challengeEmpty + getString(R.string.event_states2) + milestoneEmpty + getString(R.string.event_states3) + goalsEmpty);
 
         if (b1 == null || b2 == null || b3 == null) {
-            Log.e("UI", "One or more buttons are null");
+            Log.e("UI", getString(R.string.one_more_buttons_null));
             return;
         }
 
         // Challenge button
         try {
             if (challengeEmpty) {
-                String buttonText = "<b>No challenge set yet!</b><br><br>Click here to set it for yourself or friends";
+                String buttonText = "<b>"+getString(R.string.no_challenge)+"</b><br><br>"+getString(R.string.click_here_to);
                 b1.setText(Html.fromHtml(buttonText));
                 b1.setOnClickListener(v -> {
                     Intent set_event = new Intent(Friendship_Events.this, events_input.class);
@@ -124,18 +136,18 @@ public class Friendship_Events extends AppCompatActivity {
             } else {
                 int color = ContextCompat.getColor(this, R.color.teal_700);
                 b1.setBackgroundColor(color);
-                String challengeInfo = "<b>Challenge set!</b><br><br>" + userEvents.getChallange();
+                String challengeInfo = "<b>"+getString(R.string.challenge_set)+"</b><br><br>" + userEvents.getChallange();
                 b1.setText(Html.fromHtml(challengeInfo));
             }
-            Log.d("UI", "Challenge button updated");
+            Log.d("UI", getString(R.string.challenge_button_updated));
         } catch (Exception e) {
-            Log.e("UI", "Error updating challenge button", e);
+            Log.e("UI", getString(R.string.challenge_button_error), e);
         }
 
         // Milestone button
         try {
             if (milestoneEmpty) {
-                String buttonText = "<b>No milestone set yet!</b><br><br>Click here to set it for yourself or friends";
+                String buttonText = "<b>"+getString(R.string.no_milestone)+"</b><br><br>"+getString(R.string.click_here_to);
                 b2.setText(Html.fromHtml(buttonText));
                 b2.setOnClickListener(v -> {
                     Intent set_event = new Intent(Friendship_Events.this, events_input.class);
@@ -146,18 +158,18 @@ public class Friendship_Events extends AppCompatActivity {
             } else {
                 int color = ContextCompat.getColor(this, R.color.teal_700);
                 b2.setBackgroundColor(color);
-                String milestoneInfo = "<b>Milestone set!</b><br><br>" + userEvents.getMilestones();
+                String milestoneInfo = "<b>"+getString(R.string.milestone_set)+"</b><br><br>" + userEvents.getMilestones();
                 b2.setText(Html.fromHtml(milestoneInfo));
             }
-            Log.d("UI", "Milestone button updated");
+            Log.d("UI", getString(R.string.milestone_button_updated));
         } catch (Exception e) {
-            Log.e("UI", "Error updating milestone button", e);
+            Log.e("UI", getString(R.string.milestone_button_error), e);
         }
 
         // Goals button
         try {
             if (goalsEmpty) {
-                String buttonText = "<b>No goals set yet!</b><br><br>Click here to set it for yourself or friends";
+                String buttonText = "<b>"+getString(R.string.no_goals)+"</b><br><br>"+getString(R.string.click_here_to);
                 b3.setText(Html.fromHtml(buttonText));
                 b3.setOnClickListener(v -> {
                     Intent set_event = new Intent(Friendship_Events.this, events_input.class);
@@ -168,14 +180,14 @@ public class Friendship_Events extends AppCompatActivity {
             } else {
                 int color = ContextCompat.getColor(this, R.color.teal_700);
                 b3.setBackgroundColor(color);
-                String goalsInfo = "<b>Goal set!</b><br><br>" + userEvents.getGoals();
+                String goalsInfo = "<b>"+getString(R.string.goal_set)+"</b><br><br>" + userEvents.getGoals();
                 b3.setText(Html.fromHtml(goalsInfo));
             }
-            Log.d("UI", "Goals button updated");
+            Log.d("UI", getString(R.string.goals_button_updated));
         } catch (Exception e) {
-            Log.e("UI", "Error updating goals button", e);
+            Log.e("UI", getString(R.string.goals_button_error), e);
         }
 
-        Log.d("UI", "Finished updateUI method");
+        Log.d("UI", getString(R.string.finished_updateui));
     }
 }

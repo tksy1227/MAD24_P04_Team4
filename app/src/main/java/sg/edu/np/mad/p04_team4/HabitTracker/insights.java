@@ -67,29 +67,29 @@ public class insights extends AppCompatActivity {
         TextView textViewLastDateEnteredTitle = findViewById(R.id.textViewLastDateEnteredTitle);
         TextView textViewLastDateEnteredValue = findViewById(R.id.textViewLastDateEnteredValue);
         barChart = findViewById(R.id.chart);
-        title.setText("Insights");
-        textViewMinTitle.setText("Smallest Value");
-        textViewMaxTitle.setText("Largest Value");
-        textViewAverageTitle.setText("Average Amount");
-        textViewDurationTitle.setText("Number of days");
+        title.setText(getString(R.string.Insights));
+        textViewMinTitle.setText(getString(R.string.smallest_value));
+        textViewMaxTitle.setText(getString(R.string.largest_value));
+        textViewAverageTitle.setText(getString(R.string.average_amount));
+        textViewDurationTitle.setText(getString(R.string.no_of_days));
         // recieve habit identifier and handle nulls
-        String habit = getIntent().getStringExtra("habit");
-        String option = getIntent().getStringExtra("option");
+        String habit = getIntent().getStringExtra(getString(R.string.habit));
+        String option = getIntent().getStringExtra(getString(R.string.option));
         if (habit == null) {
             //do error handling
-            Log.e("passing", "insight, Habit not passed");
+            Log.e(getString(R.string.passing_tag), getString(R.string.insight_habit_not_passed));
             // go back
             Intent nohabit = new Intent(insights.this, selectHabit.class);
             startActivity(nohabit);
         }
         else
         {
-            Log.d("passing", "insight, Good pass, habit: "+habit);
+            Log.d(getString(R.string.passing_tag), getString(R.string.insight_gp_habit)+habit);
         }
         // back button logic
         backButton.setOnClickListener(v->{
             Intent back1 = new Intent(insights.this, Chartview.class);
-            back1.putExtra("habit",habit);
+            back1.putExtra(getString(R.string.habit),habit);
             startActivity(back1);
         });
         chartDBhandler dbHandler = new chartDBhandler(insights.this);
@@ -108,19 +108,19 @@ public class insights extends AppCompatActivity {
         Long duration = dbHandler.getHabitDuration(habit);
         if (duration==0){
             duration= 1L;
-            textViewDuratisonValue.setText(String.format("Duration: %d day", duration));
+            textViewDuratisonValue.setText(String.format(getString(R.string.duration_day), duration));
         }
         else{
-            textViewDuratisonValue.setText(String.format("Duration: %d days", duration));
+            textViewDuratisonValue.setText(String.format(getString(R.string.duration_days), duration));
         }
 
 
-        textViewMinValue.setText(String.format("Min: %.2f", min));
-        textViewMaxValue.setText(String.format("Max: %.2f", max));
+        textViewMinValue.setText(String.format(getString(R.string.min_tag), min));
+        textViewMaxValue.setText(String.format(getString(R.string.max_tag), max));
         //textViewMax.setText( String.valueOf(max));
 
         // Display the average value
-        textViewAverageValue.setText(String.format("Average: %.2f", average));
+        textViewAverageValue.setText(String.format(getString(R.string.average_tag), average));
         textViewDateStartedValue.setText(date_start);
         textViewLastDateEnteredValue.setText(last_date);
 
@@ -141,9 +141,9 @@ public class insights extends AppCompatActivity {
 
         return sum / dataList.size();
     }
-    private static float calculateMin(ArrayList<chartData> dataList) {
+    private float calculateMin(ArrayList<chartData> dataList) {
         if (dataList == null || dataList.isEmpty()) {
-            Log.w("insights", "Data list is empty or null");
+            Log.w(getString(R.string.insights_lowercase), getString(R.string.datalist_empty));
             return 0;
         }
 
@@ -157,9 +157,9 @@ public class insights extends AppCompatActivity {
         return min;
     }
 
-    private static float calculateMax(ArrayList<chartData> dataList) {
+    private float calculateMax(ArrayList<chartData> dataList) {
         if (dataList == null || dataList.isEmpty()) {
-            Log.w("insights", "Data list is empty or null");
+            Log.w(getString(R.string.insights_lowercase), getString(R.string.datalist_empty));
             return 0;
         }
 
@@ -174,7 +174,7 @@ public class insights extends AppCompatActivity {
     }
     private void histogram(ArrayList<chartData> raw_data, String habit) {
         if (barChart == null) {
-            Log.e("Histogram", "BarChart view is not initialized.");
+            Log.e(getString(R.string.histogram), getString(R.string.barchart_view));
             return;
         }
 
@@ -191,12 +191,12 @@ public class insights extends AppCompatActivity {
 
         // Log the sorted values to verify the order
         for (BarEntry entry : values) {
-            Log.d("Histogram", "Sorted entry: x=" + entry.getX() + ", y=" + entry.getY());
+            Log.d(getString(R.string.histogram), getString(R.string.sorted_entry)+"x=" + entry.getX() + ", y=" + entry.getY());
         }
 
         // Check if entries are not empty
         if (values.isEmpty()) {
-            Log.e("Histogram", "No data available to display in the chart.");
+            Log.e(getString(R.string.histogram), getString(R.string.no_data_avail));
             return;
         }
 

@@ -48,7 +48,7 @@ public class selectHabit extends AppCompatActivity {
         Button bottom_right = findViewById(R.id.button_bottom_right);
         Button create_habit = findViewById(R.id.button_small_bottom_right);
         TextView title = findViewById(R.id.textViewToolbarTitle);
-        title.setText("HabitTracker");
+        title.setText(getString(R.string.habit_tracker));
 
         chartDBhandler dbHandler = new chartDBhandler(selectHabit.this);
         //dbHandler.insertData(new chartData("uhm",125,"2024-06-01"));
@@ -76,14 +76,14 @@ public class selectHabit extends AppCompatActivity {
                 if (description != null) {
                     buttonText.append("<br/>").append(description).append("<br/>"); // Add description if available
                 } else {
-                    buttonText.append("<br/>No description available<br/>"); // Default text if no description
+                    buttonText.append("<br/>"+getString(R.string.default_no_desc)+"<br/>"); // Default text if no description
                 }
 
                 // Add start date if available
                 if (startDate != null) {
-                    buttonText.append("<br/><i>Start Date: ").append(startDate).append("</i>");
+                    buttonText.append("<br/><i>"+getString(R.string.start_date)).append(startDate).append("</i>");
                 } else {
-                    buttonText.append("<br/><i>Start Date: Not available</i>"); // Default text if no start date
+                    buttonText.append("<br/><i>"+getString(R.string.start_date_not_avail)+"</i>"); // Default text if no start date
                 }
 
                 // Set formatted text with HTML
@@ -110,7 +110,7 @@ public class selectHabit extends AppCompatActivity {
             }
         }
         if (unique_habits.size()<4) {
-            create_habit.setText("Set a new habit!");
+            create_habit.setText(getString(R.string.set_new_habit));
             create_habit.setOnClickListener(v-> {
                 Intent set_habit = new Intent(selectHabit.this, createHabit.class);
                 startActivity(set_habit);
@@ -123,34 +123,34 @@ public class selectHabit extends AppCompatActivity {
     }
 
     public void meow(String habit) {
-        Toast.makeText(this, "Habit " + habit + " Clicked", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.Habit ) + habit + getString(R.string.clicked_space), Toast.LENGTH_SHORT).show();
         Intent viewchart = new Intent(selectHabit.this, Chartview.class);
 
-        viewchart.putExtra("habit", habit);
-        viewchart.putExtra("option","1");
+        viewchart.putExtra(getString(R.string.habit), habit);
+        viewchart.putExtra(getString(R.string.option),"1");
         startActivity(viewchart);
     }
     private void showConfirmationDialog(String habit,chartDBhandler db) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete Habit");
-        builder.setMessage("Are you sure you want delete the "+habit+" habit?");
+        builder.setTitle(getString(R.string.delete_habit));
+        builder.setMessage(getString(R.string.delete_habit_confirm1)+habit+getString(R.string.delete_habit_confirm2));
 
 
 
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // Perform action when Cancel button is clicked
-                Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.cancelled), Toast.LENGTH_SHORT).show();
                 dialog.dismiss(); // Dismiss the dialog
             }
         });
 
-        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(getString(R.string.delete), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 db.deleteDataByHabit(habit);
-                Toast.makeText(selectHabit.this,  habit + " habit deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(selectHabit.this,  habit + getString(R.string.habit_deleted), Toast.LENGTH_SHORT).show();
 
                 Intent intent = getIntent();
                 finish();

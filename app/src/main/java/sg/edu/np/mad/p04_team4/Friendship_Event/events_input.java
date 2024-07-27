@@ -55,7 +55,7 @@ public class events_input extends AppCompatActivity {
 
         enter.setOnClickListener(v -> {
             String text2 = inputText.getText().toString();
-            Log.d("DB", "Case: " + actionPerformed);
+            Log.d("DB", getString(R.string.case_db) + actionPerformed);
 
             switch (actionPerformed) {
                 case "CHALLENGES":
@@ -71,7 +71,7 @@ public class events_input extends AppCompatActivity {
                     userEventsRef.child("goals_e").setValue(false);
                     break;
                 default:
-                    Log.e("DB", "Invalid action performed: " + actionPerformed);
+                    Log.e("DB", getString(R.string.invalid_action_performed) + actionPerformed);
                     break;
             }
 

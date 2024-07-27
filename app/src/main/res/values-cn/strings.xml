@@ -141,12 +141,12 @@
     <string name="successful_feedback">您的反馈已成功发送。\n谢谢！</string>
     <string name="unsuccessful_feedback">发送反馈失败</string>
     <string name="enter_ffeedback">请输入反馈意见</string>
-    <string name="feedback_instructions">这是反馈功能，您可以向我们发送您的反馈！
-    1. 输入您的反馈：在提供的文本框中输入您的反馈。
-    2. 发送您的反馈：完成后，点击“发送反馈”按钮将其发送给我们！
+    <string name="feedback_instructions">这是反馈功能，您可以向我们发送您的反馈！\n\n
+    1. 输入您的反馈：在提供的文本框中输入您的反馈。\n
+    2. 发送您的反馈：完成后，点击“发送反馈”按钮将其发送给我们！\n
     3. 确认：如果您的反馈成功发送，您将看到一个弹出窗口，显示“反馈已发送”，以及
-    并显示一条消息，表明反馈提交成功。
-    感谢您的反馈！我们将在 1-2 个工作日内收到。
+    并显示一条消息，表明反馈提交成功。\n\n
+    感谢您的反馈！我们将在 1-2 个工作日内收到。\n
     如有任何问题。请联系支持人员。</string>
     <!-- Stopwatch_Timer -->
     <string name="Help">帮助</string>
@@ -172,5 +172,142 @@
     <string name="check_delete">您确定你要删除？</string>
     <string name="check_yes">是</string>
     <string name="check_no">否</string>
+
+    <!-- start here -->
+    <!-- chartData -->
+    <string name="parse_fail">解析失败：</string>
+    <string name="parse_fail_date">日期解析失败：</string>
+
+    <!-- ChartView -->
+    <string name="insights">见解</string>
+    <string name="line_chart">折线图</string>
+    <string name="habit">习惯嗜好</string>
+    <string name="option">选项</string>
+    <string name="habit_not_passed">习惯未养成</string>
+    <string name="option_not_passed">选项未通过，将选项设置为 1</string>
+    <string name="gp_option">好转球，选项：</string>
+    <string name="gp_habit">好传球，习惯：</string>
+    <string name="group_month">条目数量超过200条，按月份分组数据</string>
+    <string name="group_week">条目数超过50条，按周分组数据</string>
+    <string name="option_space">选项: </string>
+    <string name="selected_with_identifier">使用标识符选择：</string>
+    <string name="chart_title">图表</string>
+    <string name="small_entries">条目数量很少，按周/输入分组可能会提供更好的见解</string>
+    <string name="passed">通过</string>
+    <string name="option_space2">选项</string>
+    <string name="small_entries2">条目数量很少，按输入分组可能会提供更好的见解</string>
+    <string name="monday">拜一</string>
+    <string name="tuesday">拜二</string>
+    <string name="wednesday">拜三</string>
+    <string name="thursday">拜四</string>
+    <string name="friday">拜五</string>
+    <string name="saturday">拜六</string>
+    <string name="sunday">礼拜</string>
+    <string name="by_input">按输入</string>
+    <string name="sort_week">按周排序</string>
+    <string name="sort_day_week">按星期几排序</string>
+    <string name="sort_month">按月份排序</string>
+
+    <!-- createHabit -->
+    <string name="fill_in_all_fields">请填写所有字段</string>
+    <string name="habit_alr_exists">此习惯已存在，请选择其他名称或删除</string>
+    <string name="habit_saved">习惯保存了！</string>
+    <string name="desc">描述</string>
+    <string name="unit">部</string>
+
+    <!-- Datainput -->
+    <string name="data_input">数据输入</string>
+    <string name="number_of">数量：</string>
+    <string name="saved_button_pressed">已保存按钮已按下</string>
+    <string name="data_inserted">插入数据</string>
+    <string name="data_saved">数据已保存</string>
+    <string name="valid_number">请输入有效号码</string>
+    <string name="enter_value">请输入值</string>
+
+    <!-- insights -->
+    <string name="Insights">见解</string>
+    <string name="smallest_value">最小值</string>
+    <string name="largest_value">最大值</string>
+    <string name="average_amount">平均金额</string>
+    <string name="no_of_days">程子</string>
+    <string name="insight_habit_not_passed">见解，习惯未养成</string>
+    <string name="insight_gp_habit">见解、良好通行证、习惯：</string>
+    <string name="passing_tag">正通过</string>
+    <string name="duration_day">期间： %d day</string>
+    <string name="duration_days">期间 %d days</string>
+    <string name="min_tag">起码： %.2f</string>
+    <string name="max_tag">极大： %.2f</string>
+    <string name="average_tag">平均： %.2f</string>
+    <string name="insights_lowercase">见解</string>
+    <string name="datalist_empty">数据列表为空或为空</string>
+    <string name="histogram">直方图</string>
+    <string name="barchart_view">条形图视图未初始化</string>
+    <string name="sorted_entry">排序条目：</string>
+    <string name="no_data_avail">图表中没有可显示的数据。</string>
+
+    <!-- lineChartView -->
+    <string name="bar_chart">条形图</string>
+    <string name="option_not_passed1">选项未通过</string>
+    <string name="habit2">习惯嗜好： </string>
+    <string name="option_at_selection">设置选择时的选项：</string>
+    <string name="origin">原点</string>
+    <string name="weekly_data">每周数据</string>
+    <string name="passed_space">已通过</string>
+
+    <!-- newHabitDataInput -->
+
+    <!-- selectHabit -->
+    <string name="habit_tracker">习惯追踪器</string>
+    <string name="default_no_desc">没有可用的描述</string>
+    <string name="start_date">开始日期：</string>
+    <string name="start_date_not_avail">开始日期： 不可用</string>
+    <string name="set_new_habit">养个新习惯吧！</string>
+    <string name="Habit">习惯嗜好</string>
+    <string name="clicked_space">点击了</string>
+    <string name="delete_habit">删除习惯</string>
+    <string name="delete_habit_confirm1">您确定要删除</string>
+    <string name="delete_habit_confirm2">的习惯嗜好吗？</string>
+    <string name="cancel">取消</string>
+    <string name="cancelled">已取消</string>
+    <string name="habit_deleted">习惯已删除</string>
+
+    <!-- events_input -->
+    <string name="invalid_action_performed">执行的操作无效：</string>
+    <string name="case_db">案件：</string>
+
+    <!-- Friendship_Events -->
+    <string name="user_not_authenticated">用户未经过身份验证</string>
+    <string name="failed_load_user_events">无法加载用户事件。</string>
+    <string name="ui_method">启动 updateUI 方法</string>
+    <string name="ui_null">updateUI 中的 userEvents 为空</string>
+    <string name="event_states1">活动状态 - 挑战：</string>
+    <string name="event_states2">，里程碑：</string>
+    <string name="event_states3">，目标：</string>
+    <string name="one_more_buttons_null">至少一个按钮为空</string>
+    <string name="no_challenge">尚未设置挑战！</string>
+    <string name="click_here_to">单击此处为自己或朋友设置！</string>
+    <string name="challenge_set">挑战设定！</string>
+    <string name="challenge_button_updated">挑战按钮已更新</string>
+    <string name="challenge_button_error">更新挑战按钮时出错</string>
+    <string name="no_milestone">尚未设定里程碑！</string>
+    <string name="milestone_set">里程碑已定！</string>
+    <string name="milestone_button_updated">里程碑按钮已更新</string>
+    <string name="milestone_button_error">更新里程碑按钮时出错</string>
+    <string name="no_goals">还没有设定目标！</string>
+    <string name="goal_set">目标设定！</string>
+    <string name="goals_button_updated">目标按钮已更新</string>
+    <string name="goals_button_error">更新目标按钮时出错</string>
+    <string name="finished_updateui">updateUI方法完成</string>
+    <string name="friendship_event_instructions">这是友谊活动功能，您可以在其中设置挑战，
+        为您自己和您的朋友设定目标和里程碑！\n\n
+                1.设置挑战：点击并设置挑战即可完成！\n
+                2. 设置里程碑：单击并设置要达到的里程碑！\n
+                3. 设置目标：单击并设置要实现的目标！\n\n
+                如果您有任何疑问，请联系支持人员。</string>
+
+    <!-- finished features:
+    Feedback, Friendship_Event, HabitTracker, Timer
+    -->
+
 </resources>
 

@@ -83,20 +83,20 @@ public class createHabit extends AppCompatActivity {
 
             if (habitDescription.isEmpty() || habitName.isEmpty() || habitUnit.isEmpty()) {
                 // Show a Toast message indicating the requirements are not met
-                Toast.makeText(getApplicationContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.fill_in_all_fields), Toast.LENGTH_SHORT).show();
             } else if (unique_habits.contains(habitName))
             {
-                Toast.makeText(getApplicationContext(), "This habit already exists, choose a different name or delete", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.habit_alr_exists), Toast.LENGTH_SHORT).show();
 
             } else {
                 // Proceed with saving the habit data
                 // Add your saving logic here
-                Toast.makeText(getApplicationContext(), "Habit saved!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.habit_saved), Toast.LENGTH_SHORT).show();
                 // Example: Call a method to save data to database or perform other actions
                 Intent datainput = new Intent(createHabit.this, newHabitDatainput.class);
-                datainput.putExtra("habit",habitName);
-                datainput.putExtra("desc",habitDescription);
-                datainput.putExtra("unit",habitUnit);
+                datainput.putExtra(getString(R.string.habit),habitName);
+                datainput.putExtra(getString(R.string.desc),habitDescription);
+                datainput.putExtra(getString(R.string.unit),habitUnit);
 
                 startActivity(datainput);
             }

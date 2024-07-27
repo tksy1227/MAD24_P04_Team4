@@ -41,31 +41,31 @@ public class Datainput extends AppCompatActivity {
         TextInputLayout textInputLayoutValue = findViewById(R.id.textInputLayoutValue);
         TextInputEditText editTextValue = findViewById(R.id.editTextValue);
         TextView title = findViewById(R.id.textViewToolbarTitle);
-        title.setText("Data Input");
+        title.setText(getString(R.string.data_input));
 
 
         // Getting habit passed from previous activity
-        String habit = getIntent().getStringExtra("habit");
+        String habit = getIntent().getStringExtra(getString(R.string.habit));
         if (habit == null) {
             // Error handling
-            Log.e("Button", "Habit not passed");
+            Log.e("Button", getString(R.string.habit_not_passed));
         }
         chartDBhandler dbHandler = new chartDBhandler(Datainput.this);
         ArrayList<chartData> existing_data = dbHandler.getDataByHabit(habit);
         String unit = existing_data.get(0).getUnit();
         String desc = existing_data.get(0).getDescription();
-        textInputLayoutValue.setHint("Number of "+unit);
+        textInputLayoutValue.setHint(getString(R.string.number_of)+unit);
 
         // Back button logic
         backbutton.setOnClickListener(v -> {
             Intent back = new Intent(Datainput.this, Chartview.class);
-            back.putExtra("habit",habit);
+            back.putExtra(getString(R.string.habit),habit);
             startActivity(back);
         });
 
         // Save data button logic
         saveData.setOnClickListener(v -> {
-            Log.d("save","saved button pressed");
+            Log.d("save",getString(R.string.saved_button_pressed));
             String valueStr = editTextValue.getText().toString();
             if (!valueStr.isEmpty()) {
                 try {
@@ -74,22 +74,22 @@ public class Datainput extends AppCompatActivity {
                     String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
                     chartData data = new chartData(habit, value, currentDate,unit,desc);
                     dbHandler.insertData(data);
-                    Log.d("data","data inserted");
-                    Toast.makeText(getApplicationContext(), "Data saved", Toast.LENGTH_SHORT).show();
+                    Log.d("data",getString(R.string.data_inserted));
+                    Toast.makeText(getApplicationContext(), getString(R.string.data_saved), Toast.LENGTH_SHORT).show();
                     // Optionally, you can navigate back or clear the input
                    // editTextValue.setText("");
                     Intent gochartview = new Intent(Datainput.this, Chartview.class);
-                    gochartview.putExtra("habit", habit);
-                    gochartview.putExtra("option","1");
-                    Log.d("save","saved button pressed");
+                    gochartview.putExtra(getString(R.string.habit), habit);
+                    gochartview.putExtra(getString(R.string.option),"1");
+                    Log.d("save",getString(R.string.saved_button_pressed));
 
                     startActivity(gochartview);
                 } catch (NumberFormatException e) {
                     // Handle the case where the input is not a valid integer
-                    Toast.makeText(getApplicationContext(), "Please enter a valid number", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.valid_number), Toast.LENGTH_SHORT).show();
                 }
             } else {
-                Toast.makeText(getApplicationContext(), "Please enter a value", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.enter_value), Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -64,8 +64,8 @@ public class lineChartview extends AppCompatActivity {
         Button bar_chart = findViewById(R.id.button1);
         Button insights = findViewById(R.id.button3);
         spinnerTimeGroup = findViewById(R.id.spinnerTimeGroup);
-        bar_chart.setText("Bar Chart");
-        insights.setText("Insights");
+        bar_chart.setText(getString(R.string.bar_chart));
+        insights.setText(getString(R.string.Insights));
         final String[] identifier = new String[1];
 
         //Back button
@@ -73,20 +73,20 @@ public class lineChartview extends AppCompatActivity {
             Intent back = new Intent(lineChartview.this, selectHabit.class);
             startActivity(back);
         });
-        String habit = getIntent().getStringExtra("habit");
-        String option = getIntent().getStringExtra("option");
+        String habit = getIntent().getStringExtra(getString(R.string.habit));
+        String option = getIntent().getStringExtra(getString(R.string.option));
         if (habit == null) {
             //do error handling
-            Log.e("passing", "Habit not passed");
+            Log.e(getString(R.string.passing_tag), getString(R.string.habit_not_passed));
         }
         if (option == null) {
             //do error handling
-            Log.e("passing", "option not passed");
+            Log.e(getString(R.string.passing_tag), getString(R.string.option_not_passed1));
         }
         else
         {
-            Log.d("passing", "option: "+option);
-            Log.d("passing", "habit: "+habit);
+            Log.d(getString(R.string.passing_tag), getString(R.string.option_space)+option);
+            Log.d(getString(R.string.passing_tag), getString(R.string.habit2)+habit);
         }
         //setupLineChart(habit, option);
         initializeOptionIdentifierMap();
@@ -97,7 +97,7 @@ public class lineChartview extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerTimeGroup.setAdapter(adapter);
         spinnerTimeGroup.setSelection(Integer.parseInt(option)-1);
-        Log.d("selecting_option","option at set selection: "+option);
+        Log.d("selecting_option",getString(R.string.option_at_selection)+option);
 
 
 
@@ -106,7 +106,7 @@ public class lineChartview extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedOption = (String) parent.getItemAtPosition(position);
                 identifier[0] = optionIdentifierMap.get(selectedOption);
-                Log.d("selecting_option", "option:" + selectedOption + ", selected with identifier: " + identifier[0]);
+                Log.d("selecting_option", getString(R.string.option_space) + selectedOption + getString(R.string.selected_with_identifier) + identifier[0]);
                 //Handle the selected identifier
                 setupLineChart(habit, identifier[0]);
             }
@@ -116,25 +116,25 @@ public class lineChartview extends AppCompatActivity {
                 // Do nothing
             }
         });
-        title.setText(habit + " Chart");
+        title.setText(habit + getString(R.string.chart_title));
 
         //going to add data activity
         add_data.setOnClickListener(v -> {
             Intent intentToCFromD = new Intent(lineChartview.this, Datainput.class);
-            intentToCFromD.putExtra("origin", "B"); // Pass origin identifier
-            intentToCFromD.putExtra("habit", habit);
+            intentToCFromD.putExtra(getString(R.string.origin), "B"); // Pass origin identifier
+            intentToCFromD.putExtra(getString(R.string.habit), habit);
             startActivity(intentToCFromD);
         });
         bar_chart.setOnClickListener(v->
         {
             Intent barchart = new Intent(lineChartview.this, Chartview.class);
-            barchart.putExtra("habit",habit);
-            barchart.putExtra("option",identifier[0]);
+            barchart.putExtra(getString(R.string.habit),habit);
+            barchart.putExtra(getString(R.string.option),identifier[0]);
             startActivity(barchart);
         });
         insights.setOnClickListener(v->{
             Intent insight = new Intent (lineChartview.this, insights.class);
-            insight.putExtra("habit",habit);
+            insight.putExtra(getString(R.string.habit),habit);
             startActivity(insight);
         });
     }
@@ -242,7 +242,7 @@ public class lineChartview extends AppCompatActivity {
                     }
                 });
 
-                LineDataSet set1 = new LineDataSet(values, "Weekly Data");
+                LineDataSet set1 = new LineDataSet(values, getString(R.string.weekly_data));
                     set1.setDrawValues(true);
 
                     // Define colors
@@ -402,7 +402,7 @@ public class lineChartview extends AppCompatActivity {
                 legend.setTextSize(11f);
                 legend.setXEntrySpace(4f);
 
-                Log.d("spinner", "option " + option + " passed");
+                Log.d("spinner", getString(R.string.option_space2) + option + getString(R.string.passed_space));
 
             }
             else if (option.equals("2")) {
@@ -487,7 +487,7 @@ public class lineChartview extends AppCompatActivity {
 
             chart.invalidate(); // Refresh the chart
 
-            Log.d("spinner", "option " + option + " passed");
+            Log.d("spinner", getString(R.string.option_space2) + option + getString(R.string.passed_space));
         }
         chart.invalidate(); // Refresh the chart
     }
@@ -555,9 +555,9 @@ public class lineChartview extends AppCompatActivity {
     }
     private void initializeOptionIdentifierMap() {
         optionIdentifierMap = new HashMap<>();
-        optionIdentifierMap.put("By Input", "1");
-        optionIdentifierMap.put("Sort by Week", "2");
-        optionIdentifierMap.put("Sort by Day of Week", "3");
-        optionIdentifierMap.put("Sort by Month", "4");
+        optionIdentifierMap.put(getString(R.string.by_input), "1");
+        optionIdentifierMap.put(getString(R.string.sort_week), "2");
+        optionIdentifierMap.put(getString(R.string.sort_day_week), "3");
+        optionIdentifierMap.put(getString(R.string.sort_month), "4");
     }
 }

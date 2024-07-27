@@ -140,20 +140,21 @@
     <string name="successful_feedback">Your feedback has been sent successfully.\nThank you!</string>
     <string name="unsuccessful_feedback">Failed to send feedback</string>
     <string name="enter_ffeedback">Please enter feedback</string>
-    <string name="feedback_instructions">This is the feedback feature where you can send us your feedback!
-    1. Enter your feedback: Type your feedback in the textbox provided.
-    2. Send your feedback: When you\'re done, tap the "Send Feedback" button to send it to us!
+    <string name="feedback_instructions">This is the feedback feature where you can send us your feedback!\n\n
+    1. Enter your feedback: Type your feedback in the textbox provided.\n
+    2. Send your feedback: When you\'re done, tap the "Send Feedback" button to send it to us!\n
     3. Confirmation: If your feedback is successfully sent, you will see a pop-up stating "Feedback Sent", along
-    with a message indicating a successful feedback submission.
-    Thank you for your feedbacks! We will receive them within 1-2 working days.
-    If you have any questions. please contact support.</string>
+    with a message indicating a successful feedback submission.\n\n
+    Thank you for your feedbacks! We will receive them within 1-2 working days.\n
+    If you have any questions. please contact support.\n</string>
+
     <!-- Stopwatch_Timer -->
     <string name="Help">Help</string>
-    <string name="timer_iinstructions">This is the timer feature where you can set and manage timers.
-                1. Set Alarm: Choose from the 3 pre-set timings or enter your own timing in HH:MM:SS format.
-                2. Set Alarm Purpose: Enter the purpose of your alarm.
-                3. Start Timer: Start,  pause, resume and stop your timer anytime.
-                4. Timer History: Go to Timer History to view all your previous timers.
+    <string name="timer_iinstructions">This is the timer feature where you can set and manage timers.\n\n
+                1. Set Alarm: Choose from the 3 pre-set timings or enter your own timing in HH:MM:SS format.\n
+                2. Set Alarm Purpose: Enter the purpose of your alarm.\n
+                3. Start Timer: Start,  pause, resume and stop your timer anytime.\n
+                4. Timer History: Go to Timer History to view all your previous timers.\n\n
                 If you have any questions, please contact support.</string>
     <string name="enter_time">Please enter time in HH:MM:SS format</string>
     <string name="enter_purpose">Please enter a purpose</string>
@@ -163,6 +164,7 @@
     <string name="timer_finished">Timer Finished!</string>
     <string name="timer_finished2">Your timer is finished!</string>
     <string name="unsuccessful_log">Failed to log timer data.</string>
+
     <!-- TimerWidgetProvider -->
     <string name="set_timer_first">Set the timer first!</string>
     <!-- TimerLogActivity -->
@@ -171,4 +173,139 @@
     <string name="check_delete">Are you sure you want to delete?</string>
     <string name="check_yes">Yes</string>
     <string name="check_no">No</string>
+
+    <!-- chartData -->
+    <string name="parse_fail">Parse failed for: </string>
+    <string name="parse_fail_date">Parse failed for date: </string>
+
+    <!-- ChartView -->
+    <string name="insights">Insights</string>
+    <string name="line_chart">Line Chart</string>
+    <string name="habit">habit</string>
+    <string name="option">option</string>
+    <string name="habit_not_passed">Habit not passed</string>
+    <string name="option_not_passed">Option not passed, setting option as 1</string>
+    <string name="gp_option">Good pass, option: </string>
+    <string name="gp_habit">Good pass, habit: </string>
+    <string name="group_month">Number of entries more than 200, grouping data by month</string>
+    <string name="group_week">Number of entries more than 50, grouping data by week</string>
+    <string name="option_space">option: </string>
+    <string name="selected_with_identifier"> selected with identifier: </string>
+    <string name="chart_title"> Chart</string>
+    <string name="small_entries">Number of entries is small, grouping by week/input might provide better insights</string>
+    <string name="passed"> passed</string>
+    <string name="option_space2">option </string>
+    <string name="small_entries2">Number of entries is small, grouping by input might provide better insights</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="by_input">By Input</string>
+    <string name="sort_week">Sort by Week</string>
+    <string name="sort_day_week">Sort by Day of Week</string>
+    <string name="sort_month">Sort by Month</string>
+
+    <!-- createHabit -->
+    <string name="fill_in_all_fields">Please fill in all fields</string>
+    <string name="habit_alr_exists">This habit already exists, choose a different name or delete</string>
+    <string name="habit_saved">Habit saved!</string>
+    <string name="desc">desc</string>
+    <string name="unit">unit</string>
+
+    <!-- Datainput -->
+    <string name="data_input">Data Input</string>
+    <string name="number_of">Number of </string>
+    <string name="saved_button_pressed">saved button pressed</string>
+    <string name="data_inserted">data inserted</string>
+    <string name="data_saved">Data saved</string>
+    <string name="valid_number">Please enter a valid number</string>
+    <string name="enter_value">Please enter a value</string>
+
+    <!-- insights -->
+    <string name="Insights">Insights</string>
+    <string name="smallest_value">Smallest Value</string>
+    <string name="largest_value">Largest Value</string>
+    <string name="average_amount">Average Amount</string>
+    <string name="no_of_days">Number of Days</string>
+    <string name="insight_habit_not_passed">insight, Habit not passed</string>
+    <string name="insight_gp_habit">insight, Good pass, Habit: </string>
+    <string name="passing_tag">passing</string>
+    <string name="duration_day">Duration: %d day</string>
+    <string name="duration_days">Duration: %d days</string>
+    <string name="min_tag">Min: %.2f</string>
+    <string name="max_tag">Max: %.2f</string>
+    <string name="average_tag">Average: %.2f</string>
+    <string name="insights_lowercase">insights</string>
+    <string name="datalist_empty">Data list is empty or null</string>
+    <string name="histogram">Histogram</string>
+    <string name="barchart_view">BarChart view is not initialized</string>
+    <string name="sorted_entry">Sorted entry: </string>
+    <string name="no_data_avail">No data available to display in the chart.</string>
+
+    <!-- lineChartView -->
+    <string name="bar_chart">Bar Chart</string>
+    <string name="option_not_passed1">option not passed</string>
+    <string name="habit2">habit: </string>
+    <string name="option_at_selection">option at set selection: </string>
+    <string name="origin">origin</string>
+    <string name="weekly_data">Weekly Data</string>
+    <string name="passed_space"> passed</string>
+
+    <!-- newHabitDataInput -->
+
+    <!-- selectHabit -->
+    <string name="habit_tracker">HabitTracker</string>
+    <string name="default_no_desc">No description available</string>
+    <string name="start_date">Start Date: </string>
+    <string name="start_date_not_avail">Start Date: Not available</string>
+    <string name="set_new_habit">Set a new habit!</string>
+    <string name="Habit">Habit </string>
+    <string name="clicked_space"> Clicked</string>
+    <string name="delete_habit">Delete Habit</string>
+    <string name="delete_habit_confirm1">Are you sure you want to delete the </string>
+    <string name="delete_habit_confirm2"> habit?</string>
+    <string name="cancel">Cancel</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="habit_deleted"> habit deleted</string>
+
+    <!-- events_input -->
+    <string name="invalid_action_performed">Invalid action performed: </string>
+    <string name="case_db">Case: </string>
+
+    <!-- Friendship_Events -->
+    <string name="user_not_authenticated">User not authenticated</string>
+    <string name="failed_load_user_events">Failed to load user events.</string>
+    <string name="ui_method">Starting updateUI method</string>
+    <string name="ui_null">userEvents is null in updateUI</string>
+    <string name="event_states1">Event states - Challenge: </string>
+    <string name="event_states2">, Milestone: </string>
+    <string name="event_states3">, Goals: </string>
+    <string name="one_more_buttons_null">One or more buttons are null</string>
+    <string name="no_challenge">No challenge set yet!</string>
+    <string name="click_here_to">Click here to set it for yourself or friends!</string>
+    <string name="challenge_set">Challenge set!</string>
+    <string name="challenge_button_updated">Challenge button updated</string>
+    <string name="challenge_button_error">Error updating challenge button</string>
+    <string name="no_milestone">No milestone set yet!</string>
+    <string name="milestone_set">Milestone set!</string>
+    <string name="milestone_button_updated">Milestone button updated</string>
+    <string name="milestone_button_error">Error updating milestone button</string>
+    <string name="no_goals">No goals set yet!</string>
+    <string name="goal_set">Goal set!</string>
+    <string name="goals_button_updated">Goals button updated</string>
+    <string name="goals_button_error">Error updating goals button</string>
+    <string name="finished_updateui">Finished updateUI method</string>
+    <string name="friendship_event_instructions">This is the friendship events feature where you can set challenges,
+        goals and milestones for yourself and your friends!\n\n
+                1. Set Challenge: Click and set challenges to complete!\n
+                2. Set Milestones: Click and set milestones to reach!\n
+                3. Set Goals: Click and set goals to hit!\n\n
+                If you have any questions, please contact support.</string>
+
+    <!-- finished features:
+    Feedback, Friendship_Event, HabitTracker, Timer
+    -->
 </resources>
