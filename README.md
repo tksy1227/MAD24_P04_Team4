@@ -65,14 +65,16 @@ Feature done by: Danial
 3. Friendship Events - Users to track each other's progress in fitness challenges, personal milestones & other goals together
 Concepts used: Persistent Memory
 Feature done by: Jacob
+![image](https://github.com/user-attachments/assets/c2f73f86-f759-4a7a-9ab8-b347339c5ad1)
 
-4. Timer - Keep track of time when doing tasks
+
+5. Timer - Keep track of time when doing tasks
 Concepts used: CountdownTimer, RecyclerView, Persistent Memory, Layout Management, MediaPlayer, Vibration
 Feature done by: Chloe
    ![timer-page](repo_images/timer.png)
 ![timer-history](repo_images/timer-history.png)
 
-5. To-Do List - Organize their to-do tasks for the day
+6. To-Do List - Organize their to-do tasks for the day
 Concepts used: Linear Layout, Persistent Memory
 Feature done by: Shida
 ---------------------------------------------------------------->
@@ -100,26 +102,30 @@ A insights page is also available to allow users to view critical information su
 Old Concepts used: Persistent Memory, MPAndroidChart, Recycler View
 New concepts used: MPAndroidChart
 Feature/Enhancement done by: Jacob
+![image](https://github.com/user-attachments/assets/240238eb-95c3-4d12-bc22-3ceb7f43f39d)
+![image](https://github.com/user-attachments/assets/38d27b94-4605-4a95-a709-8500a7a38076)
 
-4. Timer Enhancement & Widget - Allow users to access the feature outside of the app through a widget.
+
+
+5. Timer Enhancement & Widget - Allow users to access the feature outside of the app through a widget.
    Concepts used: CountdownTimer, RecyclerView, Databases, Widget
    New concepts used: Widget
    Feature/Enhancement done by: Chloe
    ![widget](repo_images/widget.png)
 
-5. Calendar - Allow users to view and track their schedule easily.
+6. Calendar - Allow users to view and track their schedule easily.
 Old Concepts used: Nested RecyclerView, Persistent Memory, Widget
 New concepts used: Nested RecyclerView
 Feature/Enhancement done by: Shida
 
-6. Feedback feature -  Allow users to send feedback to the app developers, and the developers will
+7. Feedback feature -  Allow users to send feedback to the app developers, and the developers will
 receive the feedback in the form of an email sent to their email account.
 Old Concepts used: Firebase Realtime Database, User Interface Components, Event Handling, Firebase Operations,
 New concepts used: Google Apps Script, HTTP request (API getter to retrieve data), Automatic Email Sending
 Feature/Enhancement done by: Chloe
    ![feedback](repo_images/feedback.png)
 
-7. Changing Language - Allow users to switch between an English and Chinese interface. This is to provide
+8. Changing Language - Allow users to switch between an English and Chinese interface. This is to provide
 better user experience, as users will be able to understand and use the app based on their preferred language.
 Old Concepts used: Resource Management, SharedPreferences, Activity Lifecycles, View Binding and Event Handling
 New concepts used: Localization and Internalization, Locale, Configuration Modification 
