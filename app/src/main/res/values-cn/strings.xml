@@ -270,12 +270,12 @@
     <string name="cancel">取消</string>
     <string name="cancelled">已取消</string>
     <string name="habit_deleted">习惯已删除</string>
-
-    <string name="habittracker_instructions">这是 HabitTracker 功能，您可以在其中创建并跟踪自己要遵循的习惯！\n/n
-    1.创建一个新习惯，最多可以创建4个！\n
-    2. 随时用新数据更新习惯，从俯卧撑次数到跑步公里数！\n
-    3. 查看图表，通过各种排序功能深入了解您的习惯！\n
-    4. 通过“见解”页面获取有关您习惯的更多数据！</string>
+    <string name="habit_instructions">这是 HabitTracker 功能，您可以在其中创建并跟踪自己要遵循的习惯！\n\n
+                1.创建一个新习惯，最多可以创建4个！\n
+                2. 随时用新数据更新习惯，从俯卧撑次数到跑步公里数！\n
+                3. 查看图表，通过各种排序功能深入了解您的习惯！\n
+                4. 通过“见解”页面获取有关您习惯的更多数据！\n\n
+                如果您有任何疑问，请联系支持人员。</string>
 
     <!-- events_input -->
     <string name="invalid_action_performed">执行的操作无效：</string>

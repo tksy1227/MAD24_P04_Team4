@@ -49,8 +49,9 @@ public class selectHabit extends AppCompatActivity {
         Button create_habit = findViewById(R.id.button_small_bottom_right);
         TextView title = findViewById(R.id.textViewToolbarTitle);
         title.setText(getString(R.string.habit_tracker));
-        Button helpButton = findViewById(R.id.helpButton);helpButton.setOnClickListener(v -> showHelpDialog());
 
+        Button helpButton = findViewById(R.id.helpButton);
+        helpButton.setOnClickListener(v -> showHelpDialog());
 
         chartDBhandler dbHandler = new chartDBhandler(selectHabit.this);
         //dbHandler.insertData(new chartData("uhm",125,"2024-06-01"));
@@ -139,7 +140,6 @@ public class selectHabit extends AppCompatActivity {
         builder.setMessage(getString(R.string.delete_habit_confirm1)+habit+getString(R.string.delete_habit_confirm2));
 
 
-
         builder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -165,8 +165,10 @@ public class selectHabit extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-    private void showHelpDialog() {    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getString(R.string.Help));    builder.setMessage(getString(R.string.habittracker_instructions));
-        builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());    builder.show();
+    private void showHelpDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //builder.setTitle(getString(R.string.Help));
+        //builder.setMessage(getString(R.string.habittracker_instructions));
+        //builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());    builder.show();
     }
 }
