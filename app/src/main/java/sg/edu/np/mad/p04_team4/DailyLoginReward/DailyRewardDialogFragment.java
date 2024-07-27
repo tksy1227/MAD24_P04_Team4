@@ -68,7 +68,7 @@ public class DailyRewardDialogFragment extends DialogFragment {
             checkClaimStatus(view);
         } else {
             // Handle the case where the user is not logged in
-            Toast.makeText(getActivity(), "Please log in to claim rewards", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.please_login_to_claim), Toast.LENGTH_SHORT).show();
             dismiss();
         }
 
@@ -194,7 +194,7 @@ public class DailyRewardDialogFragment extends DialogFragment {
                 int newCoins = currentCoins + REWARD_AMOUNT;
                 userCoinsRef.setValue(newCoins)
                         .addOnSuccessListener(aVoid -> {
-                            Toast.makeText(getActivity(), "Reward claimed! +20 FriendCoins", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), getString(R.string.reward_claimed), Toast.LENGTH_SHORT).show();
                             claimButton.setEnabled(false);
                             claimButton.setText("Claimed");
 
@@ -210,13 +210,13 @@ public class DailyRewardDialogFragment extends DialogFragment {
                             updateCurrentDayBox(view);
                         })
                         .addOnFailureListener(e -> {
-                            Toast.makeText(getActivity(), "Failed to claim reward. Please try again.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), getString(R.string.failed_to_claim), Toast.LENGTH_SHORT).show();
                         });
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getActivity(), "Error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getString(R.string.error_claim) + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

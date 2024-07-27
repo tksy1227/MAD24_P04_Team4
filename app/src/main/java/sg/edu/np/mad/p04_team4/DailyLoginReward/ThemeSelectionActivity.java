@@ -158,7 +158,7 @@ public class ThemeSelectionActivity extends AppCompatActivity {
             // After successful purchase, save the theme as purchased
             purchasedThemes.add(themeName);
             updateUI();
-            Toast.makeText(this, "Theme purchased: " + themeName, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.theme_purchased) + themeName, Toast.LENGTH_SHORT).show();
             alertDialog.dismiss();
             showApplyThemeDialog(themeName);
         });
@@ -170,19 +170,19 @@ public class ThemeSelectionActivity extends AppCompatActivity {
 
     private void showApplyThemeDialog(String themeName) {
         new AlertDialog.Builder(this)
-                .setTitle("Apply Theme")
-                .setMessage("Do you want to apply this theme?")
-                .setPositiveButton("Yes", (dialog, which) -> {
+                .setTitle(getString(R.string.apply_theme))
+                .setMessage(getString(R.string.apply_theme_confirm))
+                .setPositiveButton(getString(R.string.buy_yes), (dialog, which) -> {
                     applyTheme(themeName);
                     sendThemeChangedBroadcast();
                 })
-                .setNegativeButton("No", null)
+                .setNegativeButton(getString(R.string.buy_no), null)
                 .show();
     }
 
     private void applyTheme(String themeName) {
         saveSelectedTheme(themeName);
-        Toast.makeText(this, "Applied theme: " + themeName, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.applied_theme) + themeName, Toast.LENGTH_SHORT).show();
     }
 
     private void saveSelectedTheme(String themeName) {
@@ -204,7 +204,7 @@ public class ThemeSelectionActivity extends AppCompatActivity {
 
     private void removeTheme() {
         saveSelectedTheme("default"); // Save the default theme
-        Toast.makeText(this, "Theme removed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.theme_removed), Toast.LENGTH_SHORT).show();
         sendThemeChangedBroadcast(); // Notify other components about the theme change
     }
 }

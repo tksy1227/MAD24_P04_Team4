@@ -200,7 +200,7 @@ public class Chat_Main extends AppCompatActivity {
                         sdf.setTimeZone(TimeZone.getTimeZone("Asia/Singapore")); // Set your local time zone
                         String formattedTime = sdf.format(new Date(lastSeenTime));
                         TextView lastSeenTextView = findViewById(R.id.status);
-                        lastSeenTextView.setText("Last seen " + formattedTime);
+                        lastSeenTextView.setText(getString(R.string.last_seen_on) + formattedTime);
                     }
                 }
             }

@@ -127,11 +127,30 @@
     <string name="yest_screentime">昨天的屏幕时间</string>
     <string name="today_screentime">今天的屏幕时间</string>
     <string name="Save_Habit">保存习惯</string>
+    <string name="Shop">店铺</string>
+    <string name="Stickers">贴纸</string>
+    <string name="Cat_Pack">猫贴纸包</string>
+    <string name="Monkey_Pack">猴子贴纸包</string>
+    <string name="Emoji_Pack">表情符号包</string>
+    <string name="Beast_Pack">野兽贴纸包</string>
+    <string name="Skibidi_Pack">Skibidi贴纸包</string>
+    <string name="DBD_Pack">DBD贴纸包</string>
+    <string name="Background_Themes">背景主题</string>
+    <string name="Fluid_Harmony">流体和谐</string>
+    <string name="Blue_Blossom">蓝花</string>
+    <string name="Playful_Safari">俏皮狩猎之旅</string>
+    <string name="Banner">旗帜</string>
+    <string name="Coming_Soon">即将推出！</string>
+    <string name="Sticker_Pack">贴纸表情包</string>
+    <string name="Buy">买</string>
+    <string name="Cat_Sticker_Pack">猫贴纸包</string>
+    <string name="Monkey_Sticker_Pack">猴子贴纸包</string>
+    <string name="Emoji_Sticker_Pack">表情符号包</string>
+    <string name="Alpha_Wolf_Sticker_Pack">野兽贴纸包</string>
+    <string name="Skibidi_Toilet_Sticker_Pack">Skibidi贴纸包</string>
+    <string name="Dead_by_Daylight_Sticker_Pack">DBD贴纸包</string>
+
     <!-- xml that have not been entered in here yet:
-    activity_shop_page
-    activity_sticker_pack
-    dialog_sticker_pack
-    dialog_sticker_selection
     homepage (landscape) -> we probably don't need this
     -->
 
@@ -345,10 +364,70 @@
     <string name="otp_not_found">未找到一次性密码</string>
 
     <!-- PasswordOTPActivity -->
-    <!-- finished features:
-    Feedback, Friendship_Event, HabitTracker, Timer
-    Login (Except AccountActivity & AccntDetailActivity)
-    -->
 
+    <!-- ScreenTime_Main -->
+
+    <!-- ScreenTimeAdapter -->
+    <!-- ScreenTimeEntry -->
+    <!-- ScreenTimeService -->
+    <string name="screen_time_tracking">屏幕时间追踪</string>
+    <string name="tracking_screentime">跟踪 FriendScape 的屏幕时间</string>
+    <string name="channel_screen_time">屏幕时间跟踪通道</string>
+
+    <!-- DailyRewardDialogFragment -->
+    <string name="please_login_to_claim">请登录领取奖励！</string>
+    <string name="reward_claimed">奖励已领取！ +20 朋友币！</string>
+    <string name="failed_to_claim">领取奖励失败。请再试一次。</string>
+    <string name="error_claim">误差</string>
+
+    <!-- ShopActivity -->
+    <!-- StickerPackDialogFragment -->
+    <string name="make_purchase">进行购买？</string>
+    <string name="buy_sticker1">您想购买这个贴纸包吗？需要</string>
+    <string name="buy_sticker2"> 朋友币。</string>
+    <string name="buy_yes">要</string>
+    <string name="buy_no">不要</string>
+    <string name="sticker_purchased">贴纸包已购买！</string>
+    <string name="purchase_failed">购买失败，请重试。</string>
+    <string name="not_enough_coins">没有足够的硬币来购买这个贴纸包</string>
+
+    <!-- ThemePreviewDialogFragment -->
+    <string name="buy_theme">您想购买此主题吗？需要</string>
+    <string name="purchased_theme">已购买成功！</string>
+    <string name="failed_to_save">无法保存主题购买。请再试一次。</string>
+    <string name="not_enough_coins_theme">没有足够的金币来购买</string>
+    <string name="failed_to_complete_purchase">无法完成购买。请再试一次。</string>
+
+    <!-- ThemeSelectionActivity -->
+    <string name="theme_purchased">购买的主题：</string>
+    <string name="apply_theme">应用主题</string>
+    <string name="apply_theme_confirm">您想应用这个主题吗？</string>
+    <string name="applied_theme">应用主题：</string>
+    <string name="theme_removed">主题已删除</string>
+
+    <!-- ThemeUtils -->
+    <!-- Chat_Main -->
+    <string name="last_seen_on">上次上线于</string>
+
+    <!-- ChatHomeActivity -->
+    <string name="enter_chat_name">输入聊天名称</string>
+    <string name="chat_cannot_empty">聊天名称不能为空</string>
+    <string name="chat_cancel">取消</string>
+    <string name="hey_friendo">嘿弗兰多！</string>
+    <string name="chat_added">已添加聊天</string>
+    <string name="chat_add_fail">添加聊天失败</string>
+    <string name="failed_load_chats">无法加载聊天记录</string>
+    <string name="chat_deleted">聊天记录已删除</string>
+    <string name="failed_delete_chat">删除聊天记录失败</string>
+    <string name="chat_key_null">聊天键为空</string>
+
+    <!-- finished features:
+    Feedback, Friendship_Event, HabitTracker, Timer,
+    Login (Except AccountActivity & AccntDetailActivity),
+    ScreenTime, DailyLoginReward, Chat
+
+    Remaining features:
+    AddFriend, Home, ToDoList
+    -->
 </resources>
 

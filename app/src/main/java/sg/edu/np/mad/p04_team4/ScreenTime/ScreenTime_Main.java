@@ -91,7 +91,7 @@ public class ScreenTime_Main extends AppCompatActivity {
     private void displayScreenTimeData() {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser == null) {
-            Toast.makeText(this, "User not authenticated.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.user_not_authenticated2), Toast.LENGTH_SHORT).show();
             return;
         }
 

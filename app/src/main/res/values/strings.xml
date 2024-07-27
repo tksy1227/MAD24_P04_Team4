@@ -126,11 +126,30 @@
     <string name="yest_screentime">Yesterday\'s Screen Time</string>
     <string name="today_screentime">Today\'s Screen Time</string>
     <string name="Save_Habit">Save Habit</string>
+    <string name="Shop">Shop</string>
+    <string name="Stickers">Stickers</string>
+    <string name="Cat_Pack">Cat Pack</string>
+    <string name="Monkey_Pack">Monkey Pack</string>
+    <string name="Emoji_Pack">Emoji Pack</string>
+    <string name="Beast_Pack">Beast Pack</string>
+    <string name="Skibidi_Pack">Skibidi Pack</string>
+    <string name="DBD_Pack">DBD Pack</string>
+    <string name="Background_Themes">Background Themes</string>
+    <string name="Fluid_Harmony">Fluid Harmony</string>
+    <string name="Blue_Blossom">Blue Blossom</string>
+    <string name="Playful_Safari">Playful Safari</string>
+    <string name="Banner">Banner</string>
+    <string name="Coming_Soon">Coming Soon!</string>
+    <string name="Sticker_Pack">Sticker Pack</string>
+    <string name="Buy">Buy</string>
+    <string name="Cat_Sticker_Pack">Cat Sticker Pack</string>
+    <string name="Monkey_Sticker_Pack">Monkey Sticker Pack</string>
+    <string name="Emoji_Sticker_Pack">Emoji Sticker Pack</string>
+    <string name="Alpha_Wolf_Sticker_Pack">Alpha Wolf Sticker Pack</string>
+    <string name="Skibidi_Toilet_Sticker_Pack">Skibidi Toilet Sticker Pack</string>
+    <string name="Dead_by_Daylight_Sticker_Pack">Dead by Daylight Sticker Pack</string>
+
     <!-- xml that have not been entered in here yet:
-    activity_shop_page
-    activity_sticker_pack
-    dialog_sticker_pack
-    dialog_sticker_selection
     homepage (landscape) -> we probably don't need this
     -->
 
@@ -353,8 +372,68 @@
 
     <!-- PasswordOTPActivity -->
 
+    <!-- ScreenTime_Main -->
+
+    <!-- ScreenTimeAdapter -->
+    <!-- ScreenTimeEntry -->
+    <!-- ScreenTimeService -->
+    <string name="screen_time_tracking">Screen Time Tracking</string>
+    <string name="tracking_screentime">Tracking screen time for FriendScape</string>
+    <string name="channel_screen_time">Channel for screen time tracking</string>
+
+    <!-- DailyRewardDialogFragment -->
+    <string name="please_login_to_claim">Please log in to claim rewards!</string>
+    <string name="reward_claimed">Reward claimed! +20 FriendCoins!</string>
+    <string name="failed_to_claim">Failed to claim reward. Please try again.</string>
+    <string name="error_claim">Error: </string>
+
+    <!-- ShopActivity -->
+    <!-- StickerPackDialogFragment -->
+    <string name="make_purchase">Make Purchase?</string>
+    <string name="buy_sticker1">Do you want to buy this sticker pack for </string>
+    <string name="buy_sticker2"> FriendCoins?</string>
+    <string name="buy_yes">Yes</string>
+    <string name="buy_no">No</string>
+    <string name="sticker_purchased">Sticker Pack Purchased!</string>
+    <string name="purchase_failed">Purchase failed, please try again.</string>
+    <string name="not_enough_coins">Not enough coins to buy this sticker pack</string>
+
+    <!-- ThemePreviewDialogFragment -->
+    <string name="buy_theme">Do you want to buy this theme for </string>
+    <string name="purchased_theme"> purchased!</string>
+    <string name="failed_to_save">Failed to save theme purchase. Please try again.</string>
+    <string name="not_enough_coins_theme">Not enough coins to purchase </string>
+    <string name="failed_to_complete_purchase">Failed to complete purchase. Please try again.</string>
+
+    <!-- ThemeSelectionActivity -->
+    <string name="theme_purchased">Theme purchased: </string>
+    <string name="apply_theme">Apply Theme</string>
+    <string name="apply_theme_confirm">Do you want to apply this theme?</string>
+    <string name="applied_theme">Applied theme: </string>
+    <string name="theme_removed">Theme removed</string>
+
+    <!-- ThemeUtils -->
+    <!-- Chat_Main -->
+    <string name="last_seen_on">Last seen </string>
+
+    <!-- ChatHomeActivity -->
+    <string name="enter_chat_name">Enter Chat Name</string>
+    <string name="chat_cannot_empty">Chat name cannot be empty</string>
+    <string name="chat_cancel">Cancel</string>
+    <string name="hey_friendo">Hey Friendo!</string>
+    <string name="chat_added">Chat added</string>
+    <string name="chat_add_fail">Failed to add chat</string>
+    <string name="failed_load_chats">Failed to load chats</string>
+    <string name="chat_deleted">Chat deleted</string>
+    <string name="failed_delete_chat">Failed to delete chat</string>
+    <string name="chat_key_null">Chat key is null</string>
+
     <!-- finished features:
     Feedback, Friendship_Event, HabitTracker, Timer,
-    Login (Except AccountActivity & AccntDetailActivity)
+    Login (Except AccountActivity & AccntDetailActivity),
+    ScreenTime, DailyLoginReward, Chat
+
+    Remaining features:
+    AddFriend, Home, ToDoList
     -->
 </resources>

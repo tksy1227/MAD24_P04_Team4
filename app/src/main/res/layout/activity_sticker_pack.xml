@@ -27,7 +27,7 @@
             android:id="@+id/stickerPackTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sticker Pack"
+            android:text="@string/Sticker_Pack"
             android:fontFamily="@font/alata"
             android:textSize="24sp"
             android:textStyle="bold"

@@ -87,10 +87,10 @@ public class ThemePreviewDialogFragment extends DialogFragment {
 
     private void showConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Make Purchase?")
-                .setMessage("Do you want to buy this theme for " + themeCost + " coins?")
-                .setPositiveButton("YES", (dialog, which) -> handlePurchase())
-                .setNegativeButton("NO", (dialog, which) -> dialog.dismiss())
+        builder.setTitle(getString(R.string.make_purchase))
+                .setMessage(getString(R.string.buy_theme) + themeCost + getString(R.string.buy_sticker2))
+                .setPositiveButton(getString(R.string.buy_yes), (dialog, which) -> handlePurchase())
+                .setNegativeButton(getString(R.string.buy_no), (dialog, which) -> dialog.dismiss())
                 .create()
                 .show();
     }
@@ -106,24 +106,24 @@ public class ThemePreviewDialogFragment extends DialogFragment {
                             .addOnSuccessListener(aVoid -> {
                                 purchasedThemesRef.child(themeTitle).setValue(true)
                                         .addOnSuccessListener(aVoid2 -> {
-                                            Toast.makeText(getActivity(), themeTitle + " purchased!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getActivity(), themeTitle + getString(R.string.purchased_theme), Toast.LENGTH_SHORT).show();
                                             if (getActivity() instanceof ShopActivity) {
                                                 ((ShopActivity) getActivity()).updateCoinDisplay(newBalance);
                                                 ((ShopActivity) getActivity()).applyTheme(themeTitle, themeCost);
                                             }
                                             dismiss();
                                         })
-                                        .addOnFailureListener(e -> Toast.makeText(getActivity(), "Failed to save theme purchase. Please try again.", Toast.LENGTH_SHORT).show());
+                                        .addOnFailureListener(e -> Toast.makeText(getActivity(), getString(R.string.failed_to_save), Toast.LENGTH_SHORT).show());
                             })
-                            .addOnFailureListener(e -> Toast.makeText(getActivity(), "Purchase failed. Please try again.", Toast.LENGTH_SHORT).show());
+                            .addOnFailureListener(e -> Toast.makeText(getActivity(), getString(R.string.purchase_failed), Toast.LENGTH_SHORT).show());
                 } else {
-                    Toast.makeText(getActivity(), "Not enough coins to purchase " + themeTitle, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getString(R.string.not_enough_coins_theme) + themeTitle, Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getActivity(), "Failed to complete purchase. Please try again.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getString(R.string.failed_to_complete_purchase), Toast.LENGTH_SHORT).show();
             }
         });
     }

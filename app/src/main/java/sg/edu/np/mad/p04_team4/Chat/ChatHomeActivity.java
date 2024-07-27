@@ -102,7 +102,7 @@ public class ChatHomeActivity extends AppCompatActivity {
 
     private void showAddChatDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Enter Chat Name");
+        builder.setTitle(getString(R.string.enter_chat_name));
 
         // Create an EditText input field for the chat name
         final EditText input = new EditText(this);
@@ -124,12 +124,12 @@ public class ChatHomeActivity extends AppCompatActivity {
             if (!chatName.isEmpty()) {
                 addChat(chatName);
             } else {
-                Toast.makeText(ChatHomeActivity.this, "Chat name cannot be empty", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ChatHomeActivity.this, getString(R.string.chat_cannot_empty), Toast.LENGTH_SHORT).show();
             }
         });
 
         // Set the negative button to cancel the dialog
-        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+        builder.setNegativeButton(getString(R.string.chat_cancel), (dialog, which) -> dialog.cancel());
 
         // Show the dialog
         builder.show();
@@ -137,16 +137,16 @@ public class ChatHomeActivity extends AppCompatActivity {
 
     private void addChat(String chatName) {
         long currentTime = System.currentTimeMillis();
-        Chat newChat = new Chat(chatName, "Hey Friendo!", String.valueOf(currentTime));
+        Chat newChat = new Chat(chatName, getString(R.string.hey_friendo), String.valueOf(currentTime));
 
         DatabaseReference newChatRef = userChatsRef.push();
         String chatRoomId = newChatRef.getKey();
 
         newChatRef.setValue(newChat).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                Toast.makeText(ChatHomeActivity.this, "Chat added", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ChatHomeActivity.this, getString(R.string.chat_added), Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(ChatHomeActivity.this, "Failed to add chat", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ChatHomeActivity.this, getString(R.string.chat_add_fail), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -175,7 +175,7 @@ public class ChatHomeActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(ChatHomeActivity.this, "Failed to load chats", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ChatHomeActivity.this, getString(R.string.failed_load_chats), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -185,13 +185,13 @@ public class ChatHomeActivity extends AppCompatActivity {
         if (chatKey != null) {
             userChatsRef.child(chatKey).removeValue().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    Toast.makeText(ChatHomeActivity.this, "Chat deleted", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChatHomeActivity.this, getString(R.string.chat_deleted), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(ChatHomeActivity.this, "Failed to delete chat", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChatHomeActivity.this, getString(R.string.failed_delete_chat), Toast.LENGTH_SHORT).show();
                 }
             });
         } else {
-            Toast.makeText(this, "Chat key is null", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.chat_key_null), Toast.LENGTH_SHORT).show();
         }
     }
 }

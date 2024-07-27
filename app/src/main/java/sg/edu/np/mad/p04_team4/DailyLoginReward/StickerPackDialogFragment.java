@@ -224,14 +224,14 @@ public class StickerPackDialogFragment extends DialogFragment {
 
     private void showPurchaseConfirmationDialog() {
         new AlertDialog.Builder(getContext())
-                .setTitle("Make Purchase?")
-                .setMessage("Do you want to buy this sticker pack for " + packCost + " coins?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setTitle(getString(R.string.make_purchase))
+                .setMessage(getString(R.string.buy_sticker1) + packCost + getString(R.string.buy_sticker2))
+                .setPositiveButton(getString(R.string.buy_yes), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         buyStickerPack();
                     }
                 })
-                .setNegativeButton("No", null)
+                .setNegativeButton(getString(R.string.buy_no), null)
                 .show();
     }
 
@@ -247,14 +247,14 @@ public class StickerPackDialogFragment extends DialogFragment {
                         if (task.isSuccessful()) {
                             savePurchasedStickerPack();
                             ((ShopActivity) getActivity()).updateCoinDisplay(newBalance); // Update coin display
-                            Toast.makeText(getContext(), "Sticker Pack Purchased!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), getString(R.string.sticker_purchased), Toast.LENGTH_SHORT).show();
                         } else {
                             Log.e(TAG, "Failed to update coins", task.getException());
-                            Toast.makeText(getContext(), "Purchase failed, please try again.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), getString(R.string.purchase_failed), Toast.LENGTH_SHORT).show();
                         }
                     });
                 } else {
-                    Toast.makeText(getContext(), "Not enough coins to buy this sticker pack", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.not_enough_coins), Toast.LENGTH_SHORT).show();
                 }
             }
 

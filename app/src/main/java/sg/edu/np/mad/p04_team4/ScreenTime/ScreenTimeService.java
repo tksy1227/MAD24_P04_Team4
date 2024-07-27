@@ -66,8 +66,8 @@ public class ScreenTimeService extends Service {
         createNotificationChannel(channelId);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
-                .setContentTitle("Screen Time Tracking")
-                .setContentText("Tracking screen time for FriendScape")
+                .setContentTitle(getString(R.string.screen_time_tracking))
+                .setContentText(getString(R.string.tracking_screentime))
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
@@ -76,8 +76,8 @@ public class ScreenTimeService extends Service {
 
     private void createNotificationChannel(String channelId) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = "Screen Time Tracking";
-            String description = "Channel for screen time tracking";
+            CharSequence name = getString(R.string.screen_time_tracking);
+            String description = getString(R.string.channel_screen_time);
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel channel = new NotificationChannel(channelId, name, importance);
             channel.setDescription(description);
