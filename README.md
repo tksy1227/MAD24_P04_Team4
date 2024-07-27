@@ -144,7 +144,7 @@ Turquoise: combines the calming properties of blue and revitalizing energy of gr
 
 Beige: allows a contrast to make the elements of the app visible and pleasing to the eye
 
-Colour Wheel & colours used:
+Colour Wheel & main colours used:
 #F4EDEA
 #0D5C63
 #C5D8D1
@@ -152,7 +152,7 @@ Colour Wheel & colours used:
 
 Notes:
 - We have chosen for the app to be locked in Portrait Mode to provide optimal user experience.
-- For each feature, we have implemented the '?' feature for users to click on. This displays instructions
+- For some features, we have implemented the '?' feature for users to click on. This displays instructions
 on how to use the feature.
 - The feedback feature has been coded for the developer to receive legitimate emails whenever a user sends
 feedback through the app. The developer will receive the email via gmail within a few minutes.
