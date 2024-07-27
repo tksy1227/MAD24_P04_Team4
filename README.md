@@ -53,16 +53,19 @@ Download FriendScape now and embark on a journey of fun, friendship, and unforge
 App Features [Stage 1]:
 1. Login & Home Page - Users can login/register an account + change password.
 There will be a landing page designed to help users navigate the app easily.
-Concepts used: Persistent Memory, Layout Manager
+Concepts used: Persistent Memory, Layout Manager, Firebase
 Feature done by: Marissa
-   ![login-page](repo_images/login-page.png)
-   ![create-new-account](repo_images/create-new-account.png)
 
-2. Chat & Messaging - Send and receive text messages and images between friends
+   ![login-page](repo_images/login-page.png)
+   ![image](https://github.com/user-attachments/assets/0158f709-6526-4f3b-837c-cc7aa3ffd3e6)
+
+3. Chat & Messaging - Send and receive text messages and images between friends
 Concepts used: RecyclerView, Persistent Memory, Layout Manager
 Feature done by: Danial
+   ![image](repo_images/Chat1.jpg)
+   ![image](repo_images/Chat2.jpg)
 
-3. Friendship Events - Users to track each other's progress in fitness challenges, personal milestones & other goals together
+4. Friendship Events - Users to track each other's progress in fitness challenges, personal milestones & other goals together
 Concepts used: Persistent Memory
 Feature done by: Jacob
 ![image](https://github.com/user-attachments/assets/c2f73f86-f759-4a7a-9ab8-b347339c5ad1)
@@ -81,20 +84,28 @@ Feature done by: Shida
 App Features [Stage 2]:
 note: Old Concepts refer to concepts taught in lectures, or used in stage 1.
 
-1. Settings Page | OTP | App Layout Enhancement - Users can view, update and delete their personal details.
-OTP verification to verify its the user’s number.
-User can customise the app’s layout to their liking.
-Old Concepts used: CountdownTimer, RecyclerView, TextWatcher, Data Binding, Dynamic Theming
-New concepts used: TextWatcher, Data Binding
+1. Account Page | OTP | Allow users to connect with friends - Users can view, update and delete their personal details.
+OTP verification to verify its the user’s number during creation and changing password.
+Creation of friend's list to be able to interact with them and allow the user to decline and accept the link's invitation.
+Old Concepts used: Persistent Memory, Layout Manager, Firebase
+New concepts used: CountDownTimer UI, Dynamic UI Creation, Threading, Adapter
 Feature/Enhancement done by: Marissa
+![image](https://github.com/user-attachments/assets/1b234006-6b8f-442b-86b4-5a572e2d7f36)
+![image](https://github.com/user-attachments/assets/66b1c1d0-33f6-4a13-92eb-01dfa6fb116e)
 
-2. Screentime Tracker - Gives insight and tells users how long they have been on each feature.
+3. Screentime Tracker - Gives insight and tells users how long they have been on each feature.
+   DailyLogin and Rewards - Allows user to gain 20 FriendCoins each time they login. Using the FriendCoins, users can buy stickers and themes to customize the app. This encourages the users to log in to the app everyday so that they can earn FriendCoins.
 Users can make changes according to the screen time.
+User can customize the app by buying items using FriendCoins(sending stickers in chats and changing background theme)
 Old Concepts used: Foreground Service, Firebase Realtime Database, Binding to Service, Tracking Individual Features
-New concepts used: Foreground Service, Binding to Service
+New concepts used: Foreground Service, Binding to Service, MPAndroidChart, Flexbox Layout, Nested Scrollview, SharedPreferences
 Feature/Enhancement done by: Danial
+![image](repo_images/Daily.jpg)
+![image](repo_images/Shop.jpg)
+![image](repo_images/Screentime.jpg)
+![image](repo_images/Theme.jpg)
 
-3. Personal Habit Tracker -  Allows users to set, track, and manage their personal habits.
+4. Personal Habit Tracker -  Allows users to set, track, and manage their personal habits.
 Users can log their progress, and view their streaks and statistics over time. 
 A total of 4 habits allowed to be created at any one time, to encourage users to focus on goals.
 users are able to sort their data by week, month, weekday or insights, as well as switch between bar and line charts 

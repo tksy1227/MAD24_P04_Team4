@@ -36,10 +36,6 @@
             </intent-filter>
         </activity> <!-- lock the whole app in portrait mode -->
         <activity
-            android:name=".Login.OTPActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".Login.ForgetUserActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
@@ -90,7 +86,7 @@
             android:parentActivityName=".Chat.ChatHomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Login.ForgetPasswordConfirmationActivity"
+            android:name=".Login.ForgetPasswordActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ScreenTime.ScreenTime_Main"

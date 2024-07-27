@@ -109,7 +109,6 @@ public class HomeActivity extends AppCompatActivity {
         // Set up click listeners for each feature
         setupClickListener(R.id.chat, "Message your friends!", ChatHomeActivity.class);
         setupClickListener(R.id.stopwatch, "Stopwatch/Timer", Stopwatch_Timer.class);
-        setupClickListener(R.id.feedback, "Feedback", FeedbackActivity.class);
         setupClickListener(R.id.screentime, "Screentime", ScreenTime_Main.class);
         setupClickListener(R.id.account, "Account", AccountActivity.class, currentUser);
         setupClickListener(R.id.fitness, "Challenge yourself!", Friendship_Events.class, currentUser);
