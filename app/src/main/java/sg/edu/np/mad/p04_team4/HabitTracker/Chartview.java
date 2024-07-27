@@ -104,6 +104,7 @@ public class Chartview extends AppCompatActivity {
             Log.d("passing", getString(R.string.gp_option)+option);
             Log.d("passing", getString(R.string.gp_habit)+habit);
         }
+        Log.d("passing", "option: "+option);
 
         initializeOptionIdentifierMap();
 
@@ -134,9 +135,13 @@ public class Chartview extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedOption = (String) parent.getItemAtPosition(position);
+                Log.d("spinner","option: "+selectedOption);
+                Log.d("spinner","position: "+position);;
                 identifier[0] = optionIdentifierMap.get(selectedOption);
                 Log.d("spinner", getString(R.string.option_space) + selectedOption + getString(R.string.selected_with_identifier) + identifier[0]);
                 // Handle the selected identifier
+                Log.d("spinner","habit: " +habit);
+                Log.d("spinner","identifier: "+identifier[0]);
                 setupChart(habit, identifier[0],raw_data);
 
             }
@@ -149,7 +154,7 @@ public class Chartview extends AppCompatActivity {
         });
 
 
-        title.setText(habit + getString(R.string.chart_title));
+        title.setText(habit + " "+getString(R.string.chart_title));
 
 
         //setupChart(habit,"day");
@@ -680,10 +685,10 @@ public class Chartview extends AppCompatActivity {
     }
     private void initializeOptionIdentifierMap() {
         optionIdentifierMap = new HashMap<>();
-        optionIdentifierMap.put(getString(R.string.by_input), "1");
-        optionIdentifierMap.put(getString(R.string.sort_week), "2");
-        optionIdentifierMap.put(getString(R.string.sort_day_week), "3");
-        optionIdentifierMap.put(getString(R.string.sort_month), "4");
+        optionIdentifierMap.put("By Input", "1");
+        optionIdentifierMap.put("Sort by Week", "2");
+        optionIdentifierMap.put("Sort by Day of Week", "3");
+        optionIdentifierMap.put("Sort by Month", "4");
     }
 
 }

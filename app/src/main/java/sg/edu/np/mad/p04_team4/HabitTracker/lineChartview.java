@@ -78,21 +78,28 @@ public class lineChartview extends AppCompatActivity {
             Intent back = new Intent(lineChartview.this, selectHabit.class);
             startActivity(back);
         });
-        String habit = getIntent().getStringExtra(getString(R.string.habit));
-        String option = getIntent().getStringExtra(getString(R.string.option));
+        String habit = getIntent().getStringExtra("habit");
+        String option = getIntent().getStringExtra("option");
+        Log.d("erm",getString(R.string.habit));
         if (habit == null) {
             //do error handling
-            Log.e(getString(R.string.passing_tag), getString(R.string.habit_not_passed));
+            Log.e("passing", "Habit not passed");
+            // go back
+            Intent back = new Intent(lineChartview.this, selectHabit.class);
+            startActivity(back);
         }
         if (option == null) {
             //do error handling
-            Log.e(getString(R.string.passing_tag), getString(R.string.option_not_passed1));
+            Log.e("passing", "option not passed, setting as 0");
+            option = "1";
         }
         else
         {
-            Log.d(getString(R.string.passing_tag), getString(R.string.option_space)+option);
-            Log.d(getString(R.string.passing_tag), getString(R.string.habit2)+habit);
+            Log.d("passing", "good pass, option "+option);
+            Log.d("passing", "good pass, habit "+habit);
         }
+        Log.d("passing", "option: "+option);
+
         //setupLineChart(habit, option);
         initializeOptionIdentifierMap();
 
@@ -102,7 +109,7 @@ public class lineChartview extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerTimeGroup.setAdapter(adapter);
         spinnerTimeGroup.setSelection(Integer.parseInt(option)-1);
-        Log.d("selecting_option",getString(R.string.option_at_selection)+option);
+        Log.d("selecting_option","option at selection "+option);
 
 
 
@@ -560,9 +567,9 @@ public class lineChartview extends AppCompatActivity {
     }
     private void initializeOptionIdentifierMap() {
         optionIdentifierMap = new HashMap<>();
-        optionIdentifierMap.put(getString(R.string.by_input), "1");
-        optionIdentifierMap.put(getString(R.string.sort_week), "2");
-        optionIdentifierMap.put(getString(R.string.sort_day_week), "3");
-        optionIdentifierMap.put(getString(R.string.sort_month), "4");
+        optionIdentifierMap.put("By Input", "1");
+        optionIdentifierMap.put("Sort by Week", "2");
+        optionIdentifierMap.put("Sort by Day of Week", "3");
+        optionIdentifierMap.put("Sort by Month", "4");
     }
 }
