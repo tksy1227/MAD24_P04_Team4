@@ -10,11 +10,14 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
+
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -31,6 +34,7 @@ public class ScreenTimeService extends Service {
     private Runnable updateTask;
     private DatabaseReference databaseReference;
 
+    // Binder class to return the service instance to clients
     public class LocalBinder extends Binder {
         public ScreenTimeService getService() {
             return ScreenTimeService.this;
@@ -51,7 +55,7 @@ public class ScreenTimeService extends Service {
         // Start the service in the foreground
         startForeground(1, notification);
 
-        // Start tracking
+        // Start tracking screen time
         startTracking();
     }
 
@@ -61,6 +65,7 @@ public class ScreenTimeService extends Service {
         return binder;
     }
 
+    // Create a notification for the foreground service
     private Notification createNotification() {
         String channelId = "screen_time_channel";
         createNotificationChannel(channelId);
@@ -74,6 +79,7 @@ public class ScreenTimeService extends Service {
         return builder.build();
     }
 
+    // Create a notification channel for devices running Android O and above
     private void createNotificationChannel(String channelId) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = getString(R.string.screen_time_tracking);
@@ -89,6 +95,7 @@ public class ScreenTimeService extends Service {
         }
     }
 
+    // Start tracking screen time
     private void startTracking() {
         updateTask = new Runnable() {
             @Override
@@ -100,6 +107,7 @@ public class ScreenTimeService extends Service {
         handler.post(updateTask);
     }
 
+    // Update screen time for each tracked feature
     private void updateScreenTime() {
         for (String feature : featureStartTimes.keySet()) {
             long startTime = featureStartTimes.get(feature);
@@ -111,21 +119,23 @@ public class ScreenTimeService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        return START_STICKY;
+        return START_STICKY; // Ensure the service is restarted if it gets terminated
     }
 
     @Override
     public void onDestroy() {
-        handler.removeCallbacks(updateTask);
+        handler.removeCallbacks(updateTask); // Remove update task callbacks
         super.onDestroy();
     }
 
+    // Start timer for a specific feature
     public void startFeatureTimer(String featureName) {
         long startTime = System.currentTimeMillis();
         featureStartTimes.put(featureName, startTime);
         Log.d("ScreenTimeService", "Starting timer for feature: " + featureName + " at " + startTime);
     }
 
+    // Stop timer for a specific feature and save data to Firebase
     public void stopFeatureTimer(String featureName) {
         Long startTime = featureStartTimes.get(featureName);
         if (startTime != null) {
@@ -147,6 +157,7 @@ public class ScreenTimeService extends Service {
         }
     }
 
+    // Return the current feature durations
     public Map<String, Long> getFeatureDurations() {
         return featureDurations;
     }

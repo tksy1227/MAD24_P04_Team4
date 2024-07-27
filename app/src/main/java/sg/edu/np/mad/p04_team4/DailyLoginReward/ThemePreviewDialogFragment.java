@@ -25,6 +25,7 @@ import sg.edu.np.mad.p04_team4.R;
 
 public class ThemePreviewDialogFragment extends DialogFragment {
 
+    // Member variables to store theme details and user information
     private String themeTitle;
     private int themeImageResId;
     private int themeCost;
@@ -34,6 +35,7 @@ public class ThemePreviewDialogFragment extends DialogFragment {
     private PurchaseListener purchaseListener;
     private boolean isPurchased;
 
+    // Constructor to initialize the dialog fragment with theme details and user ID
     public ThemePreviewDialogFragment(String themeTitle, int themeImageResId, int themeCost, String userId) {
         this.themeTitle = themeTitle;
         this.themeImageResId = themeImageResId;
@@ -43,10 +45,12 @@ public class ThemePreviewDialogFragment extends DialogFragment {
         this.purchasedThemesRef = FirebaseDatabase.getInstance().getReference().child("users").child(userId).child("purchasedThemes");
     }
 
+    // Setter for the purchase listener
     public void setPurchaseListener(PurchaseListener purchaseListener) {
         this.purchaseListener = purchaseListener;
     }
 
+    // Setter to indicate if the theme is already purchased
     public void setPurchased(boolean isPurchased) {
         this.isPurchased = isPurchased;
     }
@@ -54,17 +58,21 @@ public class ThemePreviewDialogFragment extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate the layout for the dialog
         View view = inflater.inflate(R.layout.dialog_theme_preview, container, false);
 
+        // Set the theme title and image in the dialog
         TextView themeTitleView = view.findViewById(R.id.themeTitle);
         themeTitleView.setText(themeTitle);
 
         ImageView themeImage = view.findViewById(R.id.themePreviewImage);
         themeImage.setImageResource(themeImageResId);
 
+        // Set the close button to dismiss the dialog
         ImageView closeButton = view.findViewById(R.id.closeButton);
         closeButton.setOnClickListener(v -> dismiss());
 
+        // Set the buy button visibility and click listener
         Button buyButton = view.findViewById(R.id.buyButton);
         if (isPurchased) {
             buyButton.setVisibility(View.GONE);
@@ -85,6 +93,7 @@ public class ThemePreviewDialogFragment extends DialogFragment {
         };
     }
 
+    // Show a confirmation dialog to confirm the purchase of the theme
     private void showConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(getString(R.string.make_purchase))
@@ -95,6 +104,7 @@ public class ThemePreviewDialogFragment extends DialogFragment {
                 .show();
     }
 
+    // Handle the purchase of the theme by deducting coins and saving the purchase
     private void handlePurchase() {
         userCoinsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -128,6 +138,7 @@ public class ThemePreviewDialogFragment extends DialogFragment {
         });
     }
 
+    // Interface for the purchase listener
     public interface PurchaseListener {
         void onPurchase();
     }

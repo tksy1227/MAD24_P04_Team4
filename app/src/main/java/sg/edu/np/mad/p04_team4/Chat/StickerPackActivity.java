@@ -4,10 +4,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -15,8 +17,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import sg.edu.np.mad.p04_team4.R;
 
 public class StickerPackActivity extends AppCompatActivity {
@@ -33,25 +37,32 @@ public class StickerPackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sticker_page);
 
+        // Initialize FirebaseAuth
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
+            // Get reference to the user's purchased sticker packs in Firebase
             userStickerPacksRef = FirebaseDatabase.getInstance().getReference("users").child(user.getUid()).child("purchasedStickerPacks");
         }
 
+        // Initialize RecyclerView and back arrow
         stickerRecyclerView = findViewById(R.id.stickerRecyclerView);
         ImageView backArrow = findViewById(R.id.backArrow);
 
+        // Set onClickListener for the back arrow to finish the activity
         backArrow.setOnClickListener(v -> finish());
 
+        // Initialize sticker paths list and adapter
         stickerPaths = new ArrayList<>();
         stickerAdapter = new StickerAdapter(stickerPaths, this, uri -> sendStickerMessage(uri), true);
         stickerRecyclerView.setAdapter(stickerAdapter);
         stickerRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
 
+        // Check purchased sticker packs
         checkPurchasedStickerPacks();
     }
 
+    // Check the user's purchased sticker packs from Firebase
     private void checkPurchasedStickerPacks() {
         if (userStickerPacksRef == null) {
             Log.e(TAG, "userStickerPacksRef is null.");
@@ -82,6 +93,7 @@ public class StickerPackActivity extends AppCompatActivity {
         });
     }
 
+    // Load stickers for the specified sticker pack
     private void loadStickers(String packName) {
         switch (packName) {
             case "Cat Sticker Pack":
@@ -99,7 +111,7 @@ public class StickerPackActivity extends AppCompatActivity {
             case "Skibidi Toilet Sticker Pack":
                 loadSkibidiStickers();
                 break;
-            case "Emoji Sticker Pack": // New case for Emoji Sticker Pack
+            case "Emoji Sticker Pack":
                 loadEmojiStickers();
                 break;
             default:
@@ -109,6 +121,7 @@ public class StickerPackActivity extends AppCompatActivity {
         stickerAdapter.notifyDataSetChanged();
     }
 
+    // Load stickers for Cat Sticker Pack
     private void loadCatStickers() {
         stickerPaths.add(getResourceUri(R.drawable.cat_angry));
         stickerPaths.add(getResourceUri(R.drawable.cat_bored));
@@ -118,6 +131,7 @@ public class StickerPackActivity extends AppCompatActivity {
         stickerPaths.add(getResourceUri(R.drawable.cat_sleep));
     }
 
+    // Load stickers for Dead by Daylight Sticker Pack
     private void loadDeadByDaylightStickers() {
         stickerPaths.add(getResourceUri(R.drawable.claudette));
         stickerPaths.add(getResourceUri(R.drawable.dwight));
@@ -126,6 +140,7 @@ public class StickerPackActivity extends AppCompatActivity {
         stickerPaths.add(getResourceUri(R.drawable.sadako));
     }
 
+    // Load stickers for Alpha Wolf Sticker Pack
     private void loadAlphaWolfStickers() {
         stickerPaths.add(getResourceUri(R.drawable.wolf_grin));
         stickerPaths.add(getResourceUri(R.drawable.wolf_growl));
@@ -133,6 +148,7 @@ public class StickerPackActivity extends AppCompatActivity {
         stickerPaths.add(getResourceUri(R.drawable.wolf_pack));
     }
 
+    // Load stickers for Monkey Sticker Pack
     private void loadMonkeyStickers() {
         stickerPaths.add(getResourceUri(R.drawable.monkey_angry));
         stickerPaths.add(getResourceUri(R.drawable.monkey_fp));
@@ -142,6 +158,7 @@ public class StickerPackActivity extends AppCompatActivity {
         stickerPaths.add(getResourceUri(R.drawable.monkey_sad));
     }
 
+    // Load stickers for Skibidi Toilet Sticker Pack
     private void loadSkibidiStickers() {
         stickerPaths.add(getResourceUri(R.drawable.skibidi_angry));
         stickerPaths.add(getResourceUri(R.drawable.skibidi_confused));
@@ -150,6 +167,7 @@ public class StickerPackActivity extends AppCompatActivity {
         stickerPaths.add(getResourceUri(R.drawable.skibidi_sad));
     }
 
+    // Load stickers for Emoji Sticker Pack
     private void loadEmojiStickers() {
         stickerPaths.add(getResourceUri(R.drawable.emoji_angry));
         stickerPaths.add(getResourceUri(R.drawable.emoji_cry));
@@ -157,10 +175,12 @@ public class StickerPackActivity extends AppCompatActivity {
         stickerPaths.add(getResourceUri(R.drawable.emoji_mock));
     }
 
+    // Get URI for a resource ID
     private Uri getResourceUri(int resourceId) {
         return Uri.parse("android.resource://" + getPackageName() + "/" + resourceId);
     }
 
+    // Send sticker message to the chat
     private void sendStickerMessage(Uri stickerUri) {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {

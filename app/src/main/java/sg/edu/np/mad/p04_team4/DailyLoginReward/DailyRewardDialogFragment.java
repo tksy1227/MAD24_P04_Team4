@@ -33,12 +33,18 @@ import sg.edu.np.mad.p04_team4.R;
 
 public class DailyRewardDialogFragment extends DialogFragment {
 
+    // UI components
     private LinearLayout daysLayout;
     private Button claimButton;
+
+    // SharedPreferences for storing user data
     private SharedPreferences prefs;
     private static final String PREFS_NAME = "DailyRewardPrefs";
+
+    // Reward amount for daily login
     private static final int REWARD_AMOUNT = 20;
 
+    // Firebase authentication and database references
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     private String userId;
@@ -48,26 +54,37 @@ public class DailyRewardDialogFragment extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate the layout for the dialog
         View view = inflater.inflate(R.layout.activity_daily_reward, container, false);
 
+        // Initialize UI components
         daysLayout = view.findViewById(R.id.daysLayout);
         claimButton = view.findViewById(R.id.claimButton);
+
+        // Initialize SharedPreferences
         prefs = requireActivity().getSharedPreferences(PREFS_NAME, requireActivity().MODE_PRIVATE);
 
         // Initialize Firebase Auth and Database
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
+        // Get the current logged-in user
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             userId = currentUser.getUid();
             Log.d(TAG, "User ID: " + userId);
+
+            // Update the login streak for the user
             updateLoginStreak();
+
+            // Set up the days grid and claim button
             setupDaysGrid(view);
             setupClaimButton(view);
+
+            // Check if the reward has already been claimed for today
             checkClaimStatus(view);
         } else {
-            // Handle the case where the user is not logged in
+            // If the user is not logged in, show a message and close the dialog
             Toast.makeText(getActivity(), getString(R.string.please_login_to_claim), Toast.LENGTH_SHORT).show();
             dismiss();
         }
@@ -75,6 +92,7 @@ public class DailyRewardDialogFragment extends DialogFragment {
         return view;
     }
 
+    // Update the login streak of the user
     private void updateLoginStreak() {
         Calendar today = Calendar.getInstance();
         long lastLoginMillis = prefs.getLong(userId + "_LastLoginDate", 0);
@@ -97,6 +115,7 @@ public class DailyRewardDialogFragment extends DialogFragment {
                 currentStreak++;
             }
 
+            // Update SharedPreferences with new values
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean(userId + "_ClaimStatus", false);
             editor.putLong(userId + "_LastLoginDate", today.getTimeInMillis());
@@ -107,6 +126,7 @@ public class DailyRewardDialogFragment extends DialogFragment {
         }
     }
 
+    // Check if the reward dialog should be shown
     public static boolean shouldShowReward(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -119,14 +139,17 @@ public class DailyRewardDialogFragment extends DialogFragment {
         lastLogin.setTimeInMillis(lastLoginMillis);
         Calendar today = Calendar.getInstance();
 
+        // Show reward if it has not been claimed or it's a new day
         return !claimed || !isSameDay(lastLogin, today);
     }
 
+    // Check if two Calendar instances represent the same day
     private static boolean isSameDay(Calendar cal1, Calendar cal2) {
         return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
                 cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
     }
 
+    // Set up the grid showing the user's login streak
     private void setupDaysGrid(View view) {
         int currentStreak = prefs.getInt(userId + "_CurrentStreak", 1);
         int startDay = Math.max(1, currentStreak - 6);
@@ -163,6 +186,7 @@ public class DailyRewardDialogFragment extends DialogFragment {
         }
     }
 
+    // Set up the claim button and its click listener
     private void setupClaimButton(View view) {
         claimButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,6 +196,7 @@ public class DailyRewardDialogFragment extends DialogFragment {
         });
     }
 
+    // Check if the reward has already been claimed and update the UI accordingly
     private void checkClaimStatus(View view) {
         boolean claimed = prefs.getBoolean(userId + "_ClaimStatus", false);
         Log.d(TAG, "Claim Status for user " + userId + ": " + claimed);
@@ -182,6 +207,7 @@ public class DailyRewardDialogFragment extends DialogFragment {
         }
     }
 
+    // Claim the reward and update the user's coin balance in the database
     private void claimReward(View view) {
         DatabaseReference userCoinsRef = mDatabase.child("users").child(userId).child("friendCoins");
         userCoinsRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -221,6 +247,7 @@ public class DailyRewardDialogFragment extends DialogFragment {
         });
     }
 
+    // Update the current day box in the UI after claiming the reward
     private void updateCurrentDayBox(View view) {
         int currentStreak = prefs.getInt(userId + "_CurrentStreak", 1);
         int startDay = Math.max(1, currentStreak - 6);
@@ -245,6 +272,7 @@ public class DailyRewardDialogFragment extends DialogFragment {
     public void onStart() {
         super.onStart();
         if (getDialog() != null) {
+            // Set the dialog window layout and background
             getDialog().getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         }

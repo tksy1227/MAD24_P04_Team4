@@ -102,6 +102,7 @@ public class ShopActivity extends AppCompatActivity {
         btnTheme3.setOnClickListener(v -> showThemePreview("Playful Safari", R.drawable.theme_3, 100, purchasedThemes.contains("Playful Safari")));
     }
 
+    // Fetch the user's current coin balance from the database
     private void fetchUserCoins() {
         DatabaseReference userCoinsRef = mDatabase.child("users").child(userId).child("friendCoins");
         userCoinsRef.addValueEventListener(new ValueEventListener() {
@@ -122,6 +123,7 @@ public class ShopActivity extends AppCompatActivity {
         });
     }
 
+    // Fetch the list of themes that the user has purchased from the database
     private void fetchPurchasedThemes() {
         DatabaseReference userThemesRef = mDatabase.child("users").child(userId).child("purchasedThemes");
         userThemesRef.addValueEventListener(new ValueEventListener() {
@@ -141,6 +143,7 @@ public class ShopActivity extends AppCompatActivity {
         });
     }
 
+    // Fetch the list of stickers that the user has purchased from the database
     private void fetchPurchasedStickers() {
         DatabaseReference userStickersRef = mDatabase.child("users").child(userId).child("purchasedStickers");
         userStickersRef.addValueEventListener(new ValueEventListener() {
@@ -160,6 +163,7 @@ public class ShopActivity extends AppCompatActivity {
         });
     }
 
+    // Update the UI based on the user's purchased themes and stickers
     private void updateUI() {
         updateButtonState(btnSticker1, "Cat Sticker Pack", purchasedStickers);
         updateButtonState(btnSticker2, "Monkey Sticker Pack", purchasedStickers);
@@ -173,17 +177,20 @@ public class ShopActivity extends AppCompatActivity {
         updateButtonState(btnTheme3, "Playful Safari", purchasedThemes);
     }
 
+    // Update the button state to indicate whether the item has been purchased
     private void updateButtonState(Button button, String itemName, Set<String> purchasedItems) {
         if (purchasedItems.contains(itemName)) {
             button.setBackgroundColor(Color.GRAY);
         }
     }
 
+    // Open the sticker pack dialog for the specified pack
     private void openStickerPack(String packName, int packCost, boolean isUserView) {
         StickerPackDialogFragment dialog = new StickerPackDialogFragment(packName, userId, chatRoomId, packCost, isUserView);
         dialog.show(getSupportFragmentManager(), "StickerPackDialogFragment");
     }
 
+    // Show a preview of the theme with the option to purchase it
     private void showThemePreview(String themeName, int themeImageResId, int themeCost, boolean isPurchased) {
         ThemePreviewDialogFragment dialog = new ThemePreviewDialogFragment(themeName, themeImageResId, themeCost, userId);
         dialog.setPurchaseListener(() -> applyTheme(themeName, themeCost));
@@ -191,6 +198,7 @@ public class ShopActivity extends AppCompatActivity {
         dialog.show(getSupportFragmentManager(), "ThemePreviewDialogFragment");
     }
 
+    // Apply the selected theme and deduct coins if it is not already purchased
     public void applyTheme(String themeName, int themeCost) {
         if (purchasedThemes.contains(themeName)) {
             saveSelectedTheme(themeName);
@@ -207,6 +215,7 @@ public class ShopActivity extends AppCompatActivity {
         }
     }
 
+    // Deduct the specified amount of coins from the user's balance
     private void deductCoins(int cost, Runnable onSuccess) {
         DatabaseReference userCoinsRef = mDatabase.child("users").child(userId).child("friendCoins");
         userCoinsRef.runTransaction(new Transaction.Handler() {
@@ -232,11 +241,13 @@ public class ShopActivity extends AppCompatActivity {
         });
     }
 
+    // Send a broadcast indicating that the theme has been changed
     private void sendThemeChangedBroadcast() {
         Intent intent = new Intent("sg.edu.np.mad.p04_team4.THEME_CHANGED");
         sendBroadcast(intent);
     }
 
+    // Get the resource ID for the theme image based on the theme name
     private int getThemeImageResId(String themeName) {
         switch (themeName) {
             case "Fluid Harmony":
@@ -250,6 +261,7 @@ public class ShopActivity extends AppCompatActivity {
         }
     }
 
+    // Save the selected theme to SharedPreferences
     private void saveSelectedTheme(String themeName) {
         SharedPreferences sharedPreferences = getSharedPreferences("AppPreferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -257,6 +269,7 @@ public class ShopActivity extends AppCompatActivity {
         editor.apply(); // Use apply() for asynchronous saving
     }
 
+    // Update the coin display with the new balance
     public void updateCoinDisplay(int newBalance) {
         coinAmountTextView.setText(String.valueOf(newBalance));
     }

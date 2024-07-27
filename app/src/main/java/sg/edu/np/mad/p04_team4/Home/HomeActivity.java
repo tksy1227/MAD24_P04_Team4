@@ -32,6 +32,7 @@ import sg.edu.np.mad.p04_team4.HabitTracker.selectHabit;
 import sg.edu.np.mad.p04_team4.Login.AccountActivity;
 import sg.edu.np.mad.p04_team4.R;
 import sg.edu.np.mad.p04_team4.ScreenTime.ScreenTimeService;
+import sg.edu.np.mad.p04_team4.ScreenTime.ScreenTime_Main;
 import sg.edu.np.mad.p04_team4.Timer.Stopwatch_Timer;
 import sg.edu.np.mad.p04_team4.ToDoList.MainActivity_TodoList;
 
@@ -44,9 +45,11 @@ public class HomeActivity extends AppCompatActivity {
     private boolean isBound = false;
     private static final String TAG = "HomeActivity";
 
+    // Service connection to manage the binding and unbinding of the service
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
+            // Bind to the service when connected
             ScreenTimeService.LocalBinder binder = (ScreenTimeService.LocalBinder) service;
             screenTimeService = binder.getService();
             isBound = true;
@@ -54,14 +57,16 @@ public class HomeActivity extends AppCompatActivity {
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
+            // Handle the service disconnection
             isBound = false;
         }
     };
 
+    // Broadcast receiver to handle theme change events
     private BroadcastReceiver themeChangeReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            // Apply the new theme
+            // Apply the new theme when a theme change event is received
             View rootView = findViewById(R.id.main); // Ensure this matches the root layout id
             ThemeUtils.applyTheme(HomeActivity.this, rootView);
         }
@@ -70,15 +75,16 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.homepage);
+        setContentView(R.layout.homepage); // Set the layout for the activity
 
         View rootView = findViewById(R.id.main); // Ensure this matches the root layout id
-        ThemeUtils.applyTheme(this, rootView);
+        ThemeUtils.applyTheme(this, rootView); // Apply the selected theme
 
         // Register the broadcast receiver for theme changes
         IntentFilter filter = new IntentFilter("sg.edu.np.mad.p04_team4.THEME_CHANGED");
         registerReceiver(themeChangeReceiver, filter);
 
+        // Set up the language toggle button
         Button languageButton = findViewById(R.id.languageButton);
         languageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +93,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        // Start the foreground service
+        // Start and bind the screen time tracking service
         Intent serviceIntent = new Intent(this, ScreenTimeService.class);
         startService(serviceIntent);
         bindService(serviceIntent, serviceConnection, BIND_AUTO_CREATE);
@@ -108,87 +114,49 @@ public class HomeActivity extends AppCompatActivity {
             dailyRewardDialogFragment.show(getSupportFragmentManager(), "DailyRewardDialog");
         }
 
-        // Set Click Listener for the "Message your friends!" layout
-        RelativeLayout messageFriendsLayout = findViewById(R.id.chat);
-        messageFriendsLayout.setOnClickListener(v -> {
-            if (isBound) {
-                screenTimeService.startFeatureTimer("Message your friends!");
-            }
-            Intent intent = new Intent(HomeActivity.this, ChatHomeActivity.class);
-            startActivity(intent);
-        });
+        // Set up click listeners for each feature
+        setupClickListener(R.id.chat, "Message your friends!", ChatHomeActivity.class);
+        setupClickListener(R.id.stopwatch, "Stopwatch/Timer", Stopwatch_Timer.class);
+        setupClickListener(R.id.feedback, "Feedback", FeedbackActivity.class);
+        setupClickListener(R.id.screentime, "Screentime", ScreenTime_Main.class);
+        setupClickListener(R.id.account, "Account", AccountActivity.class, currentUser);
+        setupClickListener(R.id.fitness, "Challenge yourself!", Friendship_Events.class, currentUser);
+        setupClickListener(R.id.notepad, "To-Do List", MainActivity_TodoList.class);
+        setupClickListener(R.id.reward, "Reward", ShopActivity.class);
+        setupClickListener(R.id.chart, "Habit Tracker", selectHabit.class);
+    }
 
-        // Set Click Listener for the "Stopwatch/Timer" layout
-        RelativeLayout stopwatchTimerLayout = findViewById(R.id.stopwatch);
-        stopwatchTimerLayout.setOnClickListener(v -> {
+    // Method to set up click listeners for features without additional user data
+    private void setupClickListener(int layoutId, String featureName, Class<?> activityClass) {
+        RelativeLayout layout = findViewById(layoutId);
+        layout.setOnClickListener(v -> {
             if (isBound) {
-                screenTimeService.startFeatureTimer("Stopwatch/Timer");
+                screenTimeService.startFeatureTimer(featureName); // Start the feature timer
             }
-            Intent intent = new Intent(HomeActivity.this, Stopwatch_Timer.class);
-            startActivity(intent);
-        });
-
-        // Set Click Listener for the "Feedback" layout
-        RelativeLayout feedbackLayout = findViewById(R.id.feedback);
-        feedbackLayout.setOnClickListener(v -> {
-            if (isBound) {
-                screenTimeService.startFeatureTimer("Feedback");
-            }
-            Intent intent = new Intent(HomeActivity.this, FeedbackActivity.class);
-            startActivity(intent);
-        });
-
-        // Start AccountActivity
-        RelativeLayout Account = findViewById(R.id.account);
-        Account.setOnClickListener(v -> {
-            Intent accountIntent = new Intent(HomeActivity.this, AccountActivity.class);
-            accountIntent.putExtra("name", currentUser.getDisplayName());
-            accountIntent.putExtra("email", currentUser.getEmail());
-            startActivity(accountIntent);
-        });
-
-        // Set Click Listener for the "Challenge yourself!" layout
-        RelativeLayout challengeYourselfLayout = findViewById(R.id.fitness);
-        challengeYourselfLayout.setOnClickListener(v -> {
-            if (isBound) {
-                screenTimeService.startFeatureTimer("Challenge yourself!");
-            }
-            Intent intent = new Intent(HomeActivity.this, Friendship_Events.class);
-            String userId1 = currentUser.getUid();
-            intent.putExtra("userid", userId1);
-            startActivity(intent);
-        });
-
-        // Set Click Listener for the "To-Do List" layout
-        RelativeLayout todoListLayout = findViewById(R.id.notepad);
-        todoListLayout.setOnClickListener(v -> {
-            if (isBound) {
-                screenTimeService.startFeatureTimer("To-Do List");
-            }
-            Intent intent = new Intent(HomeActivity.this, MainActivity_TodoList.class);
-            startActivity(intent);
-        });
-
-        RelativeLayout rewardLayout = findViewById(R.id.reward);
-        rewardLayout.setOnClickListener(v -> {
-            if (isBound) {
-                screenTimeService.startFeatureTimer("Reward");
-            }
-            Intent intent = new Intent(HomeActivity.this, ShopActivity.class);
-            startActivity(intent);
-        });
-
-        // Set Click Listener for the "Screen Time" layout
-        RelativeLayout HabitTrackerLayout = findViewById(R.id.chart);
-        HabitTrackerLayout.setOnClickListener(v -> {
-            if (isBound) {
-                screenTimeService.startFeatureTimer("Habit Tracker");
-            }
-            Intent intent = new Intent(HomeActivity.this, selectHabit.class);
+            Intent intent = new Intent(HomeActivity.this, activityClass);
             startActivity(intent);
         });
     }
 
+    // Overloaded method to set up click listeners for features with additional user data
+    private void setupClickListener(int layoutId, String featureName, Class<?> activityClass, FirebaseUser currentUser) {
+        RelativeLayout layout = findViewById(layoutId);
+        layout.setOnClickListener(v -> {
+            if (isBound) {
+                screenTimeService.startFeatureTimer(featureName); // Start the feature timer
+            }
+            Intent intent = new Intent(HomeActivity.this, activityClass);
+            if (activityClass.equals(AccountActivity.class)) {
+                intent.putExtra("name", currentUser.getDisplayName());
+                intent.putExtra("email", currentUser.getEmail());
+            } else if (activityClass.equals(Friendship_Events.class)) {
+                intent.putExtra("userid", currentUser.getUid());
+            }
+            startActivity(intent);
+        });
+    }
+
+    // Method to toggle the language of the app
     private void toggleLanguage() {
         SharedPreferences prefs = getSharedPreferences("LanguagePrefs", MODE_PRIVATE);
         String currentLanguage = prefs.getString("language_code", "en"); // Default to English
@@ -198,6 +166,7 @@ public class HomeActivity extends AppCompatActivity {
         recreate(); // Recreate activity to apply the new locale
     }
 
+    // Method to change the language of the app
     private void changeLanguage(String languageCode) {
         Locale locale = new Locale(languageCode);
         Locale.setDefault(locale);
@@ -222,12 +191,13 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // Load saved language preference
+        // Load saved language preference and apply it
         SharedPreferences prefs = getSharedPreferences("LanguagePrefs", MODE_PRIVATE);
         String languageCode = prefs.getString("language_code", "en"); // Default to English
         changeLanguage(languageCode);
     }
 
+    // Method to check if two Calendar dates are the same day
     private boolean isSameDay(Calendar lastShown, Calendar today) {
         return lastShown.get(Calendar.YEAR) == today.get(Calendar.YEAR)
                 && lastShown.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR);
@@ -240,9 +210,13 @@ public class HomeActivity extends AppCompatActivity {
             // Stop all feature timers when the activity is paused
             screenTimeService.stopFeatureTimer("Message your friends!");
             screenTimeService.stopFeatureTimer("Stopwatch/Timer");
+            screenTimeService.stopFeatureTimer("Feedback");
+            screenTimeService.stopFeatureTimer("Screentime");
+            screenTimeService.stopFeatureTimer("Account");
             screenTimeService.stopFeatureTimer("Challenge yourself!");
             screenTimeService.stopFeatureTimer("To-Do List");
-            screenTimeService.stopFeatureTimer("Screen Time");
+            screenTimeService.stopFeatureTimer("Reward");
+            screenTimeService.stopFeatureTimer("Habit Tracker");
         }
     }
 
@@ -250,7 +224,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         if (isBound) {
-            unbindService(serviceConnection);
+            unbindService(serviceConnection); // Unbind the service
             isBound = false;
         }
         // Unregister the broadcast receiver

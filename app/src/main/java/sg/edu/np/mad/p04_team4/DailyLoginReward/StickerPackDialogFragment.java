@@ -27,9 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import sg.edu.np.mad.p04_team4.Chat.ChatDetailActivity;
 import sg.edu.np.mad.p04_team4.Chat.StickerAdapter;
@@ -54,6 +52,7 @@ public class StickerPackDialogFragment extends DialogFragment {
     private int currentCoins;
     private boolean isUserView;
 
+    // Constructor to initialize the sticker pack dialog with necessary information
     public StickerPackDialogFragment(String packName, String userId, String chatRoomId, int packCost, boolean isUserView) {
         this.packName = packName;
         this.userId = userId;
@@ -65,6 +64,7 @@ public class StickerPackDialogFragment extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate the layout for the sticker pack dialog
         View view = inflater.inflate(R.layout.dialog_sticker_pack, container, false);
 
         mAuth = FirebaseAuth.getInstance();
@@ -78,9 +78,11 @@ public class StickerPackDialogFragment extends DialogFragment {
 
         packNameTextView.setText(packName);
 
+        // Set a click listener to dismiss the dialog when the back arrow is clicked
         backArrow.setOnClickListener(v -> dismiss());
 
         stickerPaths = new ArrayList<>();
+        // Initialize the sticker adapter with a click listener to send stickers
         stickerAdapter = new StickerAdapter(stickerPaths, getContext(), url -> {
             sendStickerMessage(url.toString());
             dismiss();
@@ -90,14 +92,17 @@ public class StickerPackDialogFragment extends DialogFragment {
         stickerRecyclerView.setLayoutManager(layoutManager);
         stickerRecyclerView.setAdapter(stickerAdapter);
 
+        // Fetch user coins and check if the sticker pack is purchased
         fetchUserCoins();
         checkIfStickerPackPurchased();
 
+        // Set a click listener to show a purchase confirmation dialog
         btnBuyStickerPack.setOnClickListener(v -> showPurchaseConfirmationDialog());
 
         return view;
     }
 
+    // Fetch the current coin balance of the user from the database
     private void fetchUserCoins() {
         DatabaseReference userCoinsRef = mDatabase.child("users").child(userId).child("friendCoins");
         userCoinsRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -118,6 +123,7 @@ public class StickerPackDialogFragment extends DialogFragment {
         });
     }
 
+    // Check if the sticker pack is already purchased by the user
     private void checkIfStickerPackPurchased() {
         DatabaseReference userPacksRef = mDatabase.child("users").child(userId).child("purchasedStickerPacks").child(packName);
         userPacksRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -127,7 +133,7 @@ public class StickerPackDialogFragment extends DialogFragment {
                 if (isPurchased) {
                     Log.d(TAG, "Sticker pack " + packName + " is already purchased.");
                     loadStickersFromPack();
-                    btnBuyStickerPack.setVisibility(View.GONE);
+                    btnBuyStickerPack.setVisibility(View.GONE); // Hide the buy button if already purchased
                 } else {
                     Log.d(TAG, "Sticker pack " + packName + " is not purchased.");
                     loadStickersFromPack();
@@ -141,6 +147,7 @@ public class StickerPackDialogFragment extends DialogFragment {
         });
     }
 
+    // Load stickers based on the selected pack name
     private void loadStickersFromPack() {
         switch (packName) {
             case "Cat Sticker Pack":
@@ -158,12 +165,13 @@ public class StickerPackDialogFragment extends DialogFragment {
             case "Skibidi Toilet Sticker Pack":
                 loadSkibidiStickers();
                 break;
-            case "Emoji Sticker Pack": // New case for Emoji Sticker Pack
+            case "Emoji Sticker Pack":
                 loadEmojiStickers();
                 break;
         }
     }
 
+    // Load Cat stickers into the recycler view
     private void loadCatStickers() {
         stickerPaths.add(getResourceUri(R.drawable.cat_angry));
         stickerPaths.add(getResourceUri(R.drawable.cat_bored));
@@ -174,6 +182,7 @@ public class StickerPackDialogFragment extends DialogFragment {
         stickerAdapter.notifyDataSetChanged();
     }
 
+    // Load Dead by Daylight stickers into the recycler view
     private void loadDeadByDaylightStickers() {
         stickerPaths.add(getResourceUri(R.drawable.claudette));
         stickerPaths.add(getResourceUri(R.drawable.dwight));
@@ -183,6 +192,7 @@ public class StickerPackDialogFragment extends DialogFragment {
         stickerAdapter.notifyDataSetChanged();
     }
 
+    // Load Alpha Wolf stickers into the recycler view
     private void loadAlphaWolfStickers() {
         stickerPaths.add(getResourceUri(R.drawable.wolf_grin));
         stickerPaths.add(getResourceUri(R.drawable.wolf_growl));
@@ -191,6 +201,7 @@ public class StickerPackDialogFragment extends DialogFragment {
         stickerAdapter.notifyDataSetChanged();
     }
 
+    // Load Monkey stickers into the recycler view
     private void loadMonkeyStickers() {
         stickerPaths.add(getResourceUri(R.drawable.monkey_angry));
         stickerPaths.add(getResourceUri(R.drawable.monkey_fp));
@@ -201,6 +212,7 @@ public class StickerPackDialogFragment extends DialogFragment {
         stickerAdapter.notifyDataSetChanged();
     }
 
+    // Load Skibidi Toilet stickers into the recycler view
     private void loadSkibidiStickers() {
         stickerPaths.add(getResourceUri(R.drawable.skibidi_angry));
         stickerPaths.add(getResourceUri(R.drawable.skibidi_confused));
@@ -210,6 +222,7 @@ public class StickerPackDialogFragment extends DialogFragment {
         stickerAdapter.notifyDataSetChanged();
     }
 
+    // Load Emoji stickers into the recycler view
     private void loadEmojiStickers() {
         stickerPaths.add(getResourceUri(R.drawable.emoji_angry));
         stickerPaths.add(getResourceUri(R.drawable.emoji_cry));
@@ -218,10 +231,12 @@ public class StickerPackDialogFragment extends DialogFragment {
         stickerAdapter.notifyDataSetChanged();
     }
 
+    // Get the URI for a drawable resource
     private Uri getResourceUri(int resourceId) {
         return Uri.parse("android.resource://" + getContext().getPackageName() + "/" + resourceId);
     }
 
+    // Show a confirmation dialog before purchasing the sticker pack
     private void showPurchaseConfirmationDialog() {
         new AlertDialog.Builder(getContext())
                 .setTitle(getString(R.string.make_purchase))
@@ -235,6 +250,7 @@ public class StickerPackDialogFragment extends DialogFragment {
                 .show();
     }
 
+    // Handle the sticker pack purchase process
     private void buyStickerPack() {
         DatabaseReference userCoinsRef = mDatabase.child("users").child(userId).child("friendCoins");
         userCoinsRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -265,6 +281,7 @@ public class StickerPackDialogFragment extends DialogFragment {
         });
     }
 
+    // Save the purchased sticker pack to the user's account
     private void savePurchasedStickerPack() {
         DatabaseReference userPacksRef = mDatabase.child("users").child(userId).child("purchasedStickerPacks").child(packName);
         userPacksRef.setValue(true).addOnCompleteListener(task -> {
@@ -278,6 +295,7 @@ public class StickerPackDialogFragment extends DialogFragment {
         });
     }
 
+    // Send a sticker message in the chat
     private void sendStickerMessage(String stickerPath) {
         ChatDetailActivity chatDetailActivity = (ChatDetailActivity) getActivity();
         if (chatDetailActivity != null) {

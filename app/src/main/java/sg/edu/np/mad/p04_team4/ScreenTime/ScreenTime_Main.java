@@ -8,16 +8,16 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.graphics.Color;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import sg.edu.np.mad.p04_team4.DailyLoginReward.ThemeUtils;
 import sg.edu.np.mad.p04_team4.Home.HomeActivity;
 import sg.edu.np.mad.p04_team4.R;
 
@@ -49,6 +50,11 @@ public class ScreenTime_Main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.screen_time);
 
+        // Apply the selected theme to the root view
+        View rootView = findViewById(R.id.main); // Ensure this matches the root layout id
+        ThemeUtils.applyTheme(this, rootView);
+
+        // Set up the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -70,6 +76,7 @@ public class ScreenTime_Main extends AppCompatActivity {
             }
         });
 
+        // Initialize ListViews and adapters for yesterday's and today's screen time data
         lvYesterday = findViewById(R.id.lvYesterday);
         lvToday = findViewById(R.id.lvToday);
 
@@ -79,15 +86,18 @@ public class ScreenTime_Main extends AppCompatActivity {
         lvYesterday.setAdapter(yesterdayAdapter);
         lvToday.setAdapter(todayAdapter);
 
+        // Initialize the PieChart
         pieChart = findViewById(R.id.pieChart);
 
+        // Display screen time data
         displayScreenTimeData();
 
-        // Start the foreground service
+        // Start the foreground service to track screen time
         Intent serviceIntent = new Intent(this, ScreenTimeService.class);
         startService(serviceIntent);
     }
 
+    // Method to retrieve and display screen time data from Firebase
     private void displayScreenTimeData() {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser == null) {
@@ -167,6 +177,7 @@ public class ScreenTime_Main extends AppCompatActivity {
         });
     }
 
+    // Process feature data for screen time and add to the list
     private void processFeatureData(String featureName, Object value, List<ScreenTimeEntry> dataList, List<PieEntry> pieEntries) {
         if (value instanceof Long) {
             Long duration = (Long) value;
@@ -210,19 +221,52 @@ public class ScreenTime_Main extends AppCompatActivity {
         }
     }
 
+    // Update the PieChart with the screen time data
     private void updatePieChart(List<PieEntry> pieEntries) {
         PieDataSet dataSet = new PieDataSet(pieEntries, "Screen Time");
-        dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-        dataSet.setDrawValues(false); // Remove the time text from the pie chart
-        dataSet.setValueTextColor(Color.BLACK); // Set the label text color to black
-        dataSet.setValueTextSize(16f);
+
+        // Define 11 different colors for the PieChart
+        List<Integer> colors = new ArrayList<>();
+        colors.add(Color.parseColor("#F44336")); // Red
+        colors.add(Color.parseColor("#E91E63")); // Pink
+        colors.add(Color.parseColor("#9C27B0")); // Purple
+        colors.add(Color.parseColor("#673AB7")); // Deep Purple
+        colors.add(Color.parseColor("#3F51B5")); // Indigo
+        colors.add(Color.parseColor("#2196F3")); // Blue
+        colors.add(Color.parseColor("#03A9F4")); // Light Blue
+        colors.add(Color.parseColor("#00BCD4")); // Cyan
+        colors.add(Color.parseColor("#009688")); // Teal
+        colors.add(Color.parseColor("#4CAF50")); // Green
+        colors.add(Color.parseColor("#8BC34A")); // Light Green
+
+        dataSet.setColors(colors);
+        dataSet.setDrawValues(false); // Hide the time values on the pie chart
+
+        // Ensure entry label text color is black
+        pieChart.setEntryLabelColor(Color.BLACK);
+        pieChart.setEntryLabelTextSize(12f);
 
         PieData pieData = new PieData(dataSet);
         pieChart.setData(pieData);
+
+        // Customize legend
+        Legend legend = pieChart.getLegend();
+        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
+        legend.setOrientation(Legend.LegendOrientation.VERTICAL); // Display legend items vertically
+        legend.setDrawInside(false);
+        legend.setTextSize(14f);
+        legend.setTextColor(Color.BLACK);
+        legend.setForm(Legend.LegendForm.SQUARE);
+        legend.setFormSize(10f);
+        legend.setXEntrySpace(7f);
+        legend.setYEntrySpace(7f);
+
         pieChart.getDescription().setEnabled(false); // Remove description label
         pieChart.invalidate(); // Refresh the chart
     }
 
+    // Get yesterday's date in the specified format
     private String getYesterdayDate() {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DATE, -1);

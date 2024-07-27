@@ -47,19 +47,22 @@ public class ThemeSelectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_theme_selection);
 
+        // Set up the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowTitleEnabled(false); // Disable the title
         }
 
+        // Initialize Firebase Auth and Database
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
+        // Get the current logged-in user
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             userId = currentUser.getUid();
-            fetchPurchasedThemes();
+            fetchPurchasedThemes(); // Fetch the purchased themes for the user
         } else {
             Log.e(TAG, "User not authenticated");
         }
@@ -89,6 +92,7 @@ public class ThemeSelectionActivity extends AppCompatActivity {
         btnRemoveTheme.setOnClickListener(v -> removeTheme()); // Set click listener for the remove theme button
     }
 
+    // Fetch the list of themes that the user has purchased from the database
     private void fetchPurchasedThemes() {
         DatabaseReference userThemesRef = mDatabase.child("users").child(userId).child("purchasedThemes");
         userThemesRef.addValueEventListener(new ValueEventListener() {
@@ -98,7 +102,7 @@ public class ThemeSelectionActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     purchasedThemes.add(snapshot.getKey());
                 }
-                updateUI();
+                updateUI(); // Update the UI after fetching the themes
             }
 
             @Override
@@ -108,35 +112,39 @@ public class ThemeSelectionActivity extends AppCompatActivity {
         });
     }
 
+    // Update the UI based on the user's purchased themes
     private void updateUI() {
         updateButtonState(btnTheme1, themeImage1, lockIcon1, "Fluid Harmony");
         updateButtonState(btnTheme2, themeImage2, lockIcon2, "Blue Blossom");
         updateButtonState(btnTheme3, themeImage3, lockIcon3, "Playful Safari");
     }
 
+    // Update the button state to indicate whether the theme is purchased
     private void updateButtonState(Button button, ImageView themeImage, ImageView lockIcon, String themeName) {
         if (purchasedThemes.contains(themeName)) {
             button.setEnabled(true);
             button.setText(themeName);
             themeImage.setVisibility(ImageView.VISIBLE);
-            lockIcon.setVisibility(ImageView.GONE);
+            lockIcon.setVisibility(ImageView.GONE); // Hide the lock icon if the theme is purchased
         } else {
             button.setEnabled(true); // Enable button to allow purchasing
             button.setText(themeName);
             themeImage.setVisibility(ImageView.VISIBLE);
-            lockIcon.setVisibility(ImageView.VISIBLE);
+            lockIcon.setVisibility(ImageView.VISIBLE); // Show the lock icon if the theme is not purchased
             themeImage.setColorFilter(Color.GRAY, android.graphics.PorterDuff.Mode.MULTIPLY); // Gray out image
         }
     }
 
+    // Handle theme button click based on whether the theme is purchased or not
     private void handleThemeClick(String themeName, int themeDrawableId) {
         if (purchasedThemes.contains(themeName)) {
-            showApplyThemeDialog(themeName);
+            showApplyThemeDialog(themeName); // Show dialog to apply the theme
         } else {
-            showBuyThemeDialog(themeName, themeDrawableId);
+            showBuyThemeDialog(themeName, themeDrawableId); // Show dialog to purchase the theme
         }
     }
 
+    // Show dialog to purchase the theme
     private void showBuyThemeDialog(String themeName, int themeDrawableId) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -155,12 +163,11 @@ public class ThemeSelectionActivity extends AppCompatActivity {
 
         buyButton.setOnClickListener(v -> {
             // Add logic to handle theme purchase here
-            // After successful purchase, save the theme as purchased
-            purchasedThemes.add(themeName);
+            purchasedThemes.add(themeName); // After successful purchase, save the theme as purchased
             updateUI();
             Toast.makeText(this, getString(R.string.theme_purchased) + themeName, Toast.LENGTH_SHORT).show();
             alertDialog.dismiss();
-            showApplyThemeDialog(themeName);
+            showApplyThemeDialog(themeName); // Show dialog to apply the theme after purchase
         });
 
         closeButton.setOnClickListener(v -> alertDialog.dismiss());
@@ -168,23 +175,26 @@ public class ThemeSelectionActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
+    // Show dialog to apply the theme
     private void showApplyThemeDialog(String themeName) {
         new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.apply_theme))
                 .setMessage(getString(R.string.apply_theme_confirm))
                 .setPositiveButton(getString(R.string.buy_yes), (dialog, which) -> {
                     applyTheme(themeName);
-                    sendThemeChangedBroadcast();
+                    sendThemeChangedBroadcast(); // Notify other components about the theme change
                 })
                 .setNegativeButton(getString(R.string.buy_no), null)
                 .show();
     }
 
+    // Apply the selected theme and save it
     private void applyTheme(String themeName) {
         saveSelectedTheme(themeName);
         Toast.makeText(this, getString(R.string.applied_theme) + themeName, Toast.LENGTH_SHORT).show();
     }
 
+    // Save the selected theme to SharedPreferences
     private void saveSelectedTheme(String themeName) {
         SharedPreferences sharedPreferences = getSharedPreferences("AppPreferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -192,16 +202,18 @@ public class ThemeSelectionActivity extends AppCompatActivity {
         if (currentUser != null) {
             String userId = currentUser.getUid();
             editor.putString("selectedTheme_" + userId, themeName);
-            editor.apply();
+            editor.apply(); // Use apply() for asynchronous saving
             Log.d(TAG, "Saved selected theme: " + themeName);
         }
     }
 
+    // Send a broadcast to notify other components about the theme change
     private void sendThemeChangedBroadcast() {
         Intent intent = new Intent("sg.edu.np.mad.p04_team4.THEME_CHANGED");
         sendBroadcast(intent);
     }
 
+    // Remove the currently applied theme and set to default
     private void removeTheme() {
         saveSelectedTheme("default"); // Save the default theme
         Toast.makeText(this, getString(R.string.theme_removed), Toast.LENGTH_SHORT).show();

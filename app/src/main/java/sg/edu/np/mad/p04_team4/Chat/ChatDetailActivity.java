@@ -17,28 +17,29 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
+
 import sg.edu.np.mad.p04_team4.R;
 import sg.edu.np.mad.p04_team4.DailyLoginReward.ThemeUtils;
 
 public class ChatDetailActivity extends AppCompatActivity {
 
-    private static final String TAG = "ChatDetailActivity";
-    private FirebaseAuth mAuth;
-    private DatabaseReference messagesDatabaseReference;
+    private static final String TAG = "ChatDetailActivity"; // Tag for logging
+    private FirebaseAuth mAuth; // Firebase Authentication instance
+    private DatabaseReference messagesDatabaseReference; // Database reference for chat messages
 
-    private TextView chatNameTextView;
-    private RecyclerView recyclerViewMessages;
-    private MessageAdapter messageAdapter;
-    private List<Message> messageList;
-    private String chatRoomId;
+    private TextView chatNameTextView; // TextView for displaying chat name
+    private RecyclerView recyclerViewMessages; // RecyclerView to display chat messages
+    private MessageAdapter messageAdapter; // Adapter for RecyclerView
+    private List<Message> messageList; // List to store messages
+    private String chatRoomId; // ID of the chat room
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat_detail);
+        setContentView(R.layout.activity_chat_detail); // Set the content view to the layout file
 
-        View rootView = findViewById(R.id.main); // Ensure this matches the root layout id
-        ThemeUtils.applyTheme(this, rootView);
+        View rootView = findViewById(R.id.main); // Get the root layout view
+        ThemeUtils.applyTheme(this, rootView); // Apply the selected theme
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -51,11 +52,13 @@ public class ChatDetailActivity extends AppCompatActivity {
         chatNameTextView = findViewById(R.id.chat_name);
         recyclerViewMessages = findViewById(R.id.recyclerViewMessages);
 
+        // Initialize message list and adapter
         messageList = new ArrayList<>();
         messageAdapter = new MessageAdapter(messageList, this);
         recyclerViewMessages.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewMessages.setAdapter(messageAdapter);
 
+        // Set chat name if available
         if (chatName != null) {
             chatNameTextView.setText(chatName);
         }
@@ -70,6 +73,7 @@ public class ChatDetailActivity extends AppCompatActivity {
         }
     }
 
+    // Load messages from Firebase
     private void loadMessages() {
         messagesDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -77,9 +81,11 @@ public class ChatDetailActivity extends AppCompatActivity {
                 messageList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     try {
+                        // Get the message type
                         String messageType = snapshot.child("type").getValue(String.class);
                         Message message = null;
 
+                        // Parse the message based on its type
                         if ("text".equals(messageType)) {
                             message = snapshot.getValue(TextMessage.class);
                         } else if ("image".equals(messageType)) {
@@ -91,6 +97,7 @@ public class ChatDetailActivity extends AppCompatActivity {
                             continue;
                         }
 
+                        // Add the message to the list if it's not null
                         if (message != null) {
                             messageList.add(message);
                             Log.d(TAG, "Message added: " + message.toString());
@@ -101,6 +108,7 @@ public class ChatDetailActivity extends AppCompatActivity {
                         Log.e(TAG, "Failed to parse message", e);
                     }
                 }
+                // Notify the adapter about the data change and scroll to the last message
                 messageAdapter.notifyDataSetChanged();
                 recyclerViewMessages.scrollToPosition(messageList.size() - 1);
                 Log.d(TAG, "Messages loaded successfully");
@@ -113,6 +121,7 @@ public class ChatDetailActivity extends AppCompatActivity {
         });
     }
 
+    // Send a sticker message to the chat
     public void sendStickerMessage(String stickerUrl) {
         long currentTime = System.currentTimeMillis();
         StickerMessage stickerMessage = new StickerMessage(currentTime, currentTime, stickerUrl, mAuth.getCurrentUser().getUid());
