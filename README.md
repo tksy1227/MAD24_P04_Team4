@@ -65,14 +65,16 @@ Feature done by: Danial
 3. Friendship Events - Users to track each other's progress in fitness challenges, personal milestones & other goals together
 Concepts used: Persistent Memory
 Feature done by: Jacob
+![image](https://github.com/user-attachments/assets/c2f73f86-f759-4a7a-9ab8-b347339c5ad1)
 
-4. Timer - Keep track of time when doing tasks
+
+5. Timer - Keep track of time when doing tasks
 Concepts used: CountdownTimer, RecyclerView, Persistent Memory, Layout Management, MediaPlayer, Vibration
 Feature done by: Chloe
    ![timer-page](repo_images/timer.png)
 ![timer-history](repo_images/timer-history.png)
 
-5. To-Do List - Organize their to-do tasks for the day
+6. To-Do List - Organize their to-do tasks for the day
 Concepts used: Linear Layout, Persistent Memory
 Feature done by: Shida
 ---------------------------------------------------------------->
@@ -101,6 +103,8 @@ Old Concepts used: Persistent Memory, MPAndroidChart, Recycler View
 New concepts used: MPAndroidChart
 Feature/Enhancement done by: Jacob
 ![image](https://github.com/user-attachments/assets/240238eb-95c3-4d12-bc22-3ceb7f43f39d)
+![image](https://github.com/user-attachments/assets/38d27b94-4605-4a95-a709-8500a7a38076)
+
 
 
 5. Timer Enhancement & Widget - Allow users to access the feature outside of the app through a widget.
