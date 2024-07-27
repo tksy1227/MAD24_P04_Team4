@@ -77,14 +77,13 @@ public class CreateAccount extends AppCompatActivity {
                 if (name.isEmpty() || phone.isEmpty() || password.isEmpty()) {
                     Toast.makeText(CreateAccount.this, "Please fill out all fields.", Toast.LENGTH_SHORT).show();
                     return;
-                }
-                else {
-                    // Move to OTP Page
+                } else {
+                    // Move to CreateAccountOTPActivity
                     Intent intent = new Intent(CreateAccount.this, CreateAccountOTPActivity.class);
                     intent.putExtra("name", name);
                     intent.putExtra("phone number", phone);
                     intent.putExtra("password", password);
-
+                    intent.putExtra("userId", phone); // Assuming userId is the phone number
                     startActivity(intent);
                 }
             }

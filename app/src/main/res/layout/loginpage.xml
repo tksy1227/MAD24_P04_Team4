@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F4EDEA"
-    tools:context=".Login.LoginActivity">
+    tools:context="Login.LoginActivity">
 
     <ImageView
         android:layout_width="212dp"
@@ -67,11 +67,11 @@
         app:srcCompat="@drawable/leaf_13" />
 
     <TextView
-        android:layout_width="130dp"
-        android:layout_height="73dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/anton"
         android:letterSpacing="0.2"
-        android:text="@string/Login"
+        android:text="Login"
         android:textAlignment="center"
         android:textColor="#03256C"
         android:textSize="40dp"
@@ -86,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/alata"
-        android:text="@string/sign_in_to_cont"
+        android:text="Please sign in to continue."
         android:textAlignment="center"
         android:textColor="#03256C"
         android:textSize="16dp"
@@ -103,7 +103,7 @@
         android:layout_height="44dp"
         android:backgroundTint="#247B7B"
         android:fontFamily="@font/alata"
-        android:text="@string/Login"
+        android:text="Login"
         android:textAlignment="center"
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -116,7 +116,7 @@
     <RelativeLayout
         android:layout_width="190dp"
         android:layout_height="40dp"
-        android:background="@drawable/outline"
+        android:background="@drawable/roundedstyle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.592"
@@ -131,7 +131,7 @@
             android:background="@drawable/outline"
             android:gravity="center"
             android:fontFamily="@font/alata"
-            android:hint="@string/Password"
+            android:hint="Password"
             android:textSize="14dp"
             android:inputType="textPassword"
             android:maxLines="1"/>
@@ -154,7 +154,7 @@
         android:background="@drawable/outline"
         android:gravity="center"
         android:inputType="number"
-        android:hint="@string/Phone_Number"
+        android:hint="Phone Number"
         android:fontFamily="@font/alata"
         android:textSize="14dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -170,7 +170,7 @@
         android:layout_height="43dp"
         android:backgroundTint="#247B7B"
         android:fontFamily="@font/alata"
-        android:text="@string/Forgot_Password_q"
+        android:text="Forgot Password?"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -185,7 +185,7 @@
         android:layout_height="42dp"
         android:backgroundTint="#247B7B"
         android:fontFamily="@font/alata"
-        android:text="@string/Sign_Up"
+        android:text="Sign Up"
         android:textAlignment="center"
         android:textSize="13dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -201,7 +201,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/alata"
         android:textColor="#03256C"
-        android:text="@string/no_acc"
+        android:text="Don't have an account?"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
@@ -223,14 +223,14 @@
 
     <ImageView
         android:id="@+id/PasswordIcon"
-        android:layout_width="35dp"
-        android:layout_height="42dp"
+        android:layout_width="70dp"
+        android:layout_height="67dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.196"
+        app:layout_constraintHorizontal_bias="0.166"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.519"
+        app:layout_constraintVertical_bias="0.521"
         app:srcCompat="@drawable/password_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package sg.edu.np.mad.p04_team4.Login;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,203 +21,188 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.google.firebase.database.ValueEventListener;
 
 import sg.edu.np.mad.p04_team4.Home.HomeActivity;
 import sg.edu.np.mad.p04_team4.R;
+import sg.edu.np.mad.p04_team4.DailyLoginReward.ThemeUtils;
 
 public class CreateAccountOTPActivity extends AppCompatActivity {
 
     private EditText otp1, otp2, otp3, otp4;
     private TextView resendBtn;
-    private boolean resendEnabled = false;
-    private final int resendTime = 60; // Resend time in seconds
-    private String verificationId;
-    private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
+    private String generatedOTP;
+    private boolean ResendEnabled = false;
+    private int resendTime = 60;
+    private int selectedETPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.password_otp);
+        setContentView(R.layout.create_account_otp); // Ensure this is the correct layout
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-
-        mAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance().getReference("users");
 
         otp1 = findViewById(R.id.OTP1);
         otp2 = findViewById(R.id.OTP2);
         otp3 = findViewById(R.id.OTP3);
         otp4 = findViewById(R.id.OTP4);
         resendBtn = findViewById(R.id.Resend);
-        Button verifyBtn = findViewById(R.id.Verify);
+        final Button verifyBtn = findViewById(R.id.Verify);
 
-        otp1.requestFocus(); // Request focus on first OTP field
+        otp1.addTextChangedListener(textWatcher);
+        otp2.addTextChangedListener(textWatcher);
+        otp3.addTextChangedListener(textWatcher);
+        otp4.addTextChangedListener(textWatcher);
 
-        // TextWatcher to move focus to next OTP field automatically
-        TextWatcher otpTextWatcher = new TextWatcher() {
+        ShowKeyboard(otp1);
+        StartCountDown();
+        sendOTP(); // Send OTP when activity is created
+
+        resendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (s.length() > 0) {
-                    if (otp1.isFocused()) {
-                        otp2.requestFocus();
-                    } else if (otp2.isFocused()) {
-                        otp3.requestFocus();
-                    } else if (otp3.isFocused()) {
-                        otp4.requestFocus();
-                    }
+            public void onClick(View v) {
+                if (ResendEnabled) {
+                    sendOTP();
+                    StartCountDown();
                 }
-            }
-        };
-
-        otp1.addTextChangedListener(otpTextWatcher);
-        otp2.addTextChangedListener(otpTextWatcher);
-        otp3.addTextChangedListener(otpTextWatcher);
-        otp4.addTextChangedListener(otpTextWatcher);
-
-        // Retrieve verification ID from previous activity
-        verificationId = getIntent().getStringExtra("verificationId");
-
-        // Start the countdown for resend OTP
-        startCountDown();
-
-        resendBtn.setOnClickListener(v -> {
-            if (resendEnabled) {
-                // Handle resend OTP code here
-                Toast.makeText(CreateAccountOTPActivity.this, getString(R.string.resend_otp), Toast.LENGTH_SHORT).show();
-                // Restart countdown for resend
-                startCountDown();
             }
         });
 
-        verifyBtn.setOnClickListener(v -> {
-            String otp = otp1.getText().toString().trim() +
-                    otp2.getText().toString().trim() +
-                    otp3.getText().toString().trim() +
-                    otp4.getText().toString().trim();
-
-            if (otp.length() == 4) {
-                // Perform OTP verification
-                PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, otp);
-                signInWithPhoneAuthCredential(credential);
-            } else {
-                Toast.makeText(CreateAccountOTPActivity.this, getString(R.string.enter_valid_otp), Toast.LENGTH_SHORT).show();
+        verifyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String enteredOTP = otp1.getText().toString() + otp2.getText().toString() + otp3.getText().toString() + otp4.getText().toString();
+                if (enteredOTP.length() == 4) {
+                    String userId = getIntent().getStringExtra("userId");
+                    if (userId == null) {
+                        Toast.makeText(CreateAccountOTPActivity.this, "User ID is null", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    verifyOTP(userId, enteredOTP);
+                } else {
+                    Toast.makeText(CreateAccountOTPActivity.this, getString(R.string.enter_valid_otp), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
-    private void startCountDown() {
-        resendEnabled = false;
-        resendBtn.setTextColor(Color.parseColor("#99000000")); // Gray color for disabled state
+    private void sendOTP() {
+        generatedOTP = generateOTP();
+        String userId = getIntent().getStringExtra("userId");
+        if (userId == null) {
+            Toast.makeText(this, "User ID is null", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        mDatabase.child(userId).child("otp").setValue(generatedOTP);
+
+        // For demonstration purposes, show the OTP in a Toast message
+        Toast.makeText(this, "OTP: " + generatedOTP, Toast.LENGTH_LONG).show();
+    }
+
+    private String generateOTP() {
+        int randomPIN = (int) (Math.random() * 9000) + 1000;
+        return String.valueOf(randomPIN);
+    }
+
+    private void verifyOTP(String userId, String enteredOTP) {
+        mDatabase.child(userId).child("otp").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String storedOTP = dataSnapshot.getValue(String.class);
+                    if (storedOTP.equals(enteredOTP)) {
+                        // Navigate to HomeActivity on successful OTP verification
+                        Intent intent = new Intent(CreateAccountOTPActivity.this, HomeActivity.class);
+                        intent.putExtra("userId", userId);
+                        startActivity(intent);
+                        finish(); // Finish this activity to prevent going back
+                    } else {
+                        Toast.makeText(CreateAccountOTPActivity.this, getString(R.string.invalid_otp), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(CreateAccountOTPActivity.this, getString(R.string.otp_not_found), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(CreateAccountOTPActivity.this, getString(R.string.database_error) + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private final TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (s.length() > 0) {
+                if (selectedETPosition == 0) {
+                    selectedETPosition = 1;
+                    ShowKeyboard(otp2);
+                } else if (selectedETPosition == 1) {
+                    selectedETPosition = 2;
+                    ShowKeyboard(otp3);
+                } else if (selectedETPosition == 2) {
+                    selectedETPosition = 3;
+                    ShowKeyboard(otp4);
+                }
+            }
+        }
+    };
+
+    private void ShowKeyboard(EditText otp) {
+        otp.requestFocus();
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.showSoftInput(otp, InputMethodManager.SHOW_IMPLICIT);
+    }
+
+    private void StartCountDown() {
+        ResendEnabled = false;
+        resendBtn.setTextColor(Color.parseColor("#99000000"));
 
         new CountDownTimer(resendTime * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                int secondsRemaining = (int) (millisUntilFinished / 1000);
-                resendBtn.setText(getString(R.string.resend_code) + secondsRemaining + ")");
+                resendBtn.setText(getString(R.string.resend_code) + (millisUntilFinished / 1000) + ")");
             }
 
             @Override
             public void onFinish() {
-                resendEnabled = true;
+                ResendEnabled = true;
                 resendBtn.setText(getString(R.string.resend_code2));
-                resendBtn.setTextColor(getResources().getColor(com.google.android.material.R.color.design_default_color_primary)); // Reset to default color
+                resendBtn.setTextColor(getResources().getColor(com.google.android.material.R.color.design_default_color_primary));
             }
         }.start();
-    }
-
-    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
-        mAuth.signInWithCredential(credential).addOnCompleteListener(this, task -> {
-            if (task.isSuccessful()) {
-                // Sign in success, proceed to account creation
-                FirebaseUser user = task.getResult().getUser();
-                Toast.makeText(CreateAccountOTPActivity.this, getString(R.string.verification_success), Toast.LENGTH_SHORT).show();
-
-                // Retrieve user details from Intent extras
-                String name = getIntent().getStringExtra("name");
-                String phoneNumber = getIntent().getStringExtra("phone number");
-                String password = getIntent().getStringExtra("password");
-
-                // Example: Create user in Firebase Realtime Database
-                createUserInDatabase(user.getUid(), name, phoneNumber, password);
-
-                // Example: Move to HomeActivity or main activity
-                Intent intent = new Intent(CreateAccountOTPActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish(); // Finish this activity to prevent going back
-            } else {
-                // Sign in failed
-                if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                    // Invalid OTP code
-                    Toast.makeText(CreateAccountOTPActivity.this, getString(R.string.invalid_otp_code), Toast.LENGTH_SHORT).show();
-                } else {
-                    // Other errors
-                    Toast.makeText(CreateAccountOTPActivity.this, getString(R.string.verification_failed), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    private void createUserInDatabase(String userId, String name, String phoneNumber, String password) {
-        // Example: Save user details in Firebase Realtime Database
-        Map<String, Object> user = new HashMap<>();
-        user.put("name", name);
-        user.put("phoneNumber", phoneNumber);
-        user.put("password", password);
-
-        mDatabase.child("users").child(userId).setValue(user)
-                .addOnSuccessListener(aVoid -> {
-                    // User data saved successfully
-                    Toast.makeText(CreateAccountOTPActivity.this, getString(R.string.user_created), Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(e -> {
-                    // Error saving user data
-                    Toast.makeText(CreateAccountOTPActivity.this, getString(R.string.user_created_failed), Toast.LENGTH_SHORT).show();
-                });
     }
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_DEL) {
-            if (otp4.isFocused()) {
-                otp4.setText("");
-                otp3.requestFocus();
-            } else if (otp3.isFocused()) {
-                otp3.setText("");
-                otp2.requestFocus();
-            } else if (otp2.isFocused()) {
-                otp2.setText("");
-                otp1.requestFocus();
+            if (selectedETPosition == 3) {
+                selectedETPosition = 2;
+                ShowKeyboard(otp3);
+            } else if (selectedETPosition == 2) {
+                selectedETPosition = 1;
+                ShowKeyboard(otp2);
+            } else if (selectedETPosition == 1) {
+                selectedETPosition = 0;
+                ShowKeyboard(otp1);
             }
             return true;
+        } else {
+            return super.onKeyUp(keyCode, event);
         }
-        return super.onKeyUp(keyCode, event);
-    }
-
-    private void showKeyboard(EditText editText) {
-        editText.requestFocus();
-        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-        inputMethodManager.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
     }
 }

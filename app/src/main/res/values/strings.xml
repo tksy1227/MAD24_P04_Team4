@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">P04_Team4</string>
+    <string-array name="view_modes">
+        <item>Month</item>
+        <item>Week</item>
+    </string-array>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="delete">Delete</string>

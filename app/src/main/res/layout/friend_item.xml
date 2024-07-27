@@ -1,0 +1,67 @@
+<!-- request_item.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <!-- Friend Details -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/outline">
+
+        <!-- Name -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="330dp"
+            android:layout_marginBottom="58dp"
+            android:fontFamily="@font/alata"
+            android:text="Name"
+            android:textColor="#03256C"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/friendName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="240dp"
+            android:layout_marginBottom="58dp"
+            android:fontFamily="@font/alata"
+            android:text="(name)"
+            android:textColor="#03256C"
+            android:textSize="16dp" />
+
+        <!-- Birthday -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="310dp"
+            android:layout_marginBottom="19dp"
+            android:fontFamily="@font/alata"
+            android:text="Birthday"
+            android:textColor="#03256C"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/friendBirthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="220dp"
+            android:layout_marginBottom="19dp"
+            android:fontFamily="@font/alata"
+            android:text="(birthday)"
+            android:textColor="#03256C"
+            android:textSize="16dp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

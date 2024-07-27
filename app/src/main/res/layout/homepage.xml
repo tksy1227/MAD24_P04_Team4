@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F4EDEA"
-    tools:context=".Login.LoginActivity">
+    tools:context=".LoginActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -14,48 +14,33 @@
         android:layout_height="?attr/actionBarSize"
         android:background="#0D5C63"
         android:backgroundTint="#0D5C63"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:layout_constraintStart_toStartOf="parent"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"    app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title=""
         app:titleTextColor="@android:color/white" >
-
-    <TextView
-        android:id="@+id/textViewToolbarTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/welcome"
-        android:fontFamily="@font/alata"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:layout_gravity="center"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.appcompat.widget.Toolbar>
 
     <Button
-        android:id="@+id/languageButton"
-        android:layout_width="114dp"
-        android:layout_height="48dp"
+        android:id="@+id/logOutButton"
+        android:layout_width="110dp"
+        android:layout_height="45dp"
         android:backgroundTint="#C5D8D1"
         android:fontFamily="@font/alata"
-        android:text="@string/Log_Out"
+        android:text="Log Out"
         android:textAlignment="center"
-        android:textColor="#0D5C63"
-        android:textSize="14sp"
+        android:textColor="#03256C"
+        android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.948"
+        app:layout_constraintHorizontal_bias="0.97"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.014" />
+        app:layout_constraintVertical_bias="0.015" />
 
     <ImageView
         android:layout_width="204dp"
         android:layout_height="214dp"
-        android:layout_marginBottom="500dp"
+        android:layout_marginBottom="516dp"
         android:alpha="0.2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -100,7 +85,7 @@
         app:srcCompat="@drawable/leaf_9" />
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="412dp"
         android:layout_height="110dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -137,8 +122,8 @@
                 android:fontFamily="@font/alata"
                 android:textAlignment="center"
                 android:textColor="#03256C"
-                android:text="@string/Home"
-                android:textSize="15dp" />
+                android:text="Home"
+                android:textSize="16dp" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -184,23 +169,14 @@
                 android:fontFamily="@font/alata"
                 android:textAlignment="center"
                 android:textColor="#03256C"
-                android:text="@string/Friends"
-                android:textSize="15dp" />
+                android:text="Friends"
+                android:textSize="16dp" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="35dp"
-                android:layout_marginBottom="10dp"
-                app:srcCompat="@drawable/friend_icon"/>
+                android:layout_marginTop="25dp"
+                app:srcCompat="@drawable/friend_icon" />
 
         </RelativeLayout>
 
@@ -231,8 +207,8 @@
                 android:fontFamily="@font/alata"
                 android:textAlignment="center"
                 android:textColor="#03256C"
-                android:text="@string/Settings"
-                android:textSize="15dp" />
+                android:text="Account"
+                android:textSize="16dp" />
 
             <ImageView
                 android:layout_width="40dp"
@@ -247,7 +223,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="35dp"
                 android:layout_marginBottom="10dp"
-                app:srcCompat="@drawable/ic_settings" />
+                app:srcCompat="@drawable/person_icon" />
 
         </RelativeLayout>
 
@@ -260,10 +236,10 @@
         android:background="@drawable/roundedstyle_w_colour"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.098"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2">
+        app:layout_constraintVertical_bias="0.25">
 
         <TextView
             android:layout_width="wrap_content"
@@ -279,10 +255,10 @@
             android:layout_marginRight="5dp"
             android:layout_marginBottom="65dp"
             android:fontFamily="@font/alata"
+            android:text="Chats"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:text="@string/Chats"
-            android:textSize="15dp" />
+            android:textSize="16dp" />
 
         <ImageView
             android:layout_width="40dp"
@@ -293,9 +269,9 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
+            android:layout_marginTop="35dp"
             android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp"
-            android:layout_marginTop="35dp"
             android:layout_marginBottom="5dp"
             app:srcCompat="@drawable/chat_icon" />
 
@@ -311,7 +287,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2">
+        app:layout_constraintVertical_bias="0.25">
 
         <TextView
             android:layout_width="wrap_content"
@@ -329,8 +305,8 @@
             android:fontFamily="@font/alata"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:text="@string/Timer"
-            android:textSize="15dp" />
+            android:text="Timer"
+            android:textSize="16dp" />
 
         <ImageView
             android:layout_width="40dp"
@@ -359,7 +335,7 @@
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2">
+        app:layout_constraintVertical_bias="0.25">
 
         <TextView
             android:layout_width="wrap_content"
@@ -377,8 +353,8 @@
             android:fontFamily="@font/alata"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:text="@string/Fitness"
-            android:textSize="15dp" />
+            android:text="Fitness"
+            android:textSize="16dp" />
 
         <ImageView
             android:layout_width="40dp"
@@ -407,7 +383,7 @@
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4">
+        app:layout_constraintVertical_bias="0.45">
 
         <TextView
             android:layout_width="wrap_content"
@@ -425,8 +401,8 @@
             android:fontFamily="@font/alata"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:text="@string/Notepad"
-            android:textSize="15dp" />
+            android:text="To-Do List"
+            android:textSize="16dp" />
 
         <ImageView
             android:layout_width="40dp"
@@ -455,7 +431,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4">
+        app:layout_constraintVertical_bias="0.45">
 
         <TextView
             android:layout_width="wrap_content"
@@ -473,8 +449,8 @@
             android:fontFamily="@font/alata"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:text="@string/Calendar"
-            android:textSize="15dp" />
+            android:text="Calendar"
+            android:textSize="16dp" />
 
         <ImageView
             android:layout_width="40dp"
@@ -503,7 +479,7 @@
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4">
+        app:layout_constraintVertical_bias="0.45">
 
         <TextView
             android:layout_width="wrap_content"
@@ -521,8 +497,8 @@
             android:fontFamily="@font/alata"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:text="@string/Habits"
-            android:textSize="15dp" />
+            android:text="Habit"
+            android:textSize="16dp" />
 
         <ImageView
             android:layout_width="40dp"
@@ -551,7 +527,7 @@
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6">
+        app:layout_constraintVertical_bias="0.65">
 
         <TextView
             android:layout_width="wrap_content"
@@ -569,8 +545,8 @@
             android:fontFamily="@font/alata"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:text="@string/Reward"
-            android:textSize="15dp" />
+            android:text="Reward"
+            android:textSize="16dp" />
 
         <ImageView
             android:layout_width="40dp"
@@ -590,54 +566,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/feedback"
-        android:layout_width="95dp"
-        android:layout_height="95dp"
-        android:background="@drawable/roundedstyle_w_colour"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="60dp"
-            android:fontFamily="@font/alata"
-            android:textAlignment="center"
-            android:textColor="#03256C"
-            android:text="@string/Feedback"
-            android:textSize="15dp" />
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginBottom="5dp"
-            app:srcCompat="@drawable/feedback_icon" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
         android:id="@+id/screentime"
         android:layout_width="95dp"
         android:layout_height="95dp"
@@ -647,7 +575,7 @@
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6">
+        app:layout_constraintVertical_bias="0.65">
 
         <TextView
             android:layout_width="wrap_content"
@@ -663,10 +591,10 @@
             android:layout_marginRight="5dp"
             android:layout_marginBottom="60dp"
             android:fontFamily="@font/alata"
+            android:text="Screentime"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:text="Screentime"
-            android:textSize="15dp" />
+            android:textSize="16dp" />
 
         <ImageView
             android:layout_width="40dp"
@@ -675,16 +603,79 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginLeft="1dp"
             android:layout_marginTop="35dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
             android:layout_marginBottom="5dp"
             app:srcCompat="@drawable/screentime_icon" />
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/Theme"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
+        android:background="@drawable/roundedstyle_w_colour"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.65">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="60dp"
+            android:fontFamily="@font/alata"
+            android:text="Customise"
+            android:textAlignment="center"
+            android:textColor="#03256C"
+            android:textSize="16dp" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="5dp"
+            app:srcCompat="@drawable/customise_icon" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alata"
+        android:text="today's date"
+        android:textAlignment="center"
+        android:textColor="#03256C"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.14" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

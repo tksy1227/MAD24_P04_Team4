@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import sg.edu.np.mad.p04_team4.Calender.MainCalender;
 import sg.edu.np.mad.p04_team4.Chat.ChatHomeActivity;
 import sg.edu.np.mad.p04_team4.DailyLoginReward.DailyRewardDialogFragment;
 import sg.edu.np.mad.p04_team4.DailyLoginReward.ShopActivity;
@@ -84,15 +85,6 @@ public class HomeActivity extends AppCompatActivity {
         IntentFilter filter = new IntentFilter("sg.edu.np.mad.p04_team4.THEME_CHANGED");
         registerReceiver(themeChangeReceiver, filter);
 
-        // Set up the language toggle button
-        Button languageButton = findViewById(R.id.languageButton);
-        languageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggleLanguage();
-            }
-        });
-
         // Start and bind the screen time tracking service
         Intent serviceIntent = new Intent(this, ScreenTimeService.class);
         startService(serviceIntent);
@@ -124,6 +116,9 @@ public class HomeActivity extends AppCompatActivity {
         setupClickListener(R.id.notepad, "To-Do List", MainActivity_TodoList.class);
         setupClickListener(R.id.reward, "Reward", ShopActivity.class);
         setupClickListener(R.id.chart, "Habit Tracker", selectHabit.class);
+        setupClickListener(R.id.calendar, "Calendar", MainCalender.class);
+
+
     }
 
     // Method to set up click listeners for features without additional user data
@@ -217,6 +212,7 @@ public class HomeActivity extends AppCompatActivity {
             screenTimeService.stopFeatureTimer("To-Do List");
             screenTimeService.stopFeatureTimer("Reward");
             screenTimeService.stopFeatureTimer("Habit Tracker");
+            screenTimeService.stopFeatureTimer("Calendar");
         }
     }
 

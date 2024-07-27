@@ -17,10 +17,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.GetTokenResult;
 
 import sg.edu.np.mad.p04_team4.Home.HomeActivity;
 import sg.edu.np.mad.p04_team4.R;
-
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -41,56 +43,84 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
+        EditText etPhone = findViewById(R.id.TextPhoneNumber);
+        EditText etPassword = findViewById(R.id.TextPassword);
         Button btnLogin = findViewById(R.id.LoginBtn);
         Button btnRegister = findViewById(R.id.CreateAccount);
         Button btnForgotPassword = findViewById(R.id.ForgotPassword);
         ImageView btnHideIcon = findViewById(R.id.HideIcon);
-        EditText password = findViewById(R.id.TextPassword);
 
+        // Password visibility toggle
         btnHideIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (passwordShowing) {
                     passwordShowing = false;
-                    password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                     btnHideIcon.setImageResource(R.drawable.hide_icon);
                 } else {
                     passwordShowing = true;
-                    password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    etPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
                     btnHideIcon.setImageResource(R.drawable.unhide_icon);
                 }
-                password.setSelection(password.length());
+                etPassword.setSelection(etPassword.length());
             }
         });
 
+        // Login button click listener
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText etPhone = findViewById(R.id.TextPhoneNumber);
-                EditText etPassword = findViewById(R.id.TextPassword);
                 String phone = etPhone.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
 
                 if (phone.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), getString(R.string.fill_out_all_fields), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Please fill out all fields", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                mAuth.signInWithEmailAndPassword(phone + "@example.com", password) // Using phone as part of email
-                        .addOnCompleteListener(LoginActivity.this, task -> {
+                // Check if user account exists
+                mAuth.fetchSignInMethodsForEmail(phone + "@example.com")
+                        .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                Toast.makeText(getApplicationContext(), getString(R.string.login_success), Toast.LENGTH_SHORT).show();
-                                Intent home_page = new Intent(LoginActivity.this, HomeActivity.class);
-                                home_page.putExtra("name", user.getDisplayName());
-                                startActivity(home_page);
+                                if (task.getResult().getSignInMethods().isEmpty()) {
+                                    // User account does not exist
+                                    Toast.makeText(getApplicationContext(), "User does not exist. Please create an account.", Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+                                    // User exists, proceed with sign-in
+                                    mAuth.signInWithEmailAndPassword(phone + "@example.com", password)
+                                            .addOnCompleteListener(LoginActivity.this, signInTask -> {
+                                                if (signInTask.isSuccessful()) {
+                                                    FirebaseUser user = mAuth.getCurrentUser();
+                                                    Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
+                                                    Intent homeIntent = new Intent(LoginActivity.this, HomeActivity.class);
+                                                    homeIntent.putExtra("email", user.getEmail());
+                                                    homeIntent.putExtra("name", user.getDisplayName());
+                                                    startActivity(homeIntent);
+                                                    finish(); // Finish LoginActivity so user cannot go back
+                                                }
+                                                else {
+                                                    // Handle sign-in failures
+                                                    if (signInTask.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                                                        // Incorrect password
+                                                        Toast.makeText(getApplicationContext(), "Incorrect password. Please try again.", Toast.LENGTH_SHORT).show();
+                                                    } else {
+                                                        // Other authentication failures
+                                                        Toast.makeText(getApplicationContext(), "Authentication failed: " + signInTask.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+                                }
                             } else {
-                                Toast.makeText(getApplicationContext(), getString(R.string.authentication_failed) + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                // Error fetching sign-in methods
+                                Toast.makeText(getApplicationContext(), "Failed to fetch sign-in methods: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
             }
         });
 
+        // Register button click listener
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,10 +129,11 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // Forgot password button click listener
         btnForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, ForgetUserActivity.class);
+                Intent intent = new Intent(LoginActivity.this, ForgetPasswordActivity.class);
                 startActivity(intent);
             }
         });
