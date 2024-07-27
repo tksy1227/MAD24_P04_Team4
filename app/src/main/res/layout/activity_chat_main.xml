@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F4EDEA"
+    android:id="@+id/main"
     tools:context=".Chat.Chat_Main">
 
     <!-- Background ImageViews -->
@@ -98,7 +99,7 @@
                     android:text="@string/last_seen_6_minutes_ago"
                     android:fontFamily="@font/alata"
                     android:textColor="@android:color/white"
-                    android:textSize="14sp"/>
+                    android:textSize="13sp"/>
             </LinearLayout>
 
             <ImageButton
@@ -192,11 +193,11 @@
             android:id="@+id/buttonSend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/send_button"
+            style="@style/CustomButton"
             android:fontFamily="@font/alata"
             android:padding="8dp"
             android:text="@string/Send"
-            android:textColor="#ffffff"
+            android:textColor="#000000"
             app:strokeColor="#0D5C63"
             app:strokeWidth="1dp" />
     </LinearLayout>

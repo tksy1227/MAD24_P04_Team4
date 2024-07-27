@@ -28,6 +28,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
+
+import sg.edu.np.mad.p04_team4.DailyLoginReward.ThemeUtils;
 import sg.edu.np.mad.p04_team4.R;
 
 public class Chat_Main extends AppCompatActivity {
@@ -52,6 +54,9 @@ public class Chat_Main extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_main); // Ensure this matches your XML layout file name
+
+        View rootView = findViewById(R.id.main); // Ensure this matches the root layout id
+        ThemeUtils.applyTheme(this, rootView);
 
         // Retrieve the data passed with the Intent
         String chatName = getIntent().getStringExtra("chat_name");

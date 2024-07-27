@@ -28,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import sg.edu.np.mad.p04_team4.R;
+import sg.edu.np.mad.p04_team4.DailyLoginReward.ThemeUtils;
 
 public class OTPActivity extends AppCompatActivity {
 

@@ -13,7 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import sg.edu.np.mad.p04_team4.HomeActivity;
+import sg.edu.np.mad.p04_team4.DailyLoginReward.ThemeUtils;
+import sg.edu.np.mad.p04_team4.Home.HomeActivity;
 import sg.edu.np.mad.p04_team4.R;
 
 public class FeedbackActivity extends AppCompatActivity {
@@ -25,6 +26,9 @@ public class FeedbackActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
+
+        View rootView = findViewById(R.id.main); // Ensure this matches the root layout id
+        ThemeUtils.applyTheme(this, rootView);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://friendscape-5e36e-default-rtdb.asia-southeast1.firebasedatabase.app/");
         mDatabase = database.getReference("feedback");

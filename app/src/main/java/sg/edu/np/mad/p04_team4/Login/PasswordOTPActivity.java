@@ -21,6 +21,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import sg.edu.np.mad.p04_team4.R;
+import sg.edu.np.mad.p04_team4.DailyLoginReward.ThemeUtils;
 
 public class PasswordOTPActivity extends AppCompatActivity {
 
@@ -76,6 +77,10 @@ public class PasswordOTPActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.password_otp);
+
+        View rootView = findViewById(R.id.main); // Ensure this matches the root layout id
+        ThemeUtils.applyTheme(this, rootView);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

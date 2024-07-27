@@ -1,0 +1,162 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#0D5C63"
+        android:backgroundTint="#0D5C63"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:elevation="4dp"
+        app:title="">
+
+        <ImageButton
+            android:id="@+id/backArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back"
+            android:contentDescription="@string/back_button"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_alignParentStart="true"
+            android:layout_margin="8dp" />
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Change Theme"
+            android:fontFamily="@font/alata"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnTheme1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fluid Harmony"
+                style="@style/CustomButton"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/button_background"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/alata"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <ImageView
+                    android:id="@+id/themeImage1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/theme_1" />
+
+                <ImageView
+                    android:id="@+id/lockIcon1"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_lock" />
+
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/btnTheme2"
+                style="@style/CustomButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="31dp"
+                android:background="@drawable/button_background"
+                android:fontFamily="@font/alata"
+                android:text="Blue Blossom"
+                android:textColor="@android:color/black" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <ImageView
+                    android:id="@+id/themeImage2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/theme_2" />
+
+                <ImageView
+                    android:id="@+id/lockIcon2"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_lock" />
+
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/btnTheme3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Playful Safari"
+                style="@style/CustomButton"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/button_background"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/alata"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <ImageView
+                    android:id="@+id/themeImage3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/theme_3" />
+
+                <ImageView
+                    android:id="@+id/lockIcon3"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_lock" />
+
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/btnRemoveTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Remove Theme"
+                android:layout_marginTop="32dp"
+                style="@style/CustomButton"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/alata"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

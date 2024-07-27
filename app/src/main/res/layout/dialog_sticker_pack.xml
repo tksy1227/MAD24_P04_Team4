@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#C5D8D1"
+    android:background="#0D5C63"
     android:padding="8dp">
 
     <TextView
@@ -13,6 +13,7 @@
         android:fontFamily="@font/alata"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:textColor="@android:color/white"
         android:layout_centerHorizontal="true" />
 
     <ImageView
@@ -41,7 +42,7 @@
         android:text="Buy"
         android:fontFamily="@font/alata"
         android:textSize="18sp"
-        android:background="@drawable/rounded_button"
-        android:textColor="@android:color/white"/>
+        style="@style/CustomButton"
+        android:textColor="@android:color/black"/>
 
 </RelativeLayout>

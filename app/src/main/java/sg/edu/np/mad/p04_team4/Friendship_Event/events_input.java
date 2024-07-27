@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.android.material.textfield.TextInputEditText;
 
 import sg.edu.np.mad.p04_team4.R;
+import sg.edu.np.mad.p04_team4.DailyLoginReward.ThemeUtils;
 
 public class events_input extends AppCompatActivity {
 
@@ -32,6 +34,10 @@ public class events_input extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_test);
+
+        View rootView = findViewById(R.id.main); // Ensure this matches the root layout id
+        ThemeUtils.applyTheme(this, rootView);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

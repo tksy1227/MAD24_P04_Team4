@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="#F4EDEA"
-    android:layout_height="match_parent">
+    android:paddingBottom="16dp"
+    android:paddingTop="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,11 +39,11 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
-                app:layout_constraintStart_toEndOf="@id/backArrow"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/coinLayout"
-                app:layout_constraintHorizontal_chainStyle="spread_inside" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5" />
 
             <LinearLayout
                 android:id="@+id/coinLayout"
@@ -95,11 +98,12 @@
                     android:id="@+id/btnSticker1"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
-                    android:text="Cat Pack"
-                    android:fontFamily="@font/alata"
-                    android:textSize="16sp"
                     android:background="@drawable/rounded_button"
-                    android:textColor="@android:color/white" />
+                    style="@style/CustomButton"
+                    android:fontFamily="@font/alata"
+                    android:text="Cat Pack"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -134,10 +138,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:text="Monkey Pack"
+                    style="@style/CustomButton"
                     android:fontFamily="@font/alata"
                     android:textSize="16sp"
                     android:background="@drawable/rounded_button"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/black" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -172,10 +177,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:text="Emoji Pack"
+                    style="@style/CustomButton"
                     android:fontFamily="@font/alata"
                     android:textSize="16sp"
                     android:background="@drawable/rounded_button"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/black" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -210,10 +216,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:text="Beast Pack"
+                    style="@style/CustomButton"
                     android:fontFamily="@font/alata"
                     android:textSize="16sp"
                     android:background="@drawable/rounded_button"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/black" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -248,10 +255,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:text="Skibidi Pack"
+                    style="@style/CustomButton"
                     android:fontFamily="@font/alata"
                     android:textSize="16sp"
                     android:background="@drawable/rounded_button"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/black" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -286,10 +294,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:text="DBD Pack"
+                    style="@style/CustomButton"
                     android:fontFamily="@font/alata"
                     android:textSize="16sp"
                     android:background="@drawable/rounded_button"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/black" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -341,10 +350,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:text="Fluid Harmony"
+                    style="@style/CustomButton"
                     android:fontFamily="@font/alata"
                     android:textSize="16sp"
                     android:background="@drawable/rounded_button"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/black" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -379,10 +389,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:text="Blue Blossom"
+                    style="@style/CustomButton"
                     android:fontFamily="@font/alata"
                     android:textSize="16sp"
                     android:background="@drawable/rounded_button"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/black" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -417,10 +428,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:text="Playful Safari"
+                    style="@style/CustomButton"
                     android:fontFamily="@font/alata"
                     android:textSize="16sp"
                     android:background="@drawable/rounded_button"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/black" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -464,11 +476,12 @@
                 android:id="@+id/btnBanner"
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
-                android:text="Buy Banner"
+                android:text="Coming Soon!"
+                style="@style/CustomButton"
                 android:fontFamily="@font/alata"
                 android:textSize="16sp"
                 android:background="@drawable/rounded_button"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/black" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -479,7 +492,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="?"
                     android:textSize="16sp"
                     android:textColor="#000" />
 

@@ -29,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import sg.edu.np.mad.p04_team4.R;
+import sg.edu.np.mad.p04_team4.DailyLoginReward.ThemeUtils;
 
 // Main activity class for the To-Do list application
 public class MainActivity_TodoList extends AppCompatActivity {
@@ -46,6 +47,9 @@ public class MainActivity_TodoList extends AppCompatActivity {
         // Enable edge-to-edge display
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_todo_list);
+
+        View rootView = findViewById(R.id.main); // Ensure this matches the root layout id
+        ThemeUtils.applyTheme(this, rootView);
 
         // Set window insets to handle system bars (e.g., status and navigation bars)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {

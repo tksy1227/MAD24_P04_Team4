@@ -23,19 +23,14 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-import sg.edu.np.mad.p04_team4.HomeActivity;
+import sg.edu.np.mad.p04_team4.Home.HomeActivity;
 import sg.edu.np.mad.p04_team4.R;
-import sg.edu.np.mad.p04_team4.ScreenTime.ScreenTime_Main;
+import sg.edu.np.mad.p04_team4.DailyLoginReward.ThemeUtils;
 
 public class Stopwatch_Timer extends AppCompatActivity {
     public static final String CHANNEL_ID = "timer_channel";
@@ -58,6 +53,9 @@ public class Stopwatch_Timer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stopwatch_timer);
+
+        View rootView = findViewById(R.id.main); // Ensure this matches the root layout id
+        ThemeUtils.applyTheme(this, rootView);
 
         createNotificationChannel();
 

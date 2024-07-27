@@ -1,8 +1,12 @@
-package sg.edu.np.mad.p04_team4;
+package sg.edu.np.mad.p04_team4.Home;
 
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
@@ -12,7 +16,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.content.SharedPreferences;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,10 +25,12 @@ import com.google.firebase.auth.FirebaseUser;
 import sg.edu.np.mad.p04_team4.Chat.ChatHomeActivity;
 import sg.edu.np.mad.p04_team4.DailyLoginReward.DailyRewardDialogFragment;
 import sg.edu.np.mad.p04_team4.DailyLoginReward.ShopActivity;
+import sg.edu.np.mad.p04_team4.DailyLoginReward.ThemeUtils;
 import sg.edu.np.mad.p04_team4.Feedback.FeedbackActivity;
 import sg.edu.np.mad.p04_team4.Friendship_Event.Friendship_Events;
 import sg.edu.np.mad.p04_team4.HabitTracker.selectHabit;
 import sg.edu.np.mad.p04_team4.Login.AccountActivity;
+import sg.edu.np.mad.p04_team4.R;
 import sg.edu.np.mad.p04_team4.ScreenTime.ScreenTimeService;
 import sg.edu.np.mad.p04_team4.Timer.Stopwatch_Timer;
 import sg.edu.np.mad.p04_team4.ToDoList.MainActivity_TodoList;
@@ -46,10 +51,19 @@ public class HomeActivity extends AppCompatActivity {
             screenTimeService = binder.getService();
             isBound = true;
         }
-//testing
+
         @Override
         public void onServiceDisconnected(ComponentName name) {
             isBound = false;
+        }
+    };
+
+    private BroadcastReceiver themeChangeReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // Apply the new theme
+            View rootView = findViewById(R.id.main); // Ensure this matches the root layout id
+            ThemeUtils.applyTheme(HomeActivity.this, rootView);
         }
     };
 
@@ -57,6 +71,13 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
+
+        View rootView = findViewById(R.id.main); // Ensure this matches the root layout id
+        ThemeUtils.applyTheme(this, rootView);
+
+        // Register the broadcast receiver for theme changes
+        IntentFilter filter = new IntentFilter("sg.edu.np.mad.p04_team4.THEME_CHANGED");
+        registerReceiver(themeChangeReceiver, filter);
 
         Button languageButton = findViewById(R.id.languageButton);
         languageButton.setOnClickListener(new View.OnClickListener() {
@@ -158,22 +179,13 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         // Set Click Listener for the "Screen Time" layout
-        //RelativeLayout screenTimeLayout = findViewById(R.id.chart);
-        //screenTimeLayout.setOnClickListener(v -> {
-        //    if (isBound) {
-        //        screenTimeService.startFeatureTimer("Screen Time");
-        //    }
-        //    Intent intent = new Intent(HomeActivity.this, ScreenTime_Main.class);
-        //    startActivity(intent);
-        //});
         RelativeLayout HabitTrackerLayout = findViewById(R.id.chart);
-        HabitTrackerLayout.setOnClickListener(v->{
+        HabitTrackerLayout.setOnClickListener(v -> {
             if (isBound) {
                 screenTimeService.startFeatureTimer("Habit Tracker");
-                }
-                Intent intent = new Intent(HomeActivity.this, selectHabit.class);
-                startActivity(intent);
-
+            }
+            Intent intent = new Intent(HomeActivity.this, selectHabit.class);
+            startActivity(intent);
         });
     }
 
@@ -216,7 +228,6 @@ public class HomeActivity extends AppCompatActivity {
         changeLanguage(languageCode);
     }
 
-
     private boolean isSameDay(Calendar lastShown, Calendar today) {
         return lastShown.get(Calendar.YEAR) == today.get(Calendar.YEAR)
                 && lastShown.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR);
@@ -242,5 +253,7 @@ public class HomeActivity extends AppCompatActivity {
             unbindService(serviceConnection);
             isBound = false;
         }
+        // Unregister the broadcast receiver
+        unregisterReceiver(themeChangeReceiver);
     }
 }

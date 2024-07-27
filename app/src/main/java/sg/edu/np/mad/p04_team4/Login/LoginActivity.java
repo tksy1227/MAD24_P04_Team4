@@ -18,8 +18,9 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import sg.edu.np.mad.p04_team4.HomeActivity;
+import sg.edu.np.mad.p04_team4.Home.HomeActivity;
 import sg.edu.np.mad.p04_team4.R;
+
 
 public class LoginActivity extends AppCompatActivity {
 

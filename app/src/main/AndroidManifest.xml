@@ -72,7 +72,7 @@
 
         <activity
             android:name=".Chat.ChatHomeActivity"
-            android:parentActivityName=".HomeActivity"
+            android:parentActivityName=".Home.HomeActivity"
             android:screenOrientation="portrait"/>
 
         <activity
@@ -95,7 +95,7 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".HomeActivity"
+            android:name=".Home.HomeActivity"
             android:parentActivityName=".Login.LoginActivity"
             android:screenOrientation="portrait"/>
 
@@ -149,6 +149,18 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".Chat.StickerPageActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Login.AccountActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".DailyLoginReward.ThemeSelectionActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Login.CreateAccountOTPActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
 

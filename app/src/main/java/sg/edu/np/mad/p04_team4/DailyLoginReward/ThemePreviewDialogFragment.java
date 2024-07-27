@@ -30,6 +30,9 @@ public class ThemePreviewDialogFragment extends DialogFragment {
     private int themeCost;
     private String userId;
     private DatabaseReference userCoinsRef;
+    private DatabaseReference purchasedThemesRef;
+    private PurchaseListener purchaseListener;
+    private boolean isPurchased;
 
     public ThemePreviewDialogFragment(String themeTitle, int themeImageResId, int themeCost, String userId) {
         this.themeTitle = themeTitle;
@@ -37,6 +40,15 @@ public class ThemePreviewDialogFragment extends DialogFragment {
         this.themeCost = themeCost;
         this.userId = userId;
         this.userCoinsRef = FirebaseDatabase.getInstance().getReference().child("users").child(userId).child("friendCoins");
+        this.purchasedThemesRef = FirebaseDatabase.getInstance().getReference().child("users").child(userId).child("purchasedThemes");
+    }
+
+    public void setPurchaseListener(PurchaseListener purchaseListener) {
+        this.purchaseListener = purchaseListener;
+    }
+
+    public void setPurchased(boolean isPurchased) {
+        this.isPurchased = isPurchased;
     }
 
     @Nullable
@@ -54,7 +66,11 @@ public class ThemePreviewDialogFragment extends DialogFragment {
         closeButton.setOnClickListener(v -> dismiss());
 
         Button buyButton = view.findViewById(R.id.buyButton);
-        buyButton.setOnClickListener(v -> showConfirmationDialog());
+        if (isPurchased) {
+            buyButton.setVisibility(View.GONE);
+        } else {
+            buyButton.setOnClickListener(v -> showConfirmationDialog());
+        }
 
         return view;
     }
@@ -88,11 +104,16 @@ public class ThemePreviewDialogFragment extends DialogFragment {
                     int newBalance = currentCoins - themeCost;
                     userCoinsRef.setValue(newBalance)
                             .addOnSuccessListener(aVoid -> {
-                                Toast.makeText(getActivity(), themeTitle + " purchased!", Toast.LENGTH_SHORT).show();
-                                if (getActivity() instanceof ShopActivity) {
-                                    ((ShopActivity) getActivity()).updateCoinDisplay(newBalance);
-                                }
-                                dismiss();
+                                purchasedThemesRef.child(themeTitle).setValue(true)
+                                        .addOnSuccessListener(aVoid2 -> {
+                                            Toast.makeText(getActivity(), themeTitle + " purchased!", Toast.LENGTH_SHORT).show();
+                                            if (getActivity() instanceof ShopActivity) {
+                                                ((ShopActivity) getActivity()).updateCoinDisplay(newBalance);
+                                                ((ShopActivity) getActivity()).applyTheme(themeTitle, themeCost);
+                                            }
+                                            dismiss();
+                                        })
+                                        .addOnFailureListener(e -> Toast.makeText(getActivity(), "Failed to save theme purchase. Please try again.", Toast.LENGTH_SHORT).show());
                             })
                             .addOnFailureListener(e -> Toast.makeText(getActivity(), "Purchase failed. Please try again.", Toast.LENGTH_SHORT).show());
                 } else {
@@ -105,5 +126,9 @@ public class ThemePreviewDialogFragment extends DialogFragment {
                 Toast.makeText(getActivity(), "Failed to complete purchase. Please try again.", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public interface PurchaseListener {
+        void onPurchase();
     }
 }

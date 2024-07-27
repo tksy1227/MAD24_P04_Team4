@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.graphics.drawable.ColorDrawable;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -89,7 +90,8 @@ public class DailyRewardDialogFragment extends DialogFragment {
             long diffInMillis = today.getTimeInMillis() - lastLogin.getTimeInMillis();
             long diffInDays = diffInMillis / (1000 * 60 * 60 * 24);
 
-            if (lastLoginMillis == 0 || diffInDays > 1) {
+            if (lastLoginMillis == 0 || diffInDays > 2) {
+                // Reset streak if more than 2 days have passed
                 currentStreak = 1;
             } else {
                 currentStreak++;
@@ -244,6 +246,7 @@ public class DailyRewardDialogFragment extends DialogFragment {
         super.onStart();
         if (getDialog() != null) {
             getDialog().getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         }
     }
 }

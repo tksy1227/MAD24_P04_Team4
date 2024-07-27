@@ -1,14 +1,17 @@
 package sg.edu.np.mad.p04_team4.DailyLoginReward;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,12 +20,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import sg.edu.np.mad.p04_team4.HomeActivity;
+import sg.edu.np.mad.p04_team4.Home.HomeActivity;
 import sg.edu.np.mad.p04_team4.R;
 
 public class ShopActivity extends AppCompatActivity {
@@ -43,6 +48,9 @@ public class ShopActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_page); // Ensure this matches your XML layout file name
+
+        View rootView = findViewById(R.id.main); // Ensure this matches the root layout id
+        ThemeUtils.applyTheme(this, rootView);
 
         coinAmountTextView = findViewById(R.id.coinAmount);
 
@@ -81,17 +89,17 @@ public class ShopActivity extends AppCompatActivity {
         btnTheme3 = findViewById(R.id.btnTheme3);
 
         // Set Click Listeners for the sticker pack buttons
-        btnSticker1.setOnClickListener(v -> purchaseSticker("Cat Sticker Pack", 50));
-        btnSticker2.setOnClickListener(v -> purchaseSticker("Monkey Sticker Pack", 50));
-        btnSticker3.setOnClickListener(v -> purchaseSticker("Emoji Sticker Pack", 50));
-        btnSticker4.setOnClickListener(v -> purchaseSticker("Alpha Wolf Sticker Pack", 50));
-        btnSticker5.setOnClickListener(v -> purchaseSticker("Skibidi Toilet Sticker Pack", 50));
-        btnSticker6.setOnClickListener(v -> purchaseSticker("Dead by Daylight Sticker Pack", 70));
+        btnSticker1.setOnClickListener(v -> openStickerPack("Cat Sticker Pack", 50, purchasedStickers.contains("Cat Sticker Pack")));
+        btnSticker2.setOnClickListener(v -> openStickerPack("Monkey Sticker Pack", 50, purchasedStickers.contains("Monkey Sticker Pack")));
+        btnSticker3.setOnClickListener(v -> openStickerPack("Emoji Sticker Pack", 50, purchasedStickers.contains("Emoji Sticker Pack")));
+        btnSticker4.setOnClickListener(v -> openStickerPack("Alpha Wolf Sticker Pack", 50, purchasedStickers.contains("Alpha Wolf Sticker Pack")));
+        btnSticker5.setOnClickListener(v -> openStickerPack("Skibidi Toilet Sticker Pack", 50, purchasedStickers.contains("Skibidi Toilet Sticker Pack")));
+        btnSticker6.setOnClickListener(v -> openStickerPack("Dead by Daylight Sticker Pack", 70, purchasedStickers.contains("Dead by Daylight Sticker Pack")));
 
         // Set Click Listeners for the theme buttons
-        btnTheme1.setOnClickListener(v -> purchaseTheme("Theme 1", 80));
-        btnTheme2.setOnClickListener(v -> purchaseTheme("Theme 2", 80));
-        btnTheme3.setOnClickListener(v -> purchaseTheme("Theme 3", 100));
+        btnTheme1.setOnClickListener(v -> showThemePreview("Fluid Harmony", R.drawable.theme_1, 80, purchasedThemes.contains("Fluid Harmony")));
+        btnTheme2.setOnClickListener(v -> showThemePreview("Blue Blossom", R.drawable.theme_2, 80, purchasedThemes.contains("Blue Blossom")));
+        btnTheme3.setOnClickListener(v -> showThemePreview("Playful Safari", R.drawable.theme_3, 100, purchasedThemes.contains("Playful Safari")));
     }
 
     private void fetchUserCoins() {
@@ -160,28 +168,14 @@ public class ShopActivity extends AppCompatActivity {
         updateButtonState(btnSticker5, "Skibidi Toilet Sticker Pack", purchasedStickers);
         updateButtonState(btnSticker6, "Dead by Daylight Sticker Pack", purchasedStickers);
 
-        updateButtonState(btnTheme1, "Theme 1", purchasedThemes);
-        updateButtonState(btnTheme2, "Theme 2", purchasedThemes);
-        updateButtonState(btnTheme3, "Theme 3", purchasedThemes);
+        updateButtonState(btnTheme1, "Fluid Harmony", purchasedThemes);
+        updateButtonState(btnTheme2, "Blue Blossom", purchasedThemes);
+        updateButtonState(btnTheme3, "Playful Safari", purchasedThemes);
     }
 
     private void updateButtonState(Button button, String itemName, Set<String> purchasedItems) {
         if (purchasedItems.contains(itemName)) {
-            button.setEnabled(false);
-            button.setText("Bought");
             button.setBackgroundColor(Color.GRAY);
-        }
-    }
-
-    private void purchaseSticker(String packName, int packCost) {
-        if (!purchasedStickers.contains(packName)) {
-            openStickerPack(packName, packCost, false);
-        }
-    }
-
-    private void purchaseTheme(String themeName, int themeCost) {
-        if (!purchasedThemes.contains(themeName)) {
-            showThemePreview(themeName, getThemeImageResId(themeName), themeCost);
         }
     }
 
@@ -190,22 +184,77 @@ public class ShopActivity extends AppCompatActivity {
         dialog.show(getSupportFragmentManager(), "StickerPackDialogFragment");
     }
 
-    private void showThemePreview(String themeTitle, int themeImageResId, int themeCost) {
-        ThemePreviewDialogFragment dialog = new ThemePreviewDialogFragment(themeTitle, themeImageResId, themeCost, userId);
+    private void showThemePreview(String themeName, int themeImageResId, int themeCost, boolean isPurchased) {
+        ThemePreviewDialogFragment dialog = new ThemePreviewDialogFragment(themeName, themeImageResId, themeCost, userId);
+        dialog.setPurchaseListener(() -> applyTheme(themeName, themeCost));
+        dialog.setPurchased(isPurchased);
         dialog.show(getSupportFragmentManager(), "ThemePreviewDialogFragment");
+    }
+
+    public void applyTheme(String themeName, int themeCost) {
+        if (purchasedThemes.contains(themeName)) {
+            saveSelectedTheme(themeName);
+            sendThemeChangedBroadcast();
+        } else {
+            deductCoins(themeCost, () -> {
+                DatabaseReference userThemesRef = mDatabase.child("users").child(userId).child("purchasedThemes");
+                userThemesRef.child(themeName).setValue(true);
+                purchasedThemes.add(themeName);
+                updateUI();
+                saveSelectedTheme(themeName);
+                sendThemeChangedBroadcast();
+            });
+        }
+    }
+
+    private void deductCoins(int cost, Runnable onSuccess) {
+        DatabaseReference userCoinsRef = mDatabase.child("users").child(userId).child("friendCoins");
+        userCoinsRef.runTransaction(new Transaction.Handler() {
+            @NonNull
+            @Override
+            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                Integer currentCoins = mutableData.getValue(Integer.class);
+                if (currentCoins == null || currentCoins < cost) {
+                    return Transaction.abort();
+                }
+                mutableData.setValue(currentCoins - cost);
+                return Transaction.success(mutableData);
+            }
+
+            @Override
+            public void onComplete(@Nullable DatabaseError databaseError, boolean committed, @Nullable DataSnapshot dataSnapshot) {
+                if (committed) {
+                    onSuccess.run();
+                } else {
+                    Log.e(TAG, "Failed to deduct coins or not enough coins.");
+                }
+            }
+        });
+    }
+
+    private void sendThemeChangedBroadcast() {
+        Intent intent = new Intent("sg.edu.np.mad.p04_team4.THEME_CHANGED");
+        sendBroadcast(intent);
     }
 
     private int getThemeImageResId(String themeName) {
         switch (themeName) {
-            case "Theme 1":
+            case "Fluid Harmony":
                 return R.drawable.theme_1;
-            case "Theme 2":
+            case "Blue Blossom":
                 return R.drawable.theme_2;
-            case "Theme 3":
+            case "Playful Safari":
                 return R.drawable.theme_3;
             default:
                 throw new IllegalArgumentException("Invalid theme name: " + themeName);
         }
+    }
+
+    private void saveSelectedTheme(String themeName) {
+        SharedPreferences sharedPreferences = getSharedPreferences("AppPreferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("selectedTheme", themeName);
+        editor.apply(); // Use apply() for asynchronous saving
     }
 
     public void updateCoinDisplay(int newBalance) {

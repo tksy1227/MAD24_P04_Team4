@@ -40,6 +40,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import sg.edu.np.mad.p04_team4.R;
+import sg.edu.np.mad.p04_team4.DailyLoginReward.ThemeUtils;
 
 public class lineChartview extends AppCompatActivity {
     //private LineChart chart;
@@ -51,6 +52,10 @@ public class lineChartview extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_line_chartview);
+
+        View rootView = findViewById(R.id.chart); // Ensure this matches the root layout id
+        ThemeUtils.applyTheme(this, rootView);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.chart), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

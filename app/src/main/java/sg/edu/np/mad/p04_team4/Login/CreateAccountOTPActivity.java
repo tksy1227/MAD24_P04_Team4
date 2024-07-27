@@ -30,7 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
-import sg.edu.np.mad.p04_team4.HomeActivity;
+import sg.edu.np.mad.p04_team4.Home.HomeActivity;
 import sg.edu.np.mad.p04_team4.R;
 
 public class CreateAccountOTPActivity extends AppCompatActivity {

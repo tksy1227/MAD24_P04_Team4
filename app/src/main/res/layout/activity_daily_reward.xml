@@ -1,65 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4EDEA">
-
-    <!-- Background ImageViews -->
-    <ImageView
-        android:id="@+id/leafbackground1"
-        android:layout_width="333dp"
-        android:layout_height="328dp"
-        android:alpha="0.6"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.987"
-        app:srcCompat="@drawable/leaf_6" />
-
-    <ImageView
-        android:id="@+id/leafbackground2"
-        android:layout_width="196dp"
-        android:layout_height="198dp"
-        android:rotation="190"
-        android:alpha="0.6"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.097"
-        app:srcCompat="@drawable/leaf_6" />
-
-    <TextView
-        android:id="@+id/titleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Daily_log_in_reward"
-        android:textColor="#0D5C63"
-        android:textSize="24sp"
-        android:fontFamily="@font/alata"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardView" />
+    android:gravity="center"
+    android:background="@android:color/transparent"
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_margin="16dp"
         app:cardCornerRadius="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="32dp"
         app:cardElevation="8dp">
 
         <LinearLayout
@@ -67,6 +21,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
+
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Daily_log_in_reward"
+                android:textColor="#0D5C63"
+                android:textSize="24sp"
+                android:fontFamily="@font/alata"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="16dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -124,18 +90,17 @@
 
                     <FrameLayout
                         android:layout_width="0dp"
-                        android:layout_height="64dp"
+                        android:layout_height="80dp"
                         android:layout_weight="1"
-                        android:layout_margin="4dp">
+                        android:layout_margin="4dp"
+                        android:background="@drawable/day_background_unchecked">
 
                         <TextView
                             android:id="@+id/day1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:background="@drawable/day_background_unchecked"
                             android:textColor="@android:color/darker_gray"
-                            android:padding="16dp"
                             android:textSize="17sp"
                             android:fontFamily="@font/alata"
                             android:text="@string/Day_1" />
@@ -152,18 +117,17 @@
 
                     <FrameLayout
                         android:layout_width="0dp"
-                        android:layout_height="64dp"
+                        android:layout_height="80dp"
                         android:layout_weight="1"
-                        android:layout_margin="4dp">
+                        android:layout_margin="4dp"
+                        android:background="@drawable/day_background_unchecked">
 
                         <TextView
                             android:id="@+id/day2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:background="@drawable/day_background_unchecked"
                             android:textColor="@android:color/darker_gray"
-                            android:padding="16dp"
                             android:textSize="17sp"
                             android:fontFamily="@font/alata"
                             android:text="@string/Day_2" />
@@ -180,18 +144,17 @@
 
                     <FrameLayout
                         android:layout_width="0dp"
-                        android:layout_height="64dp"
+                        android:layout_height="80dp"
                         android:layout_weight="1"
-                        android:layout_margin="4dp">
+                        android:layout_margin="4dp"
+                        android:background="@drawable/day_background_unchecked">
 
                         <TextView
                             android:id="@+id/day3"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:background="@drawable/day_background_unchecked"
                             android:textColor="@android:color/darker_gray"
-                            android:padding="16dp"
                             android:textSize="17sp"
                             android:fontFamily="@font/alata"
                             android:text="@string/Day_3" />
@@ -208,18 +171,17 @@
 
                     <FrameLayout
                         android:layout_width="0dp"
-                        android:layout_height="64dp"
+                        android:layout_height="80dp"
                         android:layout_weight="1"
-                        android:layout_margin="4dp">
+                        android:layout_margin="4dp"
+                        android:background="@drawable/day_background_unchecked">
 
                         <TextView
                             android:id="@+id/day4"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:background="@drawable/day_background_unchecked"
                             android:textColor="@android:color/darker_gray"
-                            android:padding="16dp"
                             android:textSize="17sp"
                             android:fontFamily="@font/alata"
                             android:text="@string/Day_4" />
@@ -245,21 +207,20 @@
 
                     <FrameLayout
                         android:layout_width="0dp"
-                        android:layout_height="64dp"
+                        android:layout_height="80dp"
                         android:layout_weight="1"
-                        android:layout_margin="4dp">
+                        android:layout_margin="4dp"
+                        android:background="@drawable/day_background_unchecked">
 
                         <TextView
                             android:id="@+id/day5"
-                            android:layout_width="101dp"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/day_background_unchecked"
-                            android:fontFamily="@font/alata"
                             android:gravity="center"
-                            android:padding="16dp"
-                            android:text="@string/Day_5"
                             android:textColor="@android:color/darker_gray"
-                            android:textSize="17sp" />
+                            android:textSize="17sp"
+                            android:fontFamily="@font/alata"
+                            android:text="@string/Day_5" />
 
                         <ImageView
                             android:id="@+id/tick5"
@@ -273,18 +234,17 @@
 
                     <FrameLayout
                         android:layout_width="0dp"
-                        android:layout_height="64dp"
+                        android:layout_height="80dp"
                         android:layout_weight="1"
-                        android:layout_margin="4dp">
+                        android:layout_margin="4dp"
+                        android:background="@drawable/day_background_unchecked">
 
                         <TextView
                             android:id="@+id/day6"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:background="@drawable/day_background_unchecked"
                             android:textColor="@android:color/darker_gray"
-                            android:padding="16dp"
                             android:textSize="17sp"
                             android:fontFamily="@font/alata"
                             android:text="@string/Day_6" />
@@ -301,18 +261,17 @@
 
                     <FrameLayout
                         android:layout_width="0dp"
-                        android:layout_height="64dp"
+                        android:layout_height="80dp"
                         android:layout_weight="1"
-                        android:layout_margin="4dp">
+                        android:layout_margin="4dp"
+                        android:background="@drawable/day_background_unchecked">
 
                         <TextView
                             android:id="@+id/day7"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:background="@drawable/day_background_unchecked"
                             android:textColor="@android:color/darker_gray"
-                            android:padding="16dp"
                             android:textSize="17sp"
                             android:fontFamily="@font/alata"
                             android:text="@string/Day_7" />
@@ -334,7 +293,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/rounded_button"
+                style="@style/CustomButton"
                 android:text="@string/claim_today"
                 android:backgroundTint="#C5D8D1"
                 android:fontFamily="@font/alata"
@@ -346,4 +305,4 @@
 
     </androidx.cardview.widget.CardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

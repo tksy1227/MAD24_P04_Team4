@@ -158,7 +158,9 @@ public class StickerPackDialogFragment extends DialogFragment {
             case "Skibidi Toilet Sticker Pack":
                 loadSkibidiStickers();
                 break;
-            // Add more packs here if needed
+            case "Emoji Sticker Pack": // New case for Emoji Sticker Pack
+                loadEmojiStickers();
+                break;
         }
     }
 
@@ -205,6 +207,14 @@ public class StickerPackDialogFragment extends DialogFragment {
         stickerPaths.add(getResourceUri(R.drawable.skibidi_happy));
         stickerPaths.add(getResourceUri(R.drawable.skibidi_mindblown));
         stickerPaths.add(getResourceUri(R.drawable.skibidi_sad));
+        stickerAdapter.notifyDataSetChanged();
+    }
+
+    private void loadEmojiStickers() {
+        stickerPaths.add(getResourceUri(R.drawable.emoji_angry));
+        stickerPaths.add(getResourceUri(R.drawable.emoji_cry));
+        stickerPaths.add(getResourceUri(R.drawable.emoji_laugh));
+        stickerPaths.add(getResourceUri(R.drawable.emoji_mock));
         stickerAdapter.notifyDataSetChanged();
     }
 

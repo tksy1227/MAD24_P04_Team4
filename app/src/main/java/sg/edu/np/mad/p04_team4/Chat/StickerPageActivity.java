@@ -93,6 +93,9 @@ public class StickerPageActivity extends AppCompatActivity {
             case "Skibidi Toilet Sticker Pack":
                 loadSkibidiStickers();
                 break;
+            case "Emoji Sticker Pack": // New case for Emoji Sticker Pack
+                loadEmojiStickers();
+                break;
             default:
                 Log.e(TAG, "Unknown sticker pack: " + packName);
                 break;
@@ -138,6 +141,13 @@ public class StickerPageActivity extends AppCompatActivity {
         stickerPaths.add(getResourceUri(R.drawable.skibidi_happy));
         stickerPaths.add(getResourceUri(R.drawable.skibidi_mindblown));
         stickerPaths.add(getResourceUri(R.drawable.skibidi_sad));
+    }
+
+    private void loadEmojiStickers() {
+        stickerPaths.add(getResourceUri(R.drawable.emoji_angry));
+        stickerPaths.add(getResourceUri(R.drawable.emoji_cry));
+        stickerPaths.add(getResourceUri(R.drawable.emoji_laugh));
+        stickerPaths.add(getResourceUri(R.drawable.emoji_mock));
     }
 
     private Uri getResourceUri(int resourceId) {
