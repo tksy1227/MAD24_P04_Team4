@@ -57,7 +57,7 @@ Concepts used: Persistent Memory, Layout Manager, Firebase
 Feature done by: Marissa
 
    ![login-page](repo_images/login-page.png)
-   ![create-new-account](repo_images/create-new-account.png)
+   ![image](https://github.com/user-attachments/assets/0158f709-6526-4f3b-837c-cc7aa3ffd3e6)
 
 3. Chat & Messaging - Send and receive text messages and images between friends
 Concepts used: RecyclerView, Persistent Memory, Layout Manager
