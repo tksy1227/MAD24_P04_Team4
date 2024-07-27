@@ -130,6 +130,7 @@ better user experience, as users will be able to understand and use the app base
 Old Concepts used: Resource Management, SharedPreferences, Activity Lifecycles, View Binding and Event Handling
 New concepts used: Localization and Internalization, Locale, Configuration Modification 
 Feature/Enhancement done by: Chloe
+   ![chinese](repo_images/homescreen_chinese.png)
 
 ---------------------------------------------------------------->
 App Aesthetics Information:
