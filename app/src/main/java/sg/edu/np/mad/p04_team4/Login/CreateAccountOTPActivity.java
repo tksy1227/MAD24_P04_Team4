@@ -103,7 +103,7 @@ public class CreateAccountOTPActivity extends AppCompatActivity {
         resendBtn.setOnClickListener(v -> {
             if (resendEnabled) {
                 // Handle resend OTP code here
-                Toast.makeText(CreateAccountOTPActivity.this, "Resending OTP...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateAccountOTPActivity.this, getString(R.string.resend_otp), Toast.LENGTH_SHORT).show();
                 // Restart countdown for resend
                 startCountDown();
             }
@@ -120,7 +120,7 @@ public class CreateAccountOTPActivity extends AppCompatActivity {
                 PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, otp);
                 signInWithPhoneAuthCredential(credential);
             } else {
-                Toast.makeText(CreateAccountOTPActivity.this, "Please enter valid OTP", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateAccountOTPActivity.this, getString(R.string.enter_valid_otp), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -133,13 +133,13 @@ public class CreateAccountOTPActivity extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 int secondsRemaining = (int) (millisUntilFinished / 1000);
-                resendBtn.setText("Resend Code (" + secondsRemaining + ")");
+                resendBtn.setText(getString(R.string.resend_code) + secondsRemaining + ")");
             }
 
             @Override
             public void onFinish() {
                 resendEnabled = true;
-                resendBtn.setText("Resend Code");
+                resendBtn.setText(getString(R.string.resend_code2));
                 resendBtn.setTextColor(getResources().getColor(com.google.android.material.R.color.design_default_color_primary)); // Reset to default color
             }
         }.start();
@@ -150,7 +150,7 @@ public class CreateAccountOTPActivity extends AppCompatActivity {
             if (task.isSuccessful()) {
                 // Sign in success, proceed to account creation
                 FirebaseUser user = task.getResult().getUser();
-                Toast.makeText(CreateAccountOTPActivity.this, "Verification successful", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateAccountOTPActivity.this, getString(R.string.verification_success), Toast.LENGTH_SHORT).show();
 
                 // Retrieve user details from Intent extras
                 String name = getIntent().getStringExtra("name");
@@ -168,10 +168,10 @@ public class CreateAccountOTPActivity extends AppCompatActivity {
                 // Sign in failed
                 if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                     // Invalid OTP code
-                    Toast.makeText(CreateAccountOTPActivity.this, "Invalid OTP code", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateAccountOTPActivity.this, getString(R.string.invalid_otp_code), Toast.LENGTH_SHORT).show();
                 } else {
                     // Other errors
-                    Toast.makeText(CreateAccountOTPActivity.this, "Verification failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateAccountOTPActivity.this, getString(R.string.verification_failed), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -187,11 +187,11 @@ public class CreateAccountOTPActivity extends AppCompatActivity {
         mDatabase.child("users").child(userId).setValue(user)
                 .addOnSuccessListener(aVoid -> {
                     // User data saved successfully
-                    Toast.makeText(CreateAccountOTPActivity.this, "User created in database", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateAccountOTPActivity.this, getString(R.string.user_created), Toast.LENGTH_SHORT).show();
                 })
                 .addOnFailureListener(e -> {
                     // Error saving user data
-                    Toast.makeText(CreateAccountOTPActivity.this, "Failed to create user in database", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateAccountOTPActivity.this, getString(R.string.user_created_failed), Toast.LENGTH_SHORT).show();
                 });
     }
 

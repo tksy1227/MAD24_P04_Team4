@@ -74,25 +74,25 @@ public class ForgetPasswordConfirmationActivity extends AppCompatActivity {
                     // Update password in Firebase Realtime Database
                     mDatabase.child(userId).child("password").setValue(newPassword).addOnCompleteListener(task1 -> {
                         if (task1.isSuccessful()) {
-                            Toast.makeText(ForgetPasswordConfirmationActivity.this, "Password successfully changed.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ForgetPasswordConfirmationActivity.this, getString(R.string.password_success_change), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(ForgetPasswordConfirmationActivity.this, LoginActivity.class);
                             startActivity(intent);
                             finish(); // Close current activity
                         } else {
                             String error = task1.getException() != null ? task1.getException().getMessage() : "Unknown error";
                             Log.e(TAG, "Database update failed: " + error);
-                            Toast.makeText(ForgetPasswordConfirmationActivity.this, "Password change failed. Please try again.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ForgetPasswordConfirmationActivity.this, getString(R.string.password_change_failed), Toast.LENGTH_SHORT).show();
                         }
                     });
                 } else {
                     String error = task.getException() != null ? task.getException().getMessage() : "Unknown error";
                     Log.e(TAG, "Password update failed: " + error);
-                    Toast.makeText(ForgetPasswordConfirmationActivity.this, "Password change failed. Please try again.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ForgetPasswordConfirmationActivity.this, getString(R.string.password_change_failed), Toast.LENGTH_SHORT).show();
                 }
             });
         } else {
             Log.e(TAG, "User not authenticated.");
-            Toast.makeText(ForgetPasswordConfirmationActivity.this, "User not authenticated.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ForgetPasswordConfirmationActivity.this, getString(R.string.user_not_authenticated2), Toast.LENGTH_SHORT).show();
         }
     }
 }
