@@ -155,13 +155,13 @@ public class PasswordOTPActivity extends AppCompatActivity {
         new CountDownTimer(resendTime * 60, 100){
             @Override
             public void onTick(long millisUntilFinished){
-                resendBtn.setText("Resend Code (" + (millisUntilFinished/60)+")");
+                resendBtn.setText(getString(R.string.resend_code) + (millisUntilFinished/60)+")");
             }
 
             @Override
             public void onFinish(){
                 ResendEnabled = true;
-                resendBtn.setText("Resend Code");
+                resendBtn.setText(getString(R.string.resend_code2));
                 resendBtn.setTextColor(getResources().getColor(com.google.android.material.R.color.design_default_color_primary));
             }
         }.start();

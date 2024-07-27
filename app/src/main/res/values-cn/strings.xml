@@ -311,8 +311,43 @@
                 3. 设置目标：单击并设置要实现的目标！\n\n
                 如果您有任何疑问，请联系支持人员。</string>
 
+    <!-- CreateAccount -->
+    <string name="fill_out_all_fields">请填写所有字段。</string>
+
+    <!-- CreateAccountOTPActivity -->
+    <string name="resend_otp">正在重新发送 OTP...</string>
+    <string name="enter_valid_otp">请输入有效的一次性密码</string>
+    <string name="resend_code">重新发送验证码 (</string>
+    <string name="resend_code2">重新发送验证码</string>
+    <string name="verification_success">验证成功</string>
+    <string name="invalid_otp_code">OTP 代码无效</string>
+    <string name="verification_failed">验证失败</string>
+    <string name="user_created">数据库中创建的用户</string>
+    <string name="user_created_failed">无法在数据库中创建用户</string>
+
+    <!-- ForgetPasswordConfirmationActivity -->
+    <string name="password_success_change">密码修改成功。</string>
+    <string name="password_change_failed">密码更改失败。请再试一次。</string>
+    <string name="user_not_authenticated2">用户未经过身份验证。</string>
+
+    <!-- ForgetUserActivity -->
+    <string name="enter_valid_phone">请输入一个有效的电话号码。</string>
+    <string name="user_found">用户发现：</string>
+    <string name="user_not_found">未找到用户</string>
+    <string name="database_error">数据库错误：</string>
+
+    <!-- LoginActivity -->
+    <string name="login_success">登陆成功！</string>
+    <string name="authentication_failed">认证失败：</string>
+
+    <!-- OTPActivity -->
+    <string name="invalid_otp">无效一次性密码</string>
+    <string name="otp_not_found">未找到一次性密码</string>
+
+    <!-- PasswordOTPActivity -->
     <!-- finished features:
     Feedback, Friendship_Event, HabitTracker, Timer
+    Login (Except AccountActivity & AccntDetailActivity)
     -->
 
 </resources>

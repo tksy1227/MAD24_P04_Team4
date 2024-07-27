@@ -57,7 +57,7 @@ public class ForgetUserActivity extends AppCompatActivity {
 
         // Validate input
         if (phoneString.isEmpty()) {
-            Toast.makeText(this, "Please enter a valid phone number.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.enter_valid_phone), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -74,7 +74,7 @@ public class ForgetUserActivity extends AppCompatActivity {
                         if (foundUser != null) {
                             Log.d("ForgetUserActivity", "User found: " + foundUser.getName());
                             // User found
-                            Toast.makeText(ForgetUserActivity.this, "User found: " + foundUser.getName(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ForgetUserActivity.this, getString(R.string.user_found) + foundUser.getName(), Toast.LENGTH_SHORT).show();
 
                             Intent intent = new Intent(ForgetUserActivity.this, OTPActivity.class);
                             intent.putExtra("userId", foundUser.getId());
@@ -86,7 +86,7 @@ public class ForgetUserActivity extends AppCompatActivity {
                 } else {
                     // User not found
                     Log.d("ForgetUserActivity", "User not found");
-                    Toast.makeText(ForgetUserActivity.this, "User not found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ForgetUserActivity.this, getString(R.string.user_not_found), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -94,7 +94,7 @@ public class ForgetUserActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
                 // Handle possible errors
                 Log.d("ForgetUserActivity", "Database error: " + databaseError.getMessage());
-                Toast.makeText(ForgetUserActivity.this, "Database error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ForgetUserActivity.this, getString(R.string.database_error) + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

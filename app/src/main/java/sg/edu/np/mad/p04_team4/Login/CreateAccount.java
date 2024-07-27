@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import sg.edu.np.mad.p04_team4.R;
 
+
 public class CreateAccount extends AppCompatActivity {
 
     private boolean passwordShowing = false;
@@ -43,49 +44,60 @@ public class CreateAccount extends AppCompatActivity {
         });
 
         Button btnRegister = findViewById(R.id.SignUp);
-        btnRegister.setOnClickListener(v -> {
-            EditText tvName = findViewById(R.id.TextName);
-            EditText tvPhone = findViewById(R.id.TextPhoneNumber);
-            EditText tvPassword = findViewById(R.id.TextPassword);
-            ImageView btnHideIcon = findViewById(R.id.HideIcon);
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText tvName = findViewById(R.id.TextName);
+                EditText tvPhone = findViewById(R.id.TextPhoneNumber);
+                EditText tvPassword = findViewById(R.id.TextPassword);
+                ImageView btnHideIcon = findViewById(R.id.HideIcon);
 
-            btnHideIcon.setOnClickListener(v1 -> {
-                if (passwordShowing) {
-                    // Hide the password
-                    passwordShowing = false;
-                    tvPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    btnHideIcon.setImageResource(R.drawable.hide_icon);
-                } else {
-                    // Show the password
-                    passwordShowing = true;
-                    tvPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                    btnHideIcon.setImageResource(R.drawable.unhide_icon);
+                btnHideIcon.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (passwordShowing) {
+                            // Hide the password
+                            passwordShowing = false;
+                            tvPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                            btnHideIcon.setImageResource(R.drawable.hide_icon);
+                        } else {
+                            // Show the password
+                            passwordShowing = true;
+                            tvPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                            btnHideIcon.setImageResource(R.drawable.unhide_icon);
+                        }
+                        // Move cursor to the end of the password text
+                        tvPassword.setSelection(tvPassword.length());
+                    }
+                });
+
+                String name = tvName.getText().toString().trim();
+                String phone = tvPhone.getText().toString().trim();
+                String password = tvPassword.getText().toString().trim();
+
+                if (name.isEmpty() || phone.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(CreateAccount.this, "Please fill out all fields.", Toast.LENGTH_SHORT).show();
+                    return;
                 }
-                // Move cursor to the end of the password text
-                tvPassword.setSelection(tvPassword.length());
-            });
+                else {
+                    // Move to OTP Page
+                    Intent intent = new Intent(CreateAccount.this, CreateAccountOTPActivity.class);
+                    intent.putExtra("name", name);
+                    intent.putExtra("phone number", phone);
+                    intent.putExtra("password", password);
 
-            String name = tvName.getText().toString().trim();
-            String phone = tvPhone.getText().toString().trim();
-            String password = tvPassword.getText().toString().trim();
-
-            if (name.isEmpty() || phone.isEmpty() || password.isEmpty()) {
-                Toast.makeText(CreateAccount.this, "Please fill out all fields.", Toast.LENGTH_SHORT).show();
-                return;
-            } else {
-                // Move to OTP Page
-                Intent intent = new Intent(CreateAccount.this, CreateAccountOTPActivity.class);
-                intent.putExtra("name", name);
-                intent.putExtra("phone number", phone);
-                intent.putExtra("password", password);
-                startActivity(intent);
+                    startActivity(intent);
+                }
             }
         });
 
         Button btnLogin = findViewById(R.id.Login);
-        btnLogin.setOnClickListener(v -> {
-            Intent intent = new Intent(CreateAccount.this, LoginActivity.class);
-            startActivity(intent);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CreateAccount.this, LoginActivity.class);
+                startActivity(intent);
+            }
         });
     }
 }

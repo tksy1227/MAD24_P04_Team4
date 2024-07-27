@@ -82,7 +82,7 @@ public class OTPActivity extends AppCompatActivity {
                     String userId = getIntent().getStringExtra("userId");
                     verifyOTP(userId, enteredOTP);
                 } else {
-                    Toast.makeText(OTPActivity.this, "Please enter a valid OTP.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OTPActivity.this, getString(R.string.enter_valid_otp), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -113,16 +113,16 @@ public class OTPActivity extends AppCompatActivity {
                         intent.putExtra("userId", userId);
                         startActivity(intent);
                     } else {
-                        Toast.makeText(OTPActivity.this, "Invalid OTP", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OTPActivity.this, getString(R.string.invalid_otp), Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(OTPActivity.this, "OTP not found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OTPActivity.this, getString(R.string.otp_not_found), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(OTPActivity.this, "Database error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(OTPActivity.this, getString(R.string.database_error) + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -164,13 +164,13 @@ public class OTPActivity extends AppCompatActivity {
         new CountDownTimer(resendTime * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                resendBtn.setText("Resend Code (" + (millisUntilFinished / 1000) + ")");
+                resendBtn.setText(getString(R.string.resend_code) + (millisUntilFinished / 1000) + ")");
             }
 
             @Override
             public void onFinish() {
                 ResendEnabled = true;
-                resendBtn.setText("Resend Code");
+                resendBtn.setText(getString(R.string.resend_code2));
                 resendBtn.setTextColor(getResources().getColor(com.google.android.material.R.color.design_default_color_primary));
             }
         }.start();
