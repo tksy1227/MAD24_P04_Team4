@@ -167,8 +167,8 @@ public class selectHabit extends AppCompatActivity {
     }
     private void showHelpDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        //builder.setTitle(getString(R.string.Help));
-        //builder.setMessage(getString(R.string.habittracker_instructions));
-        //builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());    builder.show();
+        builder.setTitle(getString(R.string.Help));
+        builder.setMessage(getString(R.string.habit_instructions));
+        builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());    builder.show();
     }
 }

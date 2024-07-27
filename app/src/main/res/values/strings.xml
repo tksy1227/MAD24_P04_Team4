@@ -270,15 +270,19 @@
     <string name="cancel">Cancel</string>
     <string name="cancelled">Cancelled</string>
     <string name="habit_deleted"> habit deleted</string>
-
-    <!--<string name="habit_instructions">This is the HabitTracker feature, where you can create and track
-    habits for yourself to keep track of!\n\n
-    1. Create Habits: You can create up to 4!\n
-    2. Update Habits: Update your habits whenever, from the number of pushups to number of KM ran!\n
-    3. View Charts: View your progress with the various sorting features!\n
-    4. Gain Insights: Know more about your habits with the 'insights' page!\n\n
-    If you have any questions, please contact support.</string> -->
-
+    <string name="habit_instructions">This is the HabitTracker feature, where you can create and track habits for yourself to follow!\n\n
+    1. Create Habits: You can track up to 4 at a time!\n
+    2. Update Habit: Update your habits with new data whenever!\n
+    3. View Charts: View the charts to find out more about your habits with the various sorting features!\n
+    4. Gain Insights: Learn more about your habits with this page!\n\n
+    If you have any questions, please contact support.</string>
+    <!--<string name="habit_instructions">This is the HabitTracker feature,
+        where you can crate and track habits for yourself to follow! \n\n
+                1. Create Habits: You can track up to 4 at a time! \n
+                2. Update Habit: Update your habits with new data whenever, from the number of pushups to number of KM ran! \n
+                3. View Charts: View the charts to find out more about your habits with the various sorting features! \n
+                4. Gain Insights: Learn more about your habits with the 'insights' page! \n\n
+                If you have any questions, please contact support.</string> -->
 
     <!-- events_input -->
     <string name="invalid_action_performed">Invalid action performed: </string>
