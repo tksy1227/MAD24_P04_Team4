@@ -49,6 +49,8 @@ public class selectHabit extends AppCompatActivity {
         Button create_habit = findViewById(R.id.button_small_bottom_right);
         TextView title = findViewById(R.id.textViewToolbarTitle);
         title.setText(getString(R.string.habit_tracker));
+        Button helpButton = findViewById(R.id.helpButton);helpButton.setOnClickListener(v -> showHelpDialog());
+
 
         chartDBhandler dbHandler = new chartDBhandler(selectHabit.this);
         //dbHandler.insertData(new chartData("uhm",125,"2024-06-01"));
@@ -58,6 +60,7 @@ public class selectHabit extends AppCompatActivity {
             Intent home = new Intent(selectHabit.this, HomeActivity.class);
             startActivity(home);
         });
+
 
 
         Button[] buttons = { top_left, top_right, bottom_left, bottom_right };
@@ -158,7 +161,12 @@ public class selectHabit extends AppCompatActivity {
             }
         });
 
+
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+    private void showHelpDialog() {    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.Help));    builder.setMessage(getString(R.string.habittracker_instructions));
+        builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());    builder.show();
     }
 }

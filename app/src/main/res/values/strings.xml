@@ -270,6 +270,11 @@
     <string name="cancel">Cancel</string>
     <string name="cancelled">Cancelled</string>
     <string name="habit_deleted"> habit deleted</string>
+    <string name="habittracker_instructions"> This is the HabitTracker feature, where you can crate and track habits for yourself to follow!\n/n
+                1. Create a new habit, you can create up to 4!\n
+                2. Update the habit with new data whenever you wish, from the number of pushups to number of KM ran!\n
+                3. View the charts to gater any insights about your habits with the various sorting features!\n
+                4. Gain further data about your habits with the 'insights' page!</string>
 
     <!-- events_input -->
     <string name="invalid_action_performed">Invalid action performed: </string>
