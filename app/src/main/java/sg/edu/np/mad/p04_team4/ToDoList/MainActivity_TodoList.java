@@ -64,7 +64,7 @@ public class MainActivity_TodoList extends AppCompatActivity {
         if (user != null) {
             todoRef = FirebaseDatabase.getInstance().getReference("users").child(user.getUid()).child("todo_items");
         } else {
-            Toast.makeText(this, "User not authenticated", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.user_not_authenticated), Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -101,7 +101,7 @@ public class MainActivity_TodoList extends AppCompatActivity {
         Context context = getApplicationContext();
         String item = items.get(position);
         todoRef.child(item).removeValue(); // Delete the item from Firebase
-        Toast.makeText(context, "Item Removed", Toast.LENGTH_LONG).show(); // Show a toast message
+        Toast.makeText(context, getString(R.string.item_removed), Toast.LENGTH_LONG).show(); // Show a toast message
         items.remove(position); // Remove the item from the list
         itemsAdapter.notifyDataSetChanged(); // Notify the adapter to refresh the list
         return true;
@@ -116,7 +116,7 @@ public class MainActivity_TodoList extends AppCompatActivity {
             itemsAdapter.add(itemText); // Add the item to the list adapter
             input.setText(""); // Clear the input field
         } else {
-            Toast.makeText(getApplicationContext(), "Please Enter Text", Toast.LENGTH_SHORT).show(); // Show a toast message if input is empty
+            Toast.makeText(getApplicationContext(), getString(R.string.enter_text), Toast.LENGTH_SHORT).show(); // Show a toast message if input is empty
         }
     }
 
@@ -137,7 +137,7 @@ public class MainActivity_TodoList extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(MainActivity_TodoList.this, "Failed to load items", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity_TodoList.this, getString(R.string.failed_load_items), Toast.LENGTH_SHORT).show();
             }
         });
     }

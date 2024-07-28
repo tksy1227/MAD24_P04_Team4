@@ -474,12 +474,29 @@
 
     <!-- AccntDetailActivity -->
 
+    <!-- AcceptDeclineActivity -->
+    <string name="inviteid">Invite ID: </string>
+    <string name="invitation1">Invitation </string>
+    <string name="invitation2"> Accepted</string>
+    <string name="invitation3"> Declined</string>
+    <string name="invitation_fail">Failed to process the invitation</string>
+
+    <!-- FriendListActivity -->
+    <string name="join_me_on_friendscape">Join me on this awesome app!\n</string>
+    <string name="share_link_via">Share link via: </string>
+    <string name="invite_fail">Failed to get invite details</string>
+
+    <!-- ToDoList -->
+    <string name="item_removed">Item removed</string>
+    <string name="enter_text">Please enter text</string>
+    <string name="failed_load_items">Failed to load items</string>
+
     <!-- finished features:
     Feedback, Friendship_Event, HabitTracker, Timer,
-    Login (Except AccountActivity & AccntDetailActivity),
+    Login, AddFriend, ToDoList
     ScreenTime, DailyLoginReward, Chat
 
     Remaining features:
-    AddFriend, Home, ToDoList
+    Home
     -->
 </resources>

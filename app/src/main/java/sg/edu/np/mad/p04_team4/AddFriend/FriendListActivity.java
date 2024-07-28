@@ -91,8 +91,8 @@ public class FriendListActivity extends AppCompatActivity {
         String inviteLink = "https://www.yourwebsite.com/invite?user_id=123"; // Replace with your invite link
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
-        shareIntent.putExtra(Intent.EXTRA_TEXT, "Join me on this awesome app! " + inviteLink);
-        startActivity(Intent.createChooser(shareIntent, "Share link via"));
+        shareIntent.putExtra(Intent.EXTRA_TEXT,  getString(R.string.join_me_on_friendscape) + inviteLink);
+        startActivity(Intent.createChooser(shareIntent,  getString(R.string.share_link_via)));
     }
 
     @Override
@@ -108,7 +108,7 @@ public class FriendListActivity extends AppCompatActivity {
                     friendList.add(new Friend(name, birthday));
                     friendAdapter.notifyDataSetChanged();
                 } else {
-                    Toast.makeText(this, "Failed to get invite details", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.invite_fail), Toast.LENGTH_SHORT).show();
                 }
             }
         }

@@ -93,7 +93,7 @@ public class AcceptDeclineActivity extends AppCompatActivity {
         View requestView = inflater.inflate(R.layout.request_item, requestContainer, false);
 
         TextView nameTextView = requestView.findViewById(R.id.name);
-        nameTextView.setText("Invite ID: " + inviteId);
+        nameTextView.setText(getString(R.string.inviteid) + inviteId);
 
         ImageView acceptButton = requestView.findViewById(R.id.accept);
         ImageView declineButton = requestView.findViewById(R.id.decline);
@@ -116,13 +116,13 @@ public class AcceptDeclineActivity extends AppCompatActivity {
                         resultIntent.putExtra("birthday", "January 1, 2000"); // Replace with actual friend's birthday
                         setResult(RESULT_OK, resultIntent);
                     }
-                    Toast.makeText(AcceptDeclineActivity.this, "Invitation " + (accepted ? "Accepted" : "Declined"), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AcceptDeclineActivity.this, getString(R.string.invitation1) + (accepted ? getString(R.string.invitation2) : getString(R.string.invitation3)), Toast.LENGTH_SHORT).show();
                     requestContainer.removeView(requestView);
                     if (accepted) {
                         finish(); // End the activity and return to the previous activity
                     }
                 } else {
-                    Toast.makeText(AcceptDeclineActivity.this, "Failed to process the invitation", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AcceptDeclineActivity.this, getString(R.string.invitation_fail), Toast.LENGTH_SHORT).show();
                 }
             });
         }).start();

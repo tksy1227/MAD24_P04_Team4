@@ -464,13 +464,30 @@
 
     <!-- AccntDetailActivity -->
 
+    <!-- AcceptDeclineActivity -->
+    <string name="inviteid">邀请码：</string>
+    <string name="invitation1">邀请函</string>
+    <string name="invitation2">公认</string>
+    <string name="invitation3">拒绝</string>
+    <string name="invitation_fail">无法处理邀请</string>
+
+    <!-- FriendListActivity -->
+    <string name="join_me_on_friendscape">和我一起使用这个很棒的应用程序！\n</string>
+    <string name="share_link_via">通过以下方式分享链接：</string>
+    <string name="invite_fail">无法获取邀请详细信息</string>
+
+    <!-- ToDoList -->
+    <string name="item_removed">项目已移除</string>
+    <string name="enter_text">请输入文字</string>
+    <string name="failed_load_items">无法加载项目</string>
+
     <!-- finished features:
     Feedback, Friendship_Event, HabitTracker, Timer,
-    Login (Except AccountActivity & AccntDetailActivity),
+    Login, AddFriend, ToDoList
     ScreenTime, DailyLoginReward, Chat
 
     Remaining features:
-    AddFriend, Home, ToDoList
+    Home
     -->
 </resources>
 
