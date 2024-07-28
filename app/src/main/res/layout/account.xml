@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AccountActivity"
+    tools:context=".Login.AccountActivity"
     android:background="#F4EDEA">
 
     <ImageView
@@ -72,7 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/alata"
-        android:text="Account"
+        android:text="@string/Account"
         android:textColor="#03256C"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -112,12 +112,12 @@
                 android:layout_marginEnd="350dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="5dp"
-                app:srcCompat="@mipmap/password_icon" />
+                app:srcCompat="@drawable/password_icon" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Change Password"
+                android:text="@string/Change_Password"
                 android:textColor="#03256C"
                 android:textSize="16dp"
                 android:fontFamily="@font/alata"
@@ -137,7 +137,7 @@
                 android:layout_marginStart="320dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="30dp"
-                app:srcCompat="@drawable/ic_arrow" />
+                app:srcCompat="@drawable/arrow_right" />
 
         </RelativeLayout>
 
@@ -172,7 +172,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="180dp"
                 android:fontFamily="@font/alata"
-                android:text="Account Information"
+                android:text="@string/Account_Information"
                 android:textColor="#03256C"
                 android:textSize="16dp"
                 android:layout_marginRight="5dp"
@@ -186,7 +186,7 @@
                 android:layout_marginStart="320dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="30dp"
-                app:srcCompat="@drawable/ic_arrow" />
+                app:srcCompat="@drawable/arrow_right" />
 
         </RelativeLayout>
     </RelativeLayout>
@@ -197,7 +197,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/alata"
-        android:text="Content and Display"
+        android:text="@string/content_display"
         android:textColor="#03256C"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -250,11 +250,12 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/alata"
-                android:text="Language"
+                android:text="@string/Language"
                 android:textColor="#03256C"
                 android:textSize="16dp" />
 
             <ImageButton
+                android:id="@+id/languageButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentStart="true"
@@ -262,7 +263,7 @@
                 android:layout_marginStart="320dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="30dp"
-                app:srcCompat="@drawable/ic_arrow" />
+                app:srcCompat="@drawable/arrow_right" />
         </RelativeLayout>
     </RelativeLayout>
 
@@ -272,7 +273,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/alata"
-        android:text="Support and About"
+        android:text="@string/support_about"
         android:textColor="#03256C"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -288,7 +289,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#247B7B"
         android:fontFamily="@font/alata"
-        android:text="Log Out of Account"
+        android:text="@string/logout"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="16dp"
@@ -342,11 +343,12 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/alata"
-                android:text="Report a problem"
+                android:text="@string/report_problem"
                 android:textColor="#03256C"
                 android:textSize="16dp" />
 
             <ImageButton
+                android:id="@+id/problemButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentStart="true"
@@ -354,7 +356,7 @@
                 android:layout_marginStart="320dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="30dp"
-                app:srcCompat="@drawable/ic_arrow" />
+                app:srcCompat="@drawable/arrow_right" />
         </RelativeLayout>
     </RelativeLayout>
 
@@ -375,7 +377,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:letterSpacing="0.05"
-        android:text="Name of User"
+        android:text="@string/Name_of_User"
         android:textColor="#03256C"
         android:textSize="20dp"
         android:fontFamily="@font/alata"

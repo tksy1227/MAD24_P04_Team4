@@ -75,7 +75,7 @@ public class CreateAccount extends AppCompatActivity {
                 String password = tvPassword.getText().toString().trim();
 
                 if (name.isEmpty() || phone.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(CreateAccount.this, "Please fill out all fields.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateAccount.this, getString(R.string.fill_out_all_fields), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else {

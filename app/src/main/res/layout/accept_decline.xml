@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AcceptDeclineActivity"
+    tools:context=".AddFriend.AcceptDeclineActivity"
     android:background="#F4EDEA">
 
     <!-- Toolbar -->
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24dp"
-            android:text="Follow Request"
+            android:text="@string/Follow_Request"
             android:fontFamily="@font/anton"
             android:letterSpacing="0.2"
             android:textColor="#FFFFFF"
@@ -102,7 +102,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="65dp"
                 android:fontFamily="@font/alata"
-                android:text="Home"
+                android:text="@string/Home"
                 android:textAlignment="center"
                 android:textColor="#03256C"
                 android:textSize="16dp" />
@@ -149,7 +149,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="65dp"
                 android:fontFamily="@font/alata"
-                android:text="Friends"
+                android:text="@string/Friends"
                 android:textAlignment="center"
                 android:textColor="#03256C"
                 android:textSize="16dp" />
@@ -187,7 +187,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="65dp"
                 android:fontFamily="@font/alata"
-                android:text="Account"
+                android:text="@string/Account"
                 android:textAlignment="center"
                 android:textColor="#03256C"
                 android:textSize="16dp" />

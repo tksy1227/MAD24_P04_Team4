@@ -9,7 +9,7 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Invite ID: (name)"
+        android:text="@string/invite_id"
         android:fontFamily="@font/alata"
         android:textColor="#03256C"
         android:textSize="16dp"

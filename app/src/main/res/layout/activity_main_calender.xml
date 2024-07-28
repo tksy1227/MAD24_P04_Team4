@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="sg.edu.np.mad.p04_team4.Calender.MainCalender">
 
@@ -12,8 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top|center_horizontal"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/alata"
         android:textSize="18sp"
-        android:text="Selected Date" />
+        android:text="@string/Selected_Date" />
 
     <CalendarView
         android:id="@+id/calendarView"
@@ -33,7 +35,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Enter Event"
+            android:fontFamily="@font/alata"
+            android:hint="@string/Enter_Event"
             android:minHeight="48dp"
             android:padding="8dp" />
 
@@ -41,9 +44,14 @@
             android:id="@+id/buttonAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add"
+            android:text="@string/Add"
+            android:fontFamily="@font/alata"
             android:padding="8dp"
-            android:layout_marginLeft="16dp" />
+            android:layout_marginLeft="16dp"
+            android:textColor="#0D5C63"
+            android:backgroundTint="#C5D8D1"
+            app:strokeColor="#0D5C63"
+            app:strokeWidth="1dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -60,7 +68,8 @@
             android:id="@+id/switchAllDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="All Day"
+            android:text="@string/All_Day"
+            android:fontFamily="@font/alata"
             android:checked="true" />
 
         <LinearLayout
@@ -75,17 +84,27 @@
                 android:id="@+id/buttonStartDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Start Date"
+                android:text="@string/Start_Date"
+                android:fontFamily="@font/alata"
                 android:padding="8dp"
-                android:layout_marginLeft="8dp" />
+                android:layout_marginLeft="8dp"
+                android:textColor="#0D5C63"
+                android:backgroundTint="#C5D8D1"
+                app:strokeColor="#0D5C63"
+                app:strokeWidth="1dp"/>
 
             <Button
                 android:id="@+id/buttonEndDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="End Date"
+                android:text="@string/End_Date"
+                android:fontFamily="@font/alata"
                 android:padding="8dp"
-                android:layout_marginLeft="8dp" />
+                android:layout_marginLeft="8dp"
+                android:textColor="#0D5C63"
+                android:backgroundTint="#C5D8D1"
+                app:strokeColor="#0D5C63"
+                app:strokeWidth="1dp"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -122,17 +141,23 @@
         android:id="@+id/buttonViewEvents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View All Events"
+        android:text="@string/View_All_Events"
+        android:fontFamily="@font/alata"
         android:padding="8dp"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="16dp" />
+        android:layout_margin="16dp"
+        android:textColor="#0D5C63"
+        android:backgroundTint="#C5D8D1"
+        app:strokeColor="#0D5C63"
+        app:strokeWidth="1dp"/>
 
     <TextView
         android:id="@+id/eventListTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:text="Today's Events"
+        android:fontFamily="@font/alata"
+        android:text="@string/Today_Events"
         android:textSize="16sp"
         android:layout_gravity="center_horizontal" />
 

@@ -50,13 +50,13 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                         currentUser.setPassword(newPassword); // Update user's password
                         // Call method to save or update user details (e.g., in a database)
 
-                        Toast.makeText(ForgetPasswordActivity.this, "Password successfully changed.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ForgetPasswordActivity.this, getString(R.string.password_success_change), Toast.LENGTH_SHORT).show();
                         finish(); // Finish the activity or navigate back
                     } else {
-                        Toast.makeText(ForgetPasswordActivity.this, "Current password incorrect.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ForgetPasswordActivity.this, getString(R.string.password_incorrect), Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(ForgetPasswordActivity.this, "Passwords do not match.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ForgetPasswordActivity.this, getString(R.string.passwords_do_not_match), Toast.LENGTH_SHORT).show();
                 }
             }
         });

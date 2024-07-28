@@ -26,7 +26,7 @@
         android:layout_height="45dp"
         android:backgroundTint="#C5D8D1"
         android:fontFamily="@font/alata"
-        android:text="Log Out"
+        android:text="@string/Log_Out"
         android:textAlignment="center"
         android:textColor="#03256C"
         android:textSize="16dp"
@@ -122,7 +122,7 @@
                 android:fontFamily="@font/alata"
                 android:textAlignment="center"
                 android:textColor="#03256C"
-                android:text="Home"
+                android:text="@string/Home"
                 android:textSize="16dp" />
 
             <ImageView
@@ -169,7 +169,7 @@
                 android:fontFamily="@font/alata"
                 android:textAlignment="center"
                 android:textColor="#03256C"
-                android:text="Friends"
+                android:text="@string/Friends"
                 android:textSize="16dp" />
 
             <ImageView
@@ -207,7 +207,7 @@
                 android:fontFamily="@font/alata"
                 android:textAlignment="center"
                 android:textColor="#03256C"
-                android:text="Account"
+                android:text="@string/Account"
                 android:textSize="16dp" />
 
             <ImageView
@@ -255,7 +255,7 @@
             android:layout_marginRight="5dp"
             android:layout_marginBottom="65dp"
             android:fontFamily="@font/alata"
-            android:text="Chats"
+            android:text="@string/Chats"
             android:textAlignment="center"
             android:textColor="#03256C"
             android:textSize="16dp" />
@@ -305,7 +305,7 @@
             android:fontFamily="@font/alata"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:text="Timer"
+            android:text="@string/Timer"
             android:textSize="16dp" />
 
         <ImageView
@@ -353,7 +353,7 @@
             android:fontFamily="@font/alata"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:text="Fitness"
+            android:text="@string/Fitness"
             android:textSize="16dp" />
 
         <ImageView
@@ -401,7 +401,7 @@
             android:fontFamily="@font/alata"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:text="To-Do List"
+            android:text="@string/todo_list"
             android:textSize="16dp" />
 
         <ImageView
@@ -449,7 +449,7 @@
             android:fontFamily="@font/alata"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:text="Calendar"
+            android:text="@string/Calendar"
             android:textSize="16dp" />
 
         <ImageView
@@ -497,7 +497,7 @@
             android:fontFamily="@font/alata"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:text="Habit"
+            android:text="@string/Habit"
             android:textSize="16dp" />
 
         <ImageView
@@ -545,7 +545,7 @@
             android:fontFamily="@font/alata"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:text="Reward"
+            android:text="@string/Reward"
             android:textSize="16dp" />
 
         <ImageView
@@ -591,7 +591,7 @@
             android:layout_marginRight="5dp"
             android:layout_marginBottom="60dp"
             android:fontFamily="@font/alata"
-            android:text="Screentime"
+            android:text="@string/Screentime"
             android:textAlignment="center"
             android:textColor="#03256C"
             android:textSize="16dp" />
@@ -639,7 +639,7 @@
             android:layout_marginRight="5dp"
             android:layout_marginBottom="60dp"
             android:fontFamily="@font/alata"
-            android:text="Customise"
+            android:text="@string/Customise"
             android:textAlignment="center"
             android:textColor="#03256C"
             android:textSize="16dp" />
@@ -666,7 +666,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/alata"
-        android:text="today's date"
+        android:text="@string/Today_date"
         android:textAlignment="center"
         android:textColor="#03256C"
         android:textSize="25dp"

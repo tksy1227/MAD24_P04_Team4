@@ -85,7 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:letterSpacing="0.05"
-        android:text="Account Information"
+        android:text="@string/Account_Information"
         android:textColor="#03256C"
         android:textSize="20dp"
         android:fontFamily="@font/alata"
@@ -129,7 +129,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name"
+                android:text="@string/Name"
                 android:textColor="#03256C"
                 android:textSize="16dp"
                 android:fontFamily="@font/alata"
@@ -145,7 +145,7 @@
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="(Name)"
+                android:text="@string/name_Bracket"
                 android:textColor="#03256C"
                 android:textSize="16dp"
                 android:fontFamily="@font/alata"
@@ -182,7 +182,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Phone Number"
+                android:text="@string/Phone_Number"
                 android:textColor="#03256C"
                 android:textSize="16dp"
                 android:fontFamily="@font/alata"
@@ -198,7 +198,7 @@
                 android:id="@+id/number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="(Number)"
+                android:text="@string/phone_number_bracket"
                 android:textColor="#03256C"
                 android:textSize="16dp"
                 android:fontFamily="@font/alata"
@@ -242,7 +242,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="180dp"
                 android:fontFamily="@font/alata"
-                android:text="Email Address"
+                android:text="@string/Email_Address"
                 android:textColor="#03256C"
                 android:textSize="16dp"
                 android:layout_marginRight="5dp"
@@ -252,7 +252,7 @@
                 android:id="@+id/emailaddr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="(Email Address)"
+                android:text="@string/email_address_bracket"
                 android:textColor="#03256C"
                 android:textSize="16dp"
                 android:fontFamily="@font/alata"
@@ -305,7 +305,7 @@
                 android:fontFamily="@font/alata"
                 android:textAlignment="center"
                 android:textColor="#03256C"
-                android:text="Home"
+                android:text="@string/Home"
                 android:textSize="16dp" />
 
             <ImageView
@@ -352,7 +352,7 @@
                 android:fontFamily="@font/alata"
                 android:textAlignment="center"
                 android:textColor="#03256C"
-                android:text="Friends"
+                android:text="@string/Friends"
                 android:textSize="16dp" />
 
             <ImageView
@@ -390,7 +390,7 @@
                 android:fontFamily="@font/alata"
                 android:textAlignment="center"
                 android:textColor="#03256C"
-                android:text="Account"
+                android:text="@string/Account"
                 android:textSize="16dp" />
 
             <ImageView

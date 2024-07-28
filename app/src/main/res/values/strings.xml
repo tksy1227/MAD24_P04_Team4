@@ -105,7 +105,7 @@
     <string name="enter_phone_no">Enter Phone Number :</string>
     <string name="Phone_Number">Phone Number</string>
     <string name="welcome">Welcome!</string>
-    <string name="Log_Out">Language</string>
+    <string name="Log_Out">Log Out</string>
     <string name="Chats">Chats</string>
     <string name="Fitness">Fitness</string>
     <string name="Notepad">Notepad</string>
@@ -152,6 +152,37 @@
     <string name="Alpha_Wolf_Sticker_Pack">Alpha Wolf Sticker Pack</string>
     <string name="Skibidi_Toilet_Sticker_Pack">Skibidi Toilet Sticker Pack</string>
     <string name="Dead_by_Daylight_Sticker_Pack">Dead by Daylight Sticker Pack</string>
+    <string name="Language">Language</string>
+    <string name="Name">Name</string>
+    <string name="name_Bracket">(Name)</string>
+    <string name="phone_number_bracket">(Number)</string>
+    <string name="Email_Address">Email Address</string>
+    <string name="email_address_bracket">(Email Address)</string>
+    <string name="Follow_Request">Follow Requests</string>
+    <string name="Enter_Event_Title">Enter Event Title</string>
+    <string name="Start_Time">Start Time</string>
+    <string name="End_Time">End Time</string>
+    <string name="confirm_your_password">Confirm Your Password</string>
+    <string name="Selected_Date">Selected Date</string>
+    <string name="Enter_Event">Enter Event</string>
+    <string name="All_Day">All Day</string>
+    <string name="Start_Date">Start Date</string>
+    <string name="End_Date">End Date</string>
+    <string name="View_All_Events">View All Events</string>
+    <string name="Today_Events">Today\'s Events</string>
+    <string name="Create_Account">Create Account</string>
+    <string name="please_enter_code">Please enter the code that we have sent to you.</string>
+    <string name="did_nt_receive_otp">Didn\'t receive OTP?</string>
+    <string name="enter_Phone_Number">Enter Phone Number: </string>
+    <string name="create_new_password">Create New Password</string>
+    <string name="Birthday">Birthday</string>
+    <string name="birthday_bracket">(Birthday)</string>
+    <string name="Friend_List">Friend List</string>
+    <string name="Friend_Requests">Friend Requests</string>
+    <string name="Today_date">Today\'s Date</string>
+    <string name="Customise">Customise</string>
+    <string name="Screentime">Screentime</string>
+    <string name="invite_id">Invite ID: (name)</string>
 
     <!-- xml that have not been entered in here yet:
     homepage (landscape) -> we probably don't need this
@@ -354,11 +385,15 @@
     <string name="verification_failed">Verification failed</string>
     <string name="user_created">User created in database</string>
     <string name="user_created_failed">Failed to create user in database</string>
+    <string name="userid_null">User ID is null</string>
+    <string name="otp2">OTP: </string>
 
-    <!-- ForgetPasswordConfirmationActivity -->
+    <!-- ForgetPasswordActivity -->
     <string name="password_success_change">Password successfully changed.</string>
     <string name="password_change_failed">Password change failed. Please try again.</string>
     <string name="user_not_authenticated2">User not authenticated.</string>
+    <string name="password_incorrect">Current password incorrect.</string>
+    <string name="passwords_do_not_match">Passwords do not match.</string>
 
     <!-- ForgetUserActivity -->
     <string name="enter_valid_phone">Please enter a valid phone number.</string>
@@ -369,8 +404,10 @@
     <!-- LoginActivity -->
     <string name="login_success">Login Successful!</string>
     <string name="authentication_failed">Authentication failed: </string>
+    <string name="user_no_exist">User does not exist. Please create an account.</string>
+    <string name="incorrect_password">Incorrect password. Please try again.</string>
+    <string name="failed_to_fetch">Failed to fetch sign-in methods: </string>
 
-    <!-- OTPActivity -->
     <string name="invalid_otp">Invalid OTP</string>
     <string name="otp_not_found">OTP not found</string>
 
@@ -431,6 +468,11 @@
     <string name="chat_deleted">Chat deleted</string>
     <string name="failed_delete_chat">Failed to delete chat</string>
     <string name="chat_key_null">Chat key is null</string>
+
+    <!-- AccountActivity.java -->
+    <string name="name2">Name: </string>
+
+    <!-- AccntDetailActivity -->
 
     <!-- finished features:
     Feedback, Friendship_Event, HabitTracker, Timer,

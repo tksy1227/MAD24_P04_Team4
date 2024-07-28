@@ -82,7 +82,7 @@ public class CreateAccountOTPActivity extends AppCompatActivity {
                 if (enteredOTP.length() == 4) {
                     String userId = getIntent().getStringExtra("userId");
                     if (userId == null) {
-                        Toast.makeText(CreateAccountOTPActivity.this, "User ID is null", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreateAccountOTPActivity.this, getString(R.string.userid_null), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     verifyOTP(userId, enteredOTP);
@@ -97,13 +97,13 @@ public class CreateAccountOTPActivity extends AppCompatActivity {
         generatedOTP = generateOTP();
         String userId = getIntent().getStringExtra("userId");
         if (userId == null) {
-            Toast.makeText(this, "User ID is null", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.userid_null), Toast.LENGTH_SHORT).show();
             return;
         }
         mDatabase.child(userId).child("otp").setValue(generatedOTP);
 
         // For demonstration purposes, show the OTP in a Toast message
-        Toast.makeText(this, "OTP: " + generatedOTP, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, getString(R.string.otp2) + generatedOTP, Toast.LENGTH_LONG).show();
     }
 
     private String generateOTP() {

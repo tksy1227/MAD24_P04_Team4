@@ -132,7 +132,7 @@ public class AcceptDeclineActivity extends AppCompatActivity {
         OkHttpClient client = new OkHttpClient();
         MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
         String requestBodyStr = "invite_id=" + inviteId + "&accepted=" + accepted;
-        RequestBody body = RequestBody.create(requestBodyStr, mediaType);
+        RequestBody body = RequestBody.create(mediaType, requestBodyStr);
         Request request = new Request.Builder()
                 .url("https://www.yourwebsite.com/api/invite_response")
                 .post(body)

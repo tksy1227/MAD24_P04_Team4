@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                 String password = etPassword.getText().toString().trim();
 
                 if (phone.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Please fill out all fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.fill_out_all_fields), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 if (task.getResult().getSignInMethods().isEmpty()) {
                                     // User account does not exist
-                                    Toast.makeText(getApplicationContext(), "User does not exist. Please create an account.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), getString(R.string.user_no_exist), Toast.LENGTH_SHORT).show();
                                 }
                                 else {
                                     // User exists, proceed with sign-in
@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                                             .addOnCompleteListener(LoginActivity.this, signInTask -> {
                                                 if (signInTask.isSuccessful()) {
                                                     FirebaseUser user = mAuth.getCurrentUser();
-                                                    Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(getApplicationContext(), getString(R.string.login_success), Toast.LENGTH_SHORT).show();
                                                     Intent homeIntent = new Intent(LoginActivity.this, HomeActivity.class);
                                                     homeIntent.putExtra("email", user.getEmail());
                                                     homeIntent.putExtra("name", user.getDisplayName());
@@ -104,17 +104,17 @@ public class LoginActivity extends AppCompatActivity {
                                                     // Handle sign-in failures
                                                     if (signInTask.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                                         // Incorrect password
-                                                        Toast.makeText(getApplicationContext(), "Incorrect password. Please try again.", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(getApplicationContext(), getString(R.string.incorrect_password), Toast.LENGTH_SHORT).show();
                                                     } else {
                                                         // Other authentication failures
-                                                        Toast.makeText(getApplicationContext(), "Authentication failed: " + signInTask.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(getApplicationContext(), getString(R.string.authentication_failed) + signInTask.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                                     }
                                                 }
                                             });
                                 }
                             } else {
                                 // Error fetching sign-in methods
-                                Toast.makeText(getApplicationContext(), "Failed to fetch sign-in methods: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), getString(R.string.failed_to_fetch) + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
             }
