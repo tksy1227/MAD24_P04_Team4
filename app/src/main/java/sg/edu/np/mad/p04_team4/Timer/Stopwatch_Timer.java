@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +29,9 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+import sg.edu.np.mad.p04_team4.AddFriend.FriendListActivity;
 import sg.edu.np.mad.p04_team4.Home.HomeActivity;
+import sg.edu.np.mad.p04_team4.Login.AccountActivity;
 import sg.edu.np.mad.p04_team4.R;
 import sg.edu.np.mad.p04_team4.DailyLoginReward.ThemeUtils;
 
@@ -99,6 +102,23 @@ public class Stopwatch_Timer extends AppCompatActivity {
                 finish();
             }
         });
+
+        // Navigation buttons
+        RelativeLayout homeRL = findViewById(R.id.home);
+        homeRL.setOnClickListener(v -> navigateToActivity(HomeActivity.class));
+
+        RelativeLayout friendlistRL = findViewById(R.id.friendlist);
+        friendlistRL.setOnClickListener(v -> navigateToActivity(FriendListActivity.class));
+
+        RelativeLayout accountRL = findViewById(R.id.account);
+        accountRL.setOnClickListener(v -> navigateToActivity(AccountActivity.class));
+    }
+
+    private void navigateToActivity(Class<?> activityClass) {
+        Intent intent = new Intent(Stopwatch_Timer.this, activityClass);
+        startActivity(intent);
+        // Optionally, finish this activity if you want to prevent the user from returning
+        finish();
     }
 
     private void createNotificationChannel() {
@@ -146,7 +166,7 @@ public class Stopwatch_Timer extends AppCompatActivity {
         int minutes = Integer.parseInt(timeArray[1]);
         int seconds = Integer.parseInt(timeArray[2]);
         timeLeftInMillis = (hours * 3600 + minutes * 60 + seconds) * 1000;
-        initialTimeInMillis = timeLeftInMillis +1000;
+        initialTimeInMillis = timeLeftInMillis + 1000;
 
         if (!isTimerRunning) {
             countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {

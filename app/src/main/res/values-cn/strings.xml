@@ -15,6 +15,8 @@
     <string name="theme_preview">设置</string>
     <string name="sticker_image">贴纸图像</string>
     <string name="back_button">返回</string>
+    <string name="failed_to_create_account">创建帐户失败</string>
+    <string name="failed_to_update_profile">更新配置文件失败</string>
 
 
     <!-- change all texts in the layouts to be here to initialize the background changing-->

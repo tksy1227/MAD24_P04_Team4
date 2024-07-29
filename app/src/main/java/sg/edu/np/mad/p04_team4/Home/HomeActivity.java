@@ -14,7 +14,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +25,7 @@ import sg.edu.np.mad.p04_team4.Calender.MainCalender;
 import sg.edu.np.mad.p04_team4.Chat.ChatHomeActivity;
 import sg.edu.np.mad.p04_team4.DailyLoginReward.DailyRewardDialogFragment;
 import sg.edu.np.mad.p04_team4.DailyLoginReward.ShopActivity;
+import sg.edu.np.mad.p04_team4.DailyLoginReward.ThemeSelectionActivity;
 import sg.edu.np.mad.p04_team4.DailyLoginReward.ThemeUtils;
 import sg.edu.np.mad.p04_team4.Feedback.FeedbackActivity;
 import sg.edu.np.mad.p04_team4.Friendship_Event.Friendship_Events;
@@ -45,6 +45,9 @@ public class HomeActivity extends AppCompatActivity {
     private ScreenTimeService screenTimeService;
     private boolean isBound = false;
     private static final String TAG = "HomeActivity";
+    private SharedPreferences prefs;
+    private static final String PREFS_NAME = "DailyRewardPrefs";
+    private static final String SHOW_REWARD_DIALOG = "ShowRewardDialog";
 
     // Service connection to manage the binding and unbinding of the service
     private ServiceConnection serviceConnection = new ServiceConnection() {
@@ -100,10 +103,14 @@ public class HomeActivity extends AppCompatActivity {
         String userId = currentUser.getUid();
         Log.d(TAG, "User is authenticated: " + userId);
 
+        // Initialize SharedPreferences
+        prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+
         // Check if the daily reward dialog should be shown
-        if (DailyRewardDialogFragment.shouldShowReward(this)) {
+        if (shouldShowRewardDialog()) {
             DailyRewardDialogFragment dailyRewardDialogFragment = new DailyRewardDialogFragment();
             dailyRewardDialogFragment.show(getSupportFragmentManager(), "DailyRewardDialog");
+            setRewardDialogShown(false); // Set the flag to false after showing the dialog
         }
 
         // Set up click listeners for each feature
@@ -116,8 +123,19 @@ public class HomeActivity extends AppCompatActivity {
         setupClickListener(R.id.reward, "Reward", ShopActivity.class);
         setupClickListener(R.id.chart, "Habit Tracker", selectHabit.class);
         setupClickListener(R.id.calendar, "Calendar", MainCalender.class);
+        setupClickListener(R.id.Theme, "Customise", ThemeSelectionActivity.class);
+    }
 
+    // Method to check if the daily reward dialog should be shown
+    private boolean shouldShowRewardDialog() {
+        return prefs.getBoolean(SHOW_REWARD_DIALOG, true);
+    }
 
+    // Method to set the flag indicating the reward dialog has been shown
+    private void setRewardDialogShown(boolean shown) {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean(SHOW_REWARD_DIALOG, shown);
+        editor.apply();
     }
 
     // Method to set up click listeners for features without additional user data
@@ -212,6 +230,7 @@ public class HomeActivity extends AppCompatActivity {
             screenTimeService.stopFeatureTimer("Reward");
             screenTimeService.stopFeatureTimer("Habit Tracker");
             screenTimeService.stopFeatureTimer("Calendar");
+            screenTimeService.stopFeatureTimer("Theme");
         }
     }
 

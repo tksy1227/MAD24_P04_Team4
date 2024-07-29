@@ -1,7 +1,10 @@
 package sg.edu.np.mad.p04_team4.DailyLoginReward;
 
-import android.content.SharedPreferences;
+
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.graphics.drawable.ColorDrawable;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,6 +42,7 @@ public class DailyRewardDialogFragment extends DialogFragment {
     // SharedPreferences for storing user data
     private SharedPreferences prefs;
     private static final String PREFS_NAME = "DailyRewardPrefs";
+    private static final String SHOW_REWARD_DIALOG = "ShowRewardDialog";
 
     // Reward amount for daily login
     private static final int REWARD_AMOUNT = 20;
@@ -120,6 +123,7 @@ public class DailyRewardDialogFragment extends DialogFragment {
             editor.putBoolean(userId + "_ClaimStatus", false);
             editor.putLong(userId + "_LastLoginDate", today.getTimeInMillis());
             editor.putInt(userId + "_CurrentStreak", currentStreak);
+            editor.putBoolean(SHOW_REWARD_DIALOG, true);
             editor.apply();
 
             Log.d(TAG, "Updated Last Login: " + today.getTimeInMillis() + ", Updated Streak: " + currentStreak);
@@ -134,13 +138,14 @@ public class DailyRewardDialogFragment extends DialogFragment {
 
         String userId = currentUser.getUid();
         boolean claimed = prefs.getBoolean(userId + "_ClaimStatus", false);
+        boolean showDialog = prefs.getBoolean(SHOW_REWARD_DIALOG, true);
         long lastLoginMillis = prefs.getLong(userId + "_LastLoginDate", 0);
         Calendar lastLogin = Calendar.getInstance();
         lastLogin.setTimeInMillis(lastLoginMillis);
         Calendar today = Calendar.getInstance();
 
-        // Show reward if it has not been claimed or it's a new day
-        return !claimed || !isSameDay(lastLogin, today);
+        // Show reward if it has not been claimed, it's a new day, and the dialog should be shown
+        return (!claimed || !isSameDay(lastLogin, today)) && showDialog;
     }
 
     // Check if two Calendar instances represent the same day
@@ -227,6 +232,7 @@ public class DailyRewardDialogFragment extends DialogFragment {
                             // Update SharedPreferences to reflect the claim status
                             SharedPreferences.Editor editor = prefs.edit();
                             editor.putBoolean(userId + "_ClaimStatus", true);
+                            editor.putBoolean(SHOW_REWARD_DIALOG, false); // Set flag to false after claiming
                             editor.apply();
 
                             Log.d(TAG, "Claim status updated to true for user " + userId);

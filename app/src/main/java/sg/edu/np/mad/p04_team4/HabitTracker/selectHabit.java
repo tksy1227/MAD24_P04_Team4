@@ -9,6 +9,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +23,9 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import sg.edu.np.mad.p04_team4.AddFriend.FriendListActivity;
 import sg.edu.np.mad.p04_team4.Home.HomeActivity;
+import sg.edu.np.mad.p04_team4.Login.AccountActivity;
 import sg.edu.np.mad.p04_team4.R;
 
 public class selectHabit extends AppCompatActivity {
@@ -40,6 +43,32 @@ public class selectHabit extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        RelativeLayout homeRL = findViewById(R.id.home);
+        homeRL.setOnClickListener(v -> {
+            Intent homeIntent = new Intent(selectHabit.this, HomeActivity.class);
+            startActivity(homeIntent);
+            // Optionally, finish this activity if you want to prevent the user from returning
+            finish();
+        });
+
+        // Friend List
+        RelativeLayout friendlistRL = findViewById(R.id.friendlist);
+        friendlistRL.setOnClickListener(v -> {
+            Intent friendIntent = new Intent(selectHabit.this, FriendListActivity.class);
+            startActivity(friendIntent);
+            // Optionally, finish this activity if you want to prevent the user from returning
+            finish();
+        });
+
+        // Account
+        RelativeLayout accountRL = findViewById(R.id.account);
+        accountRL.setOnClickListener(v -> {
+            Intent accountIntent = new Intent(selectHabit.this, AccountActivity.class);
+            startActivity(accountIntent);
+            // Optionally, finish this activity if you want to prevent the user from returning
+            finish();
         });
 
         // Initialize UI components

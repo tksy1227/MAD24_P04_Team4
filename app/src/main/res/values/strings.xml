@@ -18,7 +18,9 @@
     <string name="send_sticker">Send Sticker</string>
     <string name="theme_preview">Settings</string>
     <string name="sticker_image">Sticker Image</string>
-    <string name="back_button">Sticker Image</string>
+    <string name="back_button">Sticker Image</string>failed_to_update_profile
+    <string name="failed_to_create_account">Failed to create account</string>
+    <string name="failed_to_update_profile">Failed to update profile</string>
 
     <!-- change all texts in the layouts to be here to initialize the background changing-->
     <!-- layout xmls -->

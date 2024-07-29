@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F4EDEA"
-    tools:context=".LoginActivity">
+    tools:context=".Login.LoginActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -258,7 +258,7 @@
             android:text="@string/Chats"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:textSize="16dp" />
+            android:textSize="15dp" />
 
         <ImageView
             android:layout_width="40dp"
@@ -306,7 +306,7 @@
             android:textAlignment="center"
             android:textColor="#03256C"
             android:text="@string/Timer"
-            android:textSize="16dp" />
+            android:textSize="15dp" />
 
         <ImageView
             android:layout_width="40dp"
@@ -354,7 +354,7 @@
             android:textAlignment="center"
             android:textColor="#03256C"
             android:text="@string/Fitness"
-            android:textSize="16dp" />
+            android:textSize="15dp" />
 
         <ImageView
             android:layout_width="40dp"
@@ -402,7 +402,7 @@
             android:textAlignment="center"
             android:textColor="#03256C"
             android:text="@string/todo_list"
-            android:textSize="16dp" />
+            android:textSize="15dp" />
 
         <ImageView
             android:layout_width="40dp"
@@ -450,7 +450,7 @@
             android:textAlignment="center"
             android:textColor="#03256C"
             android:text="@string/Calendar"
-            android:textSize="16dp" />
+            android:textSize="15dp" />
 
         <ImageView
             android:layout_width="40dp"
@@ -498,7 +498,7 @@
             android:textAlignment="center"
             android:textColor="#03256C"
             android:text="@string/Habit"
-            android:textSize="16dp" />
+            android:textSize="15dp" />
 
         <ImageView
             android:layout_width="40dp"
@@ -546,7 +546,7 @@
             android:textAlignment="center"
             android:textColor="#03256C"
             android:text="@string/Reward"
-            android:textSize="16dp" />
+            android:textSize="15dp" />
 
         <ImageView
             android:layout_width="40dp"
@@ -594,7 +594,7 @@
             android:text="@string/Screentime"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:textSize="16dp" />
+            android:textSize="15dp" />
 
         <ImageView
             android:layout_width="40dp"
@@ -642,7 +642,7 @@
             android:text="@string/Customise"
             android:textAlignment="center"
             android:textColor="#03256C"
-            android:textSize="16dp" />
+            android:textSize="15dp" />
 
         <ImageView
             android:layout_width="40dp"

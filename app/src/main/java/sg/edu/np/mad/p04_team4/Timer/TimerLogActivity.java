@@ -1,27 +1,13 @@
 package sg.edu.np.mad.p04_team4.Timer;
 
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import sg.edu.np.mad.p04_team4.R;
-import sg.edu.np.mad.p04_team4.DailyLoginReward.ThemeUtils;
-
-import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,11 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.view.View;
+import sg.edu.np.mad.p04_team4.AddFriend.FriendListActivity;
+import sg.edu.np.mad.p04_team4.DailyLoginReward.ThemeUtils;
+import sg.edu.np.mad.p04_team4.Home.HomeActivity;
+import sg.edu.np.mad.p04_team4.Login.AccountActivity;
+import sg.edu.np.mad.p04_team4.R;
 
 public class TimerLogActivity extends AppCompatActivity {
 
@@ -90,6 +76,23 @@ public class TimerLogActivity extends AppCompatActivity {
         // Attach the SwipeToDeleteCallback to the RecyclerView
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeToDeleteCallback(timerAdapter));
         itemTouchHelper.attachToRecyclerView(recyclerView);
+
+        // Navigation buttons
+        RelativeLayout homeRL = findViewById(R.id.home);
+        homeRL.setOnClickListener(v -> navigateToActivity(HomeActivity.class));
+
+        RelativeLayout friendlistRL = findViewById(R.id.friendlist);
+        friendlistRL.setOnClickListener(v -> navigateToActivity(FriendListActivity.class));
+
+        RelativeLayout accountRL = findViewById(R.id.account);
+        accountRL.setOnClickListener(v -> navigateToActivity(AccountActivity.class));
+    }
+
+    private void navigateToActivity(Class<?> activityClass) {
+        Intent intent = new Intent(TimerLogActivity.this, activityClass);
+        startActivity(intent);
+        // Optionally, finish this activity if you want to prevent the user from returning
+        finish();
     }
 
     private void loadData() {
