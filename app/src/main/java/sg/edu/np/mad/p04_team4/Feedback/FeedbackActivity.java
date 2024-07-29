@@ -63,7 +63,7 @@ public class FeedbackActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }); //tst
+        });
     }
 // buttonSendFeedback
     private void showConfirmationDialog() {
