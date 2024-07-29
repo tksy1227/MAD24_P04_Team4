@@ -1,5 +1,5 @@
 package sg.edu.np.mad.p04_team4.AddFriend;
-
+//class
 public class Friend {
     private String name;
     private String birthday;
