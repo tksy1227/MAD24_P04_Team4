@@ -51,7 +51,7 @@ public class FeedbackActivity extends AppCompatActivity {
             }
         });
 
-        // navigate back to the homepage
+        // navigate back to the homepage t
         // Handle custom back button click
         ImageButton backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
