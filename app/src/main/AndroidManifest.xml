@@ -17,24 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.P04_Team4"
         tools:targetApi="31">
-        <activity
-            android:name=".AddFriend.AcceptDeclineActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".AddFriend.FriendListActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity> <!-- lock the whole app in portrait mode -->
+        <!-- lock the whole app in portrait mode -->
         <activity
             android:name=".Login.ForgetUserActivity"
             android:exported="false"
@@ -172,6 +156,15 @@
             android:name=".Calender.EventActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddFriend.AcceptDeclineActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddFriend.FriendListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".Login.LoginActivity"
             android:exported="true"
