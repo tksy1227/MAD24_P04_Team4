@@ -235,10 +235,10 @@
         android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976"
+        app:layout_constraintVertical_bias="0.821"
         app:strokeColor="#0D5C63"
         app:strokeWidth="1dp" />
 
@@ -260,5 +260,151 @@
         app:layout_constraintVertical_bias="0.008"
         app:strokeColor="#0D5C63"
         app:strokeWidth="1dp" />
+
+    <RelativeLayout
+        android:layout_width="412dp"
+        android:layout_height="110dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        android:background="#C5D8D1">
+
+        <RelativeLayout
+            android:id="@+id/home"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/roundedstyle_w_colour"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="25dp"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="629dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="65dp"
+                android:fontFamily="@font/alata"
+                android:textAlignment="center"
+                android:textColor="#03256C"
+                android:text="@string/Home"
+                android:textSize="16dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="10dp"
+                app:srcCompat="@drawable/home_icon" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/friendlist"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/roundedstyle_w_colour"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="155dp"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="629dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="65dp"
+                android:fontFamily="@font/alata"
+                android:textAlignment="center"
+                android:textColor="#03256C"
+                android:text="@string/Friends"
+                android:textSize="16dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                app:srcCompat="@drawable/friend_icon" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/account"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/roundedstyle_w_colour"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="290dp"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="629dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="65dp"
+                android:fontFamily="@font/alata"
+                android:textAlignment="center"
+                android:textColor="#03256C"
+                android:text="@string/Account"
+                android:textSize="16dp" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="10dp"
+                app:srcCompat="@drawable/person_icon" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

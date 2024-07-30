@@ -97,7 +97,7 @@ public class ThemePreviewDialogFragment extends DialogFragment {
     private void showConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(getString(R.string.make_purchase))
-                .setMessage(getString(R.string.buy_theme) + themeCost + getString(R.string.buy_sticker2))
+                .setMessage(getString(R.string.buy_theme) + " " + themeCost + " " + getString(R.string.buy_sticker2))
                 .setPositiveButton(getString(R.string.buy_yes), (dialog, which) -> handlePurchase())
                 .setNegativeButton(getString(R.string.buy_no), (dialog, which) -> dialog.dismiss())
                 .create()

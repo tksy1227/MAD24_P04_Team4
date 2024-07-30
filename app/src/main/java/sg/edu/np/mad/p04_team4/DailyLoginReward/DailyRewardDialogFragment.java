@@ -1,7 +1,9 @@
 package sg.edu.np.mad.p04_team4.DailyLoginReward;
 
-import android.content.SharedPreferences;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.graphics.drawable.ColorDrawable;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -139,7 +140,7 @@ public class DailyRewardDialogFragment extends DialogFragment {
         lastLogin.setTimeInMillis(lastLoginMillis);
         Calendar today = Calendar.getInstance();
 
-        // Show reward if it has not been claimed or it's a new day
+        // Show reward if it has not been claimed today
         return !claimed || !isSameDay(lastLogin, today);
     }
 
@@ -204,6 +205,9 @@ public class DailyRewardDialogFragment extends DialogFragment {
             claimButton.setEnabled(false);
             claimButton.setText("Claimed");
             updateCurrentDayBox(view);
+        } else {
+            claimButton.setEnabled(true);
+            claimButton.setText("Claim");
         }
     }
 

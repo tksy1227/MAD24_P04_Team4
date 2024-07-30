@@ -19,7 +19,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
-import com.google.firebase.auth.GetTokenResult;
 
 import sg.edu.np.mad.p04_team4.Home.HomeActivity;
 import sg.edu.np.mad.p04_team4.R;
@@ -79,42 +78,34 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Check if user account exists
-                mAuth.fetchSignInMethodsForEmail(phone + "@example.com")
-                        .addOnCompleteListener(task -> {
+                mAuth.signOut();  // Sign out any existing user
+                // Sign in with Firebase Auth using the unique email created during account creation
+                String email = phone + "@example.com";
+                mAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(LoginActivity.this, task -> {
                             if (task.isSuccessful()) {
-                                if (task.getResult().getSignInMethods().isEmpty()) {
-                                    // User account does not exist
-                                    Toast.makeText(getApplicationContext(), getString(R.string.user_no_exist), Toast.LENGTH_SHORT).show();
-                                }
-                                else {
-                                    // User exists, proceed with sign-in
-                                    mAuth.signInWithEmailAndPassword(phone + "@example.com", password)
-                                            .addOnCompleteListener(LoginActivity.this, signInTask -> {
-                                                if (signInTask.isSuccessful()) {
-                                                    FirebaseUser user = mAuth.getCurrentUser();
-                                                    Toast.makeText(getApplicationContext(), getString(R.string.login_success), Toast.LENGTH_SHORT).show();
-                                                    Intent homeIntent = new Intent(LoginActivity.this, HomeActivity.class);
-                                                    homeIntent.putExtra("email", user.getEmail());
-                                                    homeIntent.putExtra("name", user.getDisplayName());
-                                                    startActivity(homeIntent);
-                                                    finish(); // Finish LoginActivity so user cannot go back
-                                                }
-                                                else {
-                                                    // Handle sign-in failures
-                                                    if (signInTask.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                                        // Incorrect password
-                                                        Toast.makeText(getApplicationContext(), getString(R.string.incorrect_password), Toast.LENGTH_SHORT).show();
-                                                    } else {
-                                                        // Other authentication failures
-                                                        Toast.makeText(getApplicationContext(), getString(R.string.authentication_failed) + signInTask.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                                    }
-                                                }
-                                            });
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                if (user != null) {
+                                    // Login successful
+                                    Toast.makeText(getApplicationContext(), getString(R.string.login_success), Toast.LENGTH_SHORT).show();
+                                    Intent homeIntent = new Intent(LoginActivity.this, HomeActivity.class);
+                                    homeIntent.putExtra("userId", user.getUid());
+                                    homeIntent.putExtra("email", user.getEmail());
+                                    homeIntent.putExtra("name", user.getDisplayName());
+                                    startActivity(homeIntent);
+                                    finish(); // Finish LoginActivity so user cannot go back
                                 }
                             } else {
-                                // Error fetching sign-in methods
-                                Toast.makeText(getApplicationContext(), getString(R.string.failed_to_fetch) + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                // Handle sign-in failures
+                                if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                                    // Incorrect password
+                                    Toast.makeText(getApplicationContext(), getString(R.string.incorrect_password), Toast.LENGTH_SHORT).show();
+                                } else if (task.getException() instanceof FirebaseAuthInvalidUserException) {
+                                    // No account with this phone number
+                                    Toast.makeText(getApplicationContext(), getString(R.string.user_no_exist), Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(getApplicationContext(), getString(R.string.authentication_failed) + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                }
                             }
                         });
             }

@@ -29,7 +29,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import sg.edu.np.mad.p04_team4.Home.HomeActivity;
 import sg.edu.np.mad.p04_team4.R;
-import sg.edu.np.mad.p04_team4.DailyLoginReward.ThemeUtils;
 
 public class CreateAccountOTPActivity extends AppCompatActivity {
 
@@ -45,7 +44,7 @@ public class CreateAccountOTPActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.create_account_otp); // Ensure this is the correct layout
+        setContentView(R.layout.create_account_otp);
 
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
 
@@ -63,7 +62,7 @@ public class CreateAccountOTPActivity extends AppCompatActivity {
 
         ShowKeyboard(otp1);
         StartCountDown();
-        sendOTP(); // Send OTP when activity is created
+        sendOTP();
 
         resendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +101,6 @@ public class CreateAccountOTPActivity extends AppCompatActivity {
         }
         mDatabase.child(userId).child("otp").setValue(generatedOTP);
 
-        // For demonstration purposes, show the OTP in a Toast message
         Toast.makeText(this, getString(R.string.otp2) + generatedOTP, Toast.LENGTH_LONG).show();
     }
 
@@ -118,11 +116,10 @@ public class CreateAccountOTPActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     String storedOTP = dataSnapshot.getValue(String.class);
                     if (storedOTP.equals(enteredOTP)) {
-                        // Navigate to HomeActivity on successful OTP verification
                         Intent intent = new Intent(CreateAccountOTPActivity.this, HomeActivity.class);
                         intent.putExtra("userId", userId);
                         startActivity(intent);
-                        finish(); // Finish this activity to prevent going back
+                        finish();
                     } else {
                         Toast.makeText(CreateAccountOTPActivity.this, getString(R.string.invalid_otp), Toast.LENGTH_SHORT).show();
                     }

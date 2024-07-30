@@ -240,7 +240,7 @@ public class StickerPackDialogFragment extends DialogFragment {
     private void showPurchaseConfirmationDialog() {
         new AlertDialog.Builder(getContext())
                 .setTitle(getString(R.string.make_purchase))
-                .setMessage(getString(R.string.buy_sticker1) + packCost + getString(R.string.buy_sticker2))
+                .setMessage(getString(R.string.buy_sticker1) + " " + packCost + " " + getString(R.string.buy_sticker2))
                 .setPositiveButton(getString(R.string.buy_yes), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         buyStickerPack();

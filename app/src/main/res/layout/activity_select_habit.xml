@@ -126,6 +126,25 @@
             app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.appcompat.widget.Toolbar>
 
+    <Button
+        android:id="@+id/helpButton"
+        android:layout_width="71dp"
+        android:layout_height="58dp"
+        android:backgroundTint="#C5D8D1"
+        android:fontFamily="@font/alata"
+        android:text="?"
+        android:textAlignment="center"
+        android:textColor="#0D5C63"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.008"
+        app:strokeColor="#0D5C63"
+        app:strokeWidth="1dp" />
+
 
     <!-- Top Right Button -->
     <Button

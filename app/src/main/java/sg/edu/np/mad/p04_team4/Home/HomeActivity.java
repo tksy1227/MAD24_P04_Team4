@@ -14,7 +14,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +25,7 @@ import sg.edu.np.mad.p04_team4.Calender.MainCalender;
 import sg.edu.np.mad.p04_team4.Chat.ChatHomeActivity;
 import sg.edu.np.mad.p04_team4.DailyLoginReward.DailyRewardDialogFragment;
 import sg.edu.np.mad.p04_team4.DailyLoginReward.ShopActivity;
+import sg.edu.np.mad.p04_team4.DailyLoginReward.ThemeSelectionActivity;
 import sg.edu.np.mad.p04_team4.DailyLoginReward.ThemeUtils;
 import sg.edu.np.mad.p04_team4.Feedback.FeedbackActivity;
 import sg.edu.np.mad.p04_team4.Friendship_Event.Friendship_Events;
@@ -45,6 +45,9 @@ public class HomeActivity extends AppCompatActivity {
     private ScreenTimeService screenTimeService;
     private boolean isBound = false;
     private static final String TAG = "HomeActivity";
+    private SharedPreferences prefs;
+    private static final String PREFS_NAME = "DailyRewardPrefs";
+    private static final String PREF_REWARD_DIALOG_SHOWN = "RewardDialogShown";
 
     // Service connection to manage the binding and unbinding of the service
     private ServiceConnection serviceConnection = new ServiceConnection() {
@@ -100,6 +103,9 @@ public class HomeActivity extends AppCompatActivity {
         String userId = currentUser.getUid();
         Log.d(TAG, "User is authenticated: " + userId);
 
+        // Initialize SharedPreferences
+        prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+
         // Check if the daily reward dialog should be shown
         if (DailyRewardDialogFragment.shouldShowReward(this)) {
             DailyRewardDialogFragment dailyRewardDialogFragment = new DailyRewardDialogFragment();
@@ -116,8 +122,7 @@ public class HomeActivity extends AppCompatActivity {
         setupClickListener(R.id.reward, "Reward", ShopActivity.class);
         setupClickListener(R.id.chart, "Habit Tracker", selectHabit.class);
         setupClickListener(R.id.calendar, "Calendar", MainCalender.class);
-
-
+        setupClickListener(R.id.Theme, "Customise", ThemeSelectionActivity.class);
     }
 
     // Method to set up click listeners for features without additional user data
@@ -191,12 +196,6 @@ public class HomeActivity extends AppCompatActivity {
         changeLanguage(languageCode);
     }
 
-    // Method to check if two Calendar dates are the same day
-    private boolean isSameDay(Calendar lastShown, Calendar today) {
-        return lastShown.get(Calendar.YEAR) == today.get(Calendar.YEAR)
-                && lastShown.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR);
-    }
-
     @Override
     protected void onPause() {
         super.onPause();
@@ -212,6 +211,7 @@ public class HomeActivity extends AppCompatActivity {
             screenTimeService.stopFeatureTimer("Reward");
             screenTimeService.stopFeatureTimer("Habit Tracker");
             screenTimeService.stopFeatureTimer("Calendar");
+            screenTimeService.stopFeatureTimer("Theme");
         }
     }
 

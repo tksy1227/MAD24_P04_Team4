@@ -16,9 +16,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import sg.edu.np.mad.p04_team4.Friendship_Event.User_events;
 import sg.edu.np.mad.p04_team4.R;
 
 public class CreateAccount extends AppCompatActivity {
@@ -34,7 +36,7 @@ public class CreateAccount extends AppCompatActivity {
         setContentView(R.layout.create_account);
 
         mAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance().getReference("users");
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -77,15 +79,32 @@ public class CreateAccount extends AppCompatActivity {
                 if (name.isEmpty() || phone.isEmpty() || password.isEmpty()) {
                     Toast.makeText(CreateAccount.this, getString(R.string.fill_out_all_fields), Toast.LENGTH_SHORT).show();
                     return;
-                }
-                else {
-                    // Move to OTP Page
-                    Intent intent = new Intent(CreateAccount.this, CreateAccountOTPActivity.class);
-                    intent.putExtra("name", name);
-                    intent.putExtra("phone number", phone);
-                    intent.putExtra("password", password);
-
-                    startActivity(intent);
+                } else {
+                    mAuth.signOut();  // Sign out any existing user
+                    // Create account with Firebase Auth
+                    mAuth.createUserWithEmailAndPassword(phone + "@example.com", password)
+                            .addOnCompleteListener(task -> {
+                                if (task.isSuccessful()) {
+                                    FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                                    if (firebaseUser != null) {
+                                        String userId = firebaseUser.getUid();
+                                        User newUser = new User(userId, name, password, phone, new User_events());
+                                        mDatabase.child(userId).setValue(newUser)
+                                                .addOnCompleteListener(dbTask -> {
+                                                    if (dbTask.isSuccessful()) {
+                                                        // Move to OTP Page
+                                                        Intent intent = new Intent(CreateAccount.this, CreateAccountOTPActivity.class);
+                                                        intent.putExtra("userId", userId);
+                                                        startActivity(intent);
+                                                    } else {
+                                                        Toast.makeText(CreateAccount.this, getString(R.string.failed_to_create_account), Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                    }
+                                } else {
+                                    Toast.makeText(CreateAccount.this, getString(R.string.failed_to_create_account) + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
                 }
             }
         });

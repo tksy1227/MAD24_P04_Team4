@@ -5,7 +5,7 @@ import java.io.Serializable;
 import sg.edu.np.mad.p04_team4.Friendship_Event.User_events;
 
 public class User implements Serializable {
-    private  Long id;
+    private String id;
     private String name;
     private String password;
     private String phone;
@@ -13,7 +13,7 @@ public class User implements Serializable {
 
     // Default constructor
     public User() {
-        this.id = 0L;
+        this.id = "";
         this.name = "";
         this.password = "";
         this.phone = "";
@@ -22,7 +22,7 @@ public class User implements Serializable {
 
     // Constructor with all parameters
     public User(String id, String name, String password, String phone, User_events events) {
-        this.id = 0L;
+        this.id = id;
         this.name = name;
         this.password = password;
         this.phone = phone;
@@ -31,14 +31,14 @@ public class User implements Serializable {
 
     // Constructor with name and password only
     public User(String name, String password) {
-        this.id = 0L; // Default value
+        this.id = ""; // Default value
         this.name = name;
         this.password = password;
         this.events = new User_events(0L, "", "", "", true, true, true);
     }
 
     // Constructor for id, name, password, and phone
-    public User(Long id, String name, String password) {
+    public User(String id, String name, String password) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -46,18 +46,17 @@ public class User implements Serializable {
     }
 
     // Getters and setters for all fields
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
     public String getName() {
         return name;
     }
-
 
     public void setName(String name) {
         this.name = name;
