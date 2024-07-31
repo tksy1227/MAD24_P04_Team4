@@ -40,6 +40,7 @@ public class MainCalender extends AppCompatActivity {
     private List<Event> eventList;
     private Calendar currentCalendar;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +49,7 @@ public class MainCalender extends AppCompatActivity {
         db = AppDatabase.getInstance(this);
 
         calendarView = findViewById(R.id.calendarView);
+        switchAllDay = findViewById(R.id.switchAllDay);
         selectedDateTextView = findViewById(R.id.selectedDateTextView);
         editTextEvent = findViewById(R.id.editTextEvent);
         buttonStartTime = findViewById(R.id.buttonStartTime);
@@ -93,10 +95,13 @@ public class MainCalender extends AppCompatActivity {
             updateButtonDate(buttonStartDate, startDate);
             updateButtonDate(buttonEndDate, endDate);
         });
+        switchAllDay.setChecked(true);  // Set switch to be on by default
+
 
         switchAllDay.setOnCheckedChangeListener((buttonView, isChecked) -> {
             findViewById(R.id.timePickerLayout).setVisibility(isChecked ? View.GONE : View.VISIBLE);
         });
+
 
         buttonStartTime.setOnClickListener(v -> {
             showTimePickerDialog(startTime, (calendar) -> {

@@ -1,6 +1,7 @@
 package sg.edu.np.mad.p04_team4.Calender;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -19,6 +20,24 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import sg.edu.np.mad.p04_team4.R;
+
+import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.CalendarView;
+import android.widget.EditText;
+import android.widget.Switch;
+import android.widget.Toast;
+import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class EditEventActivity extends AppCompatActivity {
     private AppDatabase db;
@@ -103,7 +122,7 @@ public class EditEventActivity extends AppCompatActivity {
             updateButtonTime(buttonStartTime, calendarStart);
         }));
 
-        buttonEndTime.setOnClickListener(v ->showTimePickerDialog(calendarEnd, calendar -> {
+        buttonEndTime.setOnClickListener(v -> showTimePickerDialog(calendarEnd, calendar -> {
             calendarEnd.set(Calendar.HOUR_OF_DAY, calendar.get(Calendar.HOUR_OF_DAY));
             calendarEnd.set(Calendar.MINUTE, calendar.get(Calendar.MINUTE));
             updateButtonTime(buttonEndTime, calendarEnd);
@@ -122,14 +141,19 @@ public class EditEventActivity extends AppCompatActivity {
                     calendarEnd.set(Calendar.SECOND, 59);
                 }
 
-                Event event = new Event(eventId, eventTitle, selectedDateInMillis, calendarStart.getTimeInMillis(), calendarEnd.getTimeInMillis());
-                event.setAllDay(switchAllDay.isChecked());
+                if (calendarStart.after(calendarEnd)) {
+                    Toast.makeText(this, "Please ensure event details are correct.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Event event = new Event(eventId, eventTitle, selectedDateInMillis, calendarStart.getTimeInMillis(), calendarEnd.getTimeInMillis());
+                    event.setAllDay(switchAllDay.isChecked());
 
-                new UpdateEventTask().execute(event);
+                    new UpdateEventTask().execute(event);
+                }
             } else {
                 Toast.makeText(this, "Please enter an event title", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
     private void showDatePickerDialog(Calendar initialCalendar, DateTimePickerCallback callback) {
@@ -141,8 +165,12 @@ public class EditEventActivity extends AppCompatActivity {
     }
 
     private void showTimePickerDialog(Calendar initialCalendar, DateTimePickerCallback callback) {
-        // Replace with your custom time picker logic
-        // Use buttons to set the time instead of a time picker dialog
+        new TimePickerDialog(EditEventActivity.this, (view, hourOfDay, minute) -> {
+            Calendar newCalendar = Calendar.getInstance();
+            newCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            newCalendar.set(Calendar.MINUTE, minute);
+            callback.onDateTimePicked(newCalendar);
+        }, initialCalendar.get(Calendar.HOUR_OF_DAY), initialCalendar.get(Calendar.MINUTE), true).show();
     }
 
     private void updateButtonDate(Button button, Calendar calendar) {
@@ -185,7 +213,8 @@ public class EditEventActivity extends AppCompatActivity {
                 if (isAllDay) {
                     buttonStartTime.setVisibility(View.GONE);
                     buttonEndTime.setVisibility(View.GONE);
-                } else {buttonStartTime.setVisibility(View.VISIBLE);
+                } else {
+                    buttonStartTime.setVisibility(View.VISIBLE);
                     buttonEndTime.setVisibility(View.VISIBLE);
                 }
             }
