@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.Toast;
 import android.view.View;
@@ -19,6 +21,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import sg.edu.np.mad.p04_team4.AddFriend.FriendListActivity;
+import sg.edu.np.mad.p04_team4.Home.HomeActivity;
+import sg.edu.np.mad.p04_team4.Login.AccountActivity;
 import sg.edu.np.mad.p04_team4.R;
 
 import android.app.DatePickerDialog;
@@ -142,7 +147,7 @@ public class EditEventActivity extends AppCompatActivity {
                 }
 
                 if (calendarStart.after(calendarEnd)) {
-                    Toast.makeText(this, "Please ensure event details are correct.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.ensure_details), Toast.LENGTH_SHORT).show();
                 } else {
                     Event event = new Event(eventId, eventTitle, selectedDateInMillis, calendarStart.getTimeInMillis(), calendarEnd.getTimeInMillis());
                     event.setAllDay(switchAllDay.isChecked());
@@ -150,8 +155,44 @@ public class EditEventActivity extends AppCompatActivity {
                     new UpdateEventTask().execute(event);
                 }
             } else {
-                Toast.makeText(this, "Please enter an event title", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.enter_event_title), Toast.LENGTH_SHORT).show();
             }
+        });
+
+        // Back Button
+        ImageButton backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(v -> {
+            Intent homeIntent = new Intent(EditEventActivity.this, HomeActivity.class);
+            startActivity(homeIntent);
+            // Optionally, finish this activity if you want to prevent the user from returning
+            finish();
+        });
+
+        // Home
+        RelativeLayout homeRL = findViewById(R.id.home);
+        homeRL.setOnClickListener(v -> {
+            Intent homeIntent = new Intent(EditEventActivity.this, HomeActivity.class);
+            startActivity(homeIntent);
+            // Optionally, finish this activity if you want to prevent the user from returning
+            finish();
+        });
+
+        // Friend List
+        RelativeLayout friendlistRL = findViewById(R.id.friendlist);
+        friendlistRL.setOnClickListener(v -> {
+            Intent friendIntent = new Intent(EditEventActivity.this, FriendListActivity.class);
+            startActivity(friendIntent);
+            // Optionally, finish this activity if you want to prevent the user from returning
+            finish();
+        });
+
+        // Account
+        RelativeLayout accountRL = findViewById(R.id.account);
+        accountRL.setOnClickListener(v -> {
+            Intent accountIntent = new Intent(EditEventActivity.this, AccountActivity.class);
+            startActivity(accountIntent);
+            // Optionally, finish this activity if you want to prevent the user from returning
+            finish();
         });
 
     }
@@ -230,7 +271,7 @@ public class EditEventActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            Toast.makeText(EditEventActivity.this, "Event updated successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditEventActivity.this, getString(R.string.event_updated_successfully), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(EditEventActivity.this, MainCalender.class);
             intent.putExtra("selectedDate", selectedDateInMillis);
             startActivity(intent);

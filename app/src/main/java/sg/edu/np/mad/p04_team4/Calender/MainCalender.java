@@ -9,11 +9,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,6 +26,9 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import sg.edu.np.mad.p04_team4.AddFriend.FriendListActivity;
+import sg.edu.np.mad.p04_team4.Home.HomeActivity;
+import sg.edu.np.mad.p04_team4.Login.AccountActivity;
 import sg.edu.np.mad.p04_team4.R;
 
 public class MainCalender extends AppCompatActivity {
@@ -40,11 +46,15 @@ public class MainCalender extends AppCompatActivity {
     private List<Event> eventList;
     private Calendar currentCalendar;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_calender);
+
+        // Set up the toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
         db = AppDatabase.getInstance(this);
 
@@ -58,7 +68,6 @@ public class MainCalender extends AppCompatActivity {
         buttonStartDate = findViewById(R.id.buttonStartDate);
         buttonEndDate = findViewById(R.id.buttonEndDate);
         buttonViewEvents = findViewById(R.id.buttonViewEvents);
-        switchAllDay = findViewById(R.id.switchAllDay);
         eventListTextView = findViewById(R.id.eventListTextView);
         eventListRecyclerView = findViewById(R.id.eventListRecyclerView);
 
@@ -95,13 +104,12 @@ public class MainCalender extends AppCompatActivity {
             updateButtonDate(buttonStartDate, startDate);
             updateButtonDate(buttonEndDate, endDate);
         });
-        switchAllDay.setChecked(true);  // Set switch to be on by default
 
+        switchAllDay.setChecked(true);  // Set switch to be on by default
 
         switchAllDay.setOnCheckedChangeListener((buttonView, isChecked) -> {
             findViewById(R.id.timePickerLayout).setVisibility(isChecked ? View.GONE : View.VISIBLE);
         });
-
 
         buttonStartTime.setOnClickListener(v -> {
             showTimePickerDialog(startTime, (calendar) -> {
@@ -145,10 +153,10 @@ public class MainCalender extends AppCompatActivity {
                 if (startTime.before(endTime)) {
                     new InsertEventTask().execute(new Event(eventTitle, selectedDateInMillis, startTime.getTimeInMillis(), endTime.getTimeInMillis()));
                 } else {
-                    Toast.makeText(MainCalender.this, "Please ensure event details are correct.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainCalender.this, getString(R.string.ensure_details), Toast.LENGTH_SHORT).show();
                 }
             } else {
-                Toast.makeText(MainCalender.this, "Please enter an event title.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainCalender.this, getString(R.string.enter_event_title), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -161,6 +169,43 @@ public class MainCalender extends AppCompatActivity {
         // Load events for the initial selected date
         updateEventListTextView();
         loadEvents();
+
+        // Back Button
+        ImageButton backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(v -> {
+            Intent homeIntent = new Intent(MainCalender.this, HomeActivity.class);
+            startActivity(homeIntent);
+            // Optionally, finish this activity if you want to prevent the user from returning
+            finish();
+        });
+
+        // Home
+        RelativeLayout homeRL = findViewById(R.id.home);
+        homeRL.setOnClickListener(v -> {
+            Intent homeIntent = new Intent(MainCalender.this, HomeActivity.class);
+            startActivity(homeIntent);
+            // Optionally, finish this activity if you want to prevent the user from returning
+            finish();
+        });
+
+        // Friend List
+        RelativeLayout friendlistRL = findViewById(R.id.friendlist);
+        friendlistRL.setOnClickListener(v -> {
+            Intent friendIntent = new Intent(MainCalender.this, FriendListActivity.class);
+            startActivity(friendIntent);
+            // Optionally, finish this activity if you want to prevent the user from returning
+            finish();
+        });
+
+        // Account
+        RelativeLayout accountRL = findViewById(R.id.account);
+        accountRL.setOnClickListener(v -> {
+            Intent accountIntent = new Intent(MainCalender.this, AccountActivity.class);
+            startActivity(accountIntent);
+            // Optionally, finish this activity if you want to prevent the user from returning
+            finish();
+        });
+
     }
 
     @Override
@@ -183,10 +228,10 @@ public class MainCalender extends AppCompatActivity {
         selectedDate.setTimeInMillis(selectedDateInMillis);
 
         if (isSameDay(selectedDate, currentCalendar)) {
-            eventListTextView.setText("Today's Events");
+            eventListTextView.setText(getString(R.string.today_event));
         } else {
             SimpleDateFormat sdf = new SimpleDateFormat("d MMM yyyy", Locale.getDefault());
-            eventListTextView.setText(sdf.format(selectedDateInMillis) + " Events");
+            eventListTextView.setText(sdf.format(selectedDateInMillis) + getString(R.string.events_jointext));
         }
     }
 
@@ -235,10 +280,10 @@ public class MainCalender extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            Toast.makeText(MainCalender.this, "Event added successfully!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainCalender.this, getString(R.string.events_added_successfully), Toast.LENGTH_SHORT).show();
             editTextEvent.setText("");
-            buttonStartTime.setText("Start Time");
-            buttonEndTime.setText("End Time");
+            buttonStartTime.setText(getString(R.string.start_time_text));
+            buttonEndTime.setText(getString(R.string.end_time_text));
             startTime = Calendar.getInstance();
             endTime = Calendar.getInstance();
             updateEventListTextView();

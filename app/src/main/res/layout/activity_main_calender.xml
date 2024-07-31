@@ -2,8 +2,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context="Calender.MainCalender">
+    tools:context="Calender.EventActivity"
+    android:background="#F4EDEA">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#0D5C63"
+        android:backgroundTint="#0D5C63"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:title=""
+        app:titleTextColor="@android:color/white">
+
+        <TextView
+            android:id="@+id/textViewToolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Calendar"
+            android:fontFamily="@font/alata"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!-- Back Button -->
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="8dp"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="Back"
+            android:padding="4dp"
+            android:src="@drawable/ic_arrow_back" />
+    </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/selectedDateTextView"
@@ -11,8 +54,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top|center_horizontal"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/alata"
         android:textSize="18sp"
-        android:text="Selected Date" />
+        android:text="@string/Selected_Date" />
 
     <CalendarView
         android:id="@+id/calendarView"
@@ -32,7 +76,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Enter Event"
+            android:hint="@string/Enter_Event"
+            android:fontFamily="@font/alata"
             android:minHeight="48dp"
             android:padding="8dp" />
 
@@ -40,9 +85,14 @@
             android:id="@+id/buttonAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add"
+            android:text="@string/Add"
             android:padding="8dp"
-            android:layout_marginLeft="16dp" />
+            android:layout_marginLeft="16dp"
+            android:backgroundTint="#C5D8D1"
+            android:fontFamily="@font/alata"
+            android:textColor="#0D5C63"
+            app:strokeColor="#0D5C63"
+            app:strokeWidth="1dp" />
     </LinearLayout>
 
     <RelativeLayout
@@ -54,7 +104,8 @@
             android:id="@+id/switchAllDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="All Day"
+            android:text="@string/All_Day"
+            android:fontFamily="@font/alata"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true" />
 
@@ -62,19 +113,29 @@
             android:id="@+id/buttonStartDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Start Date"
+            android:text="@string/Start_Date"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="16dp"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:backgroundTint="#C5D8D1"
+            android:fontFamily="@font/alata"
+            android:textColor="#0D5C63"
+            app:strokeColor="#0D5C63"
+            app:strokeWidth="1dp"/>
 
         <Button
             android:id="@+id/buttonEndDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="End Date"
+            android:text="@string/End_Date"
             android:layout_toStartOf="@id/buttonStartDate"
             android:layout_marginEnd="16dp"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:backgroundTint="#C5D8D1"
+            android:fontFamily="@font/alata"
+            android:textColor="#0D5C63"
+            app:strokeColor="#0D5C63"
+            app:strokeWidth="1dp"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -107,17 +168,23 @@
         android:id="@+id/buttonViewEvents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View All Events"
+        android:text="@string/View_All_Events"
         android:padding="8dp"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="16dp" />
+        android:layout_margin="16dp"
+        android:backgroundTint="#C5D8D1"
+        android:fontFamily="@font/alata"
+        android:textColor="#0D5C63"
+        app:strokeColor="#0D5C63"
+        app:strokeWidth="1dp"/>
 
     <TextView
         android:id="@+id/eventListTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:text="Today's Events"
+        android:text="@string/Today_Events"
+        android:fontFamily="@font/alata"
         android:textSize="16sp"
         android:layout_gravity="center_horizontal" />
 
@@ -127,4 +194,150 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:padding="8dp" />
+
+    <RelativeLayout
+        android:layout_width="412dp"
+        android:layout_height="110dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        android:background="#C5D8D1">
+
+        <RelativeLayout
+            android:id="@+id/home"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/roundedstyle_w_colour"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="25dp"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="629dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="65dp"
+                android:fontFamily="@font/alata"
+                android:textAlignment="center"
+                android:textColor="#03256C"
+                android:text="@string/Home"
+                android:textSize="16dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="10dp"
+                app:srcCompat="@drawable/home_icon" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/friendlist"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/roundedstyle_w_colour"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="155dp"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="629dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="65dp"
+                android:fontFamily="@font/alata"
+                android:textAlignment="center"
+                android:textColor="#03256C"
+                android:text="@string/Friends"
+                android:textSize="16dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                app:srcCompat="@drawable/friend_icon" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/account"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/roundedstyle_w_colour"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="290dp"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="629dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="65dp"
+                android:fontFamily="@font/alata"
+                android:textAlignment="center"
+                android:textColor="#03256C"
+                android:text="@string/Account"
+                android:textSize="16dp" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="10dp"
+                app:srcCompat="@drawable/person_icon" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
 </LinearLayout>

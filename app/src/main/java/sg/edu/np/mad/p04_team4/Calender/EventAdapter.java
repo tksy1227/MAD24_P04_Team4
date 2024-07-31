@@ -105,6 +105,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             context.startActivity(intent);
         });
     }
+
     @Override
     public int getItemCount() {
         return eventList.size();
@@ -112,12 +113,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
     private void showDeleteDialog(int position, View view) {
         new AlertDialog.Builder(view.getContext())
-                .setTitle("Delete Event")
-                .setMessage("Would you like to delete this event?")
-                .setPositiveButton("Yes", (dialog, which) -> {
+                .setTitle(context.getString(R.string.delete_event))
+                .setMessage(context.getString(R.string.delete_event2))
+                .setPositiveButton(context.getString(R.string.delete_event3), (dialog, which) -> {
                     new DeleteEventTask(view.getContext(), position, view).execute(eventList.get(position));
                 })
-                .setNegativeButton("No", (dialog, which) -> {
+                .setNegativeButton(context.getString(R.string.delete_event4), (dialog, which) -> {
                     notifyItemChanged(position); // Reset swipe position
                 })
                 .show();
@@ -128,7 +129,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         db.scheduleDao().delete(event);
         eventList.remove(position);
         notifyItemRemoved(position);
-        Toast.makeText(view.getContext(), "Event deleted successfully!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(view.getContext(), context.getString(R.string.event_deleted_successfully), Toast.LENGTH_SHORT).show();
     }
 
     private String formatDateRange(long startTimeInMillis, long endTimeInMillis) {
@@ -177,7 +178,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         protected void onPostExecute(Void aVoid) {
             eventList.remove(position);
             notifyItemRemoved(position);
-            Toast.makeText(context, "Event deleted successfully!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getString(R.string.event_deleted_successfully), Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -483,6 +483,25 @@
     <string name="enter_text">请输入文字</string>
     <string name="failed_load_items">无法加载项目</string>
 
+    <!-- EditEventActivity -->
+    <string name="ensure_details">请确保活动详细信息正确。</string>
+    <string name="enter_event_title">请输入活动标题</string>
+    <string name="event_updated_successfully">活动更新成功</string>
+
+    <!-- EventAdapter -->
+    <string name="delete_event">删除活动</string>
+    <string name="delete_event2">您想删除此活动吗？</string>
+    <string name="delete_event3">是</string>
+    <string name="delete_event4">否</string>
+    <string name="event_deleted_successfully">活动删除成功！</string>
+
+    <!-- MainCalendar -->
+    <string name="today_event">今天的活动</string>
+    <string name="events_jointext">的活动</string>
+    <string name="events_added_successfully">活动添加成功！</string>
+    <string name="start_time_text">开始时间</string>
+    <string name="end_time_text">结束时间</string>
+
     <!-- finished features:
     Feedback, Friendship_Event, HabitTracker, Timer,
     Login, AddFriend, ToDoList

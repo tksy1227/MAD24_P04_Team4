@@ -186,6 +186,7 @@
     <string name="Screentime">Screentime</string>
     <string name="invite_id">Invite ID: (name)</string>
 
+
     <!-- xml that have not been entered in here yet:
     homepage (landscape) -> we probably don't need this
     -->
@@ -493,6 +494,24 @@
     <string name="enter_text">Please enter text</string>
     <string name="failed_load_items">Failed to load items</string>
 
+    <!-- EditEventActivity -->
+    <string name="ensure_details">Please ensure event details are correct.</string>
+    <string name="enter_event_title">Please enter an event title</string>
+    <string name="event_updated_successfully">Event updated successfully</string>
+
+    <!-- EventAdapter -->
+    <string name="delete_event">Delete Event</string>
+    <string name="delete_event2">Would you like to delete this event?</string>
+    <string name="delete_event3">Yes</string>
+    <string name="delete_event4">No</string>
+    <string name="event_deleted_successfully">Event deleted successfully!</string>
+
+    <!-- MainCalendar -->
+    <string name="today_event">Today\'s Events</string>
+    <string name="events_jointext"> Events</string>
+    <string name="events_added_successfully">Event added successfully!</string>
+    <string name="start_time_text">Start Time</string>
+    <string name="end_time_text">End Time</string>
     <!-- finished features:
     Feedback, Friendship_Event, HabitTracker, Timer,
     Login, AddFriend, ToDoList
