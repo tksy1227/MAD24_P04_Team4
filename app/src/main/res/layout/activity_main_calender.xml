@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context="sg.edu.np.mad.p04_team4.Calender.MainCalender">
+    tools:context="Calender.MainCalender">
 
     <TextView
         android:id="@+id/selectedDateTextView"
@@ -13,9 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top|center_horizontal"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/alata"
         android:textSize="18sp"
-        android:text="@string/Selected_Date" />
+        android:text="Selected Date" />
 
     <CalendarView
         android:id="@+id/calendarView"
@@ -35,8 +32,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:fontFamily="@font/alata"
-            android:hint="@string/Enter_Event"
+            android:hint="Enter Event"
             android:minHeight="48dp"
             android:padding="8dp" />
 
@@ -44,80 +40,48 @@
             android:id="@+id/buttonAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Add"
-            android:fontFamily="@font/alata"
+            android:text="Add"
             android:padding="8dp"
-            android:layout_marginLeft="16dp"
-            android:textColor="#0D5C63"
-            android:backgroundTint="#C5D8D1"
-            app:strokeColor="#0D5C63"
-            app:strokeWidth="1dp"/>
+            android:layout_marginLeft="16dp" />
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp">
+        android:padding="16dp">
 
         <Switch
             android:id="@+id/switchAllDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/All_Day"
-            android:fontFamily="@font/alata"
-            android:checked="true" />
+            android:text="All Day"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true" />
 
-        <LinearLayout
+        <Button
+            android:id="@+id/buttonStartDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="end"
-            android:layout_weight="1"
-            android:gravity="end">
+            android:text="Start Date"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
+            android:layout_centerVertical="true" />
 
-            <Button
-                android:id="@+id/buttonStartDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Start_Date"
-                android:fontFamily="@font/alata"
-                android:padding="8dp"
-                android:layout_marginLeft="8dp"
-                android:textColor="#0D5C63"
-                android:backgroundTint="#C5D8D1"
-                app:strokeColor="#0D5C63"
-                app:strokeWidth="1dp"/>
+        <Button
+            android:id="@+id/buttonEndDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="End Date"
+            android:layout_toStartOf="@id/buttonStartDate"
+            android:layout_marginEnd="16dp"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
 
-            <Button
-                android:id="@+id/buttonEndDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/End_Date"
-                android:fontFamily="@font/alata"
-                android:padding="8dp"
-                android:layout_marginLeft="8dp"
-                android:textColor="#0D5C63"
-                android:backgroundTint="#C5D8D1"
-                app:strokeColor="#0D5C63"
-                app:strokeWidth="1dp"/>
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/timePickerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="end"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
+        android:padding="16dp"
         android:visibility="gone">
 
         <Button
@@ -125,39 +89,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Start Time"
-            android:padding="8dp"
-            android:layout_marginEnd="16dp" />
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
+            android:layout_centerVertical="true" />
 
         <Button
             android:id="@+id/buttonEndTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="End Time"
-            android:padding="8dp"
-            android:layout_marginStart="16dp" />
-    </LinearLayout>
+            android:layout_toStartOf="@id/buttonStartTime"
+            android:layout_marginEnd="16dp"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/buttonViewEvents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/View_All_Events"
-        android:fontFamily="@font/alata"
+        android:text="View All Events"
         android:padding="8dp"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="16dp"
-        android:textColor="#0D5C63"
-        android:backgroundTint="#C5D8D1"
-        app:strokeColor="#0D5C63"
-        app:strokeWidth="1dp"/>
+        android:layout_margin="16dp" />
 
     <TextView
         android:id="@+id/eventListTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:fontFamily="@font/alata"
-        android:text="@string/Today_Events"
+        android:text="Today's Events"
         android:textSize="16sp"
         android:layout_gravity="center_horizontal" />
 

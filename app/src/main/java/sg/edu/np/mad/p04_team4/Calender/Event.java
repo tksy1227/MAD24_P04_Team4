@@ -12,6 +12,7 @@ public class Event {
     private long date;
     private long startTime;
     private long endTime;
+    private boolean isAllDay;
 
     // Constructor without id for new events
     public Event(String title, long date, long startTime, long endTime) {
@@ -59,7 +60,13 @@ public class Event {
     public void setStartTime(long startTime) {
         this.startTime = startTime;
     }
+    public boolean isAllDay() {
+        return isAllDay;
+    }
 
+    public void setAllDay(boolean allDay) {
+        isAllDay = allDay;
+    }
     public long getEndTime() {
         return endTime;
     }

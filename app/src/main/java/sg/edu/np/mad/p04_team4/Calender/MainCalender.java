@@ -95,11 +95,7 @@ public class MainCalender extends AppCompatActivity {
         });
 
         switchAllDay.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                findViewById(R.id.timePickerLayout).setVisibility(View.GONE);
-            } else {
-                findViewById(R.id.timePickerLayout).setVisibility(View.VISIBLE);
-            }
+            findViewById(R.id.timePickerLayout).setVisibility(isChecked ? View.GONE : View.VISIBLE);
         });
 
         buttonStartTime.setOnClickListener(v -> {
@@ -153,7 +149,7 @@ public class MainCalender extends AppCompatActivity {
 
         buttonViewEvents.setOnClickListener(v -> {
             Intent intent = new Intent(MainCalender.this, EventActivity.class);
-            intent.putExtra("selectedDate",selectedDateInMillis);
+            intent.putExtra("selectedDate", selectedDateInMillis);
             startActivity(intent);
         });
 

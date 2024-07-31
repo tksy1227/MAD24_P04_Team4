@@ -1,12 +1,13 @@
 package sg.edu.np.mad.p04_team4.Calender;
 
+
 import android.content.Context;
 
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {Event.class}, version = 2)  // Ensure this version matches in both database classes
+@Database(entities = {Event.class}, version = 3)  // Ensure this version matches in both database classes
 public abstract class EventDatabase extends RoomDatabase {
     public abstract ScheduleDao eventDao();
 
@@ -26,4 +27,3 @@ public abstract class EventDatabase extends RoomDatabase {
         return INSTANCE;
     }
 }
-

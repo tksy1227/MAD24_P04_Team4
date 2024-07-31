@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {Event.class}, version = 2)  // Ensure this version matches in both database classes
+@Database(entities = {Event.class}, version = 3)  // Ensure this version matches in both database classes
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase instance;

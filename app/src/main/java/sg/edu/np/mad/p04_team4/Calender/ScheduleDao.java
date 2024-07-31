@@ -11,20 +11,20 @@ import java.util.List;
 @Dao
 public interface ScheduleDao {
     @Insert
-    void insert(sg.edu.np.mad.p04_team4.Calender.Event event);
+    void insert(Event event);
 
     @Delete
-    void delete(sg.edu.np.mad.p04_team4.Calender.Event event);
+    void delete(Event event);
 
     @Update
-    void update(sg.edu.np.mad.p04_team4.Calender.Event event);
+    void update(Event event);
 
     @Query("SELECT * FROM events WHERE startTime <= :end AND endTime >= :start")
-    List<sg.edu.np.mad.p04_team4.Calender.Event> getEventsForDate(long start, long end);
+    List<Event> getEventsForDate(long start, long end);
 
     @Query("SELECT * FROM events WHERE id = :id")
-    sg.edu.np.mad.p04_team4.Calender.Event getEventById(long id);
+    Event getEventById(long id);
     @Query("SELECT * FROM events WHERE date >= :monthStart AND date < :monthEnd")
-    List<sg.edu.np.mad.p04_team4.Calender.Event> getEventsForMonth(long monthStart, long monthEnd);
+    List<Event> getEventsForMonth(long monthStart, long monthEnd);
 
 }
