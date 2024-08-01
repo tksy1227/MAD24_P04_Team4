@@ -131,10 +131,15 @@ Old Concepts used: RecyclerView, Persistent Memory (SQLite database)
 New concepts used: Nested RecyclerView, Persistent Memory DAOs (Data Access Objects), Widget
 Feature/Enhancement done by: Shida
 Main page: Allow users to add events their own customised events. The events are highly cutomisable, users are able to set the start and end date, set the event to an all-day event, or set a start and end time to the event.
+
 ![image](https://github.com/user-attachments/assets/1a90ee9c-fb98-414a-a033-1dfe3bbc5231)
+
 View all event page: Users will be able to view their whole schedule according to the month and date selected.
+
 ![image](https://github.com/user-attachments/assets/ea2de658-6064-4045-83a8-bc71e9d4cc4d)
+
 Edit event page: Enable users to edit their events already added to ensure the details remain accurate.
+
 ![image](https://github.com/user-attachments/assets/0c3aca3b-bfab-4e9d-946a-e05460293bf1)
 
 
