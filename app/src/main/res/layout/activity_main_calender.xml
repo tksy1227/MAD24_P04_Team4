@@ -196,7 +196,7 @@
         android:padding="8dp" />
 
     <RelativeLayout
-        android:layout_width="425dp"
+        android:layout_width="448dp"
         android:layout_height="110dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
