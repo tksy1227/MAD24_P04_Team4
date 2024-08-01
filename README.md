@@ -127,9 +127,13 @@ Feature/Enhancement done by: Jacob
    ![widget](repo_images/widget.png)
 
 6. Calendar - A user-friendly app that enables users to effortlessly view and manage their schedules, ensuring they stay organized and on track with their daily activities.
+
 Old Concepts used: RecyclerView, Persistent Memory (SQLite database)
+
 New concepts used: Nested RecyclerView, Persistent Memory DAOs (Data Access Objects), Widget
+
 Feature/Enhancement done by: Shida
+
 Main page: Allow users to add events their own customised events. The events are highly cutomisable, users are able to set the start and end date, set the event to an all-day event, or set a start and end time to the event.
 
 ![image](https://github.com/user-attachments/assets/1a90ee9c-fb98-414a-a033-1dfe3bbc5231)
