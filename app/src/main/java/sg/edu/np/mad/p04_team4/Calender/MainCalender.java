@@ -53,7 +53,10 @@ public class MainCalender extends AppCompatActivity {
 
         // Set up the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
         db = AppDatabase.getInstance(this);
@@ -230,7 +233,7 @@ public class MainCalender extends AppCompatActivity {
         if (isSameDay(selectedDate, currentCalendar)) {
             eventListTextView.setText(getString(R.string.today_event));
         } else {
-            SimpleDateFormat sdf = new SimpleDateFormat("d MMM yyyy", Locale.getDefault());
+            SimpleDateFormat sdf = new SimpleDateFormat("d MMM yyyy ", Locale.getDefault());
             eventListTextView.setText(sdf.format(selectedDateInMillis) + getString(R.string.events_jointext));
         }
     }

@@ -9,6 +9,7 @@
     android:background="#F4EDEA">
 
 
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -37,7 +38,7 @@
             android:id="@+id/textViewToolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit Events"
+            android:text="View Events"
             android:fontFamily="@font/alata"
             android:textColor="@android:color/white"
             android:textSize="20sp"
@@ -49,6 +50,7 @@
 
 
     </androidx.appcompat.widget.Toolbar>
+
     <Spinner
         android:id="@+id/viewModeSpinner"
         android:layout_width="wrap_content"

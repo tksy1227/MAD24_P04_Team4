@@ -1,11 +1,13 @@
 package sg.edu.np.mad.p04_team4.Calender;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,26 +27,22 @@ public class EventActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AppDatabase db;
     private long selectedDate;
+    private ImageButton backButton;
     private boolean viewMonth = true; // Default view is month
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
-
+        backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(v -> onBackPressed());
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
             getSupportActionBar().setDisplayShowTitleEnabled(false);
-            getSupportActionBar().setTitle("Events");
         }
 
-        toolbar.setNavigationOnClickListener(v -> {
-            Intent intent = new Intent(EventActivity.this, MainCalender.class);
-            startActivity(intent);
-            finish();
-        });
 
         db = AppDatabase.getInstance(this);
         eventList = new ArrayList<>();

@@ -191,12 +191,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/eventListRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="100dp"
         android:layout_weight="1"
         android:padding="8dp" />
 
     <RelativeLayout
-        android:layout_width="412dp"
+        android:layout_width="425dp"
         android:layout_height="110dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

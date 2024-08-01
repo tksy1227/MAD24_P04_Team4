@@ -63,8 +63,8 @@ public class EditEventActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("Edit Event");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
 
         toolbar.setNavigationOnClickListener(v -> {
@@ -162,7 +162,7 @@ public class EditEventActivity extends AppCompatActivity {
         // Back Button
         ImageButton backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(v -> {
-            Intent homeIntent = new Intent(EditEventActivity.this, HomeActivity.class);
+            Intent homeIntent = new Intent(EditEventActivity.this, MainCalender.class);
             startActivity(homeIntent);
             // Optionally, finish this activity if you want to prevent the user from returning
             finish();
