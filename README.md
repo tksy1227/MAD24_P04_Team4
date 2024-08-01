@@ -78,8 +78,10 @@ Feature done by: Chloe
 ![timer-history](repo_images/timer-history.png)
 
 6. To-Do List - Organize their to-do tasks for the day
-Concepts used: Linear Layout, Persistent Memory
+Concepts used: Linear Layout, Persistent Memory, RecyclerView
 Feature done by: Shida
+![image](https://github.com/user-attachments/assets/34c29fd3-7f6c-413c-86af-f98fbaee0e0d)
+
 ---------------------------------------------------------------->
 App Features [Stage 2]:
 note: Old Concepts refer to concepts taught in lectures, or used in stage 1.
@@ -124,19 +126,26 @@ Feature/Enhancement done by: Jacob
    Feature/Enhancement done by: Chloe
    ![widget](repo_images/widget.png)
 
-6. Calendar - Allow users to view and track their schedule easily.
-Old Concepts used: Nested RecyclerView, Persistent Memory, Widget
-New concepts used: Nested RecyclerView
+6. Calendar - A user-friendly app that enables users to effortlessly view and manage their schedules, ensuring they stay organized and on track with their daily activities.
+Old Concepts used: RecyclerView, Persistent Memory (SQLite database)
+New concepts used: Nested RecyclerView, Persistent Memory DAOs (Data Access Objects), Widget
 Feature/Enhancement done by: Shida
+Main page: Allow users to add events their own customised events. The events are highly cutomisable, users are able to set the start and end date, set the event to an all-day event, or set a start and end time to the event.
+![image](https://github.com/user-attachments/assets/1a90ee9c-fb98-414a-a033-1dfe3bbc5231)
+View all event page: Users will be able to view their whole schedule according to the month and date selected.
+![image](https://github.com/user-attachments/assets/ea2de658-6064-4045-83a8-bc71e9d4cc4d)
+Edit event page: Enable users to edit their events already added to ensure the details remain accurate.
+![image](https://github.com/user-attachments/assets/0c3aca3b-bfab-4e9d-946a-e05460293bf1)
 
-7. Feedback feature -  Allow users to send feedback to the app developers, and the developers will
+
+8. Feedback feature -  Allow users to send feedback to the app developers, and the developers will
 receive the feedback in the form of an email sent to their email account.
 Old Concepts used: Firebase Realtime Database, User Interface Components, Event Handling, Firebase Operations,
 New concepts used: Google Apps Script, HTTP request (API getter to retrieve data), Automatic Email Sending
 Feature/Enhancement done by: Chloe
    ![feedback](repo_images/feedback.png)
 
-8. Changing Language - Allow users to switch between an English and Chinese interface. This is to provide
+9. Changing Language - Allow users to switch between an English and Chinese interface. This is to provide
 better user experience, as users will be able to understand and use the app based on their preferred language.
 Old Concepts used: Resource Management, SharedPreferences, Activity Lifecycles, View Binding and Event Handling
 New concepts used: Localization and Internalization, Locale, Configuration Modification 
